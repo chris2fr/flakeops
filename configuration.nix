@@ -71,7 +71,7 @@ in
     "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo";};
     "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age;};
     "email.list" = { file = ./secrets/email.list.age;};
-    "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
+    # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
     "vikunja.env" = { file = ./secrets/vikunja.env.age; owner="vikunja";};
   };
   boot.loader = {

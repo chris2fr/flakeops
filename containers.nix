@@ -46,6 +46,7 @@ let
   # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   # domainName = "mail.gv.coop";
+  bindSlappasswd = import secrets/bind.slappasswd
   domainName = "mail.lesgrandsvoisins.com";
   whitelistSubnets =  [ 
       "10.0.0.0/8" 
@@ -71,10 +72,10 @@ in
   };
   age.secrets = {
     "kopia.silverbullet" = { 
-      file = ./secrets/kopia.silverbullet.age;
+      file = secrets/kopia.silverbullet.age;
       user = "silverbullet";
     };
-    "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
+    # "bind.slappasswd" = { file = secrets/bind.slappasswd.age;};
   };
   # networking.interfaces.vlan2 = {
   #   virtual = true;
@@ -1705,7 +1706,7 @@ in
                 olcSuffix = "${lgvLdapBaseDN}";
                 /* your admin account, do not use writeText on a production system */
                 olcRootDN = "cn=admin,${lgvLdapBaseDN}";
-                olcRootPW = (lib.removeSuffix "\n" (builtins.readFile config.age.secrets."bind.slappasswd".path));
+                olcRootPW = "${bindSlappasswd}";
                 olcAccess = [
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
