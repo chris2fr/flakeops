@@ -36,12 +36,12 @@ let
 in
 {
   imports = [
-    (builtins.fetchTarball {
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
-      sha256 = "sha256:0clvw4622mqzk1aqw1qn6shl9pai097q62mq1ibzscnjayhp278b";
-      # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
-      # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
-    })
+    # (builtins.fetchTarball {
+    #   url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
+    #   sha256 = "sha256:0clvw4622mqzk1aqw1qn6shl9pai097q62mq1ibzscnjayhp278b";
+    #   # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
+    #   # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
+    # })
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
     ./mailserver/httpd.nix
@@ -61,13 +61,13 @@ in
     };
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
-  services.dovecot2.sieve.scripts = {};
-  services.dovecot2.sieve.extensions = [
-      "notify"
-      "imapflags"
-      "vnd.dovecot.filter"
-      "fileinto"
-    ];
+  # services.dovecot2.sieve.scripts = {};
+  # services.dovecot2.sieve.extensions = [
+  #     "notify"
+  #     "imapflags"
+  #     "vnd.dovecot.filter"
+  #     "fileinto"
+  #   ];
   services = {
     postfix.virtual = ''
         axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
