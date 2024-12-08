@@ -33,9 +33,9 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   age.secrets = {
-    "filebrowser" = { file = ./secrets/filebrowser.age;; owner="wwwrun";};
+    "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
     "newuser" = { file = ./secrets/newuser.age; owner="wwwrun";};
-    "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age;; owner="wwwrun";};
+    "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
     "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
   services.httpd.enable = true;
