@@ -1,7 +1,7 @@
 $ORIGIN lesgrandsvoisins.com.
 $TTL 900
 ; SOA Records
-@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024120801 43200 900 1814400 7200
+@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024120821 43200 900 1814400 7200
 ; NS Records
 @		IN	NS	HELIUM.NS.HETZNER.DE.
 @		IN	NS	ns1
@@ -20,6 +20,7 @@ contabob	300	IN	A	62.171.141.211
 contaboc	300	IN	A	213.136.76.12
 contabod	300	IN	A	213.136.76.12
 contaboe	300	IN	A	38.242.255.3
+contabof	300	IN	A	38.242.255.3
 hetzner005	300	IN	A	116.202.236.241
 hetznerc	300	IN	A	65.21.145.189
 ikoulaf	300	IN	A	109.238.12.91
@@ -45,6 +46,7 @@ contaboa	300	IN	AAAA	2a02:c207:2044:6219::1
 contaboc	300	IN	AAAA	2a02:c207:2066:4403::1
 contabod	300	IN	AAAA	2a02:c207:2066:4403::1
 contaboe	300	IN	AAAA	2a02:c206:2225:2619::1
+contabof	300	IN	AAAA	2a02:c206:2225:2619::1
 hetzner005	300	IN	AAAA	2a01:4f8:241:4faa::
 hetznerc	300	IN	AAAA	2a01:4f9:c011:33ff::1
 ikoulaf	300	IN	AAAA	2a00:c70:1:109:238:12:91:0
