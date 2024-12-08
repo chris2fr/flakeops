@@ -70,7 +70,11 @@ in
     };
   };
   age.secrets = {
-    "kopia.silverbullet" = { file = ./secrets/kopia.silverbullet.age;};
+    "kopia.silverbullet" = { 
+      file = ./secrets/kopia.silverbullet.age;
+      user = "silverbullet";
+    };
+    "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
   };
   # networking.interfaces.vlan2 = {
   #   virtual = true;
@@ -597,7 +601,7 @@ in
               Group = "users";
             };
             script = ''
-              /run/current-system/sw/bin/kopia repository connect from-config --token `cat /run/agenix/kopia.silverbullet`
+              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile config.age.secrets."kopia.silverbullet".path))}
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
               return 0
             '';
