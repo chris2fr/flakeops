@@ -73,7 +73,7 @@ in
   age.secrets = {
     "kopia.silverbullet" = { 
       file = secrets/kopia.silverbullet.age;
-      user = "silverbullet";
+      owner = "silverbullet";
     };
     # "bind.slappasswd" = { file = secrets/bind.slappasswd.age;};
   };
