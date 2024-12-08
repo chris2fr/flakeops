@@ -65,7 +65,7 @@ in
   ];
   age.secrets = {
     "keylesgrandsvoisins.vikunja" = { file = ./secrets/keylesgrandsvoisins.vikunja.age;};
-    "key.sftpgo" = { file = ./secrets/key.sftpgo.age;};
+    "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo";};
     "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age;};
     "email.list" = { file = ./secrets/email.list.age;};
   };
