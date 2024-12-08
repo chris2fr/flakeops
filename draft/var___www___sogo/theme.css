@@ -1,0 +1,42 @@
+{
+  "name": "default",
+  "colors": {
+    "primary": {
+      "name": "midnightblue",
+      "hues": {
+        "default": "500",
+        "hue-1": "300",
+        "hue-2": "800",
+        "hue-3": "A100"
+      }
+    },
+    "accent": {
+      "name": "maxyellowred",
+      "hues": {
+        "default": "A200",
+        "hue-1": "A100",
+        "hue-2": "A400",
+        "hue-3": "A700"
+      }
+    },
+    "warn": {
+      "name": "skobeloff",
+      "hues": {
+        "default": "500",
+        "hue-1": "300",
+        "hue-2": "800",
+        "hue-3": "A100"
+      }
+    },
+    "background": {
+      "name": "grey",
+      "hues": {
+        "default": "50",
+        "hue-1": "A100",
+        "hue-2": "100",
+        "hue-3": "300"
+      }
+    }
+  },
+  "isDark": false,
+}
