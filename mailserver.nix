@@ -139,7 +139,7 @@ in
       enable = true;
       bind = {
         dn = "cn=admin,${ldapBaseDCDN}";
-        passwordFile = conf.age.secrets.bind.path;
+        passwordFile = config.age.secrets.bind.path;
       };
       uris = [
         "ldap://ldap.lesgrandsvoisins.com:14389/"
