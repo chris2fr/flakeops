@@ -56,6 +56,7 @@ in
   ];
   age.secrets = {
     "oauthpassword" = { file = ./secrets/oauthpassword.age;};
+    "bind" = { file = ./secrets/bind.age;};
   };
   users.users.nginx.extraGroups = ["wwwrun"];
     services.phpfpm.pools."roundcube" = {
@@ -138,7 +139,7 @@ in
       enable = true;
       bind = {
         dn = "cn=admin,${ldapBaseDCDN}";
-        passwordFile = "/etc/nixos/.secrets.bind";
+        passwordFile = conf.age.secrets.bind.path;
       };
       uris = [
         "ldap://ldap.lesgrandsvoisins.com:14389/"
