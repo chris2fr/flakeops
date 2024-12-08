@@ -1701,7 +1701,7 @@ in
                 olcSuffix = "${lgvLdapBaseDN}";
                 /* your admin account, do not use writeText on a production system */
                 olcRootDN = "cn=admin,${lgvLdapBaseDN}";
-                # olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+                olcRootPW = (lib.removeSuffix "\n" (builtins.readFile config.age.secrets."bind.slappasswd".path));
                 olcAccess = [
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
