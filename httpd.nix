@@ -41,8 +41,8 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
-  Include /run/agenix/httpd.newuser.conf
-  Include /run/agenix/httpd.filebrowser.conf
+  # Include /run/agenix/httpd.newuser.conf
+  # Include /run/agenix/httpd.filebrowser.conf
   KeepAlive On
   MaxKeepAliveRequests 100
   KeepAliveTimeout 3
