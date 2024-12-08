@@ -5,7 +5,7 @@ let
   # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  bindSlappasswd = import ../secrets/bind.slappasswd
+  bindSlappasswd = import ../secrets/bind.slappasswd;
   domainName = import vars/domain-name-mail.nix;
   ldapBaseDCDN = import vars/ldap-base-dc-dn.nix;
 in

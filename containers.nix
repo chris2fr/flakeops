@@ -46,7 +46,7 @@ let
   # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   # domainName = "mail.gv.coop";
-  bindSlappasswd = import secrets/bind.slappasswd
+  bindSlappasswd = import secrets/bind.slappasswd;
   domainName = "mail.lesgrandsvoisins.com";
   whitelistSubnets =  [ 
       "10.0.0.0/8" 
