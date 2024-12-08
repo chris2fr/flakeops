@@ -34,7 +34,7 @@ in
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   age.secrets = {
     "filebrowser" = { file = ./secrets/filebrowser.age;};
-    "newuser" = { file = ./secrets/newuser.age;};
+    "newuser" = { file = ./secrets/newuser.age; owner="wwwrun";};
   };
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
