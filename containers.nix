@@ -602,7 +602,7 @@ in
               Group = "users";
             };
             script = ''
-              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /run/agenix/kopia.silverbullet))}
+              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile secrets/kopia.silverbullet))}
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
               return 0
             '';
