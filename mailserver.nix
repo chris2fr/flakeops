@@ -1,13 +1,13 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
-  domainName = import mailserver/vars/domain-name-mx.nix;
-  ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
+  # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
+  # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
+  # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
+  # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
+  domainName = import ./mailserver/vars/domain-name-mx.nix;
+  ldapBaseDCDN = import ./mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     #"mail.lesgrandsvoisins.com"
@@ -35,6 +35,7 @@ let
   ];
 in
 {
+
   imports = [
     # (builtins.fetchTarball {
     #   url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
@@ -53,6 +54,9 @@ in
     openldap
     pwgen
   ];
+  age.secrets = {
+    "oauthpassword" = { file = ./secrets/oauthpassword.age;};
+  };
   users.users.nginx.extraGroups = ["wwwrun"];
     services.phpfpm.pools."roundcube" = {
     settings = {
@@ -303,7 +307,7 @@ in
         # $config['oauth_provider'] = 'generic';
         # $config['oauth_provider_name'] = 'authentik';
         # $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
-        # $config['oauth_client_secret'] = '${oauthPassword}';
+        # $config['oauth_client_secret'] = 'dollar{oauthPassword}';
         # $config['oauth_auth_uri'] = 'https://authentik.resdigita.com/application/o/authorize/';
         # $config['oauth_token_uri'] = 'https://authentik.resdigita.com/application/o/token/';
         # $config['oauth_identity_uri'] = 'https://authentik.resdigita.com/application/o/userinfo/';

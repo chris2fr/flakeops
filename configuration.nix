@@ -3,15 +3,15 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 { config, pkgs, lib, ... }:
 let
-  mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
-  keyLesgrandsvoisinsVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keylesgrandsvoisins.vikunja));
-  keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
-  keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
-  passwordDBSFTPGO = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.db.sftpgo));
-  emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
-  emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
-  bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  keySftpgo = (lib.removeSuffix "\n" (builtins.readFile  /etc/nixos/.secrets.key.sftpgo ));
+  # mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
+  # keyLesgrandsvoisinsVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keylesgrandsvoisins.vikunja));
+  # keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
+  # keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
+  # passwordDBSFTPGO = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.db.sftpgo));
+  # emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
+  # emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
+  # bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  # keySftpgo = (lib.removeSuffix "\n" (builtins.readFile  /etc/nixos/.secrets.key.sftpgo ));
   home-manager = builtins.fetchTarball { url="https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"; sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; };
 in
 {
@@ -63,6 +63,12 @@ in
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
     (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { }  )
   ];
+  age.secrets = {
+    "keylesgrandsvoisins.vikunja" = { file = ./secrets/keylesgrandsvoisins.vikunja.age;};
+    "key.sftpgo" = { file = ./secrets/key.sftpgo.age;};
+    "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age;};
+    "email.list" = { file = ./secrets/email.list.age;};
+  };
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -295,7 +301,7 @@ in
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
   
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -341,7 +347,7 @@ in
       ];
       zones = {
         "lesgrandsvoisins.com" = {
-          file = /var/zone_lesgrandsvoisins_com.txt;
+          file = ./etc/bind/zone_lesgrandsvoisins_com.txt;
           master = true;
           allowQuery = ["any"];
           slaves = [
@@ -474,6 +480,7 @@ in
       enable = true;
       frontendScheme = "https";
       frontendHostname = "task.lesgrandsvoisins.com";
+      environmentFiles = [./etc/vikunja.env];
       # frontendHostname = "vikunja.lesgrandsvoisins.com";
       # frontendHostname = "vikunja.gv.coop";
       # frontendHostname = "vikunja.village.ngo";
@@ -484,7 +491,7 @@ in
           host = "mail.lesgrandsvoisins.com";
           authtype = "login";
           username = "list@lesgrandsvoisins.com";
-          password = emailList;
+          # password = emailList;
         };
         defaultsettings = {
           week_start = 1;
@@ -508,7 +515,7 @@ in
             authurl = "https://key.lesgrandsvoisins.com/realms/master";
             logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret = keyLesgrandsvoisinsVikunja;
+            # clientsecret = config.age.secrets."keylesgrandsvoisins.vikunja".path;
           }
           # {
           #   name = "keyGVcoop";
@@ -522,7 +529,7 @@ in
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret = keycloakVikunja;
+            # clientsecret = keycloakVikunja;
           }
           ];
         };
@@ -629,7 +636,7 @@ in
             oidc = {
               config_url = "https://key.lesgrandsvoisins.com/realms/master";
               client_id = "sftpgo";
-              client_secret = keySftpgo;
+              client_secret_file = config.age.secrets."key.sftpgo".path;
               username_field = "preferred_username";
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
               # redirect_base_url = "https://sftpgo.lesgrandsvoisins.com:10443";

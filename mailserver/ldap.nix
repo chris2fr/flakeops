@@ -2,9 +2,9 @@
 
 let 
   # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
+  # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
+  # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
+  # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   domainName = import ./vars/domain-name-mail.nix;
   ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
 in
@@ -49,7 +49,7 @@ in
           olcSuffix = "${ldapBaseDCDN}";
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
-          olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+          # olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
           olcAccess = [
             /* custom access rules for userPassword attributes */
             /* allow read on anything else */

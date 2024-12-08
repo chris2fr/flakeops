@@ -19,19 +19,23 @@ let
     # RequestHeader set X-Forwarded-Proto "https"
     # RequestHeader set X-Forwarded-Port "443"
   '';
-  fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
-  keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
-  keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
-  keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
-  httpd-radicale-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.radicale.oidcclientsecret;
-  httpd-dav-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.dav.oidcclientsecret;
-  SECRETS_NEWUSER_PASSWORD = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.newuser));           
-  keepasswebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb));
-  chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
+  # fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
+  # keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
+  # keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
+  # keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
+  # httpd-radicale-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.radicale.oidcclientsecret;
+  # httpd-dav-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.dav.oidcclientsecret;
+  # SECRETS_NEWUSER_PASSWORD = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.newuser));           
+  # keepasswebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb));
+  # chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
+  age.secrets = {
+    "filebrowser" = { file = ./secrets/filebrowser.age;};
+    "newuser" = { file = ./secrets/newuser.age;};
+  };
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
@@ -61,7 +65,6 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-   
   services.httpd.virtualHosts = {
      "maruftuyel.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
@@ -75,7 +78,8 @@ in
         ProxyAddHeaders On
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
-        OIDCClientSecret ${fileBrowserSecret}
+        OIDCClientSecret ""
+         #  dollar{fileBrowserSecret}
         OIDCRedirectURI https://maruftuyel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -104,7 +108,8 @@ in
         ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
-        OIDCClientSecret ${fileBrowserSecret}
+        OIDCClientSecret ""
+        # OIDCClientSecret dollar{fileBrowserSecret}
         OIDCRedirectURI https://axel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -132,8 +137,8 @@ in
         # ProxyVia On
         ProxyAddHeaders On
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
-        OIDCClientID filebrowser
-        OIDCClientSecret ${fileBrowserSecret}
+        OIDCClientSecret ""
+        # OIDCClientSecret dollar{fileBrowserSecret}
         OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -161,8 +166,8 @@ in
         ProxyAddHeaders On
         ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
-        OIDCClientID filebrowser
-        OIDCClientSecret ${fileBrowserSecret}
+        OIDCClientSecret ""
+        # OIDCClientSecret dollar{fileBrowserSecret}
         OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         # <LocationMatch "^/u/redirect$">
@@ -235,9 +240,10 @@ in
 
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keeweb
-        OIDCClientSecret ${keewebSecret}
+        OIDCClientSecret "" 
+        # dollar{keewebSecret}
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
-        OIDCCryptoPassphrase ${keewebSecretPassphrase}
+        OIDCCryptoPassphrase dollar{keewebSecretPassphrase}
         
         <LocationMatch "^/redirect$">
           AuthType openid-connect
@@ -305,9 +311,10 @@ in
         DavLockDB /tmp/DavLockSecret
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keepassweb
-        OIDCClientSecret  ${keepasswebSecret}
+        OIDCClientSecret ""
+        # dollar{keepasswebSecret}
         OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
-        OIDCCryptoPassphrase ${keepasswebSecretPassphrase}
+        OIDCCryptoPassphrase dollar{keepasswebSecretPassphrase}
         <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
           Satisfy Any
           Allow from all
@@ -355,7 +362,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-          AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require valid-user
           Require ldap-attribute cn=%{env:MATCH_USERNAME}
@@ -369,7 +376,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-          AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
           # Require valid-user
@@ -420,7 +427,8 @@ in
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
-        OIDCClientSecret ${httpd-radicale-oidcclientsecret}
+        OIDCClientSecret ""
+         #  dollar{httpd-radicale-oidcclientsecret}
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         OIDCRemoteUserClaim username
@@ -447,7 +455,7 @@ in
       #       AuthBasicProvider ldap
       #       AuthName "Radicale CalDAV et CardDAV par LDAP"
       #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-      #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+      #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
       #       AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
       #       #Require valid-user
       #       Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
@@ -462,7 +470,7 @@ in
             AuthBasicProvider ldap
             AuthName "Radicale CalDAV et CardDAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-            AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+            AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
             AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             AuthLDAPRemoteUserAttribute cn
             Require valid-user
@@ -490,7 +498,8 @@ in
 
         OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
         OIDCClientID dav
-        OIDCClientSecret ${httpd-dav-oidcclientsecret}
+        OIDCClientSecret ""
+         #  dollar{httpd-dav-oidcclientsecret}
         OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
@@ -530,7 +539,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
-          AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require valid-user
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
@@ -574,7 +583,8 @@ in
 
           OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
           OIDCClientID dav
-          OIDCClientSecret ${httpd-dav-oidcclientsecret}
+          OIDCClientSecret ""
+         #  dollar{httpd-dav-oidcclientsecret}
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
@@ -614,7 +624,7 @@ in
             AuthBasicProvider ldap
             AuthName "DAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
-            AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+            AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
             AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             # Require valid-user
             # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
@@ -962,7 +972,7 @@ in
     #     AuthBasicProvider ldap
     #     AuthName "DAV par LDAP"
     #     AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #     AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+    #     AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
     #     AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #     </Location>
     #     <Location "/chris">
@@ -1056,7 +1066,7 @@ in
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
     #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+    #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
     #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
@@ -1068,7 +1078,7 @@ in
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
     #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+    #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
     #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
@@ -1175,7 +1185,7 @@ in
     #         AuthBasicProvider ldap
     #         AuthName "DAV par LDAP"
     #         AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #         AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+    #         AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
     #         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #         #Require valid-user
     #         Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org

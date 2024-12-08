@@ -40,11 +40,11 @@ let
   lgvLdapDomainName = "ldap.lesgrandsvoisins.com";
   ldapBaseDN = "dc=gv,dc=coop";
   lgvLdapBaseDN = "dc=lesgrandsvoisins,dc=com";
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
+  # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
+  # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
+  # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
+  # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   # domainName = "mail.gv.coop";
   domainName = "mail.lesgrandsvoisins.com";
   whitelistSubnets =  [ 
@@ -68,6 +68,9 @@ in
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
+  };
+  age.secrets = {
+    "kopia.silverbullet" = { file = ./secrets/kopia.silverbullet.age;};
   };
   # networking.interfaces.vlan2 = {
   #   virtual = true;
@@ -355,7 +358,7 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       system = {
-        copySystemConfiguration = true;
+        # copySystemConfiguration = true;
         stateVersion = "24.05";
       };
       environment.sessionVariables = rec {
@@ -594,7 +597,7 @@ in
               Group = "users";
             };
             script = ''
-              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.kopia.silverbullet))}
+              /run/current-system/sw/bin/kopia repository connect from-config --token `cat /run/agenix/kopia.silverbullet`
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
               return 0
             '';
@@ -1698,7 +1701,7 @@ in
                 olcSuffix = "${lgvLdapBaseDN}";
                 /* your admin account, do not use writeText on a production system */
                 olcRootDN = "cn=admin,${lgvLdapBaseDN}";
-                olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+                # olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
                 olcAccess = [
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
@@ -2019,7 +2022,7 @@ in
                 olcSuffix = "${ldapBaseDN}";
                 /* your admin account, do not use writeText on a production system */
                 olcRootDN = "cn=admin,${ldapBaseDN}";
-                olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+                # olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
                 olcAccess = [
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */

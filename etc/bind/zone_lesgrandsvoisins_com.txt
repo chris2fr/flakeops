@@ -1,0 +1,201 @@
+$ORIGIN lesgrandsvoisins.com.
+$TTL 900
+; SOA Records
+@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024120801 43200 900 1814400 7200
+; NS Records
+@		IN	NS	HELIUM.NS.HETZNER.DE
+@		IN	NS	ns1
+@		IN	NS	ns1.linode.com.
+@		IN	NS	ns2.afraid.org.
+; MX Records
+@	300	IN	MX	0 mail
+; A Records
+8	300	IN	A	116.202.236.241
+@	300	IN	A	116.202.236.241
+a.contaboe	300	IN	A	38.242.255.3
+atelier	300	IN	A	78.194.186.69
+authentik	300	IN	A	116.202.236.241
+contaboa	300	IN	A	144.91.115.230
+contabob	300	IN	A	62.171.141.211
+contaboc	300	IN	A	213.136.76.12
+contabod	300	IN	A	213.136.76.12
+contaboe	300	IN	A	38.242.255.3
+hetzner005	300	IN	A	116.202.236.241
+hetznerc	300	IN	A	65.21.145.189
+ikoulaf	300	IN	A	109.238.12.91
+ikoulag	300	IN	A	109.238.14.6
+lycos	300	IN	A	84.244.3.45
+mail	300	IN	A	116.202.236.241
+ns1	300	IN	A	116.202.236.241
+odoo	300	IN	A	141.95.172.224
+previous	300	IN	A	65.21.145.189
+roses	300	IN	A	37.67.157.155
+scalewaya	300	IN	A	51.159.223.7
+scalewayb	300	IN	A	51.159.76.154
+vpsfreea		IN	A	77.93.223.210
+yuno	300	IN	A	185.8.164.27
+; AAAA Records
+8	300	IN	AAAA	2a01:4f8:241:4faa::8
+@	300	IN	AAAA	2a01:4f8:241:4faa::
+aaaa.contaboe	300	IN	AAAA	2a02:c206:2225:2619::1
+aaaa.scalewaya1	300	IN	AAAA	2001:bc8:1201:900:46a8:42ff:fe22:e5b6
+auth.new	300	IN	AAAA	2a01:4f8:241:4faa::100
+authentik	300	IN	AAAA	2a01:4f8:241:4faa::
+contaboa	300	IN	AAAA	2a02:c207:2044:6219::1
+contaboc	300	IN	AAAA	2a02:c207:2066:4403::1
+contabod	300	IN	AAAA	2a02:c207:2066:4403::1
+contaboe	300	IN	AAAA	2a02:c206:2225:2619::1
+hetzner005	300	IN	AAAA	2a01:4f8:241:4faa::
+hetznerc	300	IN	AAAA	2a01:4f9:c011:33ff::1
+ikoulaf	300	IN	AAAA	2a00:c70:1:109:238:12:91:0
+ikoulag	300	IN	AAAA	2a00:c70:1:109:238:14:6:1
+mail	300	IN	AAAA	2a01:4f8:241:4faa::
+ns1		IN	AAAA	2a01:4f8:241:4faa::
+odoo	300	IN	AAAA	2001:bc8:1201:900:46a8:42ff:fe22:e5b6
+roses	300	IN	AAAA	2a02:8428:3de:e401:fe62:f1c:73e9:3a7b
+scalewaya	300	IN	AAAA	2001:bc8:1201:900:46a8:42ff:fe22:e5b6
+scalewaya1	300	IN	AAAA	2001:bc8:1201:900:46a8:42ff:fe22:e5b6
+scalewayb	300	IN	AAAA	2001:bc8:1203:79::154
+sftpgo	300	IN	AAAA	2a01:4f8:241:4faa::8
+vpsfreea		IN	AAAA	2a03:3b40:fe:77::
+vpsfreecz001	300	IN	AAAA	2a03:3b40:fe:77::1
+yuno	300	IN	AAAA	2a03:3b40:3::28
+; CNAME Records
+*	300	IN	CNAME	lesgrandsvoisins.com.
+*.atelier	300	IN	CNAME	atelier
+2017	300	IN	CNAME	lesgrandsvoisins.com.
+2018	300	IN	CNAME	lesgrandsvoisins.com.
+2019	300	IN	CNAME	lesgrandsvoisins.com.
+2020	300	IN	CNAME	lesgrandsvoisins.com.
+2021	300	IN	CNAME	lesgrandsvoisins.com.
+2022	300	IN	CNAME	lesgrandsvoisins.com.
+2023	300	IN	CNAME	lesgrandsvoisins.com.
+2024	300	IN	CNAME	lesgrandsvoisins.com.
+2025	300	IN	CNAME	lesgrandsvoisins.com.
+2026	300	IN	CNAME	lesgrandsvoisins.com.
+2342.atelier	300	IN	CNAME	atelier
+80.atelier	300	IN	CNAME	atelier
+8000	300	IN	CNAME	lesgrandsvoisins.com.
+8000.atelier	300	IN	CNAME	atelier
+8080.atelier	300	IN	CNAME	atelier
+88.atelier	300	IN	CNAME	atelier
+8888	300	IN	CNAME	lesgrandsvoisins.com.
+8888.atelier	300	IN	CNAME	atelier
+8889	300	IN	CNAME	lesgrandsvoisins.com.
+8890	300	IN	CNAME	lesgrandsvoisins.com.
+8891	300	IN	CNAME	lesgrandsvoisins.com.
+8892	300	IN	CNAME	lesgrandsvoisins.com.
+8893	300	IN	CNAME	lesgrandsvoisins.com.
+8894	300	IN	CNAME	lesgrandsvoisins.com.
+8895	300	IN	CNAME	lesgrandsvoisins.com.
+8896	300	IN	CNAME	lesgrandsvoisins.com.
+8897	300	IN	CNAME	lesgrandsvoisins.com.
+8899	300	IN	CNAME	lesgrandsvoisins.com.
+8900	300	IN	CNAME	lesgrandsvoisins.com.
+9080.atelier	300	IN	CNAME	atelier
+_184b7d60c9c9788065d2e72281d8862f	300	IN	CNAME	86022EE2BAFA06975FCE68C8AE87BEF5.A4D9089BC0EBDD471D53128E51E37EBA.6575daba7f18a.sectigo.com.
+a.atelier	300	IN	CNAME	atelier
+actention	300	IN	CNAME	lesgrandsvoisins.com.
+agora	300	IN	CNAME	contabob
+alt	300	IN	CNAME	lesgrandsvoisins.com.
+apostroche	300	IN	CNAME	lesgrandsvoisins.com.
+apostrophecms	300	IN	CNAME	lesgrandsvoisins.com.
+app	300	IN	CNAME	hetzner005
+auth	300	IN	CNAME	hetzner005
+autoconfig	300	IN	CNAME	mail
+autodiscover	300	IN	CNAME	mail
+b.atelier	300	IN	CNAME	atelier
+baldridge	300	IN	CNAME	contabob
+biz	300	IN	CNAME	vpsfreecz001
+blog	300	IN	CNAME	hetzner005
+box.atelier	300	IN	CNAME	atelier
+c.atelier	300	IN	CNAME	atelier
+cal	300	IN	CNAME	contabob
+cantine	300	IN	CNAME	lesgrandsvoisins.com.
+carecaring	300	IN	CNAME	lesgrandsvoisins.com.
+caroline	300	IN	CNAME	lesgrandsvoisins.com.
+casier.atelier	300	IN	CNAME	atelier
+cecai	300	IN	CNAME	lesgrandsvoisins.com.
+cfran	300	IN	CNAME	lesgrandsvoisins.com.
+chris	300	IN	CNAME	lesgrandsvoisins.com.
+coop	300	IN	CNAME	lesgrandsvoisins.com.
+d.atelier	300	IN	CNAME	atelier
+dav	300	IN	CNAME	hetzner005
+djangovillage		IN	CNAME	lesgrandsvoisins.com.
+docs.atelier	300	IN	CNAME	atelier
+drive	300	IN	CNAME	hetzner005
+drive.atelier	300	IN	CNAME	atelier
+e.atelier	300	IN	CNAME	atelier
+emailing	300	IN	CNAME	contabob
+en	300	IN	CNAME	lesgrandsvoisins.com.
+face	300	IN	CNAME	contabob
+facile	300	IN	CNAME	lesgrandsvoisins.com.
+file	300	IN	CNAME	contabob
+flaxbush	300	IN	CNAME	flaxbush.aaaaa.libregood.com.
+forge	300	IN	CNAME	contaboa
+forum	300	IN	CNAME	hetzner005
+fossil	300	IN	CNAME	contabob
+fr	300	IN	CNAME	lesgrandsvoisins.com.
+francemali	300	IN	CNAME	lesgrandsvoisins.com.
+git	300	IN	CNAME	contaboa
+gitea	300	IN	CNAME	contabob
+go	300	IN	CNAME	ikoulaf.lesgv.com.
+guichet	300	IN	CNAME	hetzner005
+gv	300	IN	CNAME	lesgrandsvoisins.com.
+gvcoop	300	IN	CNAME	lesgrandsvoisins.com.
+gvvillage	300	IN	CNAME	lesgrandsvoisins.com.
+hdoc	300	IN	CNAME	hetzner005
+hedgedoc	300	IN	CNAME	hetzner005
+id	300	IN	CNAME	contabod
+info	300	IN	CNAME	ikoulaf.gv.city.
+ldap	300	IN	CNAME	hetzner005
+lesgrandsvoisins	300	IN	CNAME	lesgrandsvoisins.com.
+lesgv	300	IN	CNAME	lesgrandsvoisins.com.
+lgv	300	IN	CNAME	lesgrandsvoisins.com.
+lhomme	300	IN	CNAME	lesgrandsvoisins.com.
+list	300	IN	CNAME	contabob
+listmonk		IN	CNAME	contabob
+lists	300	IN	CNAME	contabob
+login		IN	CNAME	contabob
+mael	300	IN	CNAME	lesgrandsvoisins.com.
+maelanc	300	IN	CNAME	lesgrandsvoisins.com.
+mann	300	IN	CNAME	lesgrandsvoisins.com.
+meet	300	IN	CNAME	hetzner005
+mon	300	IN	CNAME	ikoulaf.lesgv.com.
+news	300	IN	CNAME	contabob
+old	300	IN	CNAME	lesgrandsvoisins.com.
+page		IN	CNAME	ikoulaf
+pages		IN	CNAME	hetzner005
+partagemoi	300	IN	CNAME	lesgrandsvoisins.com.
+pass	300	IN	CNAME	lesgrandsvoisins.com.
+passeport		IN	CNAME	contabod
+passport	300	IN	CNAME	contabod
+photo.atelier	300	IN	CNAME	atelier
+photoprism.atelier		IN	CNAME	atelier
+port		IN	CNAME	contabod
+pro	300	IN	CNAME	contaboa
+resdigita	300	IN	CNAME	lesgrandsvoisins.com.
+resdigitaorg	300	IN	CNAME	lesgrandsvoisins.com.
+secret	300	IN	CNAME	hetzner005
+sites-faciles	300	IN	CNAME	lesgrandsvoisins.com.
+stage	300	IN	CNAME	vpsfreecz003
+test	300	IN	CNAME	lesgrandsvoisins.com.
+trombi	300	IN	CNAME	hetzner005
+ustage	300	IN	CNAME	vpsfreecz00301
+visio	300	IN	CNAME	contabob
+vpsfree		IN	CNAME	vpsfreea
+wagtail	300	IN	CNAME	lesgrandsvoisins.com.
+wagtail-fastoche	300	IN	CNAME	lesgrandsvoisins.com.
+wagtailvillage	300	IN	CNAME	lesgrandsvoisins.com.
+web	300	IN	CNAME	contabob
+wiki	300	IN	CNAME	vpsfreecz001
+www	300	IN	CNAME	lesgrandsvoisins.com.
+www.atelier	300	IN	CNAME	atelier
+www.mail	300	IN	CNAME	mail
+zitadel	300	IN	CNAME	lesgrandsvoisins.com.
+; TXT Records
+@	300	IN	TXT	"v=spf1 a mx a:mail.lesgrandsvoisins.com ip4:116.202.236.241 ip6:2a01:4f8:241:4faa::/96 include:spf.lesgrandsvoisins.com ?all"
+_dmarc	300	IN	TXT	"v=DMARC1; p=reject; rua=mailto:dmarc@lesgrandsvoisins.com; ruf=mailto:dmarc@lesgrandsvoisins.com"
+dkim._domainkey	300	IN	TXT	"v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu93njU2PfOsy7KnSSpLtGXwY2fJHKj31DZwtIxl1dtkbWawumxL99tqn2pKixunGSE6VXhZOI5cUNTzCSDlnJ4wDZ3UJzD9BSPi8R95RRa1CTnZR59hEWYxHo/E1M1tpOPmKNNF2sKoE6beDWUc1joakVQCVRYDBddbHxxEJiwQIDAQAB"
+mail._domainkey	300	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDXpkUYFZqtt7UNtMWx8OjEed/0YwPWUCLbU2vTM2MvPYRA44UAW/12kNl2y/A/pNM1Q1a5z4jhy+q53yhhKamUghNOCHFuY4brcWzPXM78GcfgGxuuPwsHh96YLy2cakiNqbGgjp2x7rx1s233WAn28zPVSaJ319XbLbMUxtKb+QIDAQAB"
+spf	300	IN	TXT	"v=spf1 a:mail.lesgrandsvoisins.com -all"
