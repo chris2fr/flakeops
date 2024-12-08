@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bind));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.sogo));
+#  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bind));
+#  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.alice));
+#  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bob));
+#  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.sogo));
   domainName = import ./vars/domain-name-mail.nix;
   ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
 in
@@ -49,7 +49,7 @@ in
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
-          olcRootPW = (builtins.readFile ../.secrets.bind);
+          # olcRootPW = (builtins.readFile ../.secrets.bind);
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
