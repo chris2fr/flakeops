@@ -102,6 +102,7 @@ in
       sslServerKey = "/var/lib/acme/axel.resdigita.com/key.pem";
       documentRoot = "/var/www/wagtail";
       extraConfig = ''
+        # PassEnv OIDCClientSecretFileBrowserSecret
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
