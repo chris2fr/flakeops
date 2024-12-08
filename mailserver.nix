@@ -55,8 +55,16 @@ in
     pwgen
   ];
   age.secrets = {
-    "oauthpassword" = { file = ./secrets/oauthpassword.age;};
-    "bind" = { file = ./secrets/bind.age; group="wwwrun";mode = "770";};
+    "oauthpassword" = { 
+      file = ./secrets/oauthpassword.age;
+      group="mailserver";
+      mode="770";
+    };
+    "bind" = { 
+      file = ./secrets/bind.age; 
+      group="mailserver";
+      mode = "770";
+    };
   };
   users.users.nginx.extraGroups = ["wwwrun"];
     services.phpfpm.pools."roundcube" = {

@@ -7,6 +7,10 @@ in
     groups.sftpgo = {
       gid=979;
     };
+    groups.mailserver = {
+      gid=1973;
+      members = ["dovecot2" "postfix" "openldap"];
+    }
     users = {
       appflowycloud = {
         isNormalUser = true;
