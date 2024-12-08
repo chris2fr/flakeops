@@ -3,7 +3,7 @@
 #
 { config, pkgs, lib, ... }:
 let 
-  domainName = import ./vars/domain-name-mail.nix;
+  domainName = import vars/domain-name-mail.nix;
   # Whitelisting some subnets:
   whitelistSubnets =  [ 
       "10.0.0.0/8" 

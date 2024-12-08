@@ -18,9 +18,9 @@ let
     "www.lesgv.org"
     ];
     #     "www.lesgv.com" 
-    domainNameForEmail = import ./vars/domain-name.nix;
-    ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
-    domainName = import ./vars/domain-name-mail.nix;
+    domainNameForEmail = import vars/domain-name.nix;
+    ldapBaseDCDN = import vars/ldap-base-dc-dn.nix;
+    domainName = import vars/domain-name-mail.nix;
 in
 {
   # services.phpfpm.pools."roundcubedesgv" = {

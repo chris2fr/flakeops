@@ -9,6 +9,9 @@ let
   ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
 in
 {
+  age.secrets = {
+    "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
+  };
   services.openldap = {
     enable = true;
     urlList = [ "ldap:/// ldaps:///" ];
@@ -49,7 +52,7 @@ in
           olcSuffix = "${ldapBaseDCDN}";
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
-          # olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+          olcRootPW = (lib.removeSuffix "\n" (builtins.readFile config.age.secrets."bind.slappasswd".path));
           olcAccess = [
             /* custom access rules for userPassword attributes */
             /* allow read on anything else */
