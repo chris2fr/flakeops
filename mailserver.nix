@@ -6,8 +6,8 @@ let
   # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
-  domainName = import ./mailserver/vars/domain-name-mx.nix;
-  ldapBaseDCDN = import ./mailserver/vars/ldap-base-dc-dn.nix;
+  domainName = import mailserver/vars/domain-name-mx.nix;
+  ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     #"mail.lesgrandsvoisins.com"
