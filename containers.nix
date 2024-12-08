@@ -602,7 +602,7 @@ in
               Group = "users";
             };
             script = ''
-              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile config.age.secrets."kopia.silverbullet".path))}
+              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /run/agenix/kopia.silverbullet))}
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
               return 0
             '';
@@ -665,7 +665,7 @@ in
       "/home/wagtail/web-fastoche/staticfiles" = { 
         hostPath = "/var/www/web-fastoche/static";
         isReadOnly = false; 
-       }; 
+       }; builtins.readFile config.age.secrets."kopia.silverbullet".path))
        "/home/wagtail/resdigita-fastoche/medias" = { 
         hostPath = "/var/www/resdigita-fastoche/medias";
         isReadOnly = false; 
