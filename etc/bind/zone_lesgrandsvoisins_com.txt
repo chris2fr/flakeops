@@ -3,7 +3,7 @@ $TTL 900
 ; SOA Records
 @		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024120801 43200 900 1814400 7200
 ; NS Records
-@		IN	NS	HELIUM.NS.HETZNER.DE
+@		IN	NS	HELIUM.NS.HETZNER.DE.
 @		IN	NS	ns1
 @		IN	NS	ns1.linode.com.
 @		IN	NS	ns2.afraid.org.
