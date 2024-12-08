@@ -33,12 +33,16 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   age.secrets = {
-    "filebrowser" = { file = ./secrets/filebrowser.age;};
+    "filebrowser" = { file = ./secrets/filebrowser.age;; owner="wwwrun";};
     "newuser" = { file = ./secrets/newuser.age; owner="wwwrun";};
+    "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age;; owner="wwwrun";};
+    "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
+  Include /run/agenix/httpd.newuser.conf
+  Include /run/agenix/httpd.filebrowser.conf
   KeepAlive On
   MaxKeepAliveRequests 100
   KeepAliveTimeout 3
