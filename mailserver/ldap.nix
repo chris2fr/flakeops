@@ -10,9 +10,9 @@ let
   ldapBaseDCDN = import vars/ldap-base-dc-dn.nix;
 in
 {
-  age.secrets = {
-    "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
-  };
+  # age.secrets = {
+  #   "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
+  # };
   services.openldap = {
     enable = true;
     urlList = [ "ldap:/// ldaps:///" ];
