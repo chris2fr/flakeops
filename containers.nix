@@ -665,7 +665,7 @@ in
       "/home/wagtail/web-fastoche/staticfiles" = { 
         hostPath = "/var/www/web-fastoche/static";
         isReadOnly = false; 
-       }; builtins.readFile config.age.secrets."kopia.silverbullet".path))
+       };
        "/home/wagtail/resdigita-fastoche/medias" = { 
         hostPath = "/var/www/resdigita-fastoche/medias";
         isReadOnly = false; 
