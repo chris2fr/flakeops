@@ -21,6 +21,7 @@ let
   '';
   filebrowser = import secrets/filebrowser.nix;
   keeweb = import secrets/keeweb.nix;
+  newuser = import secrets/newuser.nix;
   keepassweb = import secrets/keepassweb.nix;
   httpd-radicale-oidcclientsecret = import secrets/httpd-radicale-oidcclientsecret.nix;
   # keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
@@ -363,7 +364,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+          AuthLDAPBindPassword "${newuser}"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require valid-user
           Require ldap-attribute cn=%{env:MATCH_USERNAME}
@@ -377,7 +378,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+          AuthLDAPBindPassword "${newuser}"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
           # Require valid-user
@@ -455,7 +456,7 @@ in
       #       AuthBasicProvider ldap
       #       AuthName "Radicale CalDAV et CardDAV par LDAP"
       #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-      #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+      #       AuthLDAPBindPassword "${newuser}"
       #       AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
       #       #Require valid-user
       #       Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
@@ -470,7 +471,7 @@ in
             AuthBasicProvider ldap
             AuthName "Radicale CalDAV et CardDAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-            AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+            AuthLDAPBindPassword "${newuser}"
             AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             AuthLDAPRemoteUserAttribute cn
             Require valid-user
@@ -538,7 +539,7 @@ in
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
-          AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+          AuthLDAPBindPassword "${newuser}"
           AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require valid-user
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
@@ -622,7 +623,7 @@ in
             AuthBasicProvider ldap
             AuthName "DAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
-            AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+            AuthLDAPBindPassword "${newuser}"
             AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             # Require valid-user
             # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
@@ -970,7 +971,7 @@ in
     #     AuthBasicProvider ldap
     #     AuthName "DAV par LDAP"
     #     AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #     AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+    #     AuthLDAPBindPassword "${newuser}"
     #     AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #     </Location>
     #     <Location "/chris">
@@ -1064,7 +1065,7 @@ in
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
     #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+    #       AuthLDAPBindPassword "${newuser}"
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
     #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
@@ -1076,7 +1077,7 @@ in
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
     #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #       AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+    #       AuthLDAPBindPassword "${newuser}"
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
     #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
@@ -1183,7 +1184,7 @@ in
     #         AuthBasicProvider ldap
     #         AuthName "DAV par LDAP"
     #         AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
-    #         AuthLDAPBindPassword "exec:/run/current-system/sw/bin/cat /run/agenix/newuser"
+    #         AuthLDAPBindPassword "${newuser}"
     #         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #         #Require valid-user
     #         Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
