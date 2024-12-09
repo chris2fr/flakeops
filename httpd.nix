@@ -24,7 +24,9 @@ let
   newuser_secret = import secrets/newuser.nix;
   keepassweb_secret = import secrets/keepassweb.nix;
   httpd-radicale-oidcclientsecret = import secrets/httpd-radicale-oidcclientsecret.nix;
-  httpd-dav-oidcclientsecret = import secrets/httpd-dav-oidcclientsecret.nix
+  httpd-dav-oidcclientsecret = import secrets/httpd-dav-oidcclientsecret.nix;
+  keewebSecretPassphrase = import secrets/keewebSecretPassphrase.nix;
+  keepasswebSecretPassphrase = import secrets/keepasswebSecretPassphrase.nix;
   # keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
   # keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
   # keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
@@ -144,6 +146,7 @@ in
         # ProxyVia On
         ProxyAddHeaders On
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+        OIDCClientID filebrowser
         OIDCClientSecret ${filebrowser_secret}
         OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
@@ -172,6 +175,7 @@ in
         ProxyAddHeaders On
         ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+        OIDCClientID filebrowser
         OIDCClientSecret ${filebrowser_secret}
         OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
@@ -247,7 +251,7 @@ in
         OIDCClientID keeweb
         OIDCClientSecret ${keeweb_secret}
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
-        OIDCCryptoPassphrase dollar{keewebSecretPassphrase}
+        OIDCCryptoPassphrase ${keewebSecretPassphrase}
         
         <LocationMatch "^/redirect$">
           AuthType openid-connect
@@ -317,7 +321,7 @@ in
         OIDCClientID keepassweb
         OIDCClientSecret ${keepassweb_secret}
         OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
-        OIDCCryptoPassphrase dollar{keepasswebSecretPassphrase}
+        OIDCCryptoPassphrase ${keepasswebSecretPassphrase}
         <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
           Satisfy Any
           Allow from all
@@ -430,7 +434,7 @@ in
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
-        OIDCClientSecret ${httpd-dav-oidcclientsecret}
+        OIDCClientSecret ${httpd-radicale-oidcclientsecret}
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         OIDCRemoteUserClaim username
