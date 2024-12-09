@@ -19,7 +19,10 @@ let
     # RequestHeader set X-Forwarded-Proto "https"
     # RequestHeader set X-Forwarded-Port "443"
   '';
-  # fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
+  filebrowser = import secrets/filebrowser.nix;
+  keeweb = import secrets/keeweb.nix;
+  keepassweb = import secrets/keepassweb.nix;
+  httpd-radicale-oidcclientsecret = import secrets/httpd-radicale-oidcclientsecret.nix
   # keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
   # keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
   # keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
@@ -33,7 +36,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   age.secrets = {
-    "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
+    # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
     "newuser" = { file = ./secrets/newuser.age; owner="wwwrun";};
     "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
     "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
@@ -41,8 +44,6 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
-  # Include /run/agenix/httpd.newuser.conf
-  # Include /run/agenix/httpd.filebrowser.conf
   KeepAlive On
   MaxKeepAliveRequests 100
   KeepAliveTimeout 3
@@ -82,8 +83,7 @@ in
         ProxyAddHeaders On
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
-        OIDCClientSecret " "
-         #  dollar{fileBrowserSecret}
+        OIDCClientSecret "${filebrowser}"
         OIDCRedirectURI https://maruftuyel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -106,15 +106,13 @@ in
       sslServerKey = "/var/lib/acme/axel.resdigita.com/key.pem";
       documentRoot = "/var/www/wagtail";
       extraConfig = ''
-        # PassEnv OIDCClientSecretFileBrowserSecret
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
         ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
-        OIDCClientSecret " "
-        # OIDCClientSecret dollar{fileBrowserSecret}
+        OIDCClientSecret "${filebrowser}"
         OIDCRedirectURI https://axel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -142,8 +140,7 @@ in
         # ProxyVia On
         ProxyAddHeaders On
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
-        OIDCClientSecret " "
-        # OIDCClientSecret dollar{fileBrowserSecret}
+        OIDCClientSecret "${filebrowser}"
         OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -171,8 +168,7 @@ in
         ProxyAddHeaders On
         ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
-        OIDCClientSecret " "
-        # OIDCClientSecret dollar{fileBrowserSecret}
+        OIDCClientSecret "${filebrowser}"
         OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         # <LocationMatch "^/u/redirect$">
@@ -245,8 +241,7 @@ in
 
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keeweb
-        OIDCClientSecret " " 
-        # dollar{keewebSecret}
+        OIDCClientSecret "${keeweb}"
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase dollar{keewebSecretPassphrase}
         
@@ -316,8 +311,7 @@ in
         DavLockDB /tmp/DavLockSecret
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keepassweb
-        OIDCClientSecret " "
-        # dollar{keepasswebSecret}
+        OIDCClientSecret "${keepassweb}"
         OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase dollar{keepasswebSecretPassphrase}
         <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
@@ -432,8 +426,7 @@ in
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/
         OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
-        OIDCClientSecret " "
-         #  dollar{httpd-radicale-oidcclientsecret}
+        OIDCClientSecret "${httpd-radicale-oidcclientsecret}"
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         OIDCRemoteUserClaim username
@@ -503,8 +496,7 @@ in
 
         OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
         OIDCClientID dav
-        OIDCClientSecret " "
-         #  dollar{httpd-dav-oidcclientsecret}
+        OIDCClientSecret "${httpd-radicale-oidcclientsecret}"
         OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
@@ -588,8 +580,7 @@ in
 
           OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
           OIDCClientID dav
-          OIDCClientSecret " "
-         #  dollar{httpd-dav-oidcclientsecret}
+          OIDCClientSecret "${httpd-radicale-oidcclientsecret}"
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
