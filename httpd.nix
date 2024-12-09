@@ -42,6 +42,8 @@ in
     "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
   services.httpd.enable = true;
+  services.httpd.user = "wwwrun";
+  services.httpd.group = "wwwrun";
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
   KeepAlive On
