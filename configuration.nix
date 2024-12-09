@@ -72,7 +72,10 @@ in
     "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age;};
     "email.list" = { file = ./secrets/email.list.age;};
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
-    "vikunja.env" = { file = ./secrets/vikunja.env.age; owner="vikunja";};
+    "vikunja.env" = { 
+      file = ./secrets/vikunja.env.age; 
+      # group="vikunja"; mode="770";
+    };
   };
   boot.loader = {
     systemd-boot.enable = true;

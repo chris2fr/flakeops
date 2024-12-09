@@ -70,13 +70,13 @@ in
       enableIPv6 = true;
     };
   };
-  age.secrets = {
-    "kopia.silverbullet" = { 
-      file = secrets/kopia.silverbullet.age;
-      owner = "silverbullet";
-    };
-    # "bind.slappasswd" = { file = secrets/bind.slappasswd.age;};
-  };
+  # age.secrets = {
+  #   "kopia.silverbullet" = { 
+  #     file = secrets/kopia.silverbullet.age;
+  #     owner = "silverbullet";
+  #   };
+  #   # "bind.slappasswd" = { file = secrets/bind.slappasswd.age;};
+  # };
   # networking.interfaces.vlan2 = {
   #   virtual = true;
   #   ipv4.addresses = [
