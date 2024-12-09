@@ -22,7 +22,7 @@ let
   filebrowser = import secrets/filebrowser.nix;
   keeweb = import secrets/keeweb.nix;
   keepassweb = import secrets/keepassweb.nix;
-  httpd-radicale-oidcclientsecret = import secrets/httpd-radicale-oidcclientsecret.nix
+  httpd-radicale-oidcclientsecret = import secrets/httpd-radicale-oidcclientsecret.nix;
   # keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
   # keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
   # keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
