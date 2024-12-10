@@ -486,6 +486,7 @@ in
     };
   };
   systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
+  systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
   services = {
     vikunja = {
       enable = true;
