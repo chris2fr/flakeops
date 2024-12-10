@@ -15,6 +15,10 @@ in
       appflowycloud = {
         isNormalUser = true;
       };
+      vikunja = {
+        isSystemUser = true;
+        group = "wwwrun";
+      };
       filebrowser = {
         isNormalUser = true;
         group = "wwwrun";

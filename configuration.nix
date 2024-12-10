@@ -74,7 +74,7 @@ in
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
     "vikunja.env" = { 
       file = ./secrets/vikunja.env.age; 
-      # group="vikunja"; mode="770";
+      owner = "vikunja";
     };
   };
   boot.loader = {
@@ -484,11 +484,14 @@ in
         };
       };
     };
-    vikunja = {
+  };
+  systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
+  services = {
+     vikunja = {
       enable = true;
       frontendScheme = "https";
       frontendHostname = "task.lesgrandsvoisins.com";
-      environmentFiles = [config.age.secrets."vikunja.env".path];
+      environmentFiles = [ config.age.secrets."vikunja.env".path ];
       # frontendHostname = "vikunja.lesgrandsvoisins.com";
       # frontendHostname = "vikunja.gv.coop";
       # frontendHostname = "vikunja.village.ngo";

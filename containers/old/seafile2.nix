@@ -1,0 +1,168 @@
+{ config, pkgs, lib, ... }:
+let
+in
+{
+  # containers.seafile = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.100.10";
+  #   localAddress = "192.168.100.11";
+  #   hostAddress6 = "fc00::1";
+  #   localAddress6 = "fc00::2";
+  #   config = { config, pkgs, ... }: {
+  #     environment.systemPackages = with pkgs; [
+  #       ((vim_configurable.override {  }).customize{
+  #         name = "vim";
+  #         vimrcConfig.customRC = ''
+  #           " your custom vimrc
+  #           set mouse=a
+  #           set nocompatible
+  #           colo torte
+  #           syntax on
+  #           set tabstop     =2
+  #           set softtabstop =2
+  #           set shiftwidth  =2
+  #           set expandtab
+  #           set autoindent
+  #           set smartindent
+  #           " ...
+  #         '';
+  #         }
+  #       )
+  #       nginx
+  #       lynx
+  #       python311
+  #       python311Packages.setuptools
+  #       python311Packages.pip memcached libmemcached pwgen sqlite
+  #       wget curl
+  #       mariadb
+  #       seafile-server
+  #       seafile-shared
+  #       python311Packages.seaserv
+  #       seahub
+  #       ];
+  #     system.stateVersion = "24.05";
+  #     nix.settings.experimental-features = "nix-command flakes";
+  #     networking = {
+  #       firewall = {
+  #         enable = true;
+  #         allowedTCPPorts = [ 8000 8082 ];
+  #       };
+  #       # Use systemd-resolved inside the container
+  #       # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     users.users.seafile = {
+  #       isNormalUser = true;
+  #     };
+  #     services = {
+  #       resolved.enable = true;
+  #       mysql = {
+  #         enable = true;
+  #         package = pkgs.mariadb;
+  #         ensureUsers = [
+  #           {
+  #             name = "seafile";
+  #             ensurePermissions = {
+  #               "seafile.*" = "ALL PRIVILEGES";
+  #             };
+  #           }
+  #         ];
+  #         ensureDatabases = ["seafile"];
+  #         initialDatabases = [{name = "seafile";}];
+  #       };
+  #       nginx = {
+  #         enable = true;
+  #         virtualHosts."192.168.100.11" = {
+  #           locations."/media" = {
+  #              root = "/opt/seafile/seafile-server-latest/seahub";
+  #           };
+  #           locations."/" = {
+  #            proxyPass = "http://192.168.100.11:8000";
+  #            extraConfig = ''
+  #              proxy_set_header   Host $host;
+  #              proxy_set_header   X-Real-IP $remote_addr;
+  #              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+  #              proxy_set_header   X-Forwarded-Host $server_name;
+  #              proxy_read_timeout  1200s;
+
+  #              # used for view/edit office file via Office Online Server
+  #              client_max_body_size 0;
+
+  #              access_log      /var/log/nginx/seahub.access.log; # seafileformat;
+  #              error_log       /var/log/nginx/seahub.error.log;
+  #            '';
+  #           };
+  #           locations."/seafhttp" = {
+  #            proxyPass = "http://192.168.100.11:8082";
+  #            extraConfig = ''
+  #              rewrite ^/seafhttp(.*)$ $1 break;
+  #               proxy_pass http://127.0.0.1:8082;
+  #               client_max_body_size 0;
+  #               proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+
+  #               proxy_connect_timeout  36000s;
+  #               proxy_read_timeout  36000s;
+  #               proxy_send_timeout  36000s;
+
+  #               send_timeout  36000s;
+
+  #               access_log      /var/log/nginx/seafhttp.access.log; # seafileformat;
+  #               error_log       /var/log/nginx/seafhttp.error.log;
+  #            '';
+  #           };
+  #         };
+  #       };
+  #       # seafile = {
+  #       #     enable = true;
+  #       #     adminEmail = "chris@mann.fr";
+  #       #     initialAdminPassword = "Ahs3sae1";
+  #       #     seafileSettings = {
+  #       #       # https://manual.seafile.com/config/seafile-conf/
+  #       #       fileserver.port = 8082;
+  #       #       fileserver.host = "192.168.100.11";
+  #       #     };
+  #       #     # seahubExtraConf = ''
+  #       #     #   ENABLE_OAUTH = True
+
+  #       #     #   # If create new user when he/she logs in Seafile for the first time, defalut `True`.
+  #       #     #   OAUTH_CREATE_UNKNOWN_USER = True
+
+  #       #     #   # If active new user when he/she logs in Seafile for the first time, defalut `True`.
+  #       #     #   OAUTH_ACTIVATE_USER_AFTER_CREATION = True
+
+  #       #     #   # Usually OAuth works through SSL layer. If your server is not parametrized to allow HTTPS, some method will raise an "oauthlib.oauth2.rfc6749.errors.InsecureTransportError". Set this to `True` to avoid this error.
+  #       #     #   OAUTH_ENABLE_INSECURE_TRANSPORT = True
+
+  #       #     #   # Client id/secret generated by authorization server when you register your client application.
+  #       #     #   OAUTH_CLIENT_ID = "seafile"
+  #       #     #   OAUTH_CLIENT_SECRET = "${seafilePassword}"
+
+  #       #     #   # Callback url when user authentication succeeded. Note, the redirect url you input when you register your client application MUST be exactly the same as this value.
+  #       #     #   OAUTH_REDIRECT_URL = 'https://seafile.resdigita.com/oauth/callback/'
+
+  #       #     #   # The following should NOT be changed if you are using Github as OAuth provider.
+  #       #     #   OAUTH_PROVIDER_DOMAIN = 'keycloak.resdigita.com:10443'
+  #       #     #   OAUTH_AUTHORIZATION_URL = 'https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/auth'
+  #       #     #   OAUTH_TOKEN_URL = 'https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/token'
+  #       #     #   OAUTH_USER_INFO_URL = 'https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/userinfo'
+  #       #     #   OAUTH_SCOPE = ["profile","email']
+  #       #     #   OAUTH_ATTRIBUTE_MAP = {
+  #       #     #       "id": (True, "email"),  # Please keep the 'email' option unchanged to be compatible with the login of users of version 11.0 and earlier.
+  #       #     #       "name": (False, "name"),
+  #       #     #       "email": (False, "contact_email"),
+  #       #     #       "uid": (True, "uid"),   # Since 11.0 version, Seafile use 'uid' as the external unique identifier of the user.
+  #       #     #                               # Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.
+  #       #     #                               # If there is no 'uid' attribute, do not configure this option and keep the 'email' option unchanged,
+  #       #     #                               # to be compatible with the login of users of version 11.0 and earlier.
+  #       #     #   }
+  #       #     # '';
+  #       #     ccnetSettings = {
+  #       #       # https://manual.seafile.com/config/ccnet-conf/
+  #       #       General.SERVICE_URL = "http://192.168.100.11:8082";
+  #       #     };
+  #       # };
+  #     };
+  #   };
+  # };
+}
