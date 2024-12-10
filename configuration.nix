@@ -527,7 +527,7 @@ in
             authurl = "https://key.lesgrandsvoisins.com/realms/master";
             logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret.file = config.age.secrets."keylesgrandsvoisins.vikunja".path;
+            clientsecret = import ./secrets/keylesgrandsvoisins.vikunja.nix;
             # clientsecret = config.age.secrets."keylesgrandsvoisins.vikunja".path;
           }
           # {
@@ -542,7 +542,8 @@ in
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret.file = config.age.secrets."keycloak.vikunja".path;
+            clientsecret = import ./secrets/keylesgrandsvoisins.vikunja.nix;
+            # clientsecret.file = config.age.secrets."keycloak.vikunja".path;
             # clientsecret = keycloakVikunja;
           }
           ];
