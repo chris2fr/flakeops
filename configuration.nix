@@ -487,11 +487,11 @@ in
   };
   systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
   services = {
-     vikunja = {
+    vikunja = {
       enable = true;
       frontendScheme = "https";
       frontendHostname = "task.lesgrandsvoisins.com";
-      environmentFiles = [ config.age.secrets."vikunja.env".path ];
+      # environmentFiles = [ config.age.secrets."vikunja.env".path ];
       # frontendHostname = "vikunja.lesgrandsvoisins.com";
       # frontendHostname = "vikunja.gv.coop";
       # frontendHostname = "vikunja.village.ngo";
@@ -502,7 +502,7 @@ in
           host = "mail.lesgrandsvoisins.com";
           authtype = "login";
           username = "list@lesgrandsvoisins.com";
-          # password = emailList;
+          password.file = config.age.secrets."email.list".path;
         };
         defaultsettings = {
           week_start = 1;
@@ -526,6 +526,7 @@ in
             authurl = "https://key.lesgrandsvoisins.com/realms/master";
             logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
+            clientsecret.file = config.age.secrets."keylesgrandsvoisins.vikunja".path;
             # clientsecret = config.age.secrets."keylesgrandsvoisins.vikunja".path;
           }
           # {
@@ -540,6 +541,7 @@ in
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
+            clientsecret.file = config.age.secrets."keycloak.vikunja".path;
             # clientsecret = keycloakVikunja;
           }
           ];
