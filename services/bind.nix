@@ -31,7 +31,7 @@ in{
         file = ../etc/bind/zone_lesgrandsvoisins_com.txt;
         master = true;
         allowQuery = ["any"];
-        slaves = dnsslaves;
+        # slaves = dnsslaves;
       };
       "resdigita.com" = {
         file = ../etc/bind/zone_resdigita_com.txt;
