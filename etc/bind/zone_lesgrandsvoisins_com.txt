@@ -4,10 +4,12 @@ $TTL 900
 ; @		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024121113 43200 900 1814400 7200
 @		IN	SOA	hydrogen.ns.hetzner.com. dns.hetzner.com. 2024121114 86400 10800 3600000 3600
 ; NS Records
-@		IN	NS	HELIUM.NS.HETZNER.DE
-@		IN	NS	ns1
-@		IN	NS	ns1.linode.com.
-@		IN	NS	ns2.afraid.org.
+@	IN	NS	hydrogen.ns.hetzner.com.
+@	IN	NS	oxygen.ns.hetzner.com.
+@	IN	NS	helium.ns.hetzner.de.
+; @		IN	NS	ns1
+; @		IN	NS	ns1.linode.com.
+; @		IN	NS	ns2.afraid.org.
 ; MX Records
 @	300	IN	MX	0 mail
 ; A Records
