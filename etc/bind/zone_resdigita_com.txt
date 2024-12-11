@@ -1,10 +1,13 @@
 $ORIGIN resdigita.com.
-$TTL 900
+$TTL 600
 ; SOA Records
-@		IN	SOA	ns1.lesgrandsvoisins.com. admin.resdigita.com. 2024121101 43200 900 1814400 7200
+; @		IN	SOA	ns1.lesgrandsvoisins.com. admin.resdigita.com. 2024121101 43200 900 1814400 7200
+@		IN	SOA	hydrogen.ns.hetzner.com. dns.hetzner.com. 2024121101 86400 10800 3600000 3600
 ; NS Records
-@		IN	NS	HELIUM.NS.HETZNER.DE
-@		IN	NS	ns1.lesgrandsvoisins.com.
+@	IN	NS	hydrogen.ns.hetzner.com.
+@	IN	NS	oxygen.ns.hetzner.com.
+@	IN	NS	helium.ns.hetzner.de.
+; @		IN	NS	ns1.lesgrandsvoisins.com.
 ; @		IN	NS	ns1.linode.com.
 ; @		IN	NS	ns2.afraid.org.
 ; MX Records
@@ -69,10 +72,10 @@ cherryldap	600	IN	CNAME	resdigita.com.
 yunohost	600	IN	CNAME	yuno.resdigita.com.
 xmpp-upload.yuno	600	IN	CNAME	yuno.resdigita.com.
 ; SRV
-_xmpp-client._tcp.yuno	600	IN	0	SRV	5 5222 yuno.resdigita.com.
-_xmpp-server._tcp.yuno	600	IN	0	SRV	5 5269 yuno.resdigita.com.
+_xmpp-client._tcp.yuno	600	IN	SRV	0 5 5255 yuno.resdigita.com.
+_xmpp-server._tcp.yuno	600	IN	SRV	0 5 5269 yuno.resdigita.com.
 ; TXT
-202307180.spf	600	IN	0	TXT	"v=spf1 ip4:51.159.223.7 ip4:51.159.76.154 ip6:2001:bc8:1201:900:46a8:42ff:fe22:e5b6 ip6:2001:bc8:1203:79::154 mx ptr a ~all"
+202307180.spf	600	IN	TXT	"v=spf1 ip4:51.159.223.7 ip4:51.159.76.154 ip6:2001:bc8:1201:900:46a8:42ff:fe22:e5b6 ip6:2001:bc8:1203:79::154 mx ptr a ~all"
 mail._domainkey.yuno	600	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzfxwAnWR0eYi1UmgOzZhdPS6vKVcgaO69kfwHDHoEIeXZDqnRBKX7ON0Ru1B2iTt58bF3NXhkPPFB5QCWIzZX/m5rimumH7xqyvyodvGOV9DiobQIU+W1UGuZuwJu7lTYH5dl0ICSIYouXVAbNU5PU1s+hN8Oa7f3gAIjMX7ikQIDAQAB"
 _dmarc.yuno	600	IN	TXT	v=DMARC1; p=none
 202307180.dkim._domainkey	600	IN	TXT	"v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3BMZgUxCSCj+7xfDH4ZXLzK5LdnW+k6cvkBSClhRqQxTXDLGqVww4rR4dQkIPc2nnvtXvC0T4umWZRwDqNbsdZOnhjGeJB6EuvQKstb7IWmO+RA+y+xPYhfnT3jE9rOVEkubY4nOT0nHmJOXwZBZWPEm8/jDTwXnDU7XAUdGOW1e3NBAEa61ncKVya5diFISoA6LLvFyM/8eLST0HSyPNsJL6TbQivTkvwGZXM+rVmQTGpbCvlfBktyCQTwkrjHARgCgWG2GXmgYjoj46kHomEQJ0k2skrbnAJUwnWi+KrQJh0PAoOJK9agJBWCmMuAdVJnie/U3mX8F4NNRPurQQIDAQAB"
