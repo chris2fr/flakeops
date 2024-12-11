@@ -1,0 +1,90 @@
+$ORIGIN resdigita.com.
+$TTL 900
+; SOA Records
+@		IN	SOA	ns1.lesgrandsvoisins.com. admin.resdigita.com. 2024121101 43200 900 1814400 7200
+; NS Records
+@		IN	NS	HELIUM.NS.HETZNER.DE
+@		IN	NS	ns1.lesgrandsvoisins.com.
+; @		IN	NS	ns1.linode.com.
+; @		IN	NS	ns2.afraid.org.
+; MX Records
+202307180	MX	0	mail.idgouv.com.
+202412110 MX	0	mail.village.ngo.
+yuno	MX	0	yuno.resdigita.com.
+@	MX	0	mail.lesgrandsvoisins.com.
+; A
+yuno	600	IN	A	185.8.164.27
+mail	600	IN	A	116.202.236.241
+@	600	IN	A	116.202.236.241
+4.roses	600	IN	A	37.67.157.155
+20231229.mail	600	IN	A	116.202.236.241
+roses	600	IN	A	37.67.157.155
+*.yuno	600	IN	A	185.8.164.27
+grore	600	IN	A	37.205.14.63
+; AAAA
+grore	600	IN	AAAA	2a03:3b40:fe:7d7::1
+202307150.mail	600	IN	AAAA	2001:bc8:1203:79::154
+mail	600	IN	AAAA	2a01:4f8:241:4faa::
+yuno	600	IN	AAAA	2a03:3b40:3::28
+20231229.mail	600	IN	AAAA	2a01:4f8:241:4faa::
+6.roses	600	IN	AAAA	2a02:8428:03de:e401:fe62:0f1c:73e9:3a7b
+roses	600	IN	AAAA	2a02:8428:03de:e401:fe62:0f1c:73e9:3a7b
+mail.20231218	600	IN	AAAA	2a03:3b40:fe:77::
+*.yuno	600	IN	AAAA	2a03:3b40:3::28
+@	600	IN	AAAA	2a01:4f8:241:4faa::
+; CAA
+yuno	600	IN	CAA	0 issue "letsencrypt.org"
+; CNAME
+radicale	600	IN	CNAME	resdigita.com.
+silverbullet	600	IN	CNAME	resdigita.com.
+hedgedoc	600	IN	CNAME	resdigita.com.
+cfran	600	IN	CNAME	resdigita.com.
+facile	600	IN	CNAME	resdigita.com.
+apostrophecms	600	IN	CNAME	lesgrandsvoisins.com.
+keeweb	600	IN	CNAME	resdigita.com.
+ghh	600	IN	CNAME	resdigita.com.
+keepass	600	IN	CNAME	resdigita.com.
+sites-faciles	600	IN	CNAME	resdigita.com.
+dav	600	IN	CNAME	resdigita.com.
+en	600	IN	CNAME	resdigita.com.
+pocketbase	600	IN	CNAME	resdigita.com.
+webdav	600	IN	CNAME	resdigita.com.
+wordpress	600	IN	CNAME	resdigita.com.
+*	600	IN	CNAME	village.ngo.
+fr	600	IN	CNAME	resdigita.com.
+filebrowser	600	IN	CNAME	resdigita.com.
+syncthing	600	IN	CNAME	resdigita.com.
+cantine	600	IN	CNAME	village.ngo.
+www	600	IN	CNAME	resdigita.com.
+pocket	600	IN	CNAME	resdigita.com.
+muc.yuno	600	IN	CNAME	yuno.resdigita.com.
+cherrypy	600	IN	CNAME	resdigita.com.
+homepage-dashboard	600	IN	CNAME	resdigita.com.
+newguichet	600	IN	CNAME	resdigita.com.
+pubsub.yuno	600	IN	CNAME	yuno.resdigita.com.
+vjud.yuno	600	IN	CNAME	yuno.resdigita.com.
+quartz	600	IN	CNAME	resdigita.com.
+cherry	600	IN	CNAME	resdigita.com.
+cherryldap	600	IN	CNAME	resdigita.com.
+yunohost	600	IN	CNAME	yuno.resdigita.com.
+xmpp-upload.yuno	600	IN	CNAME	yuno.resdigita.com.
+; SRV
+_xmpp-client._tcp.yuno	600	IN	0	SRV	5 5222 yuno.resdigita.com.
+_xmpp-server._tcp.yuno	600	IN	0	SRV	5 5269 yuno.resdigita.com.
+; TXT
+202307180.spf	600	IN	0	TXT	"v=spf1 ip4:51.159.223.7 ip4:51.159.76.154 ip6:2001:bc8:1201:900:46a8:42ff:fe22:e5b6 ip6:2001:bc8:1203:79::154 mx ptr a ~all"
+mail._domainkey.yuno	600	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzfxwAnWR0eYi1UmgOzZhdPS6vKVcgaO69kfwHDHoEIeXZDqnRBKX7ON0Ru1B2iTt58bF3NXhkPPFB5QCWIzZX/m5rimumH7xqyvyodvGOV9DiobQIU+W1UGuZuwJu7lTYH5dl0ICSIYouXVAbNU5PU1s+hN8Oa7f3gAIjMX7ikQIDAQAB"
+_dmarc.yuno	600	IN	TXT	v=DMARC1; p=none
+202307180.dkim._domainkey	600	IN	TXT	"v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3BMZgUxCSCj+7xfDH4ZXLzK5LdnW+k6cvkBSClhRqQxTXDLGqVww4rR4dQkIPc2nnvtXvC0T4umWZRwDqNbsdZOnhjGeJB6EuvQKstb7IWmO+RA+y+xPYhfnT3jE9rOVEkubY4nOT0nHmJOXwZBZWPEm8/jDTwXnDU7XAUdGOW1e3NBAEa61ncKVya5diFISoA6LLvFyM/8eLST0HSyPNsJL6TbQivTkvwGZXM+rVmQTGpbCvlfBktyCQTwkrjHARgCgWG2GXmgYjoj46kHomEQJ0k2skrbnAJUwnWi+KrQJh0PAoOJK9agJBWCmMuAdVJnie/U3mX8F4NNRPurQQIDAQAB"
+202307180._dmarc	600	IN	TXT	"v=DMARC1; p=none; rua=mailto:dmarc@resdigita.com; ruf=mailto:dmarc@resdigita.com; fo=1;"
+mail._domainkey	600	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAqvaS1hCFsI1ya/UJb0wg6tJeYL2uzHw4X02HBNjBLjxKqvTTbo7HaVBjx9iKE8937GO2Kd2TYQQYALtvs3mYMlrdPuMJHJI+9OPNAfSiix6NshzPjhRstJ5K+IIsGZadNZmnbmP/fKtc8J1+cb29HNWpLlyhOQpRBZ166+htHwIDAQAB"
+202304250	600	IN	TXT	"v=spf1 ip4:178.170.38.208 ip6:2a00:c70:1:178:170:8:0:15f9/96 -all"
+yuno	600	IN	TXT	"v=spf1 a mx -all"
+202304250.dkim._domainkey	600	IN	TXT	"v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4hAgk4CvusOYrY07H/ZfSB+0p20ucQLdM3e9udwTyU9x45urOIVLROx6sydeZpCWNsb5iDJ7lQ7tWFGv+Vdm916YAK29XaEXiYjZ7lnhlHk3RED3wMkAuJJxO49+IK2daXT8ab4fkjL8EZ1nlqnEFZbJHGI0qHC98lfz6WyVrpUo+6MDWkBeyQHBf++OY3ROrqTPLWEXYiXklpa1zIuqvA5unlXb86j/VADwtrHA1R26eFBeyhbvdN+HC0aIB7EYWDhGu4XiL+mIelVLQXN1fTmxiBu5AS/JdsRoloFiOK6W1khy7Ml/WoTOv1ik"+8aRco3BxG28paXEr3Vf8DSVEQIDAQAB
+_dmarc	600	IN	TXT	"v=DMARC1; p=none"
+spf	600	IN	TXT	"v=spf1 a:mail.resdigita.com -all"
+202412110 600 IN TXT	"v=spf1 include:spf.resdigita.com"
+@ 600 IN TXT	"v=spf1 include:spf.lesgrandsvoisins.com"
+mail._domainkey.mail	600	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC6tcwyyrzyc9geEsMitBkSe4c3rp8XKCgal9kVN1w0Bj5une46RNB4C919NGvOH5QI4pZ7O8Y01SNRqZ/1L2yTNOU0LZIe5dKAcuw7iP03vaJKGy2uIh88+DCAF3RsCLCsm6w+NxeLYNb0FIpqmr+tUGDgTaaN36tsMKYdI/BjBwIDAQAB"
+mail._domainkey.20231218	600	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDMCFDwV1SVBdBYTHTIJalb6BRc0PovmwcHa0WMQuop+CtCxbmpX2faJDBkuSoAv5cNwRyQRb5T8D4zcU0Q0z5VyzUqrT5EL0l63ps98XKBsz+v9NzSOtANX49k5XOQ7WUXxSwOo0BLJCquepxFoatIiVtyQYktk1wC1/LoAcBjQQIDAQAB"
+mail._domainkey	600	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAqvaS1hCFsI1ya/UJb0wg6tJeYL2uzHw4X02HBNjBLjxKqvTTbo7HaVBjx9iKE8937GO2Kd2TYQQYALtvs3mYMlrdPuMJHJI+9OPNAfSiix6NshzPjhRstJ5K+IIsGZadNZmnbmP/fKtc8J1+cb29HNWpLlyhOQpRBZ166+htHwIDAQAB"

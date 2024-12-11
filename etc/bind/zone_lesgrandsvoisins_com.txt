@@ -1,7 +1,7 @@
 $ORIGIN lesgrandsvoisins.com.
 $TTL 900
 ; SOA Records
-@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024121112 43200 900 1814400 7200
+@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024121113 43200 900 1814400 7200
 ; NS Records
 @		IN	NS	HELIUM.NS.HETZNER.DE
 @		IN	NS	ns1
