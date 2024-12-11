@@ -1,9 +1,9 @@
 $ORIGIN lesgrandsvoisins.com.
 $TTL 900
 ; SOA Records
-@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024120821 43200 900 1814400 7200
+@		IN	SOA	ns1.lesgrandsvoisins.com. admin.lesgrandsvoisins.com. 2024121112 43200 900 1814400 7200
 ; NS Records
-@		IN	NS	HELIUM.NS.HETZNER.DE.
+@		IN	NS	HELIUM.NS.HETZNER.DE
 @		IN	NS	ns1
 @		IN	NS	ns1.linode.com.
 @		IN	NS	ns2.afraid.org.
@@ -130,6 +130,7 @@ drive.atelier	300	IN	CNAME	atelier
 e.atelier	300	IN	CNAME	atelier
 emailing	300	IN	CNAME	contabob
 en	300	IN	CNAME	lesgrandsvoisins.com.
+exlsport		IN	CNAME	canary.o2switch.net.
 face	300	IN	CNAME	contabob
 facile	300	IN	CNAME	lesgrandsvoisins.com.
 file	300	IN	CNAME	contabob
@@ -165,6 +166,18 @@ mann	300	IN	CNAME	lesgrandsvoisins.com.
 meet	300	IN	CNAME	hetzner005
 mon	300	IN	CNAME	ikoulaf.lesgv.com.
 news	300	IN	CNAME	contabob
+o2switch		IN	CNAME	canary.o2switch.net.
+oa		IN	CNAME	canary.o2switch.net.
+ob		IN	CNAME	canary.o2switch.net.
+oc		IN	CNAME	canary.o2switch.net.
+od		IN	CNAME	canary.o2switch.net.
+oe		IN	CNAME	canary.o2switch.net.
+of		IN	CNAME	canary.o2switch.net.
+og		IN	CNAME	canary.o2switch.net.
+oh		IN	CNAME	canary.o2switch.net.
+oi		IN	CNAME	canary.o2switch.net.
+oj		IN	CNAME	canary.o2switch.net.
+ok		IN	CNAME	canary.o2switch.net.
 old	300	IN	CNAME	lesgrandsvoisins.com.
 page		IN	CNAME	ikoulaf
 pages		IN	CNAME	hetzner005
