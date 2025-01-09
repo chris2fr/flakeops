@@ -1,3 +1,3 @@
 gitup:
 	git pull
-	sudo nixos-rebuild switch  --flake ./flakeops#nixos
+	sudo nixos-rebuild switch  --flake ./#nixos
