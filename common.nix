@@ -69,6 +69,7 @@ in
 #    python311Packages.pyproject-api
 #    python311Packages.pyproject-hooks
      busybox
+     gnumake
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
