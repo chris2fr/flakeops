@@ -343,7 +343,10 @@ in
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       extraConfig = ''
-        if ($host != 'www.resdigita.org') {
+        if ($host = 'resdigita.com') {
+          return 301 $scheme://www.resdigita.com$request_uri;
+        }
+        if ($host ~ 'www.resdigita.org|www.resdigita.com') {
           return 301 $scheme://www.resdigita.org$request_uri;
         }
       '';
