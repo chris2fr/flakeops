@@ -346,7 +346,7 @@ in
         if ($host = 'resdigita.com') {
           return 301 $scheme://www.resdigita.com$request_uri;
         }
-        if ($host ~* '(www.resdigita.org)|(www.resdigita.com)') {
+        if ($host = 'resdigita.org') {
           return 301 $scheme://www.resdigita.org$request_uri;
         }
       '';
