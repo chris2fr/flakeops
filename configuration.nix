@@ -15,6 +15,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.loader.grub.devices = [ "nodev" ];
+  boot.loader.grub.efiSupport = true;
+
+
   # age.secrets = {
   #   secret1 = {
   #     file = ./secrets/secret1.age;
