@@ -86,6 +86,7 @@ in
 #
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
+  services.rsyncd.enable = true;
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   
