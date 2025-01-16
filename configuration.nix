@@ -10,6 +10,11 @@ in
   #  <home-manager/nixos>
   #  <agenix/modules/age.nix>
   ];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   # age.secrets = {
   #   secret1 = {
   #     file = ./secrets/secret1.age;
@@ -87,8 +92,6 @@ in
   # networking.firewall.package
   networking.nftables.enable = true;
   
-
-
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
   '';
@@ -99,11 +102,10 @@ in
 
   environment.sessionVariables = rec {
     EDITOR="vim";
-    WAGTAIL_ENV = "production";
   };
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "contact@lesgrandsvoisins.com";
+    defaults.email = "chris@lesgrandsvoisins.com";
   };
 }
