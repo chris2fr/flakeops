@@ -37,5 +37,6 @@ in
     pwgen
     openldap
     nftables
+    ntfs3g
   ];
 }
