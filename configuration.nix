@@ -5,33 +5,27 @@ in
 {
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
-    ./vpsadminos.nix
-    ./httpd.nix
-    ./mailserver.nix
-    ./guichet.nix
-    ./postgresql.nix
-#    ./users.nix
-    ./wagtail.nix
+    ./hardware-configuration.nix
     ./common.nix # Des configurations communes pratiques
-#    <home-manager/nixos>
-#    <agenix/modules/age.nix>
+  #  <home-manager/nixos>
+  #  <agenix/modules/age.nix>
   ];
-  age.secrets = {
-    secret1 = {
-      file = ./secrets/secret1.age;
-      owner = "mannchri";
-      mode = "770";
-    };
-    adminresdigitaorg = { file = ./secrets/adminresdigitaorg.age; };
-    alice = { file = ./secrets/alice.age; };
-    bob = { file = ./secrets/bob.age; };
-    bind = { file = ./secrets/bind.age; };
-    "mailserver.alice" = { file = ./secrets/mailserver.alice.age; };
-    "mailserver.bob" = { file = ./secrets/mailserver.bob.age; };
-    "mailserver.bind" = { file = ./secrets/mailserver.bind.age; };
-    "mailserver.sogo" = { file = ./secrets/mailserver.sogo.age; };
-    "sogo" = { file = ./secrets/sogo.age; };
-  };
+  # age.secrets = {
+  #   secret1 = {
+  #     file = ./secrets/secret1.age;
+  #     owner = "mannchri";
+  #     mode = "770";
+  #   };
+  #   adminresdigitaorg = { file = ./secrets/adminresdigitaorg.age; };
+  #   alice = { file = ./secrets/alice.age; };
+  #   bob = { file = ./secrets/bob.age; };
+  #   bind = { file = ./secrets/bind.age; };
+  #   "mailserver.alice" = { file = ./secrets/mailserver.alice.age; };
+  #   "mailserver.bob" = { file = ./secrets/mailserver.bob.age; };
+  #   "mailserver.bind" = { file = ./secrets/mailserver.bind.age; };
+  #   "mailserver.sogo" = { file = ./secrets/mailserver.sogo.age; };
+  #   "sogo" = { file = ./secrets/sogo.age; };
+  # };
 
 #  virtualisation.docker.enable = true;
 #  users.extraGroups.docker.members = [ "mannchri" ];
@@ -42,10 +36,10 @@ in
 #    sha256 = "";
 #  };
 
-  users.users.fossil = rec {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-  };
+  # users.users.fossil = rec {
+  #     isNormalUser = true;
+  #     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  # };
   users.users.mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
@@ -86,9 +80,9 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   
-  networking.firewall.allowedTCPPorts = [ 80 443 636 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 636 ];
   # Networking
-  networking.hostName = "vpsfreecz001"; # Define your hostname.
+  networking.hostName = "t330roses"; # Define your hostname.
   networking.enableIPv6 = true;
   # networking.firewall.package
   networking.nftables.enable = true;
@@ -101,7 +95,7 @@ in
 
   time.timeZone = "Europe/Paris";
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
 
   environment.sessionVariables = rec {
     EDITOR="vim";

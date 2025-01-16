@@ -21,20 +21,12 @@
         agenix.nixosModules.default
       ];
     };
-    homeConfigurations = {
-      fossil = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit nixpkgs;};
-        modules = [./home-manager/fossil.nix];
-      };
-      wagtail = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit nixpkgs;};
-        modules = [./home-manager/wagtail.nix];
-      };
-      mannchri = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit nixpkgs;};
-        modules = [./home-manager/mannchri.nix];
-      };
-    };
+    # homeConfigurations = {
+    # #  mannchri = home-manager.lib.homeManagerConfiguration {
+    # #    extraSpecialArgs = {inherit nixpkgs;};
+    # #    modules = [./home-manager/mannchri.nix];
+    # #  };
+    # };
   };
 }
 

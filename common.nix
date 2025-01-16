@@ -22,9 +22,6 @@ in
       '';
       }
     )
-    #vim
-    #django-redis
-    cowsay
     home-manager
     curl
     wget
@@ -32,8 +29,6 @@ in
     git
     tmux
     bat
-    python311Packages.pillow
-    python311Packages.pylibjpeg-libjpeg
     zlib
     lzlib
     dig
