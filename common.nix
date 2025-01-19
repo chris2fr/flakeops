@@ -39,5 +39,6 @@ in
     nftables
     ntfs3g
     automake
+    gnumake
   ];
 }
