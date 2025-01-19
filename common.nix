@@ -38,5 +38,6 @@ in
     openldap
     nftables
     ntfs3g
+    automake
   ];
 }
