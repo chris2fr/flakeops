@@ -92,7 +92,7 @@ in
   
   # Networking
   networking.firewall.allowedTCPPorts = [ 22 80 443 636 ];
-  networking.networkmanager {
+  networking.networkmanager = {
     enable = true;
   }
   networking.hostName = "t330roses"; # Define your hostname.
