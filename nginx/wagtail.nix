@@ -894,7 +894,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.resdigita.com"= {
-      root = "/var/www/wagtail-resdigita-com/";
+      root = "/var/www/wagtail.resdigita.com/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8902/";
         extraConfig = nginxLocationWagtailExtraConfig;
