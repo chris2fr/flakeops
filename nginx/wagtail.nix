@@ -473,7 +473,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
 
-    "wagtail.resdigita.com" = {
+    "wagtail.lesgv.org" = {
       serverAliases = [
         "www.lesartsvoisins.com"
         "lesartsvoisins.com"
@@ -490,7 +490,7 @@ in
         "gv.coop"
         # "www.gv.coop"  
         # "wagtail.gv.coop"
-        "wagtail.lesgv.org"
+        # "wagtail.lesgv.org"
       ];
       enableACME = true;
        forceSSL = true;
@@ -884,6 +884,19 @@ in
       root = "/var/www/django-village/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8891/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "wagtail.resdigita.com"= {
+      root = "/var/www/wagtail-resdigita-com/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8902/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;

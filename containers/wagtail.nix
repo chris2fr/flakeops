@@ -139,6 +139,14 @@ in
         hostPath = "/var/www/designsystem-village/dist";
         isReadOnly = false; 
        };
+       "/home/wagtail/wagtail.resdigita.com/media" = { 
+        hostPath = "/var/www/wagtail.resdigita.com/media";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/wagtail.resdigita.com/static" = { 
+        hostPath = "/var/www/wagtail.resdigita.com/static";
+        isReadOnly = false; 
+       }; 
       # "/run/wagtail-sockets" = { 
       #   hostPath = "/run/wagtail-sockets";
       #   isReadOnly = false; 
@@ -389,6 +397,23 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/resdigita-fastoche/";
           ExecStart = ''/home/wagtail/resdigita-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/resdigita-fastoche-access.log --error-logfile /var/log/wagtail/resdigita-fastoche-error.log --chdir /home/wagtail/resdigita-fastoche --workers 12 --bind 0.0.0.0:8892 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+
+      systemd.services.wagtail-resdigita-com = {
+        description = "wagtail.resdigita.com Website based on wagtail-news-starter";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/wagtail.resdigita.com/";
+          ExecStart = ''/home/wagtail/wagtail.resdigita.com/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-resdigita-com-access.log --error-logfile /var/log/wagtail/wagtail-resdigita-com-error.log --chdir /home/wagtail/wagtail.resdigita.com --workers 12 --bind 0.0.0.0:8902 wagtailresdigitacom.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
