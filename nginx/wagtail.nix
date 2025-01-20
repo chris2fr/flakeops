@@ -893,7 +893,7 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.resdigita.com"= {
+    "wagtailnews.resdigita.com"= {
       root = "/var/www/wagtail.resdigita.com/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8902/";
@@ -905,6 +905,21 @@ in
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
+    };
+    services.nginx.virtualHosts = {
+      "wagtail.resdigita.com"= {
+        root = "/var/www/wagtail.resdigita.com.main/";
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8903/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        enableACME=true;
+        forceSSL = true;
+        locations."/favicon.ico" = { proxyPass = null; };
+        locations."/static" = { proxyPass = null; };
+        locations."/media" = { proxyPass = null; };
+        locations."/.well-known" = { proxyPass = null; };
+      };
     };
   };
 }
