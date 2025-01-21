@@ -126,4 +126,6 @@ in
     acceptTerms = true;
     defaults.email = "chris@lesgrandsvoisins.com";
   };
+
+  services.nginx.enable = true;
 }
