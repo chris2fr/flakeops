@@ -131,10 +131,12 @@ in
     enable = true;
     virtualHosts = {
       localhost = {
-        return = "200 '<html><body>It works</body></html>'";
-        extraConfig = ''
-          default_type text/html;
-        '';
+        locations."/" = {
+          return = "200 '<html><body>It works</body></html>'";
+          extraConfig = ''
+            default_type text/html;
+          '';
+        };
       };
     };
   };
