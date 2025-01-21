@@ -40,5 +40,7 @@ in
     ntfs3g
     automake
     gnumake
+    python3Full
+    dig
   ];
 }

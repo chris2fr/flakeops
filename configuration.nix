@@ -127,5 +127,15 @@ in
     defaults.email = "chris@lesgrandsvoisins.com";
   };
 
-  services.nginx.enable = true;
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      localhost = {
+        return = "200 '<html><body>It works</body></html>'";
+        extraConfig = ''
+          default_type text/html;
+        '';
+      };
+    };
+  };
 }
