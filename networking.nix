@@ -7,7 +7,7 @@ in {
     nftables = {
       enable = false;
       flushRuleset = true;
-      rulest = ''
+      ruleset = ''
         # Check out https://wiki.nftables.org/ for better documentation.
         # Table for both IPv4 and IPv6.
         table inet filter {
