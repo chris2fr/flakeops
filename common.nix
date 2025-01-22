@@ -22,25 +22,26 @@ in
       '';
       }
     )
-    home-manager
-    curl
-    wget
-    lynx
-    git
-    tmux
+    automake
+    atop
     bat
-    zlib
-    lzlib
+    curl
     dig
-    killall
+    git
+    gnumake
+    # home-manager
+    htop
     inetutils
-    pwgen
-    openldap
+    killall
+    lynx
+    lzlib
     nftables
     ntfs3g
-    automake
-    gnumake
+    openldap
+    pwgen
     python3Full
-    dig
+    tmux
+    wget
+    zlib
   ];
 }
