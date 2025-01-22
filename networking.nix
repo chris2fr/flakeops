@@ -6,6 +6,7 @@ in {
   networking = {
     nftables = {
       enable = true;
+      flushRuleset = true;
       tables.filter = {
         content = ''
           chain input {
