@@ -6,13 +6,10 @@ in {
   networking = {
     nftables = {
       enable = true;
-      flushRuleset = true;
-      ruleset = ''
-        # Check out https://wiki.nftables.org/ for better documentation.
-        # Table for both IPv4 and IPv6.
-        table inet filter {
-          # Block all incoming connections traffic except SSH and "ping".
+      tables.filter = {
+        content = ''
           chain input {
+            type filter hook input priority 0;
             # accept any localhost traffic
             iifname "lo" accept
             # accept any lan traffic
@@ -49,8 +46,10 @@ in {
             type filter hook forward priority 0;
             accept
           }
-        }
-      '';
+        '';
+        family = "inet";
+        enable = true;
+      };
     };
     # firewall.enable = true;
     hostName = "rosest330"; 
