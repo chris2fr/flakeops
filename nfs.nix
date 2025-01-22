@@ -19,7 +19,7 @@ in
     extraNfsdConfig = '''';
   };
   fileSystems = {
-    "/dev/disk/by-uuid/79ab142f-c6b2-4679-bb94-ad346de34698" = {mountPoint = "/srv/data1";device="/dev/disk/by-uuid/79ab142f-c6b2-4679-bb94-ad346de34698";};
+    "/srv/data1" = {mountPoint = "/srv/data1";device="/dev/disk/by-uuid/79ab142f-c6b2-4679-bb94-ad346de34698";};
     "/export/data1" = {device="/srv/data1";options=["bind"];};  
   };
   services.nfs.server.exports = ''
