@@ -31,33 +31,33 @@ in
   '';
 
   systemd.tmpfiles.rules = [
-    "d /export nfsuser nfsuser"
-    "d /export/data1 nfsuser nfsuser"
-    "d /export/data2 nfsuser nfsuser"
-    "d /export/data3 nfsuser nfsuser"
-    "d /export/data4 nfsuser nfsuser"
-    "d /export/data5 nfsuser nfsuser"
-    "d /export/data6 nfsuser nfsuser"
-    "d /export/data7 nfsuser nfsuser"
-    "d /export/data8 nfsuser nfsuser"
-    "d /export/data9 nfsuser nfsuser"
-    "d /srv nfsuser nfsuser"
-    "d /srv/data1 nfsuser nfsuser"
-    "d /srv/data2 nfsuser nfsuser"
-    "d /srv/data3 nfsuser nfsuser"
-    "d /srv/data4 nfsuser nfsuser"
-    "d /srv/data5 nfsuser nfsuser"
-    "d /srv/data6 nfsuser nfsuser"
-    "d /srv/data7 nfsuser nfsuser"
-    "d /srv/data8 nfsuser nfsuser"
-    "d /srv/data9 nfsuser nfsuser"
+    "d /export nfsuser users"
+    "d /export/data1 nfsuser users"
+    "d /export/data2 nfsuser users"
+    "d /export/data3 nfsuser users"
+    "d /export/data4 nfsuser users"
+    "d /export/data5 nfsuser users"
+    "d /export/data6 nfsuser users"
+    "d /export/data7 nfsuser users"
+    "d /export/data8 nfsuser users"
+    "d /export/data9 nfsuser users"
+    "d /srv nfsuser users"
+    "d /srv/data1 nfsuser users"
+    "d /srv/data2 nfsuser users"
+    "d /srv/data3 nfsuser users"
+    "d /srv/data4 nfsuser users"
+    "d /srv/data5 nfsuser users"
+    "d /srv/data6 nfsuser users"
+    "d /srv/data7 nfsuser users"
+    "d /srv/data8 nfsuser users"
+    "d /srv/data9 nfsuser users"
   ];
 
   time.timeZone = "Europe/Paris";
 
   system.stateVersion = "24.11";
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     EDITOR="vim";
   };
 

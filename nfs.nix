@@ -19,8 +19,7 @@ in
     extraNfsdConfig = '''';
   };
   fileSystems = {
-    "/srv/data1" = {mountPoint = "/srv/data1";device="/dev/disk/by-label/CHRISDATALIVE";};
-    "/export/data1" = {device="/srv/data1";options=["bind"];};  
+    "/export/data1" = {device="/mnt/chrisdatalive";options=["bind"];};  
   };
   services.nfs.server.exports = ''
     /export 192.168.1.0/24(rw,fsid=0,no_subtree_check)

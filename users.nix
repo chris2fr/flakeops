@@ -6,7 +6,7 @@ let
   ];
 in {
   users.users = { 
-    mannchri = rec {
+    mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = mannchriRsaPublic;
       extraGroups = [ "wheel" "networkmanager" ];

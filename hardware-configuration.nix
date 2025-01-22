@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ 
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "megaraid_sas" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
@@ -23,7 +24,7 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
   fileSystems."/mnt/chrisdatalive" =
-    { device = "/dev/disk/by-uuid/79ab142f-c6b2-4679-bb94-ad346de34698";
+    { device = "/dev/disk/by-label/CHRISDATALIVE";
       fsType = "ext4";
       neededForBoot = false;
     };
