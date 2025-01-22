@@ -39,6 +39,20 @@ in
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  systemd.tmpfiles.rules = [
+    "d /export nfsuser users"
+    "d /export/rd1 nfsuser users"
+    "d /export/rd2 nfsuser users"
+    "d /export/rd3 nfsuser users"
+    "d /export/rd4 nfsuser users"
+    "d /srv nfsuser users"
+    "d /srv/rd1 nfsuser users"
+    "d /srv/rd2 nfsuser users"
+    "d /srv/rd3 nfsuser users"
+    "d /srv/rd4 nfsuser users"
+  ];
+
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
