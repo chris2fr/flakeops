@@ -10,9 +10,9 @@ in {
     firewall = {
       enable = true;
       trustedInterfaces = ["lo" "eno2" "enp3s0f0"];
-      interfaces."eno1" = {
-        allowedTCPPorts = [22 80 443];
-      };
+      # interfaces."eno1" = {
+      #   allowedTCPPorts = [22 80 443];
+      # };
     };
     hostName = "rosest330"; 
     enableIPv6 = true;
