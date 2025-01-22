@@ -6,53 +6,11 @@ in {
   networking = {
     nftables = {
       enable = true;
-      flushRuleset = true;
-      tables.filter = {
-        content = ''
-          chain input {
-            type filter hook input priority 0;
-            # accept any localhost traffic
-            iifname "lo" accept
-            # accept any lan traffic
-            iifname "enp3s0f0" accept
-            # accept any management traffic
-            iifname "eno2" accept
-            # accept traffic originated from us
-            ct state {established, related} accept
-            # allow "ping"
-            ip6 nexthdr icmpv6 icmpv6 type echo-request accept
-            ip protocol icmp icmp type echo-request accept
-            # accept SSH connections (required for a server)
-            tcp dport 22 accept
-            tcp dport 80 accept
-            tcp dport 443 accept
-            tcp dport 636 accept
-            tcp dport 53 accept
-            tcp dport 111 accept
-            tcp dport 2049 accept
-            tcp dport 4000-4002 accept
-            udp dport 53 accept
-            udp dport 111 accept
-            udp dport 2049 accept
-            udp dport 4000-4002 accept
-            # count and drop any other traffic
-            counter drop
-          }
-          # Allow all outgoing connections.
-          chain output {
-            type filter hook output priority 0;
-            accept
-          }
-          chain forward {
-            type filter hook forward priority 0;
-            accept
-          }
-        '';
-        family = "inet";
-        enable = true;
-      };
     };
-    # firewall.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0"];
+    };
     hostName = "rosest330"; 
     enableIPv6 = true;
   };
