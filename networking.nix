@@ -6,7 +6,7 @@ in {
       enable = true;
       allowedTCPPorts = [ 22 80 443 636 53 111 2049 ];
       allowedUDPPorts = [ 53 67 68 123 111 2049 4000 4001 4002 ];
-      trustedInterfaces = ["eno2"];
+      trustedInterfaces = ["eno2" "enp3s0f0"];
       interfaces."eno2" = {
         allowedTCPPorts = [ 22 80 443 636 53 111 2049 ];
         allowedUDPPorts = [ 53 67 68 123 111 2049 4000 4001 4002 20048 ];
