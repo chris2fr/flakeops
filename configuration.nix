@@ -17,8 +17,6 @@ in
     efi.canTouchEfiVariables = true;
   };
 
-  system.copySystemConfiguration = true;
-
   time.timeZone = "Europe/Paris";
 
   environment.sessionVariables = {
