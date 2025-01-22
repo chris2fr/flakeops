@@ -9,19 +9,19 @@ in {
     mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = mannchriRsaPublic;
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" ];
     };
     admin = {
       isNormalUser = true;
       description = "admin";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
-    nfsuser = {
-      isNormalUser = true;
-      description = "User nor NFS Shares";
-      extraGroups = [ "users" ];
-      openssh.authorizedKeys.keys = mannchriRsaPublic;
-    };
+    # nfsuser = {
+    #   isNormalUser = true;
+    #   description = "User nor NFS Shares";
+    #   extraGroups = [ "users" ];
+    #   openssh.authorizedKeys.keys = mannchriRsaPublic;
+    # };
   };
 }

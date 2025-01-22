@@ -21,7 +21,7 @@ in
       '';
       }
     )
-    # home-manager
+    home-manager
     # automake
     bat
     curl
@@ -40,5 +40,6 @@ in
     tmux
     wget
     zlib
+    nftables
   ];
 }
