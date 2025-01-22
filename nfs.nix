@@ -13,10 +13,10 @@ in
 {
   services.nfs.server = {
     enable = true;
-    # lockdPort = 4001;
-    # mountdPort = 4002;
-    # statdPort = 4000;
-    # extraNfsdConfig = '''';
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
+    extraNfsdConfig = '''';
   };
   services.nfs.server.exports = ''
     /mnt/chrisdatalive 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
