@@ -5,7 +5,7 @@ let
 in {
   networking = {
     nftables = {
-      enable = false;
+      enable = true;
       flushRuleset = true;
       ruleset = ''
         # Check out https://wiki.nftables.org/ for better documentation.
