@@ -31,7 +31,7 @@ in {
     mannchri = {
       isNormalUser = true;
       description = "Chris Mann";
-      extraGroups = [ "users", "wheel", "networkmanager" ];
+      extraGroups = [ "users" "wheel" "networkmanager" ];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
   };
