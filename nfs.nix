@@ -13,10 +13,10 @@ in
 {
   services.nfs.server = {
     enable = true;
-    lockdPort = 4001;
-    mountdPort = 4002;
-    statdPort = 4000;
-    extraNfsdConfig = '''';
+    # lockdPort = 4001;
+    # mountdPort = 4002;
+    # statdPort = 4000;
+    # extraNfsdConfig = '''';
   };
   fileSystems = {
     "/export/data1" = {device="/mnt/chrisdatalive";options=["bind"];};
