@@ -18,7 +18,7 @@ in
         set expandtab
         set autoindent
         set smartindent
-        " ...
+        " ...1057,381
       '';
       }
     )

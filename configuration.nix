@@ -40,16 +40,16 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "d /export nfsuser users"
-    "d /export/rd1 nfsuser users"
-    "d /export/rd2 nfsuser users"
-    "d /export/rd3 nfsuser users"
-    "d /export/rd4 nfsuser users"
-    "d /srv nfsuser users"
-    "d /srv/rd1 nfsuser users"
-    "d /srv/rd2 nfsuser users"
-    "d /srv/rd3 nfsuser users"
-    "d /srv/rd4 nfsuser users"
+    "d /export 0755 nfsuser users"
+    "d /export/rd1 0755 nfsuser users"
+    "d /export/rd2 0755 nfsuser users"
+    "d /export/rd3 0755 nfsuser users"
+    "d /export/rd4 0755 nfsuser users"
+    "d /srv 0755 nfsuser users"
+    "d /srv/rd1 0755 nfsuser users"
+    "d /srv/rd2 0755 nfsuser users"
+    "d /srv/rd3 0755 nfsuser users"
+    "d /srv/rd4 0755 nfsuser users"
   ];
 
 
