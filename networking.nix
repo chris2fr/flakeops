@@ -2,7 +2,7 @@
 let 
 in {
   # Networking
-  networking.firewall.allowedTCPPorts = [ 22 80 443 636 ] + [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 636 53 ];
   networking.firewall.allowedUDPPorts = [
     53
     67
