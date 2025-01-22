@@ -7,7 +7,7 @@ in {
   #   enable = true;
   #   dhcp = "dhcpcd";
   # };
-  networking.hostName = "rosest330"; # Define your hostname.
+  networking.hostName = "resdigidell"; # Define your hostname.
   networking.enableIPv6 = true;
   # networking.firewall.package
   networking.nftables.enable = true;

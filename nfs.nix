@@ -45,8 +45,8 @@ in
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
-        "server string" = "rosest330";
-        "netbios name" = "rosest330";
+        "server string" = "resdigidell";
+        "netbios name" = "resdigidell";
         "security" = "user";
         #"use sendfile" = "yes";
         #"max protocol" = "smb2";
