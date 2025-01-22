@@ -52,7 +52,7 @@ in {
         }
       '';
     };
-    firewall.enable = true;
+    # firewall.enable = true;
     hostName = "rosest330"; 
     enableIPv6 = true;
   };
