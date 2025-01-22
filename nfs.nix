@@ -1,0 +1,38 @@
+{ config, pkgs, lib, ... }:
+let 
+  sambaBaseParams = {
+    "browseable" = "yes";
+    "read only" = "no";
+    "guest ok" = "no";
+    "create mask" = "0664";
+    "directory mask" = "0775";
+    "force user" = "nfsuser";
+    "force group" = "nfsuser";
+  };
+in 
+{
+  # fileSystems = {
+  #   "/dev/disk/by-label/RaidData2" = {mountPoint = "/srv/rd2";device="/dev/disk/by-label/RaidData2";};
+  #   "/dev/disk/by-label/RaidData3" = {mountPoint = "/srv/rd3";device="/dev/disk/by-label/RaidData3";};
+  #   "/dev/disk/by-label/RaidData4" = {mountPoint = "/srv/rd4";device="/dev/disk/by-label/RaidData4";};
+  #   "/export/rd1" = {device="/srv/rd1";options=["bind"];};  
+  #   "/export/rd2" = {device="/srv/rd2";options=["bind"];};  
+  #   "/export/rd3" = {device="/srv/rd3";options=["bind"];};  
+  #   "/export/rd4" = {device="/srv/rd4";options=["bind"];};  
+  # };
+
+  services.nfs.server = {
+    enable = true;
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
+    extraNfsdConfig = '''';
+    # exports = ''
+    #   /export 192.168.1.0/24(rw,fsid=0,no_subtree_check)
+    #   /export/rd1 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
+    #   /export/rd2 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
+    #   /export/rd3 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
+    #   /export/rd4 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
+    # '';
+  };
+}

@@ -17,11 +17,15 @@
     { device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
+    };
+  fileSystems."/mnt/chrisdatalive" =
+    { device = "/dev/disk/by-uuid/79ab142f-c6b2-4679-bb94-ad346de34698";
+      fsType = "ext4";
+      neededForBoot = false;
     };
 
   # swapDevices = [ ];
