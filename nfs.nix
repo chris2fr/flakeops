@@ -12,8 +12,6 @@ let
 in 
 {
 
-
-  
   fileSystems = {
     "/dev/disk/by-label/RaidData2" = {mountPoint = "/srv/rd2";device="/dev/disk/by-label/RaidData2";};
     "/dev/disk/by-label/RaidData3" = {mountPoint = "/srv/rd3";device="/dev/disk/by-label/RaidData3";};
@@ -29,12 +27,13 @@ in
     lockdPort = 4001;
     mountdPort = 4002;
     statdPort = 4000;
+    hostName = "resdigidell";
     extraNfsdConfig = '''';
     exports = ''
-      /export 192.168.1.0/24(rw,fsid=0,no_subtree_check) 10.0.0.0/24(rw,fsid=0,no_subtree_check)
+      /export 192.168.1.0/24(rw,sync,no_subtree_check) 10.0.0.0/24(rw,sync,no_subtree_check)
       /export/rd1 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
       /export/rd2 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
-      /export/rd3 192.168.1.0/24(rw,nohide,all_squash,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
+      /export/rd3 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
       /export/rd4 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
     '';
   };
