@@ -34,10 +34,10 @@ in
       vers4 = true
     '';
     exports = ''
-      /export 192.168.1.0/24(rw,sync,no_subtree_check) 10.0.0.0/24(rw,sync,no_subtree_check)
+      /export 192.168.1.0/24(rw,no_subtree_check) 10.0.0.0/24(rw,no_subtree_check)
       /export/rd1 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
       /export/rd2 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
-      /export/rd3 192.168.1.0/24(rw,nohide,user,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,user,insecure,no_subtree_check)
+      /export/rd3 192.168.1.0/24(rw) 10.0.0.0/24(rw)
       /export/rd4 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
     '';
   };
