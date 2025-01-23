@@ -23,12 +23,12 @@ in
   };
 
   services.nfs = {
-    # settings = {
-    #   mountd.manage-gids = true;
-    #   # nfsd.rdma = true;
-    #   # nfsd.vers3 = false;
-    #   # nfsd.vers4 = true;
-    # };
+    settings = {
+      mountd.manage-gids = true;
+      # nfsd.rdma = true;
+      # nfsd.vers3 = false;
+      # nfsd.vers4 = true;
+    };
     server = {
       enable = true;
       lockdPort = 4001;
@@ -37,11 +37,11 @@ in
       # hostName = "resdigidell";
       extraNfsdConfig = '''';
       exports = ''
-        /export 192.168.1.0/24(rw,no_root_squash,fsid=0,no_subtree_check) 10.0.0.0/24(rw,fsid=0,no_root_squash,no_subtree_check)
-        /export/rd1 192.168.1.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check)
-        /export/rd2 192.168.1.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check)
-        /export/rd3 192.168.1.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check)
-        /export/rd4 192.168.1.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,nohide,insecure,no_subtree_check)
+        /export 192.168.1.0/24(rw,no_root_squash,no_all_squash,fsid=0,no_subtree_check) 10.0.0.0/24(rw,fsid=0,no_root_squash,no_all_squash,no_subtree_check)
+        /export/rd1 192.168.1.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check)
+        /export/rd2 192.168.1.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check)
+        /export/rd3 192.168.1.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check)
+        /export/rd4 192.168.1.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,no_root_squash,no_all_squash,nohide,insecure,no_subtree_check)
       '';
     };
   };
