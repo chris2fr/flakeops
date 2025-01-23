@@ -23,12 +23,12 @@ in
   };
 
   services.nfs = {
-    settings = {
-      mountd.manage-gids = true;
-      nfsd.rdma = true;
-      nfsd.vers3 = false;
-      nfsd.vers4 = true;
-    };
+    # settings = {
+    #   mountd.manage-gids = true;
+    #   nfsd.rdma = true;
+    #   nfsd.vers3 = false;
+    #   nfsd.vers4 = true;
+    # };
     server = {
       enable = true;
       lockdPort = 4001;
