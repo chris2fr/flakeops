@@ -25,9 +25,9 @@ in
   services.nfs = {
     settings = {
       mountd.manage-gids = true;
-      rdma = true;
-      vers3 = false;
-      vers4 = true;
+      nfsd.rdma = true;
+      nfsd.vers3 = false;
+      nfsd.vers4 = true;
     };
     server = {
       enable = true;
