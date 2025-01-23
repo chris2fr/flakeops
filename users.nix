@@ -19,7 +19,7 @@ in {
     admin = {
       isNormalUser = true;
       description = "admin";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "users"];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
     nfsuser = {
