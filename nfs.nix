@@ -28,7 +28,11 @@ in
     mountdPort = 4002;
     statdPort = 4000;
     hostName = "resdigidell";
-    extraNfsdConfig = '''';
+    extraNfsdConfig = ''
+      rdma = true # Remote Direct Memory Access
+      vers3 = false
+      vers4 = true
+    '';
     exports = ''
       /export 192.168.1.0/24(rw,sync,no_subtree_check) 10.0.0.0/24(rw,sync,no_subtree_check)
       /export/rd1 192.168.1.0/24(rw,nohide,insecure,no_subtree_check) 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
