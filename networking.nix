@@ -10,7 +10,6 @@ in {
   networking.hostName = "resdigidell"; # Define your hostname.
   networking.enableIPv6 = true;
   # networking.firewall.package
-  # networking.nftables.enable = true;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -19,12 +18,12 @@ in {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  # networking.networkmanager.enable = true;
-  # networking.nftables.enable = true;
+  networking.networkmanager.enable = false;
+  networking.nftables.enable = false;
+  networking.firewall.enable = false;
 
   # # services.openssh.openFirewall = false;
   # networking.firewall = {
-  #   enable = false;
   #   # package = pkgs.nftables;
   #   trustedInterfaces = [ "eno2" ];
   #   # interfaces."eno2".allowedTCPPorts = [ 22 ];
