@@ -325,7 +325,7 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
     # certs."0.lesgrandsvoisins.com" = {};  
-    certs."1.lesgrandsvoisins.com" = {};  
+    # certs."1.lesgrandsvoisins.com" = {};  
     # certs."2.lesgrandsvoisins.com" = {};  
     # certs."3.lesgrandsvoisins.com" = {};  
     # certs."4.lesgrandsvoisins.com" = {};  

@@ -104,10 +104,10 @@ in
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
           root =  "/var/www/html/";
         };
-        "1.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::1]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
+        # "1.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::1]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
         # "2.lesgrandsvoisins.com" = {
         #   listen = [{ addr = "[2a01:4f8:241:4faa::2]"; port = 80; }];
         #   root =  "/var/www/html/";
