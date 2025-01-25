@@ -40,7 +40,7 @@ in
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
-        server_names_hash_bucket_size: 64;
+        # server_names_hash_bucket_size: 64;
         proxy_headers_hash_bucket_size 512;
         proxy_buffer_size   256k;
         proxy_buffers   4 256k;
