@@ -580,7 +580,8 @@ in
     };
 
     "www.lesgrandsvoisins.fr" = {
-     serverAliases = ["desgv.com" 
+     serverAliases = [
+      # "desgv.com" 
       "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" 
       # "www.desgv.com" 
       "lesgrandsvoisins.fr" 
