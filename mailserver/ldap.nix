@@ -15,7 +15,7 @@ in
   # };
   services.openldap = {
     enable = true;
-    urlList = [ "ldap:/// ldaps:///" ];
+    urlList = [ "ldap:/// ldaps:/// ldapi:///" ];
     settings = {
       attrs = {
         # olcTLSReqCert = "allow" ;
