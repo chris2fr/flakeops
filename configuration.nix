@@ -198,7 +198,7 @@ in
       8384 22000 
       22000 21027 
       10389 10636 
-      14389 14390 14636
+      14389 14636
       1360
     ];
     firewall.allowedUDPPorts = [53];
@@ -332,10 +332,10 @@ in
     # certs."5.lesgrandsvoisins.com" = {};  
     # certs."6.lesgrandsvoisins.com" = {};  
     # certs."7.lesgrandsvoisins.com" = {};  
-    certs."8.lesgrandsvoisins.com" = {};  
-    certs."9.lesgrandsvoisins.com" = {};  
+    # certs."8.lesgrandsvoisins.com" = {};  
+    # certs."9.lesgrandsvoisins.com" = {};  
     certs."10.lesgrandsvoisins.com" = {};  
-    certs."sftpgo.lesgrandsvoisins.com" = {};  
+    # certs."sftpgo.lesgrandsvoisins.com" = {};  
     certs."linkding.lesgrandsvoisins.com" = {};  
   };
   virtualisation.libvirtd.enable = true;

@@ -13,13 +13,13 @@ in
         proxyPass = "http://localhost:3080/";
       };
     };
-    "crabfit.desgv.com" = {
-      enableACME = true;
-      forceSSL = true;
-      # serverAliases = ["crabfit.desgrandsvoisins.com"];
-      globalRedirect = "crabfit.resdigita.com";
-      # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
-    };
+    # "crabfit.desgv.com" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   # serverAliases = ["crabfit.desgrandsvoisins.com"];
+    #   globalRedirect = "crabfit.resdigita.com";
+    #   # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
+    # };
     "apicrabfit.resdigita.com" = {
       serverAliases = ["apicrabfit.lesgv.org"];
       enableACME = true;

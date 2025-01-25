@@ -122,25 +122,25 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.francemali.org" = {
-      enableACME = true;
-      serverAliases = ["francemali.org"];
-      forceSSL = true;
-      root =  "/var/www/francemali/";
-      extraConfig = ''
-        if ($host = 'francemali.org') {
-          return 301 $scheme://www.$host$request_uri;
-        }
-        '';
-      locations."/" = {
-        proxyPass = "http://localhost:8888/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };
+    # "www.francemali.org" = {
+    #   enableACME = true;
+    #   serverAliases = ["francemali.org"];
+    #   forceSSL = true;
+    #   root =  "/var/www/francemali/";
+    #   extraConfig = ''
+    #     if ($host = 'francemali.org') {
+    #       return 301 $scheme://www.$host$request_uri;
+    #     }
+    #     '';
+    #   locations."/" = {
+    #     proxyPass = "http://localhost:8888/";
+    #     extraConfig = nginxLocationWagtailExtraConfig;
+    #   };
+    #   locations."/favicon.ico" = { proxyPass = null; };
+    #   locations."/static" = { proxyPass = null; };
+    #   locations."/medias" = { proxyPass = null; };
+    #   locations."/.well-known" = { proxyPass = null; };
+    # };
     "www.gv.coop" = {
       enableACME = true;
       serverAliases = [
@@ -441,11 +441,11 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "meet.desgv.com"  = {
-      enableACME = true;
-      forceSSL = true;
-      globalRedirect = "meet.resdigita.com";
-    };
+    # "meet.desgv.com"  = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   globalRedirect = "meet.resdigita.com";
+    # };
     "gvoisin.resdigita.com" = {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
@@ -581,7 +581,9 @@ in
 
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" 
-      "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
+      "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" 
+      # "www.desgv.com" 
+      "lesgrandsvoisins.fr" 
       # "www.lesgv.com" 
       "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
       "ghost.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];

@@ -573,8 +573,7 @@ in
           serverAliases = ["ete.lesgrandsvoisins.com"];
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
-        "sftpgo.lesgrandsvoisins.com" = {
-          serverAliases = ["drive.lesgrandsvoisins.com"];
+        "drive.lesgrandsvoisins.com" = {
           enableACME = true;
           forceSSL = true;
           locations."/" = {

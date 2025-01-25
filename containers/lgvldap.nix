@@ -75,7 +75,7 @@ in
       services = {
         openldap = {
           enable = true;
-          urlList = ["ldap://${lgvLdapDomainName}:14390/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
+          urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
           # urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
           settings = {
             attrs = {

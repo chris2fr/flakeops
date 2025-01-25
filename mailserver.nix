@@ -149,7 +149,7 @@ in
         passwordFile = config.age.secrets.bind.path;
       };
       uris = [
-        # "ldap://ldap.lesgrandsvoisins.com:14390/"
+        # "ldap://ldap.lesgrandsvoisins.com:14389/"
         "ldapi:///"
         # "ldaps://ldap.gv.coop:10636/"
         # "ldap://ldap.gv.coop:10389/"
@@ -292,7 +292,7 @@ in
   };
 ###################################################################################################################################
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14390 14636 ];
+    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14636 ];
     enable = true;
     trustedInterfaces = [ "lo" ];
   };
