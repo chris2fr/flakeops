@@ -2,7 +2,7 @@
 let 
 in{
     services.sftpgo = {
-      enable = true;
+      enable = false;
       user = "sftpgo";  
       group = "wwwrun";
       dataDir = "/var/www/dav/data";

@@ -75,7 +75,7 @@ in
       forceSSL = true;
       root =  "/var/www/www-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8893/";
+        proxyPass = "http://localhost:8893/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -97,7 +97,7 @@ in
         forceSSL = true;
         root =  "/var/www/lesgrandsvoisins/";
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8894/";
+          proxyPass = "http://localhost:8894/";
           extraConfig = nginxLocationWagtailExtraConfig + ''
             rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
           '';
@@ -113,7 +113,7 @@ in
       forceSSL = true;
       root =  "/var/www/resdigita-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8892/";
+        proxyPass = "http://localhost:8892/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -132,7 +132,7 @@ in
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8888/";
+        proxyPass = "http://localhost:8888/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -154,7 +154,7 @@ in
       # '';
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:8896/";
+          proxyPass = "http://localhost:8896/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         # "/en/".return =  "301 http://www.village.ngo$request_uri";
@@ -178,7 +178,7 @@ in
       '';
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:8896/";
+          proxyPass = "http://localhost:8896/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         "/en/".return =  "301 http://www.village.ngo$request_uri";
@@ -195,11 +195,11 @@ in
         # }
         # '';
       # locations."/en/" = {
-      #   proxyPass = "http://127.0.0.1:8896/";
+      #   proxyPass = "http://localhost:8896/";
       #   extraConfig = nginxLocationWagtailExtraConfig;
       # };
       # locations."/" = {
-      #   proxyPass = "http://127.0.0.1:8896/";
+      #   proxyPass = "http://localhost:8896/";
       #   extraConfig = nginxLocationWagtailExtraConfig;
       # };
       # locations."/favicon.ico" = { proxyPass = null; };
@@ -213,7 +213,7 @@ in
       root =  "/var/www/cantine/";
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:8900/";
+          proxyPass = "http://localhost:8900/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         # "/fr/".return =  "301 http://www.village.ong$request_uri";
@@ -262,7 +262,7 @@ in
         # }
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:8896/";
+          proxyPass = "http://localhost:8896/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         "/fr/".return =  "301 http://www.village.ong$request_uri";
@@ -287,7 +287,7 @@ in
     #     }
     #     '';
     #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8896/";
+    #     proxyPass = "http://localhost:8896/";
     #     extraConfig = nginxLocationWagtailExtraConfig;
     #   };
     #   locations."/favicon.ico" = { proxyPass = null; };
@@ -306,7 +306,7 @@ in
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8889/";
+        proxyPass = "http://localhost:8889/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -320,7 +320,7 @@ in
       serverAliases = [ "wagtail.villagengo.org" "wagtail.villagengo.com"];
       root =  "/var/www/wagtail-village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8897/";
+        proxyPass = "http://localhost:8897/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       # extraConfig = ''
@@ -339,7 +339,7 @@ in
       serverAliases = [ "resdigita.org" "en.resdigita.com" "fr.resdigita.com" "en.resdigita.org" "fr.resdigita.org" "www.resdigita.com" "resdigita.com"];
       root =  "/var/www/resdigitaorg/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8899/";
+        proxyPass = "http://localhost:8899/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       extraConfig = ''
@@ -361,7 +361,7 @@ in
       forceSSL = true;
       root =  "/var/www/wagtail-village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8897/";
+        proxyPass = "http://localhost:8897/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       extraConfig = ''
@@ -385,7 +385,7 @@ in
       forceSSL = true;
       root =  "/var/www/django-village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8891/";
+        proxyPass = "http://localhost:8891/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -404,7 +404,7 @@ in
       # '';
       root =  "/var/www/designsystem-village/";
       # locations."/" = {
-      #   proxyPass = "http://127.0.0.1:8891/";
+      #   proxyPass = "http://localhost:8891/";
       #   extraConfig = nginxLocationWagtailExtraConfig;
       # };
       # locations."/favicon.ico" = { proxyPass = null; };
@@ -419,7 +419,7 @@ in
       forceSSL = true;
       root =  "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -432,7 +432,7 @@ in
       forceSSL = true;
       root =  "/var/www/villagengo/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8895/";
+        proxyPass = "http://localhost:8895/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -464,7 +464,7 @@ in
       root =  "/var/www/wagtail/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -495,7 +495,7 @@ in
       enableACME = true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -569,7 +569,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -590,7 +590,7 @@ in
       # sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -673,7 +673,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -692,7 +692,7 @@ in
       }
       '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -710,7 +710,7 @@ in
       enableACME=true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -724,7 +724,7 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
+        proxyPass = "http://localhost:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       # extraConfig = ''
@@ -741,7 +741,7 @@ in
       enableACME=true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8008/";
+        proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -753,7 +753,7 @@ in
     "8893.lesgrandsvoisins.com" = {
       root = "/var/www/www-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8893/";
+        proxyPass = "http://localhost:8893/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -766,7 +766,7 @@ in
     "8892.lesgrandsvoisins.com" = {
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8892/";
+        proxyPass = "http://localhost:8892/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -779,7 +779,7 @@ in
     "8890.lesgrandsvoisins.com" = {
       root = "/var/www/wagtail-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8890/";
+        proxyPass = "http://localhost:8890/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -792,7 +792,7 @@ in
     "8894.lesgrandsvoisins.com" = {
       root = "/var/www/lesgrandsvoisins/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8894/";
+        proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -805,7 +805,7 @@ in
     "8888.lesgrandsvoisins.com" = {
       root = "/var/www/francemali/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8888/";
+        proxyPass = "http://localhost:8888/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -818,7 +818,7 @@ in
     "8896.lesgrandsvoisins.com" = {
       root = "/var/www/village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
+        proxyPass = "http://localhost:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -831,7 +831,7 @@ in
     "8900.lesgrandsvoisins.com" = {
       root = "/var/www/cantine/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8900/";
+        proxyPass = "http://localhost:8900/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -844,7 +844,7 @@ in
     "8889.lesgrandsvoisins.com" = {
       root = "/var/www/cfran/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8889/";
+        proxyPass = "http://localhost:8889/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -857,7 +857,7 @@ in
     "8897.lesgrandsvoisins.com" = {
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8897/";
+        proxyPass = "http://localhost:8897/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -870,7 +870,7 @@ in
     "8899.lesgrandsvoisins.com" = {
       root = "/var/www/resdigitaorg/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8899/";
+        proxyPass = "http://localhost:8899/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -883,7 +883,7 @@ in
     "8891.lesgrandsvoisins.com" = {
       root = "/var/www/django-village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8891/";
+        proxyPass = "http://localhost:8891/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -896,7 +896,7 @@ in
     "wagtailnews.resdigita.com"= {
       root = "/var/www/wagtail.resdigita.com/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8902/";
+        proxyPass = "http://localhost:8902/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;
@@ -909,7 +909,7 @@ in
     "wagtail.resdigita.com"= {
       root = "/var/www/wagtail.resdigita.com.main/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8903/";
+        proxyPass = "http://localhost:8903/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME=true;

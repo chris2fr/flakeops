@@ -1,7 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  ldapDomainName = "ldap.gv.coop";
-  ldapBaseDN = "dc=gv,dc=coop";
+  ldapDomainName = "ldap.lesgrandsvoisins.com";
+  # ldapDomainName = "ldap.gv.coop";
+  ldapBaseDN = "dc=lesgrandsvoisins,dc=com";
+  # ldapBaseDN = "dc=gv,dc=coop";
   bindSlappasswd = import ../secrets/bind.slappasswd;
 in
 {
