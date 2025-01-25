@@ -38,10 +38,11 @@ in
       # defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
       appendHttpConfig = ''
-        proxy_headers_hash_max_size 4096;
-        server_names_hash_max_size 4096;
-        proxy_headers_hash_bucket_size 256;
-        proxy_buffer_size   128k;
+        proxy_headers_hash_max_size 8192;
+        server_names_hash_max_size 8192;
+        server_names_hash_bucket_size: 64;
+        proxy_headers_hash_bucket_size 512;
+        proxy_buffer_size   256k;
         proxy_buffers   4 256k;
         proxy_busy_buffers_size   256k;
         # Upgrade WebSocket if requested, otherwise use keepalive
