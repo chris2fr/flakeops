@@ -162,7 +162,7 @@ in
       startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "mail";
+        uidAttribute = "cn";
         # uidAttribute = "cn";
         #  filter = "(cn=%s)";
       };
