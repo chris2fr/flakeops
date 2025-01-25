@@ -149,8 +149,8 @@ in
         passwordFile = config.age.secrets.bind.path;
       };
       uris = [
-        # "ldap://ldap.lesgrandsvoisins.com:14389/"
-        "ldapi:///"
+        "ldap://ldap.lesgrandsvoisins.com:14389/"
+        # "ldapi:///"
         # "ldaps://ldap.gv.coop:10636/"
         # "ldap://ldap.gv.coop:10389/"
       ];
