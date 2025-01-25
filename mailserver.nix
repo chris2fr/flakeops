@@ -9,7 +9,7 @@ let
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
-    #"mail.lesgrandsvoisins.com"
+    "mail.lesgrandsvoisins.com"
     #"mail.resdigita.com"
     "resdigita.com"
     # "francemali.org"
@@ -28,8 +28,8 @@ let
     # "gvpublic.org"
     # "gvpublic.com"
     # "fastoche.org"
-    # "village.ngo"
-    # "village.ong"
+    "village.ngo"
+    "village.ong"
     # "villageparis.org"
   ];
 in

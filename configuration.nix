@@ -182,7 +182,7 @@ in
       ];
     };
     # firewall.enable = false;
-    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap"];
+    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" ];
     # Syncthing ports: 8384 for remote access to GUI
     # 22000 TCP and/or UDP for sync traffic
     # 21027/UDP for discovery
@@ -198,7 +198,7 @@ in
       8384 22000 
       22000 21027 
       10389 10636 
-      14389 14636
+      14636
       1360
     ];
     firewall.allowedUDPPorts = [53];
