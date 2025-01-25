@@ -162,7 +162,8 @@ in
       startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "cn";
+        uidAttribute = "mail";
+        # uidAttribute = "cn";
         #  filter = "(cn=%s)";
       };
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
