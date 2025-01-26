@@ -89,16 +89,16 @@ in
     interfaces.eno1.ipv6 = {
       addresses = [
         { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::4"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::5"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::6"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::7"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::8"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::9"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::10"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::4"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::5"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::6"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::7"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::8"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::9"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::10"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::11"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::12"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::13"; prefixLength = 96; }
@@ -326,16 +326,16 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
     certs."0.lesgrandsvoisins.com" = {};  
-    # certs."1.lesgrandsvoisins.com" = {};  
-    # certs."2.lesgrandsvoisins.com" = {};  
-    # certs."3.lesgrandsvoisins.com" = {};  
-    # certs."4.lesgrandsvoisins.com" = {};  
-    # certs."5.lesgrandsvoisins.com" = {};  
-    # certs."6.lesgrandsvoisins.com" = {};  
-    # certs."7.lesgrandsvoisins.com" = {};  
-    # certs."8.lesgrandsvoisins.com" = {};  
-    # certs."9.lesgrandsvoisins.com" = {};  
-    # certs."10.lesgrandsvoisins.com" = {};  
+    certs."1.lesgrandsvoisins.com" = {};  
+    certs."2.lesgrandsvoisins.com" = {};  
+    certs."3.lesgrandsvoisins.com" = {};  
+    certs."4.lesgrandsvoisins.com" = {};  
+    certs."5.lesgrandsvoisins.com" = {};  
+    certs."6.lesgrandsvoisins.com" = {};  
+    certs."7.lesgrandsvoisins.com" = {};  
+    certs."8.lesgrandsvoisins.com" = {};  
+    certs."9.lesgrandsvoisins.com" = {};  
+    certs."10.lesgrandsvoisins.com" = {};  
     # certs."sftpgo.lesgrandsvoisins.com" = {};  
     certs."linkding.lesgrandsvoisins.com" = {};  
   };
