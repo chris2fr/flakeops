@@ -103,63 +103,63 @@ in
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
           root =  "/var/www/html/";
-        };
-        "1.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::1]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        "2.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::2]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        # "3.ipv6.lesgrandsvoisins.com" = {
-        #   listen = [{ addr = "[2a01:4f8:241:4faa::3]"; port = 80; }];
+        # };
+        # "1.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::1]"; port = 80; }];
         #   root =  "/var/www/html/";
         # };
-        "4.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::4]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        # "5.ipv6.lesgrandsvoisins.com" = {
-        #   listen = [{ addr = "[2a01:4f8:241:4faa::5]"; port = 80; }];
+        # "2.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::2]"; port = 80; }];
         #   root =  "/var/www/html/";
         # };
-        # "6.ipv6.lesgrandsvoisins.com" = {
-        #   listen = [{ addr = "[2a01:4f8:241:4faa::6]"; port = 80; }];
+        # # "3.ipv6.lesgrandsvoisins.com" = {
+        # #   listen = [{ addr = "[2a01:4f8:241:4faa::3]"; port = 80; }];
+        # #   root =  "/var/www/html/";
+        # # };
+        # "4.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::4]"; port = 80; }];
         #   root =  "/var/www/html/";
         # };
-        "7.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::7]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        "9.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::9]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        "10.ipv6.lesgrandsvoisins.com" = {
-          # serverAliases = ["linkding"];
-          root =  "/var/www/html/";
-          listen = [{
-            addr = "[2a01:4f8:241:4faa::10]";
-            port = 80;
-          }
-          {
-            addr = "[2a01:4f8:241:4faa::10]";
-            port = 443;
-            ssl = true;
-          }];
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            recommendedProxySettings = true;
-            proxyPass = "http://localhost:8901";
-            extraConfig = ''
-            # if ($host != "linkding.lesgrandsvoisins.com") {
-            #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
-            # }
-            '';
-          };
-        };
+        # # "5.ipv6.lesgrandsvoisins.com" = {
+        # #   listen = [{ addr = "[2a01:4f8:241:4faa::5]"; port = 80; }];
+        # #   root =  "/var/www/html/";
+        # # };
+        # # "6.ipv6.lesgrandsvoisins.com" = {
+        # #   listen = [{ addr = "[2a01:4f8:241:4faa::6]"; port = 80; }];
+        # #   root =  "/var/www/html/";
+        # # };
+        # "7.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::7]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
+        # "9.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::9]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
+        # "10.ipv6.lesgrandsvoisins.com" = {
+        #   # serverAliases = ["linkding"];
+        #   root =  "/var/www/html/";
+        #   listen = [{
+        #     addr = "[2a01:4f8:241:4faa::10]";
+        #     port = 80;
+        #   }
+        #   {
+        #     addr = "[2a01:4f8:241:4faa::10]";
+        #     port = 443;
+        #     ssl = true;
+        #   }];
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   locations."/" = {
+        #     recommendedProxySettings = true;
+        #     proxyPass = "http://localhost:8901";
+        #     extraConfig = ''
+        #     # if ($host != "linkding.lesgrandsvoisins.com") {
+        #     #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
+        #     # }
+        #     '';
+        #   };
+        # };
         "linkding.lesgrandsvoisins.com" = {
           root =  "/var/www/linkding/";
           forceSSL = true;
