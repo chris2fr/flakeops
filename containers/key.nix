@@ -41,7 +41,7 @@ in
         postgresql
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "24.05";
+      system.stateVersion = "24.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {

@@ -15,7 +15,7 @@ in
     };
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
-      system.stateVersion = "24.05";
+      system.stateVersion = "24.11";
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
         lynx

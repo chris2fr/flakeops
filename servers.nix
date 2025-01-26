@@ -3,7 +3,7 @@
 let 
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile mailserver/vars/cert-public.nix));
   home-manager = builtins.fetchTarball { 
-    url="https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"; 
+    url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
     sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
   };
 in
@@ -24,7 +24,7 @@ in
 #        allowUnfreePredicate = (_: true);
 #      };
 #    };
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_20
@@ -91,7 +91,7 @@ in
     extraGroups = ["wwwrun"];
   };
   home-manager.users.ghost = {pkgs, ...}: {
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_18

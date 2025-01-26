@@ -170,7 +170,7 @@ in
       users.groups.wwwrun.members = ["wagtail"];
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "24.05";
+      system.stateVersion = "24.11";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";

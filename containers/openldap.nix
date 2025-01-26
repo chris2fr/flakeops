@@ -23,7 +23,7 @@ in
     };
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
-      system.stateVersion = "24.05";
+      system.stateVersion = "24.11";
       # networking = {
       #   firewall.allowedTCPPorts = [ 18080 10389 10686 22 80 443 389 636 993 11211 25 ];
       #   # trustedInterfaces = ["eno1" "lo"];
