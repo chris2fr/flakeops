@@ -93,7 +93,8 @@ in
             https-port = 14443;
             http-port = 14080;
             # proxy = "passthrough";
-            proxy = "reencrypt";
+            # proxy = "reencrypt";
+            proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
           };

@@ -22,7 +22,7 @@ in
   #     networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
   #     nix.settings.experimental-features = "nix-command flakes";
   #     time.timeZone = "Europe/Amsterdam";
-  #     system.stateVersion = "24.05";
+  #     system.stateVersion = "24.11";
   #     environment.sessionVariables = rec {
   #       NEXT_PUBLIC_API_URL = "apicrabfit.resdigita.com";
   #       FRONTEND_URL =	"https: //crabfit.resdigita.com";

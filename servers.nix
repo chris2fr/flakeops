@@ -2,35 +2,36 @@
 
 let 
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile mailserver/vars/cert-public.nix));
-  home-manager = builtins.fetchTarball { 
-    url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
-    sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
-  };
+  # home-manager = builtins.fetchTarball { 
+  #   url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
+  #   sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
+  # };
 in
 {
-  imports = [
-    (import "${home-manager}/nixos")
-  ];
+  # imports = [
+  #   (import "${home-manager}/nixos")
+  # ];
   ## Apostrophe CMS
   users.users.aaa = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    packages = with pkgs; [ nodejs_20 ];
   };
-  home-manager.users.aaa = {pkgs, ...}: {
-    # I'll use Mongo in a Docker Container
-#    nixpkgs = {
-#      config = {
-#        allowUnfree = true;
-#        allowUnfreePredicate = (_: true);
-#      };
-#    };
-    home.stateVersion = "24.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      nodejs_20
-#      mongodb
-    ];
-  };
+#   home-manager.users.aaa = {pkgs, ...}: {
+#     # I'll use Mongo in a Docker Container
+# #    nixpkgs = {
+# #      config = {
+# #        allowUnfree = true;
+# #        allowUnfreePredicate = (_: true);
+# #      };
+# #    };
+#     home.stateVersion = "24.11";
+#     programs.home-manager.enable = true;
+#     home.packages = with pkgs; [ 
+#       nodejs_20
+# #      mongodb
+#     ];
+#   };
   ## GHOSTIO
   users.users.ghostio = {
     isNormalUser = true;
@@ -89,14 +90,17 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     extraGroups = ["wwwrun"];
-  };
-  home-manager.users.ghost = {pkgs, ...}: {
-    home.stateVersion = "24.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
+    packages = with pkgs; [ 
       nodejs_18
     ];
   };
+  # home-manager.users.ghost = {pkgs, ...}: {
+  #   home.stateVersion = "24.11";
+  #   programs.home-manager.enable = true;
+  #   home.packages = with pkgs; [ 
+  #     nodejs_18
+  #   ];
+  # };
   virtualisation.lxd.enable = true;
   # virtualisation.lxc.enable = true;
   virtualisation.lxc.lxcfs.enable = true;

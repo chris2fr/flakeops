@@ -5,10 +5,14 @@
     # configuration.nix. You can also use latter versions if you wish to
     # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      # The `follows` keyword in inputs is used for inheritance.
+      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
+      # the `inputs.nixpkgs` of the current flake,
+      # to avoid problems caused by different versions of nixpkgs.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix.url = "github:ryantm/agenix";
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";  
   };
@@ -21,6 +25,15 @@
         ./configuration.nix
         agenix.nixosModules.default
         simple-nixos-mailserver.nixosModule
+        home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mannchri = import ./home-mannchri.nix;
+            home-manager.users.fossil = import ./home-fossil.nix;
+            home-manager.users.filebrowser = import ./home-filebrowser.nix;
+            home-manager.users.guichet = import ./home-guichet.nix;
+          }
       ];
     };
     # homeConfigurations = {

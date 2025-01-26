@@ -33,7 +33,7 @@ in
   #     config = { config, pkgs, ... }: {
   #       # nix.settings.experimental-features = "nix-command flakes";
   #       time.timeZone = "Europe/Amsterdam";
-  #       system.stateVersion = "24.05";
+  #       system.stateVersion = "24.11";
   #       imports = [
   #         ./common.nix
   #       ];

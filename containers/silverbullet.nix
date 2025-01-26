@@ -61,6 +61,7 @@ in
         # backintime
         # deno
         kopia
+        # (import "${home-manager}/nixos")
       ];
       networking = {
         firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -71,18 +72,23 @@ in
       };
       users.users = {
         mannchri.isNormalUser = true;
-        silverbullet.isNormalUser = true;
+        silverbullet = {
+          isNormalUser = true;
+          packages = with pkgs; [ 
+            deno
+          ];
+        };
       };
-      imports = [
-         (import "${home-manager}/nixos")
-      ];
-      home-manager.users.silverbullet = {pkgs, ...}: {
-        home.packages = with pkgs; [ 
-          deno
-        ];
-        home.stateVersion = "24.05";
-        programs.home-manager.enable = true;
-      };
+      # imports = [
+      #    (import "${home-manager}/nixos")
+      # ];
+      # home-manager.users.silverbullet = {pkgs, ...}: {
+      #   home.packages = with pkgs; [ 
+      #     deno
+      #   ];
+      #   home.stateVersion = "24.11";
+      #   programs.home-manager.enable = true;
+      # };
       services = {
         resolved.enable = true;
         # bourgbackup = {

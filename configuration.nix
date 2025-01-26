@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 { config, pkgs, lib, ... }:
 let
-  home-manager = import vars/home-manager.nix;
+  # home-manager = import vars/home-manager.nix;
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -29,8 +29,8 @@ in
     ./nginx.nix
     ./security.nix
     ./networking.nix
-    ./home-manager.nix
-    (import "${home-manager}/nixos")
+    # ./home-manager.nix
+    # (import "${home-manager}/nixos")
   ];
   systemd.tmpfiles.rules = [
     "d /var/www/key.lesgrandsvoisins.com 0755 www users -"

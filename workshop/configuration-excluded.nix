@@ -12,7 +12,7 @@ let
   # emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
   # bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   # keySftpgo = (lib.removeSuffix "\n" (builtins.readFile  /etc/nixos/.secrets.key.sftpgo ));
-  home-manager = import vars/home-manager.nix;
+  # home-manager = import vars/home-manager.nix;
 in
 {
   #  environment.systemPackages = with pkgs; [

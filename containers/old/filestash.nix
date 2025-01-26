@@ -44,7 +44,7 @@ in
   #       )
   #       freeipa
   #     ];
-  #     system.stateVersion = "24.05";
+  #     system.stateVersion = "24.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -82,7 +82,7 @@ in
   #       vips
   #       util-linux
   #     ];
-  #     system.stateVersion = "24.05";
+  #     system.stateVersion = "24.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall = {
