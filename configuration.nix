@@ -23,6 +23,10 @@ in
     EDITOR="vim";
   };
 
+  environment.systemPackages = with pkgs; [
+      mlocate
+  ];
+
   systemd = {
     extraConfig = ''
       DefaultTimeoutStartSec=600s
