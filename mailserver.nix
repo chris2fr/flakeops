@@ -1,47 +1,25 @@
 { config, pkgs, lib, ... }:
 let 
-  # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
-  # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
-  # sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  # oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
+
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
-    #"mail.resdigita.com"
+
     "resdigita.com"
-    # "francemali.org"
-    #"desgrandsvoisins.com"
-    #"mail.desgrandsvoisins.com"
-    #"mail.resdigita.org"
-    # "gv.coop"
-    #"mail.gv.coop"
+
     "lesgrandsvoisins.fr"
-    # "hopgv.com"
-    # "hopgv.org"
-    # "gvois.com"
-    # "gvois.org"
-    # "resdigita.org"
-    # "cfran.org"
-    # "gvpublic.org"
-    # "gvpublic.com"
-    # "fastoche.org"
+
     "village.ngo"
     "village.ong"
-    # "villageparis.org"
+
   ];
 in
 {
 
   imports = [
-    # (builtins.fetchTarball {
-    #   url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.11/nixos-mailserver-nixos-24.11.tar.gz";
-    #   sha256 = "sha256:0clvw4622mqzk1aqw1qn6shl9pai097q62mq1ibzscnjayhp278b";
-    #   # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.11.tar.gz";
-    #   # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
-    # })
+
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
     ./mailserver/httpd.nix
@@ -71,7 +49,7 @@ in
       "listen.owner" = lib.mkForce "wwwrun";
       "listen.group" = lib.mkForce "wwwrun";
     };
-    #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+
   };
   services.dovecot2.sieve.scripts = {};
   services.dovecot2.sieve.extensions = [
@@ -112,15 +90,11 @@ in
     
     memcached = {
       enable = true;
-      # maxMemory = 256;
-      # enableUnixSocket = true;
-      # port = 11211;
-      # listen = "[::1]";
-      # user = "sogo";
+
     };
   };
 
-# SOGoMemcachedHost = "/var/run/memcached.sock";
+
 ###################################################################################################################################
   mailserver = {
     enable = true;
@@ -131,17 +105,9 @@ in
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
     messageSizeLimit = 209715200;
-    # loginAccounts = {
-    #   "chris@lesgrandsvoisins.com" = {
-    #       aliases = [ "testalias@resdigita.com" ];
-    #   };
-    # };   
+ 
       indexDir = "/var/lib/dovecot/indices";
-      # loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
-      #   "lesgrandsvoisins.com"
-      #   "lesgrandsvoisins.fr"
-      #   "resdigita.com"
-      # ];
+
     ldap = {
       enable = true;
       bind = {
@@ -150,90 +116,21 @@ in
       };
       uris = [
         "ldap://ldap.lesgrandsvoisins.com:14389/"
-        # "ldapi:///"
-        # "ldaps://ldap.gv.coop:10636/"
-        # "ldap://ldap.gv.coop:10389/"
+
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
-      # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
-      # startTls = true;
+
       startTls = false;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "mail";
-        # uidAttribute = "cn";
-        #  filter = "(cn=%s)";
+
       };
-      # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-      # postfix.filter = "";
-      # dovecot.userAttrs = ''
-      #   =mail=%{ldap:cn}
-      # '';
-      # dovecot.userAttrs = ''
-      #   =home=%{ldap:homeDirectory}, \
-      #        =uid=%{ldap:uidNumber}, \
-      #        =gid=%{ldap:gidNumber}
-      # '';
-      # dovecot = {
-      #   userFilter = "(mail=%u)";
-      #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-      # };
+
     };
-    # extraVirtualAliases = {
-    #   "axel.leroux@lesgrandsvoisins.com" = [
-    #     "axel.leroux@resdigita.com  "
-    #     "alex.leroux@resdigita.com "
-    #     "alex.quatorzien@resdigita.com"
-    #     "axel.quatorzien@resdigita.com"
-    #     "alex.desmoulins@resdigita.com"
-    #     "axel.desmoulins@resdigita.com"
-    #   ];
-    #   "chris@lesgrandsvoisins.com" = [
-    #     "testalias@resdigita.com"
-    #     "bienvenue@lesgrandsvoisins.com"
-    #     "chris@lesgrandsvoisins.fr"
-    #     "chris@fastoche.org"
-    #     "lesgdvoisins@lesgrandsvoisins.com"
-    #     "quiquoietc@lesgrandsvoisins.com"
-    #     "whowhatetc@lesgrandsvoisins.com"
-    #     "gdvoisins@lesgrandsvoisins.com"
-    #     "grandvoisinage@lesgrandsvoisins.com"
-    #     "lesgrandsvoisins@lesgrandsvoisins.com"
-    #     "@resdigita.com"
-    #     "@resdigita.org"
-    #     "@cfran.org"
-    #     "@hopgv.com"
-    #     "@hopgv.org"
-    #     "@gvois.com"
-    #   ];
-    # };
-    # forwards = {
-    #     "axel.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "alex.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "alex.quatorzien@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "axel.quatorzien@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "alex.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "axel.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
-    #     "testalias@resdigita.com" = "chris@lesgrandsvoisins.com";
-    #     "bienvenue@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "chris@lesgrandsvoisins.fr" = "chris@lesgrandsvoisins.com";
-    #     "chris@fastoche.org" = "chris@lesgrandsvoisins.com";
-    #     "lesgdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "quiquoietc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "whowhatetc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "gdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "grandvoisinage@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "lesgrandsvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #     "@gvois.org" = "chris@lesgrandsvoisins.com";
-    #     "@resdigita.com" = "chris@lesgrandsvoisins.com";
-    #     "@resdigita.org" = "chris@lesgrandsvoisins.com";
-    #     "@cfran.org" = "chris@lesgrandsvoisins.com";
-    #     "@hopgv.com" = "chris@lesgrandsvoisins.com";
-    #     "@hopgv.org" = "chris@lesgrandsvoisins.com";
-    #     "@gvois.com" = "chris@lesgrandsvoisins.com";
-    # };
+
+
     fullTextSearch = {
       enable = true;
       # index new email as they arrive
@@ -243,19 +140,7 @@ in
       enforced = "yes";
       memoryLimit = 2000;
     };
-    # forwards = {
-    #   "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #   "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    # };
 
-    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-    # down nginx and opens port 80.
-    # certificateScheme = "acme-nginx";
-    # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
-    # certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
-    # certificateScheme = "acme";
-    # certificateDirectory = "/var/certs/";
-    # keyFile = "/var/certs/key-mail.resdigita.com.pem";
   };
   #############################################
   services.postfix.config.maillog_file = "/var/log/postfix.log";
