@@ -52,11 +52,7 @@ in
     "d /srv/rd4 0755 nfsuser users"
   ];
 
-environment.systemPackages = with pkgs; [
-  mlocate
-];
-
- services.openssh = {
+  services.openssh = {
     ports = [22 22222];
 
     enable = true;
