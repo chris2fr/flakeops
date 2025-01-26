@@ -325,7 +325,7 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
-    # certs."0.lesgrandsvoisins.com" = {};  
+    certs."0.lesgrandsvoisins.com" = {};  
     # certs."1.lesgrandsvoisins.com" = {};  
     # certs."2.lesgrandsvoisins.com" = {};  
     # certs."3.lesgrandsvoisins.com" = {};  
@@ -335,7 +335,7 @@ in
     # certs."7.lesgrandsvoisins.com" = {};  
     # certs."8.lesgrandsvoisins.com" = {};  
     # certs."9.lesgrandsvoisins.com" = {};  
-    certs."10.lesgrandsvoisins.com" = {};  
+    # certs."10.lesgrandsvoisins.com" = {};  
     # certs."sftpgo.lesgrandsvoisins.com" = {};  
     certs."linkding.lesgrandsvoisins.com" = {};  
   };
