@@ -2,7 +2,7 @@
 let 
 in{
     services.syncthing = {
-      enable = false;
+      enable = true;
       openDefaultPorts = true;
       overrideFolders = true;
       overrideDevices = true;
