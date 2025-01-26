@@ -176,11 +176,11 @@ in
     ];
   };
 ###################################################################################################################################
-  networking.firewall = {
-    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14636 ];
-    enable = true;
-    trustedInterfaces = [ "lo" ];
-  };
+  # networking.firewall = {
+  #   allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14636 ];
+  #   enable = true;
+  #   trustedInterfaces = [ "lo" ];
+  # };
 
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s

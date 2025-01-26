@@ -25,21 +25,39 @@ in
     firewall ={
       enable = true;
       package = pkgs.nftables;
-      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" ];
+      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "lo"];
       # source: https://docs.syncthing.net/users/firewall.html
-      allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995
+      allowedTCPPorts = [ 
+        22 
+        25 
+        53 
+        80 
+        443 
+        143 
+        587 
+        993 
+        995
         636 
-        8443 
-        9080 9443 
-        10080 10443 
-        11443
-        12080 12443
-        14443
-        8384 22000 
-        22000 21027 
-        10389 10636 
-        14389 14636
         1360
+        8384 
+        8443 
+        9080 
+        9443 
+        10080 
+        10389 
+        10443 
+        10636 
+        11211 
+        11443
+        12080 
+        12443
+        14389 
+        14636
+        14443
+        20000
+        22000 
+        22000 
+        21027 
       ];
       allowedUDPPorts = [53];
     };

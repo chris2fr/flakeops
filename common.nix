@@ -70,6 +70,7 @@ in
 #    python311Packages.pyproject-hooks
      busybox
      gnumake
+     nftables
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
