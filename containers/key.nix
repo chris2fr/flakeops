@@ -38,7 +38,7 @@ in
         git
         lynx
         openldap
-        postgresql
+        postgresql_15
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
