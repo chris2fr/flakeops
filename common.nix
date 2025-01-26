@@ -43,6 +43,5 @@ in
     tmux
     wget
     zlib
-    mlocate
   ];
 }

@@ -57,7 +57,10 @@ in
 
     enable = true;
   };
-  services.locate.enable = true;
+  services.locate = {
+    enable = true;
+    package = pkgs.mlocate;
+  };
   
   services.rsyncd = {
     enable = true;
