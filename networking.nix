@@ -59,7 +59,9 @@ in
         21027 
         22000 
       ];
-      allowedUDPPorts = [53];
+      allowedUDPPorts = [
+        53
+      ];
     };
   };
 }
