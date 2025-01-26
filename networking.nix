@@ -5,52 +5,52 @@ in
     # Networking
   networking = {
     # hostName = "hetzner005"; # Define your hostname.
-    hostName = "mail"; # Define your hostname
+    hostName = "hetzner005"; # Define your hostname
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     useDHCP = true;
     enableIPv6 = true;
     interfaces.eno1.ipv6 = {
       addresses = [
         { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::4"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::5"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::6"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::7"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::8"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::9"; prefixLength = 96; }
-        { address = "2a01:4f8:241:4faa::10"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::11"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::12"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::13"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::14"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::15"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::16"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::17"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::18"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::19"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::20"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::21"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::22"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::23"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::24"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::25"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::26"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::27"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::28"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::29"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::30"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::31"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::32"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::33"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::34"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::35"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::36"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::37"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::38"; prefixLength = 96; }
-    #     { address = "2a01:4f8:241:4faa::39"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::4"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::5"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::6"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::7"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::8"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::9"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::10"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::11"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::12"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::13"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::14"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::15"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::16"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::17"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::18"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::19"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::20"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::21"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::22"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::23"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::24"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::25"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::26"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::27"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::28"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::29"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::30"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::31"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::32"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::33"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::34"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::35"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::36"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::37"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::38"; prefixLength = 96; }
+        #     { address = "2a01:4f8:241:4faa::39"; prefixLength = 96; }
       ];
       # routes = [
       #   {
@@ -106,25 +106,29 @@ in
       ];
     };
     # firewall.enable = false;
-    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" ];
-    # Syncthing ports: 8384 for remote access to GUI
-    # 22000 TCP and/or UDP for sync traffic
-    # 21027/UDP for discovery
-    # source: https://docs.syncthing.net/users/firewall.html
-    firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995
-      636 
-      8443 
-      9080 9443 
-      10080 10443 
-      11443
-      12080 12443
-      14443
-      8384 22000 
-      22000 21027 
-      10389 10636 
-      14389 14636
-      1360
-    ];
-    firewall.allowedUDPPorts = [53];
+    firewall ={
+      enable = true;
+      package = pkgs.nftables;
+      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" ];
+      # Syncthing ports: 8384 for remote access to GUI
+      # 22000 TCP and/or UDP for sync traffic
+      # 21027/UDP for discovery
+      # source: https://docs.syncthing.net/users/firewall.html
+      allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995
+        636 
+        8443 
+        9080 9443 
+        10080 10443 
+        11443
+        12080 12443
+        14443
+        8384 22000 
+        22000 21027 
+        10389 10636 
+        14389 14636
+        1360
+      ];
+      allowedUDPPorts = [53];
+    };
   };
 }
