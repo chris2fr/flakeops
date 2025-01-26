@@ -22,10 +22,11 @@ in
   environment.sessionVariables = {
     EDITOR="vim";
   };
-
-  environment.systemPackages = with pkgs; [
-      mlocate
-  ];
+  services.locate = {
+    enable = true;
+    package = pkgs.mlocate;
+  };
+  
 
   systemd = {
     extraConfig = ''
