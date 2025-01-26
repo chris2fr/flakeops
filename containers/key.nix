@@ -78,7 +78,7 @@ in
       };
       services = {
         resolved.enable = true;
-        postgres.package = postgresql_15;
+        postgresql.package = pkgs.postgresql_15;
         keycloak = {
           enable = true;
           database = {
