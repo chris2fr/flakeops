@@ -112,22 +112,22 @@ in
           listen = [{ addr = "[2a01:4f8:241:4faa::2]"; port = 80; }];
           root =  "/var/www/html/";
         };
-        "3.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::3]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
+        # "3.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::3]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
         "4.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::4]"; port = 80; }];
           root =  "/var/www/html/";
         };
-        "5.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::5]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
-        "6.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::6]"; port = 80; }];
-          root =  "/var/www/html/";
-        };
+        # "5.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::5]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
+        # "6.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{ addr = "[2a01:4f8:241:4faa::6]"; port = 80; }];
+        #   root =  "/var/www/html/";
+        # };
         "7.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::7]"; port = 80; }];
           root =  "/var/www/html/";
