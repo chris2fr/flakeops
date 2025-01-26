@@ -22,6 +22,7 @@ in
       ];
     };
     # firewall.enable = false;
+    nftables = true;
     firewall ={
       enable = true;
       package = pkgs.nftables;
