@@ -19,7 +19,7 @@ in
     extraNfsdConfig = '''';
   };
   services.nfs.server.exports = ''
-    /mnt 10.0.0.0/24(rw,fsid=0,no_subtree_check)
-    /mnt/chrisdatalive 10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
+    /mnt 10.0.0.0/24(rw,fsid=0,no_subtree_check) 192.168.1.0/24(rw,fsid=0,no_subtree_check)
+    /mnt/chrisdatalive 10.0.0.0/24(rw,nohide,insecure,no_subtree_check) 192.168.1.0/24(rw,nohide,insecure,no_subtree_check)
   '';
 }
