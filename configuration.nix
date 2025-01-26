@@ -86,9 +86,9 @@ in
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     useDHCP = true;
     enableIPv6 = true;
-    # interfaces.eno1.ipv6 = {
-    #   addresses = [
-    #     { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
+    interfaces.eno1.ipv6 = {
+      addresses = [
+        { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
@@ -128,19 +128,19 @@ in
     #     { address = "2a01:4f8:241:4faa::37"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::38"; prefixLength = 96; }
     #     { address = "2a01:4f8:241:4faa::39"; prefixLength = 96; }
-    #   ];
-    #   # routes = [
-    #   #   {
-    #   #     address = "2a01:4f8:241:4faa::";
-    #   #     prefixLength = 96;
-    #   #     via = "fe80::329c:23ff:fed3:5162";
-    #   #   }
-    #   # ];
-    # };
-    # defaultGateway6 = {
-    #   address = "fe80::1";
-    #   interface = "eno1";
-    # };
+      ];
+      # routes = [
+      #   {
+      #     address = "2a01:4f8:241:4faa::";
+      #     prefixLength = 96;
+      #     via = "fe80::329c:23ff:fed3:5162";
+      #   }
+      # ];
+    };
+    defaultGateway6 = {
+      # address = "fe80::1";
+      interface = "eno1";
+    };
     nat = {
       forwardPorts = [
       {
