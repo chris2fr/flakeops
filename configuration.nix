@@ -137,10 +137,11 @@ in
       #   }
       # ];
     };
-    defaultGateway6 = {
-      # address = "fe80::1";
-      interface = "eno1";
-    };
+    # defaultGateway6 = {
+    #   # address = "fe80::1";
+    #   address = "2a01:4f8:241:4faa::0";
+    #   interface = "eno1";
+    # };
     nat = {
       forwardPorts = [
       {
