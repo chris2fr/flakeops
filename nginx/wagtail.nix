@@ -97,11 +97,11 @@ in
         forceSSL = true;
         root =  "/var/www/lesgrandsvoisins/";
         locations."/" = {
-          return =  "302 https://blog.lesgrandsvoisins.com";
-          # proxyPass = "http://localhost:8894/";
-          # extraConfig = nginxLocationWagtailExtraConfig + ''
-          #   rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
-          # '';
+          # return =  "302 https://blog.lesgrandsvoisins.com";
+          proxyPass = "http://localhost:8894/";
+          extraConfig = nginxLocationWagtailExtraConfig + ''
+            rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
+          '';
         };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
