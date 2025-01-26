@@ -10,7 +10,13 @@ in{
     services/syncthing.nix
     services/homepage-dashboard.nix
   ];
+  # List services that you want to enable:
   services = {
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      settings.PermitRootLogin = "prohibit-password";
+    };
     vaultwarden = {
       enable = true;
     };
@@ -31,12 +37,6 @@ in{
     minio = {
       enable = true;
     };
-        # seafile = {
-    #   enable = true;
-    #   adminEmail = "chris@lesgrandsvoisins.com";
-    #   initialAdminPassword = emailList;
-    #   seahubAddress = "https://drive.lesgrandsvoisins.com:10443";
-    # };
     etebase-server = {
       enable = true;
       unixSocket = "/var/lib/etebase-server/etebase-server.sock"; 
@@ -58,6 +58,12 @@ in{
     #   enable = true;
     #   config = ''
     #   '';
+    # };
+    # seafile = {
+    #   enable = true;
+    #   adminEmail = "chris@lesgrandsvoisins.com";
+    #   initialAdminPassword = emailList;
+    #   seahubAddress = "https://drive.lesgrandsvoisins.com:10443";
     # };
   };
 }
