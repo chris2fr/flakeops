@@ -24,7 +24,7 @@ in
 #        allowUnfreePredicate = (_: true);
 #      };
 #    };
-    home.stateVersion = "24.11";
+    home.stateVersion = "24.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_20
@@ -91,7 +91,7 @@ in
     extraGroups = ["wwwrun"];
   };
   home-manager.users.ghost = {pkgs, ...}: {
-    home.stateVersion = "24.11";
+    home.stateVersion = "24.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_18
