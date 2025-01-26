@@ -83,7 +83,7 @@ in
           enable = true;
           database = {
             username="key";
-            name="key";
+            # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile="/etc/.secrets.key";
             # createLocally=false;
