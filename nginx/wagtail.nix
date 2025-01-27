@@ -92,6 +92,8 @@ in
         "gvcoop.lesgrandsvoisins.com"
         "old.lesgrandsvoisins.com"
         "excellenxport.hopgv.com"
+        "parisle.com"
+        "www.parisle.com"
       ];
         enableACME = true;
         forceSSL = true;
