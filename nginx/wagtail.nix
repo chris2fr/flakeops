@@ -93,7 +93,7 @@ in
         "old.lesgrandsvoisins.com"
         "excellenxport.hopgv.com"
         "parisle.com"
-        # "www.parisle.com"
+        "www.parisle.com"
       ];
         enableACME = true;
         forceSSL = true;
