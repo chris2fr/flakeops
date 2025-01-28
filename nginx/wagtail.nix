@@ -105,10 +105,10 @@ in
           proxyPass = "http://localhost:8894/";
           extraConfig = nginxLocationWagtailExtraConfig + ''
             rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-            if ($host == 'parisle.com') {
+            if ($host = 'parisle.com') {
               return 301 $scheme://www.parisle.com$request_uri;
             }
-            if ($host == 'parisle.org') {
+            if ($host = 'parisle.org') {
               return 301 $scheme://www.parisle.org$request_uri;
             }
           '';
