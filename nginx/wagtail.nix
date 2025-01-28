@@ -99,6 +99,7 @@ in
         "www.parisle.org"
         "cloud.parisle.com"
         "mail.parisle.com"
+        "mail.parisle.org"
         "id.parisle.com"
         "admin.parisle.com"
         "ai.parisle.com"

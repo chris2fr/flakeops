@@ -209,20 +209,6 @@ in
           root = "/var/www/lesgrandsvoisins.com/ldap";
           # root = "/var/www/gv.coop/ldap";
         };
-        "mail.parisle.com" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            return = "302 https://mail.lesgrandsovisins.com/$request_uri";
-          };
-        };
-        "mail.parisle.org" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            return = "302 https://mail.lesgrandsovisins.com/$request_uri";
-          };
-        };
         "syncthing.resdigita.com" = {
           forceSSL = true;
           enableACME = true;
