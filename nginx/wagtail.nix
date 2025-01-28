@@ -83,6 +83,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "test.lesgrandsvoisins.com" 
@@ -96,6 +97,34 @@ in
         "www.parisle.com"
         "parisle.org"
         "www.parisle.org"
+        "cloud.parisle.com"
+        "mail.parisle.com"
+        "id.parisle.com"
+        "admin.parisle.com"
+        "ai.parisle.com"
+        "backup.parisle.com"
+        "blog.parisle.com"
+        "cal.parisle.com"
+        "code.parisle.com"
+        "contacts.parisle.com"
+        "discussion.parisle.com"
+        "docs.parisle.com"
+        "drive.parisle.com"
+        "finance.parisle.com"
+        "forms.parisle.com"
+        "forum.parisle.com"
+        "list.parisle.com"
+        "meet.parisle.com"
+        "net.parisle.com"
+        "pay.parisle.com"
+        "photos.parisle.com"
+        "secret.parisle.com"
+        "sites.parisle.com"
+        "sync.parisle.com"
+        "task.parisle.com"
+        "url.parisle.com"
+        "videos.parisle.com"
+        "wiki.parisle.com"
       ];
         enableACME = true;
         forceSSL = true;
