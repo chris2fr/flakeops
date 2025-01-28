@@ -94,6 +94,8 @@ in
         "excellenxport.hopgv.com"
         "parisle.com"
         "www.parisle.com"
+        "parisle.org"
+        "www.parisle.org"
       ];
         enableACME = true;
         forceSSL = true;
@@ -102,7 +104,13 @@ in
           # return =  "302 https://blog.lesgrandsvoisins.com";
           proxyPass = "http://localhost:8894/";
           extraConfig = nginxLocationWagtailExtraConfig + ''
-            rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
+            rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+            if ($host == 'parisle.com') {
+              return 301 $scheme://www.parisle.com$request_uri;
+            }
+            if ($host == 'parisle.org') {
+              return 301 $scheme://www.parisle.org$request_uri;
+            }
           '';
         };
       locations."/favicon.ico" = { proxyPass = null; };

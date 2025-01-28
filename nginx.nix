@@ -209,7 +209,6 @@ in
           root = "/var/www/lesgrandsvoisins.com/ldap";
           # root = "/var/www/gv.coop/ldap";
         };
-
         "mail.parisle.com" = {
           forceSSL = true;
           enableACME = true;
