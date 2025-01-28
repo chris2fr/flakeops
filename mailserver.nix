@@ -6,20 +6,16 @@ let
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
-
     "resdigita.com"
-
     "lesgrandsvoisins.fr"
-
     "village.ngo"
     "village.ong"
-
+    "parisle.com"
+    "parisle.org"
   ];
 in
 {
-
   imports = [
-
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
     ./mailserver/httpd.nix
@@ -105,9 +101,7 @@ in
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
     messageSizeLimit = 209715200;
- 
-      indexDir = "/var/lib/dovecot/indices";
-
+    indexDir = "/var/lib/dovecot/indices";
     ldap = {
       enable = true;
       bind = {
@@ -116,20 +110,16 @@ in
       };
       uris = [
         "ldap://ldap.lesgrandsvoisins.com:14389/"
-
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-
       startTls = false;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "mail";
 
       };
-
     };
-
 
     fullTextSearch = {
       enable = true;
@@ -191,7 +181,7 @@ in
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
      hostName = "mail.lesgrandsvoisins.com";
-    #  dicts =  [ en fr de ];
+     # dicts =  [ en fr de ];
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
