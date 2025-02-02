@@ -149,6 +149,28 @@ in
             '';
           };
         };
+        "key.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+          serverAliases = ["adminkey.resdigita.com"];
+          root = "/var/www/key.resdigita.com";
+          # globalRedirect = "key.resdigita.com:14443";
+          locations."/" = {
+            proxyPass = "https://192.168.106.11:14444";
+            extraConfig = ''
+            rewrite ^/$ https://key.resdigita.com/realms/master/account/applications redirect;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+            add_header Access-Control-Allow-Credentials true;
+            proxy_ssl_certificate     /var/lib/acme/key.resdigita.com/fullchain.pem;
+            proxy_ssl_certificate_key /var/lib/acme/key.resdigita.com/key.pem;
+            '';
+          };
+        };
         "link.lesgrandsvoisins.com" = {
           serverAliases = ["link.gv.coop"];
           forceSSL = true;
