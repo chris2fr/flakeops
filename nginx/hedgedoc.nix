@@ -21,13 +21,15 @@ in
       #   globalRedirect = "hedgedoc.resdigita.com";
       # };
       "hedgedoc.lesgrandsvoisins.com" = {
-        serverAliases = ["hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" ];
+        serverAliases = ["hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" "mark.resdigita.com"];
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
         extraConfig = ''
           if ($host != "mark.lesgrandsvoisins.com") {
-            return 302 $scheme://mark.lesgrandsvoisins.com$request_uri;
+            if ($host != "mark.lesgrandsvoisins.com") {
+              return 302 $scheme://mark.lesgrandsvoisins.com$request_uri;
+            }
           }
         '';
       };
