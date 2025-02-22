@@ -652,13 +652,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:8008/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      root = "/var/www/wagtail";
-      locations."/".extraConfig = ''
+        extraConfig = nginxLocationWagtailExtraConfig + ''
       if ($host = 'desgv.com') {
           return 301 $scheme://www.$host$request_uri;
       }
@@ -698,6 +692,11 @@ in
           # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
       }
       '';
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      root = "/var/www/wagtail";
     };
     # "www.desgrandsvoisins.org" = {
     #   serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com" "www.desgrandsvoisins.com"];
