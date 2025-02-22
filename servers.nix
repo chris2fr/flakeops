@@ -91,7 +91,8 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     extraGroups = [ "wwwrun" ];
     packages = with pkgs; [
-      nodejs_18
+      nodejs_20
+      # nodejs_18
     ];
   };
   # home-manager.users.ghost = {pkgs, ...}: {
