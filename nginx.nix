@@ -490,8 +490,10 @@ in
           forceSSL = true;
           locations = {
             "/favicon.ico" = { proxyPass = null; };
-            "/static" = { proxyPass = null; };
-            "/medias" = { proxyPass = null; };
+            "/js/" = { proxyPass = null; };
+            "/fonts/" = { proxyPass = null; };
+            "/img/" = { proxyPass = null; };
+            "/css/" = { proxyPass = null; };
             "/.well-known" = { proxyPass = null; };
             "/" = {
               proxyPass = "http://127.0.0.1:9090";
