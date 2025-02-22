@@ -487,7 +487,7 @@ in
         "writefreely.lesgrandsvoisins.com" = {
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://localhost:9090";
+          locations."/".proxyPass = "http://127.0.0.1:9090";
         };
         "vikunja.village.ngo" = {
           serverAliases = [
