@@ -12,6 +12,17 @@ in{
   ];
   # List services that you want to enable:
   services = {
+    writefreely = {
+      enable = true;
+      host = "writefreely.lesgrandsvoisins.com";
+      admin.name = "admin";
+      database.type = "mysql";
+      nginx.enable = true;
+      settings.server.port = "9090";
+      nginx.forceSSL = true;
+      database.createLocally = true;
+      acme.enable = true;
+    };
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
