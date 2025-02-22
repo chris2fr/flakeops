@@ -23,7 +23,16 @@ in {
       host = "writefreely.lesgrandsvoisins.com";
       # nginx.enable = true;
       # nginx.forceSSL = true;
-      settings.server.port = 9090;
+      settings = {
+        server = {
+          port = 9090;
+        };
+        app = {
+          siteName = "Les Grands Voisins";
+          minUsernameLen = 3;
+          site_description = "WriteFreely for Les Grands Voisins";
+        };
+      };
     };
     # Enable the OpenSSH daemon.
     openssh = {
