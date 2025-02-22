@@ -554,7 +554,7 @@ in
         if ($host = 'gv.coop') {
             return 301 $scheme://www.$host$request_uri;
         }
-      ''
+      '';
       };
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
