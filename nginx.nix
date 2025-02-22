@@ -523,9 +523,9 @@ in
               if ($host != "task.lesgrandsvoisins.com") {
                 return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
               }
-              if ($host != "task.resdigita.com") {
-                return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
-              }
+              # if ($host != "task.resdigita.com") {
+              #   return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
+              # }
               proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto $scheme;
