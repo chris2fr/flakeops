@@ -15,13 +15,13 @@ in{
     writefreely = {
       acme.enable = true;
       admin.name = "admin";
-      database.createLocally = true;
-      database.passwordFile = "/etc/.secret.writefreely.mysql";
-      database.type = "mysql";
+      # database.createLocally = true;
+      # database.passwordFile = "/etc/.secret.writefreely.mysql";
+      # database.type = "mysql";
       enable = true;
       host = "writefreely.lesgrandsvoisins.com";
-      nginx.enable = true;
-      nginx.forceSSL = true;
+      # nginx.enable = true;
+      # nginx.forceSSL = true;
       settings.server.port = 9090;
     };
     # Enable the OpenSSH daemon.
