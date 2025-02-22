@@ -21,12 +21,12 @@ in {
       # database.type = "mysql";
       enable = true;
       host = "writefreely.lesgrandsvoisins.com";
-      nginx.enable = true;
-      nginx.forceSSL = true;
+      # nginx.enable = true;
+      # nginx.forceSSL = true;
       settings = {
-        # server = {
-        #   port = 9090;
-        # };
+        server = {
+          port = 9090;
+        };
         app = {
           site_name = "Les Grands Voisins";
           min_username_len = 3;
