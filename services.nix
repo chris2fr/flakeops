@@ -28,9 +28,14 @@ in {
           port = 9090;
         };
         app = {
-          siteName = "Les Grands Voisins";
-          minUsernameLen = 3;
+          site_name = "Les Grands Voisins";
+          min_username_len = 3;
           site_description = "WriteFreely for Les Grands Voisins";
+          editor = "classic";
+          single_user = false;
+          federation = true;
+          monetization = true;
+          open_registration = true;
         };
       };
     };
