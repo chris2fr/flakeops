@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let 
+let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile mailserver/vars/cert-public.nix));
   # home-manager = builtins.fetchTarball { 
   #   url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
@@ -17,26 +17,26 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     packages = with pkgs; [ nodejs_20 ];
   };
-#   home-manager.users.aaa = {pkgs, ...}: {
-#     # I'll use Mongo in a Docker Container
-# #    nixpkgs = {
-# #      config = {
-# #        allowUnfree = true;
-# #        allowUnfreePredicate = (_: true);
-# #      };
-# #    };
-#     home.stateVersion = "24.11";
-#     programs.home-manager.enable = true;
-#     home.packages = with pkgs; [ 
-#       nodejs_20
-# #      mongodb
-#     ];
-#   };
+  #   home-manager.users.aaa = {pkgs, ...}: {
+  #     # I'll use Mongo in a Docker Container
+  # #    nixpkgs = {
+  # #      config = {
+  # #        allowUnfree = true;
+  # #        allowUnfreePredicate = (_: true);
+  # #      };
+  # #    };
+  #     home.stateVersion = "24.11";
+  #     programs.home-manager.enable = true;
+  #     home.packages = with pkgs; [ 
+  #       nodejs_20
+  # #      mongodb
+  #     ];
+  #   };
   ## GHOSTIO
   users.users.ghostio = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = ["wwwrun"];
+    extraGroups = [ "wwwrun" ];
   };
   ## ODOO FOR
   users.users.odoofor = {
@@ -89,8 +89,8 @@ in
   users.users.ghost = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = ["wwwrun"];
-    packages = with pkgs; [ 
+    extraGroups = [ "wwwrun" ];
+    packages = with pkgs; [
       nodejs_18
     ];
   };

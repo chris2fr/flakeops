@@ -14,26 +14,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";  
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
   };
   outputs = { self, nixpkgs, home-manager, agenix, simple-nixos-mailserver, ... }@inputs: {
     # NOTE: 'nixos' is the default hostname set by the installer
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       # NOTE: Change this to aarch64-linux if you are on ARM
       system = "x86_64-linux";
-      modules = [   
+      modules = [
         ./configuration.nix
         agenix.nixosModules.default
         simple-nixos-mailserver.nixosModule
         home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mannchri = import ./home-mannchri.nix;
-            home-manager.users.fossil = import ./home-fossil.nix;
-            home-manager.users.filebrowser = import ./home-filebrowser.nix;
-            home-manager.users.guichet = import ./home-guichet.nix;
-          }
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.mannchri = import ./home-mannchri.nix;
+          home-manager.users.fossil = import ./home-fossil.nix;
+          home-manager.users.filebrowser = import ./home-filebrowser.nix;
+          home-manager.users.guichet = import ./home-guichet.nix;
+        }
       ];
     };
     # homeConfigurations = {

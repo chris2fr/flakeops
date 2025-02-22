@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
-let 
-nginxLocationWagtailExtraConfig = ''
+let
+  nginxLocationWagtailExtraConfig = ''
     proxy_redirect off;
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -8,9 +8,9 @@ nginxLocationWagtailExtraConfig = ''
     proxy_set_header Host $host;
     # proxy_set_header Upgrade $http_upgrade;
     # proxy_set_header Connection $connection_upgrade_keepalive;
-'';
+  '';
 in
-{ 
+{
   imports = [
     ./nginx/authentik.nix
     ./nginx/crabfit.nix
@@ -26,12 +26,12 @@ in
   services = {
     nginx = {
       group = "wwwrun";
-      enable = true;  
+      enable = true;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-      defaultListenAddresses = [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]"];
+      defaultListenAddresses = [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
@@ -54,17 +54,17 @@ in
           '';
         };
         "wagtailstatic".servers = {
-          "10.245.101.15:8888" = {};
+          "10.245.101.15:8888" = { };
         };
-        "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
+        "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
       };
       virtualHosts = {
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
-          root =  "/var/www/html/";
+          root = "/var/www/html/";
         };
         "linkding.lesgrandsvoisins.com" = {
-          root =  "/var/www/linkding/";
+          root = "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
           locations."/static/" = {
@@ -77,22 +77,22 @@ in
           };
           locations."/" = {
             extraConfig = ''
-            proxy_pass http://localhost:8901;
-            proxy_set_header Host "linkding.lesgrandsvoisins.com";
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host "linkding.lesgrandsvoisins.com";
-            proxy_set_header X-Forwarded-Proto "https";
-            proxy_set_header    X-Scheme $scheme;
-            proxy_redirect default;
-            proxy_http_version 1.1;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection "upgrade";
-            # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            # add_header Access-Control-Allow-Credentials true;
-            # if ($host != "linkding.lesgrandsvoisins.com") {
-            #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
-            # }
+              proxy_pass http://localhost:8901;
+              proxy_set_header Host "linkding.lesgrandsvoisins.com";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host "linkding.lesgrandsvoisins.com";
+              proxy_set_header X-Forwarded-Proto "https";
+              proxy_set_header    X-Scheme $scheme;
+              proxy_redirect default;
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
+              # if ($host != "linkding.lesgrandsvoisins.com") {
+              #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
+              # }
             '';
           };
         };
@@ -104,7 +104,7 @@ in
             "www.villagegv.org"
             "villagegv.org"
           ];
-          root =  "/var/www/village/";
+          root = "/var/www/village/";
           extraConfig = ''
             return 302 $scheme://www.village.ngo$request_uri;
           '';
@@ -117,84 +117,84 @@ in
           locations."/" = {
             proxyPass = "https://keycloak.village.ngo:12443";
             extraConfig = ''
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   Host $host;
-            # proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   Host $host;
+              # proxy_set_header X-Forwarded-Host $host;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              add_header Access-Control-Allow-Credentials true;
             '';
           };
         };
         "key.lesgrandsvoisins.com" = {
           enableACME = true;
           forceSSL = true;
-          serverAliases = ["adminkey.lesgrandsvoisins.com"];
+          serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           locations."/" = {
             proxyPass = "https://192.168.105.11:14443";
             extraConfig = ''
-            rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
-            proxy_ssl_certificate     /var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem;
-            proxy_ssl_certificate_key /var/lib/acme/key.lesgrandsvoisins.com/key.pem;
+              rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host $host;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              add_header Access-Control-Allow-Credentials true;
+              proxy_ssl_certificate     /var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem;
+              proxy_ssl_certificate_key /var/lib/acme/key.lesgrandsvoisins.com/key.pem;
             '';
           };
         };
         "key.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
-          serverAliases = ["adminkey.resdigita.com"];
+          serverAliases = [ "adminkey.resdigita.com" ];
           root = "/var/www/key.resdigita.com";
           # globalRedirect = "key.resdigita.com:14443";
           locations."/" = {
             proxyPass = "https://192.168.106.11:14444";
             extraConfig = ''
-            rewrite ^/$ https://key.resdigita.com/realms/master/account/applications redirect;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
-            proxy_ssl_certificate     /var/lib/acme/key.resdigita.com/fullchain.pem;
-            proxy_ssl_certificate_key /var/lib/acme/key.resdigita.com/key.pem;
+              rewrite ^/$ https://key.resdigita.com/realms/master/account/applications redirect;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host $host;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              add_header Access-Control-Allow-Credentials true;
+              proxy_ssl_certificate     /var/lib/acme/key.resdigita.com/fullchain.pem;
+              proxy_ssl_certificate_key /var/lib/acme/key.resdigita.com/key.pem;
             '';
           };
         };
         "link.lesgrandsvoisins.com" = {
-          serverAliases = ["link.gv.coop"];
+          serverAliases = [ "link.gv.coop" ];
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
-            if ($host != "link.lesgrandsvoisins.com") {
-              return 302 $scheme://link.lesgrandsvoisins.com$request_uri;
-            }
-            rewrite ^/$ https://link.lesgrandsvoisins.com/api/v1/auth/signin/keycloak? redirect;
-            # rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
-            # rewrite ^/login$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   Host $host;
-            proxy_pass         http://localhost:3003/;
-            proxy_read_timeout 600s;
-            # proxy_http_version 1.1;
-            # proxy_set_header   Upgrade $http_upgrade;
-            # proxy_set_header   Connection "upgrade";
-            # proxy_set_header X-Forwarded-Proto $scheme;
-            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            # proxy_redirect off;
+              if ($host != "link.lesgrandsvoisins.com") {
+                return 302 $scheme://link.lesgrandsvoisins.com$request_uri;
+              }
+              rewrite ^/$ https://link.lesgrandsvoisins.com/api/v1/auth/signin/keycloak? redirect;
+              # rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
+              # rewrite ^/login$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   Host $host;
+              proxy_pass         http://localhost:3003/;
+              proxy_read_timeout 600s;
+              # proxy_http_version 1.1;
+              # proxy_set_header   Upgrade $http_upgrade;
+              # proxy_set_header   Connection "upgrade";
+              # proxy_set_header X-Forwarded-Proto $scheme;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_redirect off;
             '';
           };
         };
@@ -208,21 +208,21 @@ in
           # locations."/pwm/public/logout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://key.lesgrandsvoisins.com/ redirect;
-            # rewrite ^/$ https://key.gv.coop/ redirect;
-            # rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
-            # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   Host $host;
-            proxy_pass         http://localhost:18080/;
-            proxy_read_timeout 600s;
-            # proxy_http_version 1.1;
-            # proxy_set_header   Upgrade $http_upgrade;
-            # proxy_set_header   Connection "upgrade";
-            # proxy_set_header X-Forwarded-Proto $scheme;
-            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            # proxy_redirect off;
+              rewrite ^/$ https://key.lesgrandsvoisins.com/ redirect;
+              # rewrite ^/$ https://key.gv.coop/ redirect;
+              # rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
+              # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   Host $host;
+              proxy_pass         http://localhost:18080/;
+              proxy_read_timeout 600s;
+              # proxy_http_version 1.1;
+              # proxy_set_header   Upgrade $http_upgrade;
+              # proxy_set_header   Connection "upgrade";
+              # proxy_set_header X-Forwarded-Proto $scheme;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_redirect off;
             '';
           };
           # locations."/" = {
@@ -236,33 +236,33 @@ in
           enableACME = true;
           locations."/" = {
             extraConfig = ''
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   Host $host;
-            proxy_pass         http://localhost:8384/;
-            proxy_read_timeout 600s;
-            proxy_send_timeout 600s;
-            # proxy_http_version 1.1;
-            # proxy_set_header   Upgrade $http_upgrade;
-            # proxy_set_header   Connection "upgrade";
-            # proxy_set_header X-Forwarded-Proto $scheme;
-            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            # proxy_redirect off;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   Host $host;
+              proxy_pass         http://localhost:8384/;
+              proxy_read_timeout 600s;
+              proxy_send_timeout 600s;
+              # proxy_http_version 1.1;
+              # proxy_set_header   Upgrade $http_upgrade;
+              # proxy_set_header   Connection "upgrade";
+              # proxy_set_header X-Forwarded-Proto $scheme;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_redirect off;
             '';
           };
         };
         "pocketbase.resdigita.com" = {
-          serverAliases = ["pocket.resdigita.com"];
-          forceSSL = true; 
-          enableACME = true; 
+          serverAliases = [ "pocket.resdigita.com" ];
+          forceSSL = true;
+          enableACME = true;
           locations."/" = {
             proxyPass = "http://localhost:8090";
-          };      
+          };
         };
         "wordpress.resdigita.com" = {
-          forceSSL = true; 
-          enableACME = true; 
-          serverAliases = ["ghh.resdigita.com"];
+          forceSSL = true;
+          enableACME = true;
+          serverAliases = [ "ghh.resdigita.com" ];
           globalRedirect = "ghh.resdigita.com:11443";
         };
         "mail.resdigita.com" = {
@@ -274,49 +274,50 @@ in
             "mail.resdigita.org"
             "mail.lesgrandsvoisins.fr"
           ];
-          enableACME = true; forceSSL = true; 
+          enableACME = true;
+          forceSSL = true;
           locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
-            "vaultwarden.gv.coop" 
+            "vaultwarden.gv.coop"
             "bitwarden.gv.coop"
             "vaultwarden.lesgv.org"
             "bit.lesgrandsvoisins.com"
             "vault.lesgrandsvoisins.com"
             "vaultwarden.lesgrandsvoisins.com"
             # "pass.lesgrandsvoisins.com"
-            ];
-          enableACME = true; 
-          forceSSL = true; 
+          ];
+          enableACME = true;
+          forceSSL = true;
           locations."/" = {
             proxyPass = "http://localhost:8222";
             proxyWebsockets = true;
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org" "up.lesgrandsvoisins.com"];
-          enableACME = true; 
-          forceSSL = true; 
+          serverAliases = [ "uptime-kuma.lesgv.org" "uk.lesgv.org" "up.lesgrandsvoisins.com" ];
+          enableACME = true;
+          forceSSL = true;
           locations."/" = {
             extraConfig = ''
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   Host $host;
-            proxy_pass         http://localhost:3001/;
-            proxy_http_version 1.1;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection "upgrade";
-            # proxy_set_header X-Forwarded-Proto $scheme;
-            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            # proxy_redirect off;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   Host $host;
+              proxy_pass         http://localhost:3001/;
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              # proxy_set_header X-Forwarded-Proto $scheme;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_redirect off;
             '';
           };
         };
         "xandikos.resdigita.com" = {
-          serverAliases = ["xandikos.lesgv.org"];
-          enableACME = true; 
-          forceSSL = true; 
+          serverAliases = [ "xandikos.lesgv.org" ];
+          enableACME = true;
+          forceSSL = true;
           locations."/" = {
             # proxyPass = "https://xandikos.resdigita.com:5280";
             proxyPass = "http://localhost:5280";
@@ -329,9 +330,9 @@ in
           };
         };
         "ethercalc.resdigita.com" = {
-          serverAliases = ["ethercalc.lesgv.org" "table.lesgrandsvoisins.com"];
-          enableACME = true; 
-          forceSSL = true; 
+          serverAliases = [ "ethercalc.lesgv.org" "table.lesgrandsvoisins.com" ];
+          enableACME = true;
+          forceSSL = true;
           locations."/" = {
             proxyPass = "http://localhost:8123";
             # locations."/".proxyPass = "http://localhost:8334";
@@ -343,11 +344,13 @@ in
           };
         };
         "radicale.resdigita.com" = {
-          serverAliases = ["radicale.lesgv.org"
-          "radicale.lesgv.org"
-          "radicale.lesgrandsvoisins.com"];
-          enableACME = true; 
-          forceSSL = true; 
+          serverAliases = [
+            "radicale.lesgv.org"
+            "radicale.lesgv.org"
+            "radicale.lesgrandsvoisins.com"
+          ];
+          enableACME = true;
+          forceSSL = true;
           locations."/" = {
             proxyPass = "https://radicale.resdigita.com:8443";
             # locations."/".proxyPass = "http://localhost:8334";
@@ -359,14 +362,16 @@ in
           };
         };
         "keeweb.lesgrandsvoisins.com" = {
-          enableACME = true; forceSSL = true; 
+          enableACME = true;
+          forceSSL = true;
           globalRedirect = "keepass.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
           serverAliases = [
-            "filebrowser.gv.coop" 
+            "filebrowser.gv.coop"
             "filebrowser.lesgv.org"
-            "filebrowser.lesgrandsvoisins.com"];
+            "filebrowser.lesgrandsvoisins.com"
+          ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -376,11 +381,11 @@ in
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             '';
-            
+
           };
-        }; 
+        };
         "chris.resdigita.com" = {
-      serverAliases = ["chris.lesgv.org"];
+          serverAliases = [ "chris.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -393,7 +398,7 @@ in
           };
         };
         "axel.resdigita.com" = {
-      serverAliases = ["axel.lesgv.org"];
+          serverAliases = [ "axel.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -404,9 +409,9 @@ in
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             '';
           };
-        };      
+        };
         "maruftuyel.resdigita.com" = {
-      serverAliases = ["maruftuyel.lesgv.org"];
+          serverAliases = [ "maruftuyel.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -417,32 +422,34 @@ in
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             '';
           };
-        };   
+        };
         "homepage-dashboard.resdigita.com" = {
           serverAliases = [
-            "homepage-dashboard.gv.coop" 
-            "homepage-dashboard.lesgv.org" "hd.lesgv.org"
-            "dash.lesgrandsvoisins.com"];
+            "homepage-dashboard.gv.coop"
+            "homepage-dashboard.lesgv.org"
+            "hd.lesgv.org"
+            "dash.lesgrandsvoisins.com"
+          ];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
-        };        
+        };
         "silverbullet.village.ngo" = {
-          serverAliases = ["silverbullet.resdigita.com"];
+          serverAliases = [ "silverbullet.resdigita.com" ];
           enableACME = true;
           forceSSL = true;
           #locations."/".proxyPass = "http://10.245.101.35:3000/";
           locations."/".proxyPass = "http://192.168.102.2:3000/";
           extraConfig = ''
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_redirect off;
-            '';
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_redirect off;
+          '';
         };
         "ete.village.ngo" = {
           enableACME = true;
           forceSSL = true;
-          serverAliases = ["ete.lesgrandsvoisins.com"];
+          serverAliases = [ "ete.lesgrandsvoisins.com" ];
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "drive.lesgrandsvoisins.com" = {
@@ -450,26 +457,26 @@ in
           forceSSL = true;
           locations."/" = {
             extraConfig = ''
-            if ($host != "sftpgo.lesgrandsvoisins.com") {
-              return 302 $scheme://sftpgo.lesgrandsvoisins.com$request_uri;
-            }
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $host:$server_port;
-            # proxy_set_header X-Forwarded-Host $server_name;
-            proxy_http_version 1.1;
-            proxy_set_header  Upgrade $http_upgrade;
-            proxy_set_header  Connection "upgrade";
-            # proxy_bind $remote_addr transparent;
-            # proxy_set_header Connection $connection_upgrade;
-            proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
-            client_max_body_size 2500M;
-            # proxy_redirect https://sftpgo.lesgrandsvoisins.com:10443 https://sftpgo.lesgrandsvoisins.com;
-            # proxy_ssl_verify  off;
-            proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
-          '';
+              if ($host != "sftpgo.lesgrandsvoisins.com") {
+                return 302 $scheme://sftpgo.lesgrandsvoisins.com$request_uri;
+              }
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host $host:$server_port;
+              # proxy_set_header X-Forwarded-Host $server_name;
+              proxy_http_version 1.1;
+              proxy_set_header  Upgrade $http_upgrade;
+              proxy_set_header  Connection "upgrade";
+              # proxy_bind $remote_addr transparent;
+              # proxy_set_header Connection $connection_upgrade;
+              proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
+              client_max_body_size 2500M;
+              # proxy_redirect https://sftpgo.lesgrandsvoisins.com:10443 https://sftpgo.lesgrandsvoisins.com;
+              # proxy_ssl_verify  off;
+              proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
+            '';
           };
         };
         "minio.lesgrandsvoisins.com" = {
@@ -480,36 +487,39 @@ in
         "vikunja.village.ngo" = {
           serverAliases = [
             "vikunja.resdigita.com"
-            "vikunja.gv.coop" 
+            "vikunja.gv.coop"
             "vikunja.lesgv.org"
             "task.lesgrandsvoisins.com"
             "vikunja.lesgrandsvoisins.com"
             "task.resdigita.com"
-            ];
+          ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
             proxyPass = "http://localhost:3456/";
             extraConfig = ''
-                if ($host != "task.lesgrandsvoisins.com") {
-                  if ($host != "task.resdigita.com") {
-                    return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
-                  }
-                }
-                proxy_http_version 1.1;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_redirect off;
-                client_max_body_size 200M;
-                # proxy_set_header Host $host;
+              if ($host != "task.lesgrandsvoisins.com") {
+                return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
+              }
+              if ($host != "task.resdigita.com") {
+                return 302 $scheme://task.lesgrandsvoisins.com$request_uri;
+              }
+              proxy_http_version 1.1;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_redirect off;
+              client_max_body_size 200M;
+              # proxy_set_header Host $host;
             '';
           };
         };
         "discourse.village.ngo" = {
-          serverAliases = ["disc.lesgrandsvoisins.com" 
-          "discourse.lesgrandsvoisins.com"
-          "forum.lesgrandsvoisins.com"];
+          serverAliases = [
+            "disc.lesgrandsvoisins.com"
+            "discourse.lesgrandsvoisins.com"
+            "forum.lesgrandsvoisins.com"
+          ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -525,7 +535,7 @@ in
               proxy_ssl_verify     off;
               proxy_set_header   Upgrade $http_upgrade;
               proxy_set_header   Connection "upgrade";
-          '';
+            '';
           };
         };
       };

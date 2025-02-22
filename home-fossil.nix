@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 let
-in 
+in
 {
   home.username = "fossil";
   home.homeDirectory = "/home/fossil";
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     fossil
   ];
   home.stateVersion = "24.11";

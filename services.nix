@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
-let 
-in{
-  imports = [ # Include the results of the hardware scan.
+let
+in {
+  imports = [
+    # Include the results of the hardware scan.
     # services/bind.nix
     services/haproxy.nix
     services/radicale.nix
@@ -42,7 +43,8 @@ in{
     xandikos = {
       enable = true;
       port = 5280;
-      extraOptions = [ "--autocreate"
+      extraOptions = [
+        "--autocreate"
         "--defaults"
       ];
     };
@@ -51,7 +53,7 @@ in{
     };
     etebase-server = {
       enable = true;
-      unixSocket = "/var/lib/etebase-server/etebase-server.sock"; 
+      unixSocket = "/var/lib/etebase-server/etebase-server.sock";
       user = "etebase-server";
       settings = {
         global.debug = false;

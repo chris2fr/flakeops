@@ -7,13 +7,14 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
-  nixpkgs.config.allowUnfree = true; 
+  nixpkgs.config.allowUnfree = true;
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 113272;
     "fs.inotify.max_user_instances" = 256;
     "fs.inotify.max_queued_events" = 32768;
   };
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./httpd.nix
     ./mailserver.nix
@@ -52,17 +53,17 @@ in
     # postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
-    (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { }  )
+    (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { })
   ];
   age.secrets = {
-    "keylesgrandsvoisins.vikunja" = { file = ./secrets/keylesgrandsvoisins.vikunja.age; owner = "vikunja";};
-    "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo";};
-    "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age;};
-    "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age;};
-    "email.list" = { file = ./secrets/email.list.age; group="wwwrun"; mode="770";};
+    "keylesgrandsvoisins.vikunja" = { file = ./secrets/keylesgrandsvoisins.vikunja.age; owner = "vikunja"; };
+    "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo"; };
+    "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age; };
+    "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age; };
+    "email.list" = { file = ./secrets/email.list.age; group = "wwwrun"; mode = "770"; };
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
-    "vikunja.env" = { 
-      file = ./secrets/vikunja.env.age; 
+    "vikunja.env" = {
+      file = ./secrets/vikunja.env.age;
       owner = "vikunja";
     };
   };
@@ -82,7 +83,7 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
   environment.sessionVariables = rec {
-    EDITOR="vim";
+    EDITOR = "vim";
     WAGTAIL_ENV = "production";
   };
   virtualisation.libvirtd.enable = true;

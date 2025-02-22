@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 let
-in 
+in
 {
   home.username = "filebrowser";
   home.homeDirectory = "/home/filebrowser";
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     filebrowser
   ];
   home.stateVersion = "24.11";

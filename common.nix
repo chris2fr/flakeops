@@ -3,7 +3,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    ((vim_configurable.override {  }).customize{
+    ((vim_configurable.override { }).customize {
       name = "vim";
       vimrcConfig.customRC = ''
         " your custom vimrc
@@ -19,7 +19,7 @@ in
         set smartindent
         " ...
       '';
-      }
+    }
     )
     #vim
     #django-redis
@@ -41,7 +41,7 @@ in
     pwgen
     openldap
     mysql80
-#    wkhtmltopdf
+    #    wkhtmltopdf
     python311Full
     python311Packages.pip
     python311Packages.pypdf2
@@ -49,27 +49,27 @@ in
     python311Packages.pq
     python311Packages.aiosasl
     python311Packages.psycopg2
-#    gccgo
-#    gnumake
-#    python311Packages.ldappool
-#    python311Packages.ldap3
-#   python311Packages.bonsai
-#    python311Packages.python-ldap-test
-#    ldapvi
-#    shelldap
-#    python311Packages.devtools
-#    python311Packages.ldaptor
-#    python311Packages.setuptools
-#    python311Packages.libsass
-#    libsass
-#    sass
-#    sassc
-#    python311Packages.cython
-#    python311Packages.pip
-#    python311Packages.pyproject-api
-#    python311Packages.pyproject-hooks
-     busybox
-     gnumake
+    #    gccgo
+    #    gnumake
+    #    python311Packages.ldappool
+    #    python311Packages.ldap3
+    #   python311Packages.bonsai
+    #    python311Packages.python-ldap-test
+    #    ldapvi
+    #    shelldap
+    #    python311Packages.devtools
+    #    python311Packages.ldaptor
+    #    python311Packages.setuptools
+    #    python311Packages.libsass
+    #    libsass
+    #    sass
+    #    sassc
+    #    python311Packages.cython
+    #    python311Packages.pip
+    #    python311Packages.pyproject-api
+    #    python311Packages.pyproject-hooks
+    busybox
+    gnumake
     #  nftables
   ];
 

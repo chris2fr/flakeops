@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 {
   users.users."guichet" = {
-      isNormalUser = true;
-      extraGroups = [ "wwwrun" ];
+    isNormalUser = true;
+    extraGroups = [ "wwwrun" ];
   };
   # home-manager.users.fossil = {pkgs, ...}: {
   #   home.packages = with pkgs; [ 
@@ -15,7 +15,7 @@
   # };
   systemd.services.guichet = {
     enable = true;
-    wantedBy = ["default.target"];
+    wantedBy = [ "default.target" ];
     script = "/home/guichet/guichet/guichet";
     description = "Guichet, Self-Service LDAP account admin";
     serviceConfig = {
@@ -26,7 +26,7 @@
   };
   systemd.services.newguichet = {
     enable = true;
-    wantedBy = ["default.target"];
+    wantedBy = [ "default.target" ];
     script = "/home/guichet/newguichet/backend/guichet serve --publicDir ../frontend/build";
     description = "Guichet, Self-Service LDAP account admin";
     serviceConfig = {
@@ -34,7 +34,7 @@
       User = "guichet";
       Group = "wwwrun";
     };
-  };  
+  };
   # systemd.services.mannbase = {
   #   enable = true;
   #   wantedBy = ["default.target"];
@@ -50,7 +50,7 @@
   #   Cmnd_Alias FILEBROWSER_CMDS = /run/current-system/sw/bin/systemctl --user start filebrowser, /run/current-system/sw/bin/systemctl --user stop filebrowser, /run/current-system/sw/bin/systemctl --user status filebrowser, /run/current-system/sw/bin/systemctl --restart start filebrowser
   #   filebrowser ALL=(ALL) NOPASSWD: FILEBROWSER_CMDS
   # '';
-  
+
   systemd.timers."guichet-wwwrun-fix-perms" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {

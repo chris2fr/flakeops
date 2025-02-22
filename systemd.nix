@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
-let 
+let
   mannchriRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
   # newuserPW = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  pwSftpgoPostgres =  (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.newuser));
+  pwSftpgoPostgres = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.newuser));
 in
 {
   systemd.services = {
@@ -67,7 +67,7 @@ in
     # };
     "filebrowser@" = {
       enable = true;
-      wantedBy = ["default.target"];
+      wantedBy = [ "default.target" ];
       scriptArgs = "filebrowser %i";
       # preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
       script = "/opt/filebrowser/dbs/filebrowser.sh $filebrowser_user $filebrowser_database";
@@ -75,7 +75,7 @@ in
       environment = {
         filebrowser_user = "filebrowser";
         filebrowser_database = "%i";
-        FB_BASEURL="";
+        FB_BASEURL = "";
       };
       serviceConfig = {
         WorkingDirectory = "/var/www/dav/data/%i";
@@ -86,7 +86,7 @@ in
     };
     crabfitfront = {
       enable = true;
-      wantedBy = ["default.target"];
+      wantedBy = [ "default.target" ];
       script = "${pkgs.yarn}/bin/yarn run start -p 3080";
       description = "Crab.fit front-end NextJS";
       serviceConfig = {
@@ -97,7 +97,7 @@ in
     };
     crabfitback = {
       enable = true;
-      wantedBy = ["default.target"];
+      wantedBy = [ "default.target" ];
       script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
       description = "Crab.fit back in Rust avec Postgres";
       serviceConfig = {
