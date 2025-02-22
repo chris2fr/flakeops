@@ -25,11 +25,9 @@ in
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
-        extraConfig = ''
+        locations."/".extraConfig = ''
           if ($host != "mark.lesgrandsvoisins.com") {
-            if ($host != "mark.lesgrandsvoisins.com") {
-              return 302 $scheme://mark.lesgrandsvoisins.com$request_uri;
-            }
+            return 302 $scheme://mark.lesgrandsvoisins.com$request_uri;
           }
         '';
       };
