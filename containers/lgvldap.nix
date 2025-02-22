@@ -7,13 +7,13 @@ in
 {
   containers.lgvldap = {
     autoStart = true;
-    bindMounts = { 
-      "/var/lib/acme/${lgvLdapDomainName}" = { 
+    bindMounts = {
+      "/var/lib/acme/${lgvLdapDomainName}" = {
         hostPath = "/var/lib/acme/${lgvLdapDomainName}";
-        isReadOnly = false; 
-      }; 
+        isReadOnly = false;
+      };
     };
-    config = { config, pkgs, lib, ...  }: {
+    config = { config, pkgs, lib, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.11";
       time.timeZone = "Europe/Paris";
@@ -22,7 +22,7 @@ in
         nettools
         wget
         dig
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -38,7 +38,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         # postgresql_14
         pwgen
@@ -75,7 +75,7 @@ in
       services = {
         openldap = {
           enable = true;
-          urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
+          urlList = [ "ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///" ];
           # urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
           settings = {
             attrs = {
@@ -90,14 +90,14 @@ in
               olcTLSProtocolMin = "3.1";
               olcThreads = "16";
             };
-             # Flake this
+            # Flake this
             children = {
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
-              ]; 
+              ];
               "olcDatabase={1}mdb".attrs = {
                 objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
                 olcDbIndex = [

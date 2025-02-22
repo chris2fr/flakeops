@@ -7,7 +7,7 @@ in
       "/var/lib/acme/keycloak.village.ngo/" = {
         hostPath = "/var/lib/acme/keycloak.village.ngo/";
         isReadOnly = true;
-      }; 
+      };
     };
     autoStart = true;
     # privateNetwork = true;
@@ -15,9 +15,9 @@ in
     # localAddress = "192.168.105.11";
     # hostAddress6 = "fa01::1";
     # localAddress6 = "fa01::2";
-    config = { config, pkgs, lib, ...  }: {
+    config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -33,7 +33,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         git
         lynx
@@ -45,23 +45,23 @@ in
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [  443 587 12443 ]; 
+          allowedTCPPorts = [ 443 587 12443 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
-       "f /etc/.secret.keycloakdata 0660 root root"
+        "f /etc/.secret.keycloakdata 0660 root root"
       ];
       # security.acme.acceptTerms = true;
       users = {
         groups = {
           "acme" = {
             gid = 993;
-            members = ["acme"];
+            members = [ "acme" ];
           };
           "wwwrun" = {
             gid = 54;
-            members = ["acme" "wwwrun"];
+            members = [ "acme" "wwwrun" ];
           };
         };
         users = {

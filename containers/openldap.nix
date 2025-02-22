@@ -15,13 +15,13 @@ in
     # localAddress = "192.168.107.11";
     # hostAddress6 = "fa01::1";
     # localAddress6 = "fa01::2";
-    bindMounts = { 
-      "/var/lib/acme/${ldapDomainName}" = { 
+    bindMounts = {
+      "/var/lib/acme/${ldapDomainName}" = {
         hostPath = "/var/lib/acme/${ldapDomainName}";
-        isReadOnly = false; 
-      }; 
+        isReadOnly = false;
+      };
     };
-    config = { config, pkgs, lib, ...  }: {
+    config = { config, pkgs, lib, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.11";
       # networking = {
@@ -40,7 +40,7 @@ in
         nettools
         wget
         dig
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -56,7 +56,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         # postgresql_14
         pwgen
@@ -182,7 +182,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
+          urlList = [ "ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///" ];
           #  urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
@@ -210,7 +210,7 @@ in
               olcTLSProtocolMin = "3.1";
               olcThreads = "16";
             };
-             # Flake this
+            # Flake this
             children = {
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
@@ -218,7 +218,7 @@ in
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
                 "/var/lib/openldap/pmw/schema/pwm.ldif"
-              ]; 
+              ];
               # Type: attribute
               # Name: pwmData
               # Definition: ( 1.3.6.1.4.1.35015.1.2.7 NAME 'pwmData' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )

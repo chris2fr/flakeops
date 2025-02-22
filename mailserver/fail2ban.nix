@@ -2,17 +2,17 @@
 # Configures Fail2Ban on the mailserver
 #
 { config, pkgs, lib, ... }:
-let 
+let
   domainName = import vars/domain-name-mail.nix;
   # Whitelisting some subnets:
-  whitelistSubnets =  [ 
-      "10.0.0.0/8" 
-      "172.16.0.0/12" 
-      "192.168.0.0/16"
-      "8.8.8.8" # Resolves the IP via DNS
-      domainName 
-      ];
-  
+  whitelistSubnets = [
+    "10.0.0.0/8"
+    "172.16.0.0/12"
+    "192.168.0.0/16"
+    "8.8.8.8" # Resolves the IP via DNS
+    domainName
+  ];
+
 in
 {
   services.fail2ban = {

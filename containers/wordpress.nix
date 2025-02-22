@@ -14,17 +14,17 @@ in
     hostAddress = "192.168.103.1";
     localAddress = "192.168.103.2";
     hostAddress6 = "fc00::3:1";
-    localAddress6 = "fc00::3:2"; 
+    localAddress6 = "fc00::3:2";
     bindMounts = {
       "/var/lib/acme/wordpress.resdigita.com/" = {
         hostPath = "/var/lib/acme/wordpress.resdigita.com/";
         isReadOnly = true;
-      }; 
+      };
     };
     config = { config, pkgs, lib, ... }: {
       # imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -40,7 +40,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         cowsay
         # home-manager
@@ -75,7 +75,7 @@ in
         php82Extensions.imagick
       ];
       networking = {
-        hostName = "wordpress"; 
+        hostName = "wordpress";
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
         useHostResolvConf = lib.mkForce false;
       };
@@ -84,7 +84,7 @@ in
         stateVersion = "24.11";
       };
       environment.sessionVariables = rec {
-        EDITOR="vim";
+        EDITOR = "vim";
         WAGTAIL_ENV = "production";
       };
       security.acme = {
@@ -134,11 +134,11 @@ in
           settings.PermitRootLogin = "prohibit-password";
         };
         httpd = {
-          enable = true; 
+          enable = true;
           enablePHP = true;
           phpPackage = pkgs.php.buildEnv {
             extensions = ({ enabled, all }: enabled ++ (with all; [
-                imagick
+              imagick
             ]));
             extraConfig = ''
             '';
@@ -153,7 +153,7 @@ in
               "ghh.resdigita.com"
               "*"
             ];
-            listen = [{port = 443; ssl=true;}];
+            listen = [{ port = 443; ssl = true; }];
             sslServerCert = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
             sslServerChain = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
             sslServerKey = "/var/lib/acme/wordpress.resdigita.com/key.pem";
@@ -167,7 +167,7 @@ in
                 AllowOverride FileInfo
                 FallbackResource /index.php
               </Directory>
-              '';
+            '';
           };
         };
         mysql = {

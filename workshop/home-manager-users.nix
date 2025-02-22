@@ -5,7 +5,7 @@ let
   #   url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
   #   sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
   #   };
-in 
+in
 {
   # home-manager.users.crabfit = {
   #   home.packages = with pkgs; [ 
@@ -14,8 +14,8 @@ in
   #   home.stateVersion = "24.11";
   #   programs.home-manager.enable = true;
   # };
-  fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
+  fossil = { pkgs, ... }: {
+    home.packages = with pkgs; [
       fossil
     ];
     home.stateVersion = "24.11";
@@ -29,8 +29,8 @@ in
   #   home.stateVersion = "24.11";
   #   programs.home-manager.enable = true;
   # };
-  guichet = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
+  guichet = { pkgs, ... }: {
+    home.packages = with pkgs; [
       go
       gnumake
       python311
@@ -39,17 +39,17 @@ in
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
   };
-  filebrowser = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
+  filebrowser = { pkgs, ... }: {
+    home.packages = with pkgs; [
       filebrowser
     ];
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
   };
-  mannchri = {pkgs, ...}: {
-    home.packages = [ 
-      pkgs.atool 
-      pkgs.httpie 
+  mannchri = { pkgs, ... }: {
+    home.packages = [
+      pkgs.atool
+      pkgs.httpie
       pkgs.nodejs_20
     ];
     home.stateVersion = "24.11";

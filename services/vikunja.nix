@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
-let 
-in{
+let
+in {
   systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
   systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
   services.vikunja = {
@@ -29,7 +29,7 @@ in{
       };
       service = {
         timezone = "Europe/Paris";
-      };  
+      };
       auth = {
         local.enabled = false;
         openid.enabled = true;
@@ -37,30 +37,30 @@ in{
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
         openid.providers = [
-        {
-          name = "keyLesGrandsVoisinsCom";
-          authurl = "https://key.lesgrandsvoisins.com/realms/master";
-          logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
-          clientid = "vikunja";
-          clientsecret = import ../secrets/keylesgrandsvoisins.vikunja.nix;
-          # clientsecret = config.age.secrets."keylesgrandsvoisins.vikunja".path;
-        }
-        # {
-        #   name = "keyGVcoop";
-        #   authurl = "https://key.gv.coop/realms/master";
-        #   logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
-        #   clientid = "vikunja";
-        #   clientsecret = keyGVcoopVikunja;
-        # }
-        {
-          name = "VillageNgo";
-          authurl = "https://keycloak.village.ngo/realms/master";
-          logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
-          clientid = "vikunja";
-          clientsecret = import ../secrets/keylesgrandsvoisins.vikunja.nix;
-          # clientsecret.file = config.age.secrets."keycloak.vikunja".path;
-          # clientsecret = keycloakVikunja;
-        }
+          {
+            name = "keyLesGrandsVoisinsCom";
+            authurl = "https://key.lesgrandsvoisins.com/realms/master";
+            logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = import ../secrets/keylesgrandsvoisins.vikunja.nix;
+            # clientsecret = config.age.secrets."keylesgrandsvoisins.vikunja".path;
+          }
+          # {
+          #   name = "keyGVcoop";
+          #   authurl = "https://key.gv.coop/realms/master";
+          #   logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
+          #   clientid = "vikunja";
+          #   clientsecret = keyGVcoopVikunja;
+          # }
+          {
+            name = "VillageNgo";
+            authurl = "https://keycloak.village.ngo/realms/master";
+            logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = import ../secrets/keylesgrandsvoisins.vikunja.nix;
+            # clientsecret.file = config.age.secrets."keycloak.vikunja".path;
+            # clientsecret = keycloakVikunja;
+          }
         ];
       };
     };

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
-let 
+let
 in
-{ 
+{
   # networking = {
   #   extraHosts = "192.168.103.2 ghh.resdigita.com";
   # };
@@ -50,7 +50,7 @@ in
         # };
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
-          root =  "/var/www/html/";
+          root = "/var/www/html/";
         };
         # "1.ipv6.lesgrandsvoisins.com" = {
         #   listen = [{ addr = "[2a01:4f8:241:4faa::1]"; port = 80; }];
@@ -109,9 +109,9 @@ in
         #   };
         # };
         "pocketbase.resdigita.com" = {
-          serverAliases = ["pocket.resdigita.com"];
-          forceSSL = true; 
-          enableACME = true; 
+          serverAliases = [ "pocket.resdigita.com" ];
+          forceSSL = true;
+          enableACME = true;
           locations."/" = {
             proxyPass = "http://localhost:8090";
             # proxyWebsockets = true      locations."/.well-known" = { proxyPass = null; };
@@ -127,12 +127,12 @@ in
             # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             # # proxy_redirect off;
             # '';
-          };      
+          };
         };
         "wordpress.resdigita.com" = {
-          forceSSL = true; 
-          enableACME = true; 
-          serverAliases = ["ghh.resdigita.com"];
+          forceSSL = true;
+          enableACME = true;
+          serverAliases = [ "ghh.resdigita.com" ];
           globalRedirect = "ghh.resdigita.com:11443";
           # locations."/" = {
           #   proxyPass = "https://192.168.103.2";
@@ -154,7 +154,7 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8334";
         # }; 
-        
+
         # "etedav.village.ngo" = {
         #   enableACME = true;
         #   forceSSL = true;

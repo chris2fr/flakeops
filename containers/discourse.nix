@@ -7,7 +7,7 @@ in
       "/var/lib/acme/discourse.village.ngo/" = {
         hostPath = "/var/lib/acme/discourse.village.ngo/";
         isReadOnly = true;
-      }; 
+      };
       # "/run/discourse/sockets/unicorn.sock"
     };
     autoStart = true;
@@ -16,9 +16,9 @@ in
     localAddress = "192.168.104.11";
     hostAddress6 = "fe00::1";
     localAddress6 = "fe00::2";
-    config = { config, pkgs, lib, ...  }: {
+    config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -34,7 +34,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         # postgresql_13
         git
@@ -65,11 +65,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = ["acme"];
+            members = [ "acme" ];
           };
           "wwwrun" = {
             gid = 54;
-            members = ["nginx" "discourse"];
+            members = [ "nginx" "discourse" ];
           };
         };
         users = {
@@ -110,7 +110,7 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
-          plugins = [ 
+          plugins = [
             config.services.discourse.package.plugins.discourse-openid-connect
             # config.services.discourse.package.plugins.discourse-oauth2-basic
             # config.services.discourse.package.plugins.discourse-saml

@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-in 
+in
 {
   systemd.tmpfiles.rules = [
     "d /var/local/cherryldap 0755 cherryldap users"
@@ -15,19 +15,19 @@ in
     hostAddress = "192.168.106.1";
     localAddress = "192.168.106.2";
     hostAddress6 = "fc00::6:1";
-    localAddress6 = "fc00::6:2"; 
-    bindMounts = { 
-      "/var/local/cherryldap" = { 
+    localAddress6 = "fc00::6:2";
+    bindMounts = {
+      "/var/local/cherryldap" = {
         hostPath = "/var/local/cherryldap";
-        isReadOnly = false; 
-      }; 
+        isReadOnly = false;
+      };
     };
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
       system.stateVersion = "24.11";
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -43,7 +43,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         # python311Packages.cherrypy-cors
         # python311Packages.pillow
@@ -126,13 +126,13 @@ in
         cmake
         # PHP
         php
-        ];
+      ];
       networking = {
-        hostName = "cherryldap"; 
+        hostName = "cherryldap";
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
         useHostResolvConf = lib.mkForce false;
-      };     
-      services.resolved.enable = true;   
+      };
+      services.resolved.enable = true;
       users.users.cherryldap = {
         isNormalUser = true;
         uid = 11111;

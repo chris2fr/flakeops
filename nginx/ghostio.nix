@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
-let 
+let
 in
-{ 
+{
   services.nginx.virtualHosts = {
     # "blog.desgrandsvoisins.org" = {
     #   root = "/var/www/ghostio/";
@@ -11,7 +11,7 @@ in
     #   globalRedirect = "blog.lesgrandsvoisins.com";
     # };
     "blog.lesgrandsvoisins.com" = {
-      serverAliases = ["ghost.lesgv.org"];
+      serverAliases = [ "ghost.lesgv.org" ];
       root = "/var/www/ghostio/";
       enableACME = true;
       forceSSL = true;

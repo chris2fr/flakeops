@@ -16,7 +16,7 @@ in
       "/var/lib/silverbullet/back" = {
         hostPath = "/var/lib/silverbullet/back";
         isReadOnly = false;
-      }; 
+      };
       # "/var/lib/burp/etc/silverbullet.resdigita.com" = {
       #   hostPath = "/var/lib/acme/silverbullet.resdigita.com";
       #   isReadOnly = true;
@@ -27,7 +27,7 @@ in
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "24.11";
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -43,14 +43,14 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         python311
         busybox
         curl
         wget
         lynx
-        dig    
+        dig
         git
         tmux
         killall
@@ -74,7 +74,7 @@ in
         mannchri.isNormalUser = true;
         silverbullet = {
           isNormalUser = true;
-          packages = with pkgs; [ 
+          packages = with pkgs; [
             deno
           ];
         };
@@ -109,7 +109,7 @@ in
             OnUnitActiveSec = "1h";
             OnBootSec = "15min";
           };
-          wantedBy = ["timers.target"];
+          wantedBy = [ "timers.target" ];
         };
         services = {
           kopia = {

@@ -1,64 +1,64 @@
 { config, pkgs, lib, ... }:
-let 
-in{
-    services.sftpgo = {
-      enable = false;
-      user = "sftpgo";  
-      group = "wwwrun";
-      dataDir = "/var/www/dav/data";
-      # extraArgs = [
-      #   "--log-level"
-      #   "info"
-      # ];
-      settings = {
-        # proxy_protocol = 1;
-        # proxy_allowed = ["116.202.236.241" "2a01:4f8:241:4faa::" "2a01:4f8:241:4faa::1" "2a01:4f8:241:4faa::2"];
-        # acme = {
-        #   domains = ["sftpgo.lesgrandsvoisins.com"];
-        #   email = "chris@mann.fr";
-        #   key_type =  "4096";
-        #   certs_path =  "/var/lib/acme/sftpgo.lesgrandsvoisins.com";
-        #   ca_endpoint =  "https://acme-v02.api.letsencrypt.org/directory";
-        #   renew_days =  30;
-        #   http01_challenge =  {
-        #     port =  10080;
-        #     proxy_header =  "";
-        #     webroot =  "/var/www/sftpgo.com";
-        #   };
-        #   tls_alpn01_challenge =  {
-        #     port =  0;
-        #   };
-        # };
-        webdavd.bindings = [
-          # {
-          #   port = 14443;
-          #   address = "116.202.236.241";
-          #   certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-          #   certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
-          #   enable_https = true;
-          # }
-          {
-            port = 443;
-            address = "[2a01:4f8:241:4faa::9]";
-            certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/9.lesgrandsvoisins.com/key.pem";
-            enable_https = true;
-          }
-        ];
-        sftpd.bindings = [
-          # {
-          #   port = 2022;
-          #   address = "116.202.236.241";
-          # }
-          {
-            port = 2022;
-            address = "[2a01:4f8:241:4faa::8]";
-          }
-        ];
-        httpd = {
-          static_files_path = "/var/run/sftpgo/static";
-          templates_path = "/var/run/sftpgo/templates";
-          bindings = [
+let
+in {
+  services.sftpgo = {
+    enable = false;
+    user = "sftpgo";
+    group = "wwwrun";
+    dataDir = "/var/www/dav/data";
+    # extraArgs = [
+    #   "--log-level"
+    #   "info"
+    # ];
+    settings = {
+      # proxy_protocol = 1;
+      # proxy_allowed = ["116.202.236.241" "2a01:4f8:241:4faa::" "2a01:4f8:241:4faa::1" "2a01:4f8:241:4faa::2"];
+      # acme = {
+      #   domains = ["sftpgo.lesgrandsvoisins.com"];
+      #   email = "chris@mann.fr";
+      #   key_type =  "4096";
+      #   certs_path =  "/var/lib/acme/sftpgo.lesgrandsvoisins.com";
+      #   ca_endpoint =  "https://acme-v02.api.letsencrypt.org/directory";
+      #   renew_days =  30;
+      #   http01_challenge =  {
+      #     port =  10080;
+      #     proxy_header =  "";
+      #     webroot =  "/var/www/sftpgo.com";
+      #   };
+      #   tls_alpn01_challenge =  {
+      #     port =  0;
+      #   };
+      # };
+      webdavd.bindings = [
+        # {
+        #   port = 14443;
+        #   address = "116.202.236.241";
+        #   certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+        #   certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+        #   enable_https = true;
+        # }
+        {
+          port = 443;
+          address = "[2a01:4f8:241:4faa::9]";
+          certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/full.pem";
+          certificate_key_file = "/var/lib/acme/9.lesgrandsvoisins.com/key.pem";
+          enable_https = true;
+        }
+      ];
+      sftpd.bindings = [
+        # {
+        #   port = 2022;
+        #   address = "116.202.236.241";
+        # }
+        {
+          port = 2022;
+          address = "[2a01:4f8:241:4faa::8]";
+        }
+      ];
+      httpd = {
+        static_files_path = "/var/run/sftpgo/static";
+        templates_path = "/var/run/sftpgo/templates";
+        bindings = [
           # {
           #   port = 10443;
           #   address = "116.202.236.241";
@@ -127,26 +127,27 @@ in{
             };
           }
         ];
-        };
-        data_provider = {
-          # driver = "postgresql";
-          # name = "sftpgo";
-          # host = "localhost";
-          # port = "5432";
-          # username = "sftpgo";
-          # password = $passwordDBSFTPGO;
-          # pre_login_hook = "/run/addsftpgouser.sh";
-        };
-        plugins = [{
-          type = "auth";
-          cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
-          args = ["serve"
-            "--config-file"
-            "/var/run/sftpgo/sftpgo-plugin-auth.json"
-          ];
-          auth_options.scope = 5;
-          auto_mtls = true;
-        }];
-      };  
+      };
+      data_provider = {
+        # driver = "postgresql";
+        # name = "sftpgo";
+        # host = "localhost";
+        # port = "5432";
+        # username = "sftpgo";
+        # password = $passwordDBSFTPGO;
+        # pre_login_hook = "/run/addsftpgouser.sh";
+      };
+      plugins = [{
+        type = "auth";
+        cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
+        args = [
+          "serve"
+          "--config-file"
+          "/var/run/sftpgo/sftpgo-plugin-auth.json"
+        ];
+        auth_options.scope = 5;
+        auto_mtls = true;
+      }];
     };
+  };
 }

@@ -1,12 +1,13 @@
 { config, pkgs, lib, ... }:
-let 
+let
 in
-{ 
+{
   services.nginx.virtualHosts = {
     "crabfit.resdigita.com" = {
       serverAliases = [
-        "crabfit.gv.coop" 
-        "crabfit.lesgv.org"];
+        "crabfit.gv.coop"
+        "crabfit.lesgv.org"
+      ];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -21,7 +22,7 @@ in
     #   # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
     # };
     "apicrabfit.resdigita.com" = {
-      serverAliases = ["apicrabfit.lesgv.org"];
+      serverAliases = [ "apicrabfit.lesgv.org" ];
       enableACME = true;
       forceSSL = true;
       locations."/" = {

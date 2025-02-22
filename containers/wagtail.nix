@@ -10,156 +10,156 @@ in
     # localAddress = "192.168.100.11";
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
-    bindMounts = { 
-      "/var/www/wagtail" = { 
+    bindMounts = {
+      "/var/www/wagtail" = {
         hostPath = "/var/www/wagtail";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/francemali/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/francemali/medias" = {
         hostPath = "/var/www/francemali/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/francemali/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/francemali/staticfiles" = {
         hostPath = "/var/www/francemali/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/cantine/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/cantine/medias" = {
         hostPath = "/var/www/cantine/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/cantine/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/cantine/staticfiles" = {
         hostPath = "/var/www/cantine/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/web-fastoche/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/web-fastoche/medias" = {
         hostPath = "/var/www/web-fastoche/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/web-fastoche/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/web-fastoche/staticfiles" = {
         hostPath = "/var/www/web-fastoche/static";
-        isReadOnly = false; 
-       };
-       "/home/wagtail/resdigita-fastoche/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/resdigita-fastoche/medias" = {
         hostPath = "/var/www/resdigita-fastoche/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/resdigita-fastoche/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/resdigita-fastoche/staticfiles" = {
         hostPath = "/var/www/resdigita-fastoche/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/village/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/village/medias" = {
         hostPath = "/var/www/village/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/village/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/village/staticfiles" = {
         hostPath = "/var/www/village/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/villagengo/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/villagengo/medias" = {
         hostPath = "/var/www/villagengo/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/villagengo/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/villagengo/staticfiles" = {
         hostPath = "/var/www/villagengo/static";
-        isReadOnly = false; 
-       };        
-       "/home/wagtail/www-fastoche/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/www-fastoche/medias" = {
         hostPath = "/var/www/www-fastoche/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/www-fastoche/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/www-fastoche/staticfiles" = {
         hostPath = "/var/www/www-fastoche/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/resdigitaorg/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/resdigitaorg/medias" = {
         hostPath = "/var/www/resdigitaorg/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/resdigitaorg/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/resdigitaorg/staticfiles" = {
         hostPath = "/var/www/resdigitaorg/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/wagtail-village/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail-village/medias" = {
         hostPath = "/var/www/wagtail-village/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/wagtail-village/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail-village/staticfiles" = {
         hostPath = "/var/www/wagtail-village/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/lesgrandsvoisins/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/lesgrandsvoisins/medias" = {
         hostPath = "/var/www/lesgrandsvoisins/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/lesgrandsvoisins/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/lesgrandsvoisins/staticfiles" = {
         hostPath = "/var/www/lesgrandsvoisins/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/wagtail-fastoche/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail-fastoche/medias" = {
         hostPath = "/var/www/wagtail-fastoche/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/wagtail-fastoche/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail-fastoche/staticfiles" = {
         hostPath = "/var/www/wagtail-fastoche/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/django-fastoche/media" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/django-fastoche/media" = {
         hostPath = "/var/www/django-fastoche/media";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/django-fastoche/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/django-fastoche/staticfiles" = {
         hostPath = "/var/www/django-fastoche/static";
-        isReadOnly = false; 
-       };
-       "/home/wagtail/django-village/media" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/django-village/media" = {
         hostPath = "/var/www/django-village/media";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/django-village/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/django-village/staticfiles" = {
         hostPath = "/var/www/django-village/static";
-        isReadOnly = false; 
-       };
-       "/home/wagtail/sites-faciles/medias" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/sites-faciles/medias" = {
         hostPath = "/var/www/sites-faciles/medias";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/sites-faciles/staticfiles" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/sites-faciles/staticfiles" = {
         hostPath = "/var/www/sites-faciles/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/designsystem-fastoche" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/designsystem-fastoche" = {
         hostPath = "/var/www/designsystem-fastoche";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/designsystem-village/example" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/designsystem-village/example" = {
         hostPath = "/var/www/designsystem-village/example";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/designsystem-village/dist" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/designsystem-village/dist" = {
         hostPath = "/var/www/designsystem-village/dist";
-        isReadOnly = false; 
-       };
-       "/home/wagtail/wagtail.resdigita.com/media" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail.resdigita.com/media" = {
         hostPath = "/var/www/wagtail.resdigita.com/media";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/wagtail.resdigita.com/static" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail.resdigita.com/static" = {
         hostPath = "/var/www/wagtail.resdigita.com/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/wagtail.resdigita.com.main/media" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail.resdigita.com.main/media" = {
         hostPath = "/var/www/wagtail.resdigita.com.main/media";
-        isReadOnly = false; 
-       }; 
-      "/home/wagtail/wagtail.resdigita.com.main/static" = { 
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail.resdigita.com.main/static" = {
         hostPath = "/var/www/wagtail.resdigita.com.main/static";
-        isReadOnly = false; 
-       }; 
+        isReadOnly = false;
+      };
       # "/run/wagtail-sockets" = { 
       #   hostPath = "/run/wagtail-sockets";
       #   isReadOnly = false; 
       #  }; 
-     };
+    };
     config = { config, pkgs, ... }: {
       # networking = {
       #   firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ]; 
@@ -167,12 +167,12 @@ in
       users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
       users.groups.wwwrun.gid = 54;
-      users.groups.wwwrun.members = ["wagtail"];
+      users.groups.wwwrun.members = [ "wagtail" ];
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "24.11";
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -188,7 +188,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         python311
         python311Packages.pillow
@@ -202,7 +202,7 @@ in
         curl
         wget
         lynx
-        dig    
+        dig
         python311Packages.pylibjpeg-libjpeg
         git
         tmux
@@ -225,17 +225,17 @@ in
         nodejs_22
         yarn
         jq
-        ];
+      ];
 
       # networking = {
       #   firewall = {
       #     enable = false;
       #     allowedTCPPorts = [ 80 443 ];
       #   };
-        # Use systemd-resolved inside the container
-        # useHostResolvConf = lib.mkForce false;
+      # Use systemd-resolved inside the container
+      # useHostResolvConf = lib.mkForce false;
       #};
-        
+
       # services.resolved.enable = true;
 
       # services.postgresql = {
@@ -246,7 +246,7 @@ in
       #     "previous"
       #     "fairemain"
       #   ];
-          # # ensureDBOwnership = true;
+      # # ensureDBOwnership = true;
       # };
       users.users.wagtail.isNormalUser = true;
       # systemd.sockets.wagtail = {
@@ -259,8 +259,8 @@ in
       #   };
       # };
       systemd.tmpfiles.rules = [
-       "d /run/wagtail-sockets/ 0770 wagtail wwwrun"
-       "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
+        "d /run/wagtail-sockets/ 0770 wagtail wwwrun"
+        "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
       ];
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";

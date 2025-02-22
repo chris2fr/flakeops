@@ -7,7 +7,7 @@ in
       "/var/lib/acme/key.lesgrandsvoisins.com/" = {
         hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
         isReadOnly = true;
-      }; 
+      };
     };
     autoStart = true;
     privateNetwork = true;
@@ -15,9 +15,9 @@ in
     localAddress = "192.168.106.11";
     hostAddress6 = "fa02::1";
     localAddress6 = "fa02::2";
-    config = { config, pkgs, lib, ...  }: {
+    config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
+        ((vim_configurable.override { }).customize {
           name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
@@ -33,7 +33,7 @@ in
             set smartindent
             " ...
           '';
-          }
+        }
         )
         git
         lynx
@@ -46,23 +46,23 @@ in
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [  443 587 14444 ]; 
+          allowedTCPPorts = [ 443 587 14444 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
-       "f /etc/.secret.keydata 0660 root root"
+        "f /etc/.secret.keydata 0660 root root"
       ];
       # security.acme.acceptTerms = true;
       users = {
         groups = {
           "acme" = {
             gid = 993;
-            members = ["acme"];
+            members = [ "acme" ];
           };
           "wwwrun" = {
             gid = 54;
-            members = ["acme" "wwwrun"];
+            members = [ "acme" "wwwrun" ];
           };
         };
         users = {
@@ -82,10 +82,10 @@ in
         keycloak = {
           enable = true;
           database = {
-            username="key";
+            username = "key";
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
-            passwordFile="/etc/.secrets.key";
+            passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # host="localhost";
             # useSSL = false;

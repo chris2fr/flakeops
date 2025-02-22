@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let 
+let
   # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
@@ -96,19 +96,19 @@ in
       };
     };
   };
-#  /* ensure openldap is launched after certificates are created */
-#  systemd.services.openldap = {
-#    wants = [ "acme-${domainName}.service" ];
-#    after = [ "acme-${domainName}.service" ];
-#  };
-#  /* make acme certificates accessible by openldap */
-#  security.acme.defaults.group = "certs";
-#  users.groups.certs.members = [ "openldap" ];
-#  /* trigger the actual certificate generation for your hostname */
-#  security.acme.certs."${domainName}" = {
-#    extraDomainNames = [];
-#  };
-#############################
+  #  /* ensure openldap is launched after certificates are created */
+  #  systemd.services.openldap = {
+  #    wants = [ "acme-${domainName}.service" ];
+  #    after = [ "acme-${domainName}.service" ];
+  #  };
+  #  /* make acme certificates accessible by openldap */
+  #  security.acme.defaults.group = "certs";
+  #  users.groups.certs.members = [ "openldap" ];
+  #  /* trigger the actual certificate generation for your hostname */
+  #  security.acme.certs."${domainName}" = {
+  #    extraDomainNames = [];
+  #  };
+  #############################
   systemd.services.openldap = {
     wants = [ "acme-${domainName}.service" ];
     after = [ "acme-${domainName}.service" ];
