@@ -48,23 +48,23 @@ in
     };
     "hopgv.org" = {
       serverAliases = [
-        "facile.lesgrandsvoisins.com"
-        "hopgv.com"
-        "www.gvois.com"
-        # "www.hopgv.org"
+        # "facile.lesgrandsvoisins.com"
+        # "hopgv.com"
+        # "www.gvois.com"
+        "www.hopgv.org"
         # "gvpublic.com"
         # "gvpublic.org"
-        "gvois.com"
-        "gvois.org"
-        "www.gvois.org"
+        # "gvois.com"
+        # "gvois.org"
+        # "www.gvois.org"
         # "www.gvpublic.org"
         # "www.gvpublic.com"
-        "fastoche.org"
+        # "fastoche.org"
         # "www.hopgv.com"
-        "gv.fastoche.org"
-        "gv.village.ong"
-        "gv.villagengo.com"
-        "gv.villagengo.org"
+        # "gv.fastoche.org"
+        # "gv.village.ong"
+        # "gv.villagengo.com"
+        # "gv.villagengo.org"
       ];
       enableACME = true;
       forceSSL = true;
