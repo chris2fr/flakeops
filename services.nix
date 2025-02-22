@@ -18,7 +18,7 @@ in{
       admin.name = "admin";
       database.type = "mysql";
       nginx.enable = true;
-      settings.server.port = "9090";
+      settings.server.port = 9090;
       nginx.forceSSL = true;
       database.createLocally = true;
       acme.enable = true;
