@@ -34,7 +34,7 @@ in
       forceSSL = true;
       root = "/var/www/interetpublic";
       serverAliases = ["interet-public.org" "interetpublic.org" "www.interetpublic.org"];
-      extraConfig = ''
+      locations."/".extraConfig = ''
         if ($host != "www.interet-public.org") {
           return 301 $scheme://www.interet-public.org$request_uri;
         }
@@ -290,7 +290,21 @@ in
       ];
       forceSSL = true;
       root =  "/var/www/village/";
-      extraConfig = ''
+      # extraConfig = ''
+      #   # location ~ /fr/(.*)$ {
+      #   #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+      #   # }
+      #   if ($host != 'www.village.ngo') {
+      #     return 301 $scheme://www.village.ngo$request_uri;
+      #   }
+      #   '';
+        #         location ~ /fr/(.*)$ {
+        #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+        # }
+      locations = {
+        "/" = {
+          proxyPass = "http://localhost:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig + ''
         # location ~ /fr/(.*)$ {
         #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
         # }
@@ -298,13 +312,6 @@ in
           return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
-        #         location ~ /fr/(.*)$ {
-        #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
-        # }
-      locations = {
-        "/" = {
-          proxyPass = "http://localhost:8896/";
-          extraConfig = nginxLocationWagtailExtraConfig;
         };
         "/fr/".return =  "301 http://www.village.ong$request_uri";
         "/favicon.ico" = { proxyPass = null; };
@@ -341,14 +348,18 @@ in
       serverAliases = ["cfran.org" "www.cfran.org" "web.fastoche.org"];
       forceSSL = true;
       root =  "/var/www/web-fastoche/";
-      extraConfig = ''
+      # extraConfig = ''
+      #   if ($host != 'web.cfran.org') {
+      #     return 301 $scheme://web.cfran.org$request_uri;
+      #   }
+      #   '';
+      locations."/" = {
+        proxyPass = "http://localhost:8889/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
         if ($host != 'web.cfran.org') {
           return 301 $scheme://web.cfran.org$request_uri;
         }
         '';
-      locations."/" = {
-        proxyPass = "http://localhost:8889/";
-        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
@@ -381,9 +392,7 @@ in
       root =  "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://localhost:8899/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      extraConfig = ''
+        extraConfig = nginxLocationWagtailExtraConfig + ''
         if ($host = 'resdigita.com') {
           return 301 $scheme://www.resdigita.com$request_uri;
         }
@@ -403,13 +412,17 @@ in
       root =  "/var/www/wagtail-village/";
       locations."/" = {
         proxyPass = "http://localhost:8897/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      extraConfig = ''
+        extraConfig = nginxLocationWagtailExtraConfig + ''
         if ($host != 'wagtail.village.ong') {
           return 301 $scheme://wagtail.cfran.org$request_uri;
         }
       '';
+      };
+      # extraConfig = ''
+      #   if ($host != 'wagtail.village.ong') {
+      #     return 301 $scheme://wagtail.cfran.org$request_uri;
+      #   }
+      # '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
@@ -537,18 +550,22 @@ in
        forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:8008/";
-        extraConfig = nginxLocationWagtailExtraConfig;
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+        if ($host = 'gv.coop') {
+            return 301 $scheme://www.$host$request_uri;
+        }
+      ''
       };
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
-      extraConfig = ''
-        if ($host = 'gv.coop') {
-            return 301 $scheme://www.$host$request_uri;
-        }
-      '';
+      # extraConfig = ''
+      #   if ($host = 'gv.coop') {
+      #       return 301 $scheme://www.$host$request_uri;
+      #   }
+      # '';
     };
     
      "apostrophecms.resdigita.com" = {
@@ -641,7 +658,7 @@ in
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       root = "/var/www/wagtail";
-      extraConfig = ''
+      locations."/".extraConfig = ''
       if ($host = 'desgv.com') {
           return 301 $scheme://www.$host$request_uri;
       }
@@ -730,7 +747,7 @@ in
       serverAliases = ["maelanc.com"];
       enableACME = true;
        forceSSL = true;
-       extraConfig = ''
+       locations."/".extraConfig = ''
       if ($host = 'maelanc.com') {
           return 301 $scheme://www.$host$request_uri;
       }
