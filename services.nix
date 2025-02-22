@@ -21,8 +21,8 @@ in {
       # database.type = "mysql";
       enable = true;
       host = "writefreely.lesgrandsvoisins.com";
-      nginx.enable = true;
-      nginx.forceSSL = true;
+      # nginx.enable = true;
+      # nginx.forceSSL = true;
       settings.server.port = 9090;
     };
     # Enable the OpenSSH daemon.
