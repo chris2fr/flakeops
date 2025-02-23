@@ -172,11 +172,6 @@ in
       # networking = {
       #   firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ]; 
       # };
-      systemd.tmpfiles.rules = [
-        "d /home/wagtail/coopgv 0755 wagtail users -"
-        "d /home/wagtail/coopgv/static 0755 wagtail users -"
-        "d /home/wagtail/coopgv/medias 0755 wagtail users -"
-      ];
       users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
       users.groups.wwwrun.gid = 54;
@@ -274,6 +269,9 @@ in
       systemd.tmpfiles.rules = [
         "d /run/wagtail-sockets/ 0770 wagtail wwwrun"
         "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
+        "d /home/wagtail/coopgv 0755 wagtail users -"
+        "d /home/wagtail/coopgv/static 0755 wagtail users -"
+        "d /home/wagtail/coopgv/medias 0755 wagtail users -"
       ];
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
