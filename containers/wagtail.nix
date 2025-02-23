@@ -87,6 +87,14 @@ in
         hostPath = "/var/www/wagtail-village/static";
         isReadOnly = false;
       };
+      "/home/wagtail/coopgv/medias" = {
+        hostPath = "/var/www/coopgv/medias";
+        isReadOnly = false;
+      };
+      "/home/wagtail/coopgv/staticfiles" = {
+        hostPath = "/var/www/coopgv/static";
+        isReadOnly = false;
+      };
       "/home/wagtail/lesgrandsvoisins/medias" = {
         hostPath = "/var/www/lesgrandsvoisins/medias";
         isReadOnly = false;
@@ -164,6 +172,11 @@ in
       # networking = {
       #   firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ]; 
       # };
+      systemd.tmpfiles.rules = [
+        "d /home/wagtail/coopgv 0755 wagtail users -"
+        "d /home/wagtail/coopgv/static 0755 wagtail users -"
+        "d /home/wagtail/coopgv/medias 0755 wagtail users -"
+      ];
       users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
       users.groups.wwwrun.gid = 54;
@@ -456,6 +469,22 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/www-fastoche/";
           ExecStart = ''/home/wagtail/www-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/www-fastoche-access.log --error-logfile /var/log/wagtail/www-fastoche-error.log --chdir /home/wagtail/www-fastoche --workers 12 --bind 0.0.0.0:8893 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-coopgv = {
+        description = "www.coopgv.com on 8904";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/coopgv/";
+          ExecStart = ''/home/wagtail/coopgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/coopgv-access.log --error-logfile /var/log/wagtail/coopgv-error.log --chdir /home/wagtail/coopgv --workers 12 --bind 0.0.0.0:8904 lesgrandsvoisins.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

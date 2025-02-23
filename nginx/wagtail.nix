@@ -10,8 +10,7 @@ let
     # proxy_set_header Upgrade $http_upgrade;
     # proxy_set_header Connection $connection_upgrade_keepalive;
   '';
-in
-{
+in {
   services.nginx.virtualHosts = {
     "les.gv.coop" = {
       enableACME = true;
@@ -33,7 +32,8 @@ in
       enableACME = true;
       forceSSL = true;
       root = "/var/www/interetpublic";
-      serverAliases = [ "interet-public.org" "interetpublic.org" "www.interetpublic.org" ];
+      serverAliases =
+        [ "interet-public.org" "interetpublic.org" "www.interetpublic.org" ];
       locations."/".extraConfig = ''
         if ($host != "www.interet-public.org") {
           return 301 $scheme://www.interet-public.org$request_uri;
@@ -83,7 +83,26 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-
+    "www.coopgv.com" = {
+      serverAliases = [ "coopgv.com" ];
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+          # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          if ($host = 'coopgv.com') {
+            return 301 $scheme://www.coopgv.com$request_uri;
+          }
+        '';
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "test.lesgrandsvoisins.com"
@@ -183,9 +202,7 @@ in
     # };
     "www.gv.coop" = {
       enableACME = true;
-      serverAliases = [
-        "www.lesgv.com"
-      ];
+      serverAliases = [ "www.lesgv.com" ];
       forceSSL = true;
       root = "/var/www/village/";
       # extraConfig = ''
@@ -207,9 +224,7 @@ in
     };
     "www.village.ong" = {
       enableACME = true;
-      serverAliases = [
-        "village.ong"
-      ];
+      serverAliases = [ "village.ong" ];
       forceSSL = true;
       root = "/var/www/village/";
       extraConfig = ''
@@ -387,7 +402,15 @@ in
     "www.resdigita.org" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "resdigita.org" "en.resdigita.com" "fr.resdigita.com" "en.resdigita.org" "fr.resdigita.org" "www.resdigita.com" "resdigita.com" ];
+      serverAliases = [
+        "resdigita.org"
+        "en.resdigita.com"
+        "fr.resdigita.com"
+        "en.resdigita.org"
+        "fr.resdigita.org"
+        "www.resdigita.com"
+        "resdigita.com"
+      ];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://localhost:8899/";
@@ -431,7 +454,13 @@ in
     };
     "django.village.ngo" = {
       enableACME = true;
-      serverAliases = [ "django.fastoche.org" "django.cfran.org" "django.village.ong" "django.villagengo.com" "django.villagengo.org" ];
+      serverAliases = [
+        "django.fastoche.org"
+        "django.cfran.org"
+        "django.village.ong"
+        "django.villagengo.com"
+        "django.villagengo.org"
+      ];
       # extraConfig = ''
       #   if ($host != 'django.cfran.org') {
       #     return 301 $scheme://django.cfran.org$request_uri;
@@ -451,7 +480,14 @@ in
     "fabrique.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "designsystem.fastoche.org" "designsystem.village.ngo" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org" ];
+      serverAliases = [
+        "designsystem.fastoche.org"
+        "designsystem.village.ngo"
+        "designsystem.cfran.org"
+        "designsystem.village.ong"
+        "designsystem.villagengo.com"
+        "designsystem.villagengo.org"
+      ];
       # extraConfig = ''
       #   if ($host != 'designsystem.cfran.org') {
       #     return 301 $scheme://designsystem.cfran.org$request_uri;
@@ -469,7 +505,13 @@ in
       # locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
-      serverAliases = [ "meet.lesgv.org" "meet.village.ngo" "meet.village.ong" "meet.villagengo.com" "meet.villagengo.org" ];
+      serverAliases = [
+        "meet.lesgv.org"
+        "meet.village.ngo"
+        "meet.village.ong"
+        "meet.villagengo.com"
+        "meet.villagengo.org"
+      ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtail/";
@@ -618,7 +660,9 @@ in
         #   proxy_set_header Host $host:$server_port;
         # '';
       };
-      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
+      locations."/favicon.ico" = {
+        proxyPass = "http://10.245.101.15:8898/favicon.ico";
+      };
       locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
       locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
     };
@@ -719,11 +763,7 @@ in
     #    forceSSL = true;
     # };
     "l-g-v.com" = {
-      serverAliases = [
-        "www.l-g-v.com"
-        "l-g-v.org"
-        "www.l-g-v.org"
-      ];
+      serverAliases = [ "www.l-g-v.com" "l-g-v.org" "www.l-g-v.org" ];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
@@ -867,6 +907,19 @@ in
       root = "/var/www/lesgrandsvoisins/";
       locations."/" = {
         proxyPass = "http://localhost:8894/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME = true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8904.lesgrandsvoisins.com" = {
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME = true;
