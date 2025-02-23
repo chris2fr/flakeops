@@ -91,7 +91,7 @@ in
         hostPath = "/var/www/coopgv/medias";
         isReadOnly = false;
       };
-      "/home/wagtail/coopgv/staticfiles" = {
+      "/home/wagtail/coopgv/static" = {
         hostPath = "/var/www/coopgv/static";
         isReadOnly = false;
       };
@@ -271,6 +271,7 @@ in
         "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
         "d /home/wagtail/coopgv 0755 wagtail users -"
         "d /home/wagtail/coopgv/staticfiles 0775 wagtail users -"
+        "d /home/wagtail/coopgv/static 0775 wagtail users -"
         "d /home/wagtail/coopgv/medias 0775 wagtail users -"
       ];
       systemd.services.wagtail = {
