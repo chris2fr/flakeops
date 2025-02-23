@@ -270,8 +270,8 @@ in
         "d /run/wagtail-sockets/ 0770 wagtail wwwrun"
         "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
         "d /home/wagtail/coopgv 0755 wagtail users -"
-        "d /home/wagtail/coopgv/static 0755 wagtail users -"
-        "d /home/wagtail/coopgv/medias 0755 wagtail users -"
+        "d /home/wagtail/coopgv/staticfiles 0775 wagtail users -"
+        "d /home/wagtail/coopgv/medias 0775 wagtail users -"
       ];
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
