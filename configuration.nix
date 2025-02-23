@@ -40,9 +40,9 @@ in
     "d /var/www/lesgrandsvoisins 0755 wagtail users -"
     "d /var/www/lesgrandsvoisins/static 0755 wagtail users -"
     "d /var/www/lesgrandsvoisins/medias 0755 wagtail users -"
-    "d /var/www/coopgv 0755 wagtail users -"
-    "d /var/www/coopgv/static 0755 wagtail users -"
-    "d /var/www/coopgv/medias 0755 wagtail users -"
+    "d /var/www/coopgv 0775 wagtail users -"
+    "d /var/www/coopgv/static 0775 wagtail users -"
+    "d /var/www/coopgv/medias 0775 wagtail users -"
     "d /run/wagtail-sockets 0770 wagtail wwwrun -"
     "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
   ];
