@@ -145,6 +145,10 @@ in {
         "url.parisle.com"
         "videos.parisle.com"
         "wiki.parisle.com"
+        "grandsvoisins.org"
+        "www.grandsvoisins.org"
+        "grandsvoisins.com"
+        "www.grandsvoisins.com"
       ];
       enableACME = true;
       forceSSL = true;
