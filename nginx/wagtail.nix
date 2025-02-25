@@ -147,8 +147,8 @@ in {
         "wiki.parisle.com"
         "grandsvoisins.org"
         "www.grandsvoisins.org"
-        "grandsvoisins.com"
-        "www.grandsvoisins.com"
+        # "grandsvoisins.com"
+        # "www.grandsvoisins.com"
       ];
       enableACME = true;
       forceSSL = true;
