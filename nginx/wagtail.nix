@@ -152,7 +152,8 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/lesgrandsvoisins/";
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
