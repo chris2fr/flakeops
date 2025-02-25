@@ -147,8 +147,8 @@ in {
         "wiki.parisle.com"
         "grandsvoisins.org"
         "www.grandsvoisins.org"
-        "grandsvoisins.com"
-        "www.grandsvoisins.com"
+        # "grandsvoisins.com"
+        # "www.grandsvoisins.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -165,6 +165,12 @@ in {
           }
           if ($host = 'parisle.org') {
             return 301 $scheme://www.parisle.org$request_uri;
+          }
+          if ($host = 'grandsvoisins.org') {
+            return 301 $scheme://www.grandsvoisins.org$request_uri;
+          }
+          if ($host = 'grandsvoisins.com') {
+            return 301 $scheme://www.grandsvoisins.com$request_uri;
           }
         '';
       };
