@@ -159,7 +159,7 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
           if ($host = 'parisle.com') {
             return 301 $scheme://www.parisle.com$request_uri;
           }
@@ -174,6 +174,12 @@ in {
           }
         '';
       };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
