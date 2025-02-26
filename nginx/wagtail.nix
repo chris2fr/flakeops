@@ -791,7 +791,7 @@ in {
       forceSSL = true;
       globalRedirect = "www.lesgrandsvoisins.com";
     };
-    "old.lesgrandsvoisins.com" = {
+    "older.lesgrandsvoisins.com" = {
       # serverAliases = ["lesgrandsvoisins.com"];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
