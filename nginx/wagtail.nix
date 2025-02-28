@@ -83,19 +83,17 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.coopgv.com" = {
-      serverAliases = [ "coopgv.com" ];
+    "old.lesgrandsvoisins.com" = {
+      serverAliases = [  ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/coopgv/";
+      root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
-        proxyPass = "http://localhost:8904/";
+        proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-          if ($host = 'coopgv.com') {
-            return 301 $scheme://www.coopgv.com$request_uri;
-          }
         '';
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -105,12 +103,14 @@ in {
     };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
+        "www.coopgv.com"
+        "coopgv.com"
         "test.lesgrandsvoisins.com"
         "alt.lesgrandsvoisins.com"
         "en.lesgrandsvoisins.com"
         "fr.lesgrandsvoisins.com"
         "gvcoop.lesgrandsvoisins.com"
-        "old.lesgrandsvoisins.com"
+        # "old.lesgrandsvoisins.com"
         # "excellenxport.hopgv.com"
         "parisle.com"
         "www.parisle.com"
@@ -162,6 +162,9 @@ in {
           rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
           if ($host = 'parisle.com') {
             return 301 $scheme://www.parisle.com$request_uri;
+          }
+          if ($host = 'coopgv.com') {
+            return 301 $scheme://www.coopgv.com$request_uri;
           }
           if ($host = 'parisle.org') {
             return 301 $scheme://www.parisle.org$request_uri;
