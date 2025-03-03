@@ -149,6 +149,8 @@ in {
         "www.grandsvoisins.org"
         "grandsvoisins.com"
         "www.grandsvoisins.com"
+        "yanlomsprod.parisle.com"
+        "yanlomsprod.parisle.org"
       ];
       enableACME = true;
       forceSSL = true;
