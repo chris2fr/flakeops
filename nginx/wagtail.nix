@@ -165,10 +165,9 @@ in {
           if ($host = 'parisle.com') {
             return 301 $scheme://www.parisle.com$request_uri;
           }
-
           if ($host = 'yanlomsprod.parisle.org') {
             return 301 $scheme://yanlomsprod.parisle.com$request_uri;
-          }f
+          }
           if ($host = 'coopgv.com') {
             return 301 $scheme://www.coopgv.com$request_uri;
           }
