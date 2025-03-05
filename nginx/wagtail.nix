@@ -104,7 +104,7 @@ in {
     "www.paris14.cc" = {
       serverAliases = ["paris14.cc"];
       root = "/var/www/paris14cc/";
-      location."/".extraConfig = ''
+      locations."/".extraConfig = ''
           if ($host = 'paris14.cc') {
             return 301 $scheme://www.paris14.cc$request_uri;
           }
