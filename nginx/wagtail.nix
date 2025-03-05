@@ -207,6 +207,14 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.parislenuage.com" = {
+      serverAliases = [ "parislenuage.com" ];
+      locations."/" = {
+        extraConfig = ''
+          return 302 $scheme://www.parisle.com$request_uri;
+        '';
+      };
+    };
     # "www.francemali.org" = {
     #   enableACME = true;
     #   serverAliases = ["francemali.org"];
