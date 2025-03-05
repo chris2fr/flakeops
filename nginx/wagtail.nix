@@ -101,6 +101,15 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.paris14.cc" = {
+      serverAliases = ["paris14.cc"];
+      root = "/var/www/paris14cc/";
+      location."/".extraConfig = ''
+          if ($host = 'paris14.cc') {
+            return 301 $scheme://www.paris14.cc$request_uri;
+          }
+          '';
+    };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "www.coopgv.com"
