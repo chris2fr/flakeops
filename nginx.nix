@@ -64,11 +64,16 @@ in
           enableACME = true;
           serverAliases = ["paris14.cc"];
           root = "/var/www/paris14cc/";
-          locations."/".extraConfig = ''
+          locations = {
+            "/media/cr".basicAurh = {
+              user = "cc14";
+            }
+            "/".extraConfig = ''
               if ($host = 'paris14.cc') {
                 return 301 $scheme://www.paris14.cc$request_uri;
               }
               '';
+          }
         };
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
