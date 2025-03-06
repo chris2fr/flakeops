@@ -65,7 +65,7 @@ in
           serverAliases = ["paris14.cc"];
           root = "/var/www/paris14cc/";
           locations = {
-            "/media/cr".basicAurh = {
+            "/media/cr".basicAuth = {
               user = "cc14";
             };
             "/".extraConfig = ''
