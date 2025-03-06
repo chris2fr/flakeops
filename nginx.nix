@@ -66,7 +66,7 @@ in
           root = "/var/www/paris14cc/";
           locations = {
             "/media/cr".basicAuth = {
-              user = "cc14";
+              cc14 = "cc14";
             };
             "/".extraConfig = ''
               if ($host = 'paris14.cc') {
