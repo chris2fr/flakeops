@@ -67,7 +67,7 @@ in
           locations = {
             "/media/cr".basicAurh = {
               user = "cc14";
-            }
+            };
             "/".extraConfig = ''
               if ($host = 'paris14.cc') {
                 return 301 $scheme://www.paris14.cc$request_uri;
