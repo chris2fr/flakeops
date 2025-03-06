@@ -73,7 +73,7 @@ in
                 return 301 $scheme://www.paris14.cc$request_uri;
               }
               '';
-          }
+          };
         };
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
