@@ -151,6 +151,12 @@ in {
         "www.grandsvoisins.com"
         "yanlomsprod.parisle.com"
         "yanlomsprod.parisle.org"
+        "www.lesgv.org"
+        "lesgv.org"
+        "www.lesgv.com"
+        "lesgv.com"
+        "www.gv.coop"
+        "gv.coop"
       ];
       enableACME = true;
       forceSSL = true;
@@ -236,7 +242,7 @@ in {
     # };
     "www.gv.coop" = {
       enableACME = true;
-      serverAliases = [ "www.lesgv.com" ];
+      serverAliases = [  ];
       forceSSL = true;
       root = "/var/www/village/";
       # extraConfig = ''
@@ -618,7 +624,7 @@ in {
         "coopgv.org"
         "www.gvcoop.com"
         "gvcoop.com"
-        "gv.coop"
+        # "gv.coop"
         # "www.gv.coop"  
         # "wagtail.gv.coop"
         # "wagtail.lesgv.org"
@@ -721,21 +727,13 @@ in {
         "francemali.lesgrandsvoisins.com"
         "shitmuststop.com"
         "www.shitmuststop.com"
-        # "www.desgv.com" 
         "lesgrandsvoisins.fr"
-        # "www.lesgv.com" 
-        "lesgv.com"
-        "www.lesgv.org"
-        "lesgv.org"
-        "www.gv.coop"
-        "gv.coop"
         "www.coopgv.com"
         "coopgv.com"
         "www.coopgv.org"
         "coopgv.org"
         "ghost.resdigita.com"
         "listmonk.resdigita.com"
-        "lesgv.org"
       ];
       enableACME = true;
       # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
