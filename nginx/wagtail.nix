@@ -240,7 +240,7 @@ in {
     #   locations."/medias" = { proxyPass = null; };
     #   locations."/.well-known" = { proxyPass = null; };
     # };
-    "www.gv.coop" = {
+    "old.gv.coop" = {
       enableACME = true;
       serverAliases = [  ];
       forceSSL = true;
