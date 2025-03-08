@@ -774,13 +774,13 @@ in {
           #     return 301 $scheme://les.gv.coop$request_uri;
           # }
           if ($host = 'lesgrandsvoisins.fr') {
-              return 301 $scheme://www.lesgrandsvoisins.com;
-              # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+              # return 301 $scheme://www.lesgrandsvoisins.com;
+              return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
           }
-          if ($host = 'www.lesgrandsvoisins.fr') {
-              return 301 $scheme://www.lesgrandsvoisins.com;
-              # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
-          }
+          # if ($host = 'www.lesgrandsvoisins.fr') {
+          #     return 301 $scheme://www.lesgrandsvoisins.com;
+          #     # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+          # }
         '';
       };
       locations."/favicon.ico" = { proxyPass = null; };
