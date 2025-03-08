@@ -159,6 +159,8 @@ in {
         "gv.coop"
         "lgv.info"
         "www.lgv.info"
+        "www.lesgrandsvoisins.fr"
+        "lesgrandsvoisins.fr"
       ];
       enableACME = true;
       forceSSL = true;
@@ -723,16 +725,14 @@ in {
       root = "/var/www/wagtail";
     };
 
-    "www.lesgrandsvoisins.fr" = {
+    "www.coopgv.org" = {
       serverAliases = [
         # "desgv.com" 
         "francemali.lesgrandsvoisins.com"
         "shitmuststop.com"
         "www.shitmuststop.com"
-        "lesgrandsvoisins.fr"
         "www.coopgv.com"
         "coopgv.com"
-        "www.coopgv.org"
         "coopgv.org"
         "ghost.resdigita.com"
         "listmonk.resdigita.com"
