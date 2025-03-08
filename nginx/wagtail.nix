@@ -172,6 +172,24 @@ in {
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          if ($host = 'lgv.info') {
+            return 301 $scheme://www.lgv.info$request_uri;
+          }
+          if ($host = 'lesgrandsvoisins.com') {
+            return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+          }
+          if ($host = 'lesgrandsvoisins.fr') {
+            return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
+          }
+          if ($host = 'lesgv.com') {
+            return 301 $scheme://www.lesgv.com$request_uri;
+          }
+          if ($host = 'lesgv.org') {
+            return 301 $scheme://www.lesgv.org$request_uri;
+          }
+          if ($host = 'gv.coop') {
+            return 301 $scheme://www.gv.coop$request_uri;
+          }
           if ($host = 'parisle.com') {
             return 301 $scheme://www.parisle.com$request_uri;
           }
@@ -757,21 +775,21 @@ in {
           # if ($host  ~  /lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org/ ) {
           #     # return 301 $scheme://les.$host$request_uri;
           #     return 301 
-          if ($host = 'lesgv.org') {
-              return 301 $scheme://les.gv.coop$request_uri;
-          }
-          if ($host = 'www.lesgv.org') {
-              return 301 $scheme://les.gv.coop$request_uri;
-          }
-          if ($host = 'lesgv.com') {
-              return 301 $scheme://les.gv.coop$request_uri;
-          }
+          # if ($host = 'lesgv.org') {
+          #     return 301 $scheme://les.gv.coop$request_uri;
+          # }
+          # if ($host = 'www.lesgv.org') {
+          #     return 301 $scheme://les.gv.coop$request_uri;
+          # }
+          # if ($host = 'lesgv.com') {
+          #     return 301 $scheme://les.gv.coop$request_uri;
+          # }
           # if ($host = 'www.lesgv.com') {
           #     return 301 $scheme://les.gv.coop$request_uri;
           # }
-          if ($host = 'gv.coop') {
-              return 301 $scheme://les.gv.coop$request_uri;
-          }
+          # if ($host = 'gv.coop') {
+          #     return 301 $scheme://www.gv.coop$request_uri;
+          # }
           # if ($host = 'www.gv.coop') {
           #     return 301 $scheme://les.gv.coop$request_uri;
           # }
