@@ -157,6 +157,8 @@ in {
         "lesgv.com"
         "www.gv.coop"
         "gv.coop"
+        "lgv.info"
+        "www.lgv.info"
       ];
       enableACME = true;
       forceSSL = true;
