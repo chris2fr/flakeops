@@ -616,8 +616,8 @@ in {
       serverAliases = [
         "www.lesartsvoisins.com"
         "lesartsvoisins.com"
-        "publicinter.org"
-        "www.publicinter.org"
+        # "publicinter.org"
+        # "www.publicinter.org"
         # "publicinter.net"
         # "www.publicinter.net"
         # "www.coopgv.com"
