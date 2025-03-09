@@ -111,7 +111,7 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8905/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
+          # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
