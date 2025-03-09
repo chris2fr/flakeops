@@ -95,6 +95,14 @@ in
         hostPath = "/var/www/coopgv/static";
         isReadOnly = false;
       };
+      "/home/wagtail/wagtailgvcoop/media" = {
+        hostPath = "/var/www/wagtailgvcoop/media";
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtailgvcoop/static" = {
+        hostPath = "/var/www/wagtailgvcoop/static";
+        isReadOnly = false;
+      };
       "/home/wagtail/lesgrandsvoisins/medias" = {
         hostPath = "/var/www/lesgrandsvoisins/medias";
         isReadOnly = false;
@@ -484,6 +492,22 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/coopgv/";
           ExecStart = ''/home/wagtail/coopgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/coopgv-access.log --error-logfile /var/log/wagtail/coopgv-error.log --chdir /home/wagtail/coopgv --workers 12 --bind 0.0.0.0:8904 lesgrandsvoisins.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-gvcoop = {
+        description = "www.gv.coop on 8905";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/wagtailgvcoop/";
+          ExecStart = ''/home/wagtail/wagtailgvcoop/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtailgvcoop-access.log --error-logfile /var/log/wagtail/wagtailgvcoop-error.log --chdir /home/wagtail/wagtailgvcoop --workers 12 --bind 0.0.0.0:8905 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

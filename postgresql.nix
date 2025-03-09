@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 let
 in
 {
@@ -27,6 +26,7 @@ in
       "lesgrandsvoisins"
       "key"
       "sftpgo"
+      "wagtailgvcoop"
     ];
     # ensureDBOwnership = true;
     ensureUsers = [
@@ -42,6 +42,10 @@ in
       }
       {
         name = "key";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "wagtailgvcoop";
         ensureDBOwnership = true;
       }
       {

@@ -101,6 +101,33 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.gv.coop" = {
+      serverAliases = [
+        "gv.coop"
+      ];
+      enableACME = true;
+      forceSSL = true;  
+      root = "/var/www/wagtailgvcoop/"; 
+      locations."/" = {
+        proxyPass = "http://localhost:8905/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
+          if ($host = 'gv.coop') {
+            return 301 $scheme://www.gv.coop$request_uri;
+          }
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "www.coopgv.com"
@@ -155,8 +182,6 @@ in {
         "lesgv.org"
         "www.lesgv.com"
         "lesgv.com"
-        "www.gv.coop"
-        "gv.coop"
         "lgv.info"
         "www.lgv.info"
         "www.lesgrandsvoisins.fr"
