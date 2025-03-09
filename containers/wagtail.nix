@@ -507,7 +507,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/wagtailgvcoop/";
-          ExecStart = ''/home/wagtail/wagtailgvcoop/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtailgvcoop-access.log --error-logfile /var/log/wagtail/wagtailgvcoop-error.log --chdir /home/wagtail/wagtailgvcoop --workers 12 --bind 0.0.0.0:8905 settings.wsgi:application'';
+          ExecStart = ''/home/wagtail/wagtailgvcoop/.venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtailgvcoop-access.log --error-logfile /var/log/wagtail/wagtailgvcoop-error.log --chdir /home/wagtail/wagtailgvcoop --workers 12 --bind 0.0.0.0:8905 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
