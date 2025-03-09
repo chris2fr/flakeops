@@ -175,6 +175,9 @@ in {
           if ($host = 'lgv.info') {
             return 301 $scheme://www.lgv.info$request_uri;
           }
+          if ($host = 'gv.coop') {
+            return 301 $scheme://www.gv.coop$request_uri;
+          }
           if ($host = 'lesgrandsvoisins.com') {
             return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
           }
