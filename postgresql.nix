@@ -27,9 +27,14 @@ in
       "key"
       "sftpgo"
       "wagtailgvcoop"
+      "lesgrandsvoisinscom"
     ];
     # ensureDBOwnership = true;
     ensureUsers = [
+      {
+        name = "lesgrandsvoisinscom";
+        ensureDBOwnership = true;
+      }
       {
         name = "wagtail";
         ensureDBOwnership = true;

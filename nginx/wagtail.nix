@@ -84,10 +84,10 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "old.lesgrandsvoisins.com" = {
-      serverAliases = [  ];
+      serverAliases = [ ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/lesgrandsvoisins/";
       # root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
@@ -102,16 +102,14 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.gv.coop" = {
-      serverAliases = [
-        "gv.coop"
-      ];
+      serverAliases = [ "gv.coop" ];
       enableACME = true;
-      forceSSL = true;  
-      root = "/var/www/wagtailgvcoop/"; 
+      forceSSL = true;
+      root = "/var/www/wagtailgvcoop/";
       locations."/" = {
         proxyPass = "http://localhost:8905/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
+          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
@@ -129,6 +127,31 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.lesgrandsvoisins.com" = {
+      serverAliases = [ "lesgrandsvoisins.com" ];
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/wagtail-lesgrandsvoisinscom/";
+      locations."/" = {
+        proxyPass = "http://localhost:8906/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          if ($host = 'lesgrandsvoisins.com') {
+            return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+          }
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.lesgrandsvoisins.fr" = {
       serverAliases = [
         "www.coopgv.com"
         "coopgv.com"
@@ -184,7 +207,6 @@ in {
         "lesgv.com"
         "lgv.info"
         "www.lgv.info"
-        "www.lesgrandsvoisins.fr"
         "lesgrandsvoisins.fr"
       ];
       enableACME = true;
@@ -196,12 +218,9 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.fr/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
           if ($host = 'lgv.info') {
             return 301 $scheme://www.lgv.info$request_uri;
-          }
-          if ($host = 'lesgrandsvoisins.com') {
-            return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
           }
           if ($host = 'lesgrandsvoisins.fr') {
             return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
@@ -211,9 +230,6 @@ in {
           }
           if ($host = 'lesgv.org') {
             return 301 $scheme://www.lesgv.org$request_uri;
-          }
-          if ($host = 'gv.coop') {
-            return 301 $scheme://www.gv.coop$request_uri;
           }
           if ($host = 'parisle.com') {
             return 301 $scheme://www.parisle.com$request_uri;
@@ -289,7 +305,7 @@ in {
     # };
     "old.gv.coop" = {
       enableACME = true;
-      serverAliases = [  ];
+      serverAliases = [ ];
       forceSSL = true;
       root = "/var/www/village/";
       # extraConfig = ''
@@ -848,14 +864,14 @@ in {
       forceSSL = true;
       globalRedirect = "www.lesgrandsvoisins.com";
     };
-    "lesgrandsvoisins.com" = {
-      # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
-      # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
-      # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
-      enableACME = true;
-      forceSSL = true;
-      globalRedirect = "www.lesgrandsvoisins.com";
-    };
+    # "lesgrandsvoisins.com" = {
+    #   # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
+    #   # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
+    #   # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   globalRedirect = "www.lesgrandsvoisins.com";
+    # };
     "older.lesgrandsvoisins.com" = {
       # serverAliases = ["lesgrandsvoisins.com"];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
