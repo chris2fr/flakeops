@@ -193,7 +193,7 @@ in
       users.groups.wwwrun.gid = 54;
       users.groups.wwwrun.members = [ "wagtail" ];
       nix.settings.experimental-features = "nix-command flakes";
-      time.timeZone = "Europe/Amsterdam";
+      time.timeZone = "Europe/Paris";
       system.stateVersion = "24.11";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {

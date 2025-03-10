@@ -95,6 +95,27 @@ in
       # nodejs_18
     ];
   };
+  services.mysql = {
+    ensureDatabases = [
+      "ghost"
+      "ghostlesgrandsvoisinscom"
+    ];
+    ensureUsers = [
+      {
+        name = "ghost";
+        ensurePermissions = {
+          "ghost.*" = "ALL PRIVILEGES";
+          "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
+        };
+      }
+      {
+        name = "ghostlesgrandsvoisinscom";
+        ensurePermissions = {
+          "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+  };
   # home-manager.users.ghost = {pkgs, ...}: {
   #   home.stateVersion = "24.11";
   #   programs.home-manager.enable = true;
