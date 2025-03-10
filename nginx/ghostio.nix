@@ -19,5 +19,13 @@ in
         proxyPass = "http://localhost:2368/";
       };
     };
+    "ghost.lesgrandsvoisins.com" = {
+      root = "/home/ghost/ghostlesgrandsvoisinscom/";
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:2369/";
+      };
+    };
   };
 }

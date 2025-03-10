@@ -87,7 +87,7 @@ in
     wantedBy = [ "multi-user.target" ];
   };
   systemd.services.ghostlesgrandsvoisinscom = {
-    enable = false;
+    enable = true;
     description = "Ghost systemd service for ghost.lesgrandsvoisins.com: localhost";
     environment = {
       NODE_ENV = "production";
@@ -123,7 +123,7 @@ in
           "ghost.*" = "ALL PRIVILEGES";
           "gvoisin.*" = "ALL PRIVILEGES";
           "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
-          "*.*" = "SELECT, LOCK TABLES, SHOW VIEW, RELOAD";
+          # "*.*" = "SELECT, LOCK TABLES, SHOW VIEW, RELOAD";
         };
       }
       {
