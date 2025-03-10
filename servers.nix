@@ -72,7 +72,7 @@ in
 
   systemd.services.ghostio = {
     enable = true;
-    description = "Ghost systemd service for blog: localhost";
+    description = "Ghost systemd service for blog.lesgrandsvoisins.fr: localhost";
     environment = {
       NODE_ENV = "production";
     };
@@ -88,7 +88,7 @@ in
   };
   systemd.services.ghostlesgrandsvoisinscom = {
     enable = true;
-    description = "Ghost systemd service for ghost.lesgrandsvoisins.com: localhost";
+    description = "Ghost systemd service for blog.lesgrandsvoisins.com: localhost";
     environment = {
       NODE_ENV = "production";
     };

@@ -10,7 +10,7 @@ in
     #   serverAliases = ["blog.resdigita.com" "blog.desgrandsvoisins.com"];
     #   globalRedirect = "blog.lesgrandsvoisins.com";
     # };
-    "blog.lesgrandsvoisins.com" = {
+    "blog.lesgrandsvoisins.fr" = {
       serverAliases = [ "ghost.lesgv.org" ];
       root = "/var/www/ghostio/";
       enableACME = true;
@@ -19,7 +19,7 @@ in
         proxyPass = "http://localhost:2368/";
       };
     };
-    "ghost.lesgrandsvoisins.com" = {
+    "blog.lesgrandsvoisins.com" = {
       root = "/home/ghost/ghostlesgrandsvoisinscom/";
       enableACME = true;
       forceSSL = true;
