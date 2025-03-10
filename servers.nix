@@ -123,6 +123,7 @@ in
           "ghost.*" = "ALL PRIVILEGES";
           "gvoisin.*" = "ALL PRIVILEGES";
           "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
+          "*.*" = "SELECT, LOCK TABLES, SHOW VIEW, RELOAD";
         };
       }
       {
