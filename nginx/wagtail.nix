@@ -109,10 +109,10 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8905/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
+          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -134,10 +134,13 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8906/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
           if ($host = 'lesgrandsvoisins.com') {
             return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
           }
+          if ($host = 'grandsvoisins.com') {
+            return 301 $scheme://www.grandsvoisins.com$request_uri;
+          }
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -199,8 +202,6 @@ in {
         "wiki.parisle.com"
         "grandsvoisins.org"
         "www.grandsvoisins.org"
-        "grandsvoisins.com"
-        "www.grandsvoisins.com"
         "yanlomsprod.parisle.com"
         "yanlomsprod.parisle.org"
         "www.lesgv.org"
@@ -220,7 +221,9 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.fr/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          if ($host = 'grandsvoisins.org') {
+            return 301 $scheme://www.grandsvoisins.org$request_uri;
+          }
           if ($host = 'lgv.info') {
             return 301 $scheme://www.lgv.info$request_uri;
           }
@@ -251,6 +254,7 @@ in {
           if ($host = 'grandsvoisins.com') {
             return 301 $scheme://www.grandsvoisins.com$request_uri;
           }
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
