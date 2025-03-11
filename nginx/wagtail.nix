@@ -135,9 +135,10 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8906/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host != 'www.grandsvoisins.com') {
-            return 301 $scheme://www.grandsvoisins.com$request_uri;
-          }
+          return 302 $scheme://www.grandsvoisins.org$request_uri;
+          # if ($host != 'www.grandsvoisins.com') {
+          #   return 301 $scheme://www.grandsvoisins.com$request_uri;
+          # }
           if ($host = 'lesgrandsvoisins.com') {
             return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
           }
@@ -225,7 +226,7 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          return 302 $scheme://www.grandsvoisins.com$request_uri;
+          # return 302 $scheme://www.grandsvoisins.com$request_uri;
           if ($host = 'grandsvoisins.org') {
             return 301 $scheme://www.grandsvoisins.org$request_uri;
           }
@@ -255,9 +256,6 @@ in {
           }
           if ($host = 'grandsvoisins.org') {
             return 301 $scheme://www.grandsvoisins.org$request_uri;
-          }
-          if ($host = 'grandsvoisins.com') {
-            return 301 $scheme://www.grandsvoisins.com$request_uri;
           }
           rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
