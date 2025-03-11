@@ -639,6 +639,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8895.lesgrandsvoisins.com" = {
+      serverAliases = [ "8895.grandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/villagengo/";
@@ -956,6 +957,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8008.lesgrandsvoisins.com" = {
+      serverAliases = [ "8008.grandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -969,6 +971,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8893.lesgrandsvoisins.com" = {
+      serverAliases = [ "8893.grandsvoisins.com" ];
       root = "/var/www/www-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8893/";
@@ -982,6 +985,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8892.lesgrandsvoisins.com" = {
+      serverAliases = [ "8892.grandsvoisins.com" ];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8892/";
@@ -995,6 +999,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8890.lesgrandsvoisins.com" = {
+      serverAliases = [ "8890.grandsvoisins.com" ];
       root = "/var/www/wagtail-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8890/";
@@ -1008,6 +1013,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8894.lesgrandsvoisins.com" = {
+      serverAliases = [ "8894.grandsvoisins.com" ];
       root = "/var/www/lesgrandsvoisins/";
       locations."/" = {
         proxyPass = "http://localhost:8894/";
@@ -1021,6 +1027,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8904.lesgrandsvoisins.com" = {
+      serverAliases = [ "8904.grandsvoisins.com" ];
       root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
@@ -1033,7 +1040,8 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "8905.grandsvoisins.com" = {
+    "8905.lesgrandsvoisins.com" = {
+      serverAliases = [ "8905.grandsvoisins.com" ];
       root = "/var/www/wagtailgvcoop/";
       locations."/" = {
         proxyPass = "http://localhost:8905/";
@@ -1046,7 +1054,8 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "8906.grandsvoisins.com" = {
+    "8906.lesgrandsvoisins.com" = {
+      serverAliases = [ "8906.grandsvoisins.com" ];
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
       locations."/" = {
         proxyPass = "http://localhost:8906/";
@@ -1060,6 +1069,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8888.lesgrandsvoisins.com" = {
+      serverAliases = [ "8888.grandsvoisins.com" ];
       root = "/var/www/francemali/";
       locations."/" = {
         proxyPass = "http://localhost:8888/";
@@ -1073,6 +1083,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8896.lesgrandsvoisins.com" = {
+      serverAliases = [ "8896.grandsvoisins.com" ];
       root = "/var/www/village/";
       locations."/" = {
         proxyPass = "http://localhost:8896/";
@@ -1086,6 +1097,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8900.lesgrandsvoisins.com" = {
+      serverAliases = [ "8900.grandsvoisins.com" ];
       root = "/var/www/cantine/";
       locations."/" = {
         proxyPass = "http://localhost:8900/";
@@ -1099,6 +1111,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8889.lesgrandsvoisins.com" = {
+      serverAliases = [ "8889.grandsvoisins.com" ];
       root = "/var/www/cfran/";
       locations."/" = {
         proxyPass = "http://localhost:8889/";
@@ -1112,6 +1125,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8897.lesgrandsvoisins.com" = {
+      serverAliases = [ "8897.grandsvoisins.com" ];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8897/";
@@ -1125,6 +1139,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8899.lesgrandsvoisins.com" = {
+      serverAliases = [ "8899.grandsvoisins.com" ];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://localhost:8899/";
@@ -1138,6 +1153,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8891.lesgrandsvoisins.com" = {
+      serverAliases = [ "8891.grandsvoisins.com" ];
       root = "/var/www/django-village/";
       locations."/" = {
         proxyPass = "http://localhost:8891/";
