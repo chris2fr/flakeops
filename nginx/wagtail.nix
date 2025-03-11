@@ -126,8 +126,8 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.lesgrandsvoisins.com" = {
-      serverAliases = [ "lesgrandsvoisins.com" ];
+    "www.grandsvoisins.com" = {
+      serverAliases = [ "lesgrandsvoisins.com" "grandsvoisins.com" "www.lesgrandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
@@ -151,8 +151,10 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.lesgrandsvoisins.fr" = {
+    "www.grandsvoisins.org" = {
       serverAliases = [
+        "www.lesgrandsvoisins.fr"
+        "grandsvoisins.org"
         "www.coopgv.com"
         "coopgv.com"
         "test.lesgrandsvoisins.com"
