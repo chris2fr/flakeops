@@ -1033,6 +1033,32 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "8905.grandsvoisins.com" = {
+      root = "/var/www/wagtailgvcoop/";
+      locations."/" = {
+        proxyPass = "http://localhost:8905/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME = true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8906.grandsvoisins.com" = {
+      root = "/var/www/wagtail-lesgrandsvoisinscom/";
+      locations."/" = {
+        proxyPass = "http://localhost:8906/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME = true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "8888.lesgrandsvoisins.com" = {
       root = "/var/www/francemali/";
       locations."/" = {
