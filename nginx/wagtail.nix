@@ -109,6 +109,7 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8905/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
+        return 302 $scheme://www.grandsvoisins.com$request_uri;
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
@@ -134,6 +135,9 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8906/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
+          if ($host != 'www.grandsvoisins.com') {
+            return 301 $scheme://www.grandsvoisins.com$request_uri;
+          }
           if ($host = 'lesgrandsvoisins.com') {
             return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
           }
@@ -221,6 +225,7 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
+          return 302 $scheme://www.grandsvoisins.com$request_uri;
           if ($host = 'grandsvoisins.org') {
             return 301 $scheme://www.grandsvoisins.org$request_uri;
           }
