@@ -82,6 +82,7 @@ in {
         "grandsvoisins.com" 
         "grandsvoisins.org"
         "gv.coop" 
+        "libregood.com" 
         "gvcoop.com"
         "interet-public.org" 
         "interetpublic.org" 
@@ -120,6 +121,7 @@ in {
         "www.lesgv.org"
         "www.lesgv.com"
         "www.lgv.info"
+        "www.libregood.com"
         # "www.hopgv.org"
       ];
       enableACME = true;
