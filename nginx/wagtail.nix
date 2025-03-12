@@ -71,6 +71,9 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "lgv.info" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/html/";
       serverAliases = [ 
         # "hopgv.org"
         "lesgv.com"
