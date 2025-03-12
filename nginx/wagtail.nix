@@ -33,42 +33,12 @@ in {
       forceSSL = true;
       root = "/var/www/interetpublic";
       serverAliases =
-        [ "interet-public.org" "interetpublic.org" "www.interetpublic.org" ];
+        [ "www.interetpublic.org" ];
       locations."/".extraConfig = ''
         if ($host != "www.interet-public.org") {
           return 301 $scheme://www.interet-public.org$request_uri;
         }
       '';
-    };
-    "interetpublic.org" = {
-      enableACME = true;
-      forceSSL = true;
-      # globalRedirect = "www.interetpublic.com";
-      locations."/".return = "301 https://www.interetpublic.org";
-    };
-    "hopgv.org" = {
-      serverAliases = [
-        # "facile.lesgrandsvoisins.com"
-        # "hopgv.com"
-        # "www.gvois.com"
-        "www.hopgv.org"
-        # "gvpublic.com"
-        # "gvpublic.org"
-        # "gvois.com"
-        # "gvois.org"
-        # "www.gvois.org"
-        # "www.gvpublic.org"
-        # "www.gvpublic.com"
-        # "fastoche.org"
-        # "www.hopgv.com"
-        # "gv.fastoche.org"
-        # "gv.village.ong"
-        # "gv.villagengo.com"
-        # "gv.villagengo.org"
-      ];
-      enableACME = true;
-      forceSSL = true;
-      globalRedirect = "www.gv.coop";
     };
     "gv.village.ngo" = {
       enableACME = true;
@@ -84,7 +54,6 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "old.lesgrandsvoisins.com" = {
-      serverAliases = [ ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/lesgrandsvoisins/";
@@ -101,8 +70,55 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "lgv.info" = {
+      serverAliases = [ 
+        "hopgv.org"
+        "lesgv.com"
+        "coopgv.com"
+        "coopgv.org"
+        "grandsvoisins.com" 
+        "grandsvoisins.org"
+        "gv.coop" 
+        "gvcoop.com"
+        "interet-public.org" 
+        "interetpublic.org" 
+        "lesgrandsvoisins.com" 
+        "lesgrandsvoisins.fr"
+        "lesgv.org"
+        "ngovillage.org"
+        "ngvillage.org"
+        "ongovillage.com"
+        "ongovillage.org"
+        "ongvillage.com"
+        "ongvillage.org"
+        "parisle.com"
+        "parisle.org"
+        "parislenuage.com" 
+        "resdigita.com"
+        "resdigita.org"
+        "shitmuststop.com"
+        "village.ngo"
+        "village.ong"
+        "villagengo.com"
+        "villagengo.org"
+        "villageparis.org"
+        # "syprete.com"
+        "cfran.org"
+        "l-g-v.org"
+        "l-g-v.com"
+         "maelanc.com"
+      ];
+      extraConfig = ''
+        return 301 $scheme://www.$host$request_uri;
+      '';
+    };
     "www.gv.coop" = {
-      serverAliases = [ "gv.coop" ];
+      serverAliases = [
+        "www.lesgv.org"
+        "www.lesgv.com"
+        "www.lgv.info"
+        "www.hopgv.org"
+      ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtailgvcoop/";
@@ -128,7 +144,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.grandsvoisins.com" = {
-      serverAliases = [ "lesgrandsvoisins.com" "grandsvoisins.com" "www.lesgrandsvoisins.com" ];
+      serverAliases = [ "www.lesgrandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
@@ -161,39 +177,28 @@ in {
     };
     "www.grandsvoisins.org" = {
       serverAliases = [
-        "www.lesgrandsvoisins.fr"
-        "grandsvoisins.org"
-        "www.coopgv.com"
-        "coopgv.com"
-        "test.lesgrandsvoisins.com"
-        "alt.lesgrandsvoisins.com"
-        "en.lesgrandsvoisins.com"
-        "fr.lesgrandsvoisins.com"
-        "gvcoop.lesgrandsvoisins.com"
-        # "old.lesgrandsvoisins.com"
-        # "excellenxport.hopgv.com"
-        "parisle.com"
-        "www.parisle.com"
-        "parisle.org"
-        "www.parisle.org"
-        "cloud.parisle.com"
-        "mail.parisle.com"
-        "mail.parisle.org"
-        "id.parisle.com"
         "admin.parisle.com"
         "ai.parisle.com"
+        "alt.lesgrandsvoisins.com"
         "backup.parisle.com"
         "blog.parisle.com"
         "cal.parisle.com"
+        "cloud.parisle.com"
         "code.parisle.com"
         "contacts.parisle.com"
         "discussion.parisle.com"
         "docs.parisle.com"
         "drive.parisle.com"
+        "en.lesgrandsvoisins.com"
         "finance.parisle.com"
         "forms.parisle.com"
         "forum.parisle.com"
+        "fr.lesgrandsvoisins.com"
+        "gvcoop.lesgrandsvoisins.com"
+        "id.parisle.com"
         "list.parisle.com"
+        "mail.parisle.com"
+        "mail.parisle.org"
         "meet.parisle.com"
         "net.parisle.com"
         "pay.parisle.com"
@@ -202,20 +207,19 @@ in {
         "sites.parisle.com"
         "sync.parisle.com"
         "task.parisle.com"
+        "test.lesgrandsvoisins.com"
         "url.parisle.com"
         "videos.parisle.com"
         "wiki.parisle.com"
-        "grandsvoisins.org"
+        "www.coopgv.com"
         "www.grandsvoisins.org"
+        "www.lesgrandsvoisins.fr"
+        "www.parisle.com"
+        "www.parisle.org"
         "yanlomsprod.parisle.com"
         "yanlomsprod.parisle.org"
-        "www.lesgv.org"
-        "lesgv.org"
-        "www.lesgv.com"
-        "lesgv.com"
-        "lgv.info"
-        "www.lgv.info"
-        "lesgrandsvoisins.fr"
+        # "excellenxport.hopgv.com"
+        # "old.lesgrandsvoisins.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -286,7 +290,6 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.parislenuage.com" = {
-      serverAliases = [ "parislenuage.com" ];
       locations."/" = {
         extraConfig = ''
           return 302 $scheme://www.parisle.com$request_uri;
@@ -314,7 +317,6 @@ in {
     # };
     "old.gv.coop" = {
       enableACME = true;
-      serverAliases = [ ];
       forceSSL = true;
       root = "/var/www/village/";
       # extraConfig = ''
@@ -336,7 +338,6 @@ in {
     };
     "www.village.ong" = {
       enableACME = true;
-      serverAliases = [ "village.ong" ];
       forceSSL = true;
       root = "/var/www/village/";
       extraConfig = ''
@@ -396,23 +397,13 @@ in {
       serverAliases = [
         "www.villagengo.org"
         "www.villagengo.com"
-        "village.ngo"
-        "villagengo.org"
-        "villagengo.com"
-        "villageparis.org"
         "www.villageparis.org"
-        "ngovillage.org"
         "www.ngovillage.org"
-        "ngvillage.org"
         "www.ngvillage.org"
         "www.ongovillage.com"
-        "ongovillage.com"
         "www.ongovillage.org"
-        "ongovillage.org"
         "www.ongvillage.org"
-        "ongvillage.org"
         "www.ongvillage.com"
-        "ongvillage.com"
       ];
       forceSSL = true;
       root = "/var/www/village/";
@@ -471,7 +462,7 @@ in {
     # };
     "web.cfran.org" = {
       enableACME = true;
-      serverAliases = [ "cfran.org" "www.cfran.org" "web.fastoche.org" ];
+      serverAliases = [  "www.cfran.org" "web.fastoche.org" ];
       forceSSL = true;
       root = "/var/www/web-fastoche/";
       # extraConfig = ''
@@ -515,13 +506,11 @@ in {
       enableACME = true;
       forceSSL = true;
       serverAliases = [
-        "resdigita.org"
         "en.resdigita.com"
         "fr.resdigita.com"
         "en.resdigita.org"
         "fr.resdigita.org"
         "www.resdigita.com"
-        "resdigita.com"
       ];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
@@ -667,7 +656,6 @@ in {
         #  "gvoisin.lesgrandsvoisins.com"
         #  "gvoisin.desgv.com"
         #  "gvoisin.lesgv.com"
-        "syprete.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -694,9 +682,7 @@ in {
         # "www.coopgv.com"
         # "coopgv.com"
         "www.coopgv.org"
-        "coopgv.org"
         "www.gvcoop.com"
-        "gvcoop.com"
         # "gv.coop"
         # "www.gv.coop"  
         # "wagtail.gv.coop"
@@ -798,11 +784,8 @@ in {
       serverAliases = [
         # "desgv.com" 
         "francemali.lesgrandsvoisins.com"
-        "shitmuststop.com"
         "www.shitmuststop.com"
         "www.coopgv.com"
-        "coopgv.com"
-        "coopgv.org"
         "ghost.resdigita.com"
         "listmonk.resdigita.com"
       ];
@@ -865,8 +848,8 @@ in {
     #    enableACME = true;
     #    forceSSL = true;
     # };
-    "l-g-v.com" = {
-      serverAliases = [ "www.l-g-v.com" "l-g-v.org" "www.l-g-v.org" ];
+    "www.l-g-v.com"  = {
+      serverAliases = [   "www.l-g-v.org" ];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
@@ -900,7 +883,6 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.maelanc.com" = {
-      serverAliases = [ "maelanc.com" ];
       enableACME = true;
       forceSSL = true;
 
