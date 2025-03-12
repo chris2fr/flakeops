@@ -72,7 +72,7 @@ in {
     };
     "lgv.info" = {
       serverAliases = [ 
-        "hopgv.org"
+        # "hopgv.org"
         "lesgv.com"
         "coopgv.com"
         "coopgv.org"
@@ -117,7 +117,7 @@ in {
         "www.lesgv.org"
         "www.lesgv.com"
         "www.lgv.info"
-        "www.hopgv.org"
+        # "www.hopgv.org"
       ];
       enableACME = true;
       forceSSL = true;
