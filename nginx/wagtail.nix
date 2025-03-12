@@ -109,7 +109,7 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8905/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-        return 302 $scheme://www.grandsvoisins.com$request_uri;
+        # return 302 $scheme://www.grandsvoisins.com$request_uri;
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
