@@ -154,16 +154,10 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8906/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          # return 302 $scheme://www.grandsvoisins.org$request_uri;
-          if ($host != 'www.grandsvoisins.com') {
-            return 301 $scheme://www.grandsvoisins.com$request_uri;
-          }
-          # if ($host = 'lesgrandsvoisins.com') {
-          #   return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+          return 301 $scheme://www.grandsvoisins.org$request_uri;
+          # if ($host != 'www.grandsvoisins.com') {
+          #   return 301 $scheme://www.grandsvoisins.com$request_uri;
           # }
-          if ($host = 'grandsvoisins.com') {
-            return 301 $scheme://www.grandsvoisins.com$request_uri;
-          }
           rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
         '';
       };
@@ -215,7 +209,6 @@ in {
         "videos.parisle.com"
         "wiki.parisle.com"
         "www.coopgv.com"
-        "www.grandsvoisins.org"
         "www.lesgrandsvoisins.fr"
         "www.parisle.com"
         "www.parisle.org"
@@ -233,37 +226,40 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          return 302 $scheme://www.grandsvoisins.com$request_uri;
-          if ($host = 'grandsvoisins.org') {
+          # return 302 $scheme://www.grandsvoisins.com$request_uri;
+          if ($host != 'www.grandsvoisins.org') {
             return 301 $scheme://www.grandsvoisins.org$request_uri;
           }
-          if ($host = 'lgv.info') {
-            return 301 $scheme://www.lgv.info$request_uri;
-          }
-          if ($host = 'lesgrandsvoisins.fr') {
-            return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
-          }
-          if ($host = 'lesgv.com') {
-            return 301 $scheme://www.lesgv.com$request_uri;
-          }
-          if ($host = 'lesgv.org') {
-            return 301 $scheme://www.lesgv.org$request_uri;
-          }
-          if ($host = 'parisle.com') {
-            return 301 $scheme://www.parisle.com$request_uri;
-          }
-          if ($host = 'yanlomsprod.parisle.org') {
-            return 301 $scheme://yanlomsprod.parisle.com$request_uri;
-          }
-          if ($host = 'coopgv.com') {
-            return 301 $scheme://www.coopgv.com$request_uri;
-          }
-          if ($host = 'parisle.org') {
-            return 301 $scheme://www.parisle.org$request_uri;
-          }
-          if ($host = 'grandsvoisins.org') {
-            return 301 $scheme://www.grandsvoisins.org$request_uri;
-          }
+          # if ($host = 'grandsvoisins.org') {
+          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
+          # }
+          # if ($host = 'lgv.info') {
+          #   return 301 $scheme://www.lgv.info$request_uri;
+          # }
+          # if ($host = 'lesgrandsvoisins.fr') {
+          #   return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
+          # }
+          # if ($host = 'lesgv.com') {
+          #   return 301 $scheme://www.lesgv.com$request_uri;
+          # }
+          # if ($host = 'lesgv.org') {
+          #   return 301 $scheme://www.lesgv.org$request_uri;
+          # }
+          # if ($host = 'parisle.com') {
+          #   return 301 $scheme://www.parisle.com$request_uri;
+          # }
+          # if ($host = 'yanlomsprod.parisle.org') {
+          #   return 301 $scheme://yanlomsprod.parisle.com$request_uri;
+          # }
+          # if ($host = 'coopgv.com') {
+          #   return 301 $scheme://www.coopgv.com$request_uri;
+          # }
+          # if ($host = 'parisle.org') {
+          #   return 301 $scheme://www.parisle.org$request_uri;
+          # }
+          # if ($host = 'grandsvoisins.org') {
+          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
+          # }
           rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
