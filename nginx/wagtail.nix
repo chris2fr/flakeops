@@ -110,7 +110,9 @@ in {
         "cfran.org"
         "l-g-v.org"
         "l-g-v.com"
-         "maelanc.com"
+        "maelanc.com"
+        "gdvoisins.com"
+        "gdvoisins.org"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -122,6 +124,8 @@ in {
         "www.lesgv.com"
         "www.lgv.info"
         "www.libregood.com"
+        "www.gdvoisins.com"
+        "www.gdvoisins.org"
         # "www.hopgv.org"
       ];
       enableACME = true;
