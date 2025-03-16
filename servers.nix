@@ -131,6 +131,7 @@ in
     ensureDatabases = [
       "ghost"
       "ghostlesgrandsvoisinscom"
+      "ghostresdigitacom"
     ];
     ensureUsers = [
       {
@@ -139,6 +140,7 @@ in
           "ghost.*" = "ALL PRIVILEGES";
           "gvoisin.*" = "ALL PRIVILEGES";
           "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
+          "ghostresdigitacom.*" = "ALL PRIVILEGES";
           # "*.*" = "SELECT, LOCK TABLES, SHOW VIEW, RELOAD";
         };
       }
@@ -146,6 +148,12 @@ in
         name = "ghostlesgrandsvoisinscom";
         ensurePermissions = {
           "ghostlesgrandsvoisinscom.*" = "ALL PRIVILEGES";
+        };
+      }
+      {
+        name = "ghostresdigitacom";
+        ensurePermissions = {
+          "ghostresdigitacom.*" = "ALL PRIVILEGES";
         };
       }
     ];
