@@ -473,7 +473,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/wagtail.resdigita.com.main/";
-          ExecStart = ''/home/wagtail/wagtail.resdigita.com.main/.venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-resdigita-com-main-access.log --error-logfile /var/log/wagtail/wagtail-resdigita-com-main-error.log --chdir /home/wagtail/wagtail.resdigita.com.main --workers 12 --bind 0.0.0.0:8903 wagtailresdigitacom.wsgi:application'';
+          ExecStart = ''/home/wagtail/wagtail.resdigita.com.main/.venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-resdigita-com-main-access.log --error-logfile /var/log/wagtail/wagtail-resdigita-com-main-error.log --chdir /home/wagtail/wagtail.resdigita.com.main --workers 12 --bind 0.0.0.0:8903 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           EnvironmentFile = "/home/wagtail/wagtail.resdigita.com.main/.env";
