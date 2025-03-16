@@ -2,10 +2,10 @@
 let
 in
 {
-  containers.key = {
+  containers.keyresdigita = {
     bindMounts = {
-      "/var/lib/acme/key.lesgrandsvoisins.com/" = {
-        hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
+      "/var/lib/acme/key.resdigita.com/" = {
+        hostPath = "/var/lib/acme/key.resdigita.com/";
         isReadOnly = true;
       };
     };
@@ -51,7 +51,9 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
-        "f /etc/.secret.keydata 0660 root root"
+        "f /etc/.secret.keyresdigitadata 0660 root root"
+        "d /var/lib/acme/key.resdigita.com/ 0750 acme wwwrun"
+        "f /etc/.secrets.keyresdigita 0600 postgres postgres"
       ];
       # security.acme.acceptTerms = true;
       users = {
@@ -78,14 +80,23 @@ in
       };
       services = {
         resolved.enable = true;
-        postgresql.package = pkgs.postgresql_15;
+        postgresql = {
+          package = pkgs.postgresql_15;
+          enable = true;
+          ensureUsers = [{
+            name = "keyresdigita";
+            ensureDBOwnership = true;
+          }];
+          ensureDatabases = ["keyresdigita"];
+        };
         keycloak = {
           enable = true;
           database = {
-            username = "key";
+            username = "keyresdigita";
+            name = "keyresdigita";
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
-            passwordFile = "/etc/.secrets.key";
+            passwordFile = "/etc/.secrets.keyresdigita";
             # createLocally=false;
             # host="localhost";
             # useSSL = false;
@@ -96,11 +107,11 @@ in
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
-            hostname = "key.lesgrandsvoisins.com";
-            # hostname-admin = "adminkey.lesgrandsvoisins.com";
+            hostname = "key.resdigita.com";
+            # hostname-admin = "adminkey.resdigita.com";
           };
-          sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
-          sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
+          sslCertificate = "/var/lib/acme/key.resdigita.com/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/key.resdigita.com/key.pem";
           # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
         };
       };

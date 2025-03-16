@@ -38,6 +38,7 @@ in
     ./containers/discourse.nix
     ./containers/key.nix
     ./containers/keycloak.nix
+    ./containers/keyresdigita.nix
     ./containers/lgvldap.nix
     ./containers/openldap.nix
     ./containers/silverbullet.nix
