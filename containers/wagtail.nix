@@ -218,6 +218,9 @@ in
         python311Packages.pillow
         python311Packages.gunicorn
         python311Packages.pip
+        python311Packages.libsass
+        python311Packages.pyscss
+        python311Packages.django-libsass
         libjpeg
         zlib
         libtiff
@@ -252,6 +255,7 @@ in
         gcc
         glibcLocales
         libgcc
+        libsass
       ];
 
       # networking = {
