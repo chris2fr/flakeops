@@ -1,12 +1,12 @@
 { config, pkgs, lib, ... }:
 let
 in {
-  # systemd.tmpfiles.rules = [ "d /var/local/cherryldap 0755 cherryldap users" ];
-  users.users.cherryldap = {
+  # systemd.tmpfiles.rules = [ "d /var/local/roundcuberesdigitacom 0755 roundcuberesdigitacom users" ];
+  users.users.roundcuberesdigitacom = {
     isNormalUser = true;
     uid = 11111;
   };
-  containers.cherryldap = {
+  containers.roundcuberesdigitacom = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.106.1";

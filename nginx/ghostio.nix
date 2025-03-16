@@ -27,5 +27,13 @@ in
         proxyPass = "http://localhost:2369/";
       };
     };
+    "blog.resdigita.com" = {
+      root = "/home/ghost/ghostresdigitacom/";
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:2370/";
+      };
+    };
   };
 }
