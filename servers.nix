@@ -102,6 +102,22 @@ in
     };
     wantedBy = [ "multi-user.target" ];
   };
+  systemd.services.ghostresdigitacom = {
+    enable = true;
+    description = "Ghost systemd service for ghost.resdigita.com: localhost";
+    environment = {
+      NODE_ENV = "production";
+    };
+    documentation = [ "https://ghost.org/docs/" ];
+    serviceConfig = {
+      Type = "simple";
+      WorkingDirectory = "/var/www/ghostresdigitacom";
+      User = "ghost";
+      ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
+      Restart = "always";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
   users.users.ghost = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];

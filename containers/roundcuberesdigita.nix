@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
 in {
-  systemd.tmpfiles.rules = [ "d /var/local/cherryldap 0755 cherryldap users" ];
+  # systemd.tmpfiles.rules = [ "d /var/local/cherryldap 0755 cherryldap users" ];
   users.users.cherryldap = {
     isNormalUser = true;
     uid = 11111;
@@ -47,7 +47,7 @@ in {
         enable = true;
         # this is the url of the vhost, not necessarily the same as the fqdn of
         # the mailserver
-        hostName = "mail.lesgrandsvoisins.com";
+        hostName = "roundcube.resdigita.com";
         # dicts =  [ en fr de ];
         extraConfig = ''
           # starttls needed for authentication, so the fqdn required to match
@@ -65,16 +65,16 @@ in {
           # $config['oauth_scope'] = "openid dovecotprofile email";
           # $config['oauth_auth_parameters'] = [];
           # $config['oauth_identity_fields'] = ['email'];
-          $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
+          $config['generic_message_footer_html'] = '<a href="https://www.resdigita.com">Resdigita</a>';
           $config['session_samesite'] = "Lax";
-          $config['support_url'] = 'https://www.lesgrandsvoisins.com';
-          $config['product_name'] = 'Roundcube Webmail des GV';
+          $config['support_url'] = 'https://www.resdigita.com';
+          $config['product_name'] = 'Roundcube Webmail de resdigita';
           $config['session_debug'] = true;
-          $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+          $config['session_domain'] = 'roundcube.resdigita.com';
           $config['login_password_maxlen'] = 4096;
         '';
         dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
-        maxAttachmentSize = 75;
+        maxAttachmentSize = 200;
       };
       users.users.dovecot2.extraGroups = [ "wwwrun" ];
     };
