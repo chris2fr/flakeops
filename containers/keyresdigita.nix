@@ -53,7 +53,7 @@ in
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keyresdigitadata 0660 root root"
         "d /var/lib/acme/key.resdigita.com/ 0750 acme wwwrun"
-        "f /etc/.secrets.keyresdigita 0600 postgres postgres"
+        "f /etc/.secret.keyresdigita 0660 keycloak postgres"
       ];
       # security.acme.acceptTerms = true;
       users = {
@@ -66,6 +66,7 @@ in
             gid = 54;
             members = [ "acme" "wwwrun" ];
           };
+          "keycloak";
         };
         users = {
           "acme" = {
@@ -75,6 +76,9 @@ in
           "wwwrun" = {
             uid = 54;
             group = "wwwrun";
+          };
+          "keycloak" = {
+            group = "keycloak";
           };
         };
       };
@@ -96,7 +100,7 @@ in
             name = "keyresdigita";
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
-            passwordFile = "/etc/.secrets.keyresdigita";
+            passwordFile = "/etc/.secret.keyresdigita";
             # createLocally=false;
             # host="localhost";
             # useSSL = false;
