@@ -38,7 +38,7 @@ in
         git
         lynx
         openldap
-        postgresql_15
+        postgresql_17
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
@@ -86,7 +86,7 @@ in
       services = {
         resolved.enable = true;
         postgresql = {
-          package = pkgs.postgresql_15;
+          package = pkgs.postgresql_17;
           enable = true;
           ensureUsers = [{
             name = "keyresdigita";

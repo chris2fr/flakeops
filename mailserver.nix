@@ -7,6 +7,7 @@ let
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
     "resdigita.com"
+    "mail.resdigita.com"
     "lesgrandsvoisins.fr"
     "village.ngo"
     "village.ong"
