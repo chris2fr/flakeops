@@ -4,7 +4,7 @@ in {
   # systemd.tmpfiles.rules = [ "d /var/local/vikunjaresdigitacom 0755 vikunjaresdigitacom users" ];
   users.users.vikunjaresdigitacom = {
     isNormalUser = true;
-    uid = 11112;
+    uid = 11113;
   };
   containers.vikunjaresdigitacom = {
     autoStart = true;
