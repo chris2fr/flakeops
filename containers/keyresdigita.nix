@@ -79,6 +79,7 @@ in
           };
           "keycloak" = {
             group = "keycloak";
+            isSystemUser = true;
           };
         };
       };
