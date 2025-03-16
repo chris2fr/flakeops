@@ -97,14 +97,15 @@ in
         keycloak = {
           enable = true;
           database = {
-            username = "keyresdigita";
-            name = "keyresdigita";
+            # username = "keyresdigita";
+            # name = "keyresdigita";
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keyresdigita";
-            createLocally=false;
+            # createLocally=false;
             # host="localhost";
             # useSSL = false;
+            initialAdminPassword = "lksajdflkasjlkghk4h5t3573985798214dskjhgfkjsahf";
           };
           settings = {
             https-port = 14444;
