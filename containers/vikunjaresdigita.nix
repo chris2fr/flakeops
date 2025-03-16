@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
 in {
-  # systemd.tmpfiles.rules = [ "d /var/local/vikunjaresdigitacom 0755 vikunjaresdigitacom users" ];
+  systemd.tmpfiles.rules = [ "f /etc/.secrets.keyresdigita.vikunja.nix 0640 vikunjaresdigitacom users" ];
   users.users.vikunjaresdigitacom = {
     isNormalUser = true;
     uid = 11113;
@@ -85,7 +85,7 @@ in {
                   "https://key.resdigita.com/realms/master/protocol/openid-connect/logout";
                 clientid = "vikunja";
                 clientsecret =
-                  import ../secrets/keyresdigita.vikunja.nix;
+                  import /etc/.secrets.keyresdigita.vikunja.nix;
                 # clientsecret = config.age.secrets."keyresdigita.vikunja".path;
               }
               # {

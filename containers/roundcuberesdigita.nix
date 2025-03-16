@@ -45,6 +45,7 @@ in {
         ];
       services.roundcube = {
         enable = true;
+        configureNginx = false;
         # this is the url of the vhost, not necessarily the same as the fqdn of
         # the mailserver
         hostName = "roundcube.resdigita.com";
