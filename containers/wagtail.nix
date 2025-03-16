@@ -249,6 +249,8 @@ in
         nodejs_22
         yarn
         jq
+        gcc
+        glibcLocales
       ];
 
       # networking = {
