@@ -105,7 +105,6 @@ in
             # createLocally=false;
             # host="localhost";
             # useSSL = false;
-            initialAdminPassword = "lksajdflkasjlkghk4h5t3573985798214dskjhgfkjsahf";
           };
           settings = {
             https-port = 14444;
@@ -118,6 +117,7 @@ in
           };
           sslCertificate = "/var/lib/acme/key.resdigita.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/key.resdigita.com/key.pem";
+          initialAdminPassword = "lksajdflkasjlkghk4h5t3573985798214dskjhgfkjsahf";
           # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
         };
       };
