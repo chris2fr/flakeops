@@ -66,7 +66,7 @@ in
             gid = 54;
             members = [ "acme" "wwwrun" ];
           };
-          "keycloak";
+          "keycloak" = {};
         };
         users = {
           "acme" = {
