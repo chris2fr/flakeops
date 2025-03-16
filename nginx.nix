@@ -294,6 +294,11 @@ in
           forceSSL = true;
           locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
+        # "roundcube.resdigita.com" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+
+        # };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
             "vaultwarden.gv.coop"

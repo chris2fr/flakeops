@@ -39,7 +39,7 @@ in
     ./containers/key.nix
     ./containers/keycloak.nix
     ./containers/keyresdigita.nix
-    ./containers/roundcuberesdigita.nix
+    # ./containers/roundcuberesdigita.nix
     ./containers/vikunjaresdigita.nix
     ./containers/lgvldap.nix
     ./containers/openldap.nix
