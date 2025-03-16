@@ -27,7 +27,8 @@ in
         proxyPass = "http://localhost:2369/";
       };
     };
-    "blog.resdigita.com" = {
+    "ghost.resdigita.com" = {
+      serverAliases = [ "blog.resdigita.com" ];
       root = "/home/ghost/ghostresdigitacom/";
       enableACME = true;
       forceSSL = true;
