@@ -251,6 +251,7 @@ in
         jq
         gcc
         glibcLocales
+        libgcc
       ];
 
       # networking = {
