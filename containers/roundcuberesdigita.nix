@@ -23,6 +23,16 @@ in {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
       system.stateVersion = "24.11";
+      networking = {
+        firewall.enable = false;
+        # firewall = {
+        #   enable = true;
+        #   allowedTCPPorts = [ 80 443 ];
+        # };
+        # Use systemd-resolved inside the container
+        useHostResolvConf = lib.mkForce false;
+      };
+      security.acme.acceptTerms = true;
       environment.systemPackages = with pkgs;
         [
           ((vim_configurable.override { }).customize {
