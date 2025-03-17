@@ -562,7 +562,7 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            proxyPass = "http://192.168.109.2:3456/";
+            proxyPass = "http://[fc00::9:2]:3456/";
             extraConfig = ''
               proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
