@@ -24,6 +24,7 @@ in {
       time.timeZone = "Europe/Paris";
       system.stateVersion = "24.11";
       networking = {
+        hostName = "vikunjaresdigitacom";
         firewall.enable = false;
         # firewall = {
         #   enable = true;
@@ -60,6 +61,7 @@ in {
         group = "vikunja";
       };
       users.groups."vikunja" = {};
+      services.resolved.enable = true;
       services.vikunja = {
         enable = true;
         frontendScheme = "https";
@@ -86,7 +88,7 @@ in {
           };
           service = { timezone = "Europe/Paris"; };
           auth = {
-            local.enabled = true;
+            local.enabled = false;
             openid.enabled = true;
             # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
             # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
@@ -99,8 +101,7 @@ in {
                 logouturl =
                   "https://key.resdigita.com/realms/master/protocol/openid-connect/logout";
                 clientid = "vikunja-resdigita-com";
-                clientsecret =
-                  import ../secrets/keyresdigita.vikunja.nix;
+                clientsecret = import ../secrets/keyresdigita.vikunja.nix;
                 # clientsecret = config.age.secrets."keyresdigita.vikunja".path;
               }
               # {
