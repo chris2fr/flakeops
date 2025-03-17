@@ -45,7 +45,10 @@ in {
         ];
       systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
       systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
-      users.users.vikunja.isSystemUser = true;
+      users.users.vikunja = {
+        isSystemUser = true;
+        group = "vikuja";
+      };
       users.groups.vikunja = {};
       services.vikunja = {
         enable = true;
