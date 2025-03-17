@@ -33,6 +33,13 @@ in {
         useHostResolvConf = lib.mkForce false;
       };
       security.acme.acceptTerms = true;
+      users.users.dovecot2 = {
+        group = "dovecot2";
+        uid = 46;
+      };
+      users.groups.dovecot2 = {
+        gid = 46;
+      };
       environment.systemPackages = with pkgs;
         [
           ((vim_configurable.override { }).customize {

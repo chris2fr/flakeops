@@ -86,7 +86,7 @@ in {
           };
           service = { timezone = "Europe/Paris"; };
           auth = {
-            local.enabled = false;
+            local.enabled = true;
             openid.enabled = true;
             # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
             # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
