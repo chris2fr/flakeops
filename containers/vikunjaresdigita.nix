@@ -47,9 +47,9 @@ in {
       systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
       users.users.vikunja = {
         isSystemUser = true;
-        group = "vikuja";
+        group = "vikunja";
       };
-      users.groups.vikunja = {};
+      users.groups."vikunja" = {};
       services.vikunja = {
         enable = true;
         frontendScheme = "https";
