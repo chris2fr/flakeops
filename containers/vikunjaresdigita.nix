@@ -45,6 +45,7 @@ in {
         ];
       systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
       systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
+      users.users.vikunja.isSystemUser = true;
       services.vikunja = {
         enable = true;
         frontendScheme = "https";
@@ -83,7 +84,7 @@ in {
                 authurl = "https://key.resdigita.com/realms/master";
                 logouturl =
                   "https://key.resdigita.com/realms/master/protocol/openid-connect/logout";
-                clientid = "vikunja";
+                clientid = "vikunja-resdigita-com";
                 clientsecret =
                   import ../secrets/keyresdigita.vikunja.nix;
                 # clientsecret = config.age.secrets."keyresdigita.vikunja".path;
