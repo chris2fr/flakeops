@@ -20,7 +20,7 @@ in
       };
     };
     "blog.lesgrandsvoisins.com" = {
-      root = "/home/ghost/ghostlesgrandsvoisinscom/";
+      root = "/var/www/ghostlesgrandsvoisinscom/";
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -29,7 +29,7 @@ in
     };
     "ghost.resdigita.com" = {
       serverAliases = [ "blog.resdigita.com" ];
-      root = "/home/ghost/ghostresdigitacom/";
+      root = "/var/www/ghostresdigitacom/";
       enableACME = true;
       forceSSL = true;
       locations."/" = {

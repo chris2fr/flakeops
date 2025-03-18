@@ -294,10 +294,15 @@ in
           forceSSL = true;
           locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
+        "publi.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+          root = "/var/www/publii";
+        };
         "roundcube.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
-          
+          root = "/var/www/roundcube";
         };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
