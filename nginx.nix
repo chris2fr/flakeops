@@ -294,7 +294,7 @@ in
           forceSSL = true;
           locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
-        "publi.resdigita.com" = {
+        "publii.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
           root = "/var/www/publii";
