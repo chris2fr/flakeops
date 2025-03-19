@@ -36,6 +36,7 @@ in
   systemd.tmpfiles.rules = [
     "d /var/www/key.lesgrandsvoisins.com 0755 www users -"
     "d /var/www/key.resdigita.com 0755 www users -"
+    "d /var/www/keycloak.paris14.cc 0755 www users -"
     "d /var/www/lesgrandsvoisins.com 0755 www users -"
     "d /var/www/lesgrandsvoisins 0755 wagtail users -"
     "d /var/www/lesgrandsvoisins/static 0755 wagtail users -"
