@@ -131,7 +131,7 @@ in
           mail = {
             outgoing = {
               serverAddress = "discourse.paris14.cc";
-              authentication = "login";
+              authentication = "plain";
               username = "nobody@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
               # port = 465;
