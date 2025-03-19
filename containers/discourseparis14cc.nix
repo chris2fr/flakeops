@@ -123,7 +123,7 @@ in
             # config.services.discourse.package.plugins.discourse-saml
           ];
           admin = {
-            email = "paris14ccadmin@lesgrandsvoisins.com";
+            email = "admin@paris14.cc";
             fullName = "Super Admin";
             username = "paris14ccadmin";
             passwordFile = "/etc/discourse/.paris14ccadmin";
@@ -131,7 +131,7 @@ in
           mail = {
             outgoing = {
               serverAddress = "discourse.paris14.cc";
-              authentication = "plain";
+              authentication = "login";
               username = "nobody@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
               # port = 465;
