@@ -125,7 +125,7 @@ in
           admin = {
             email = "admin@paris14.cc";
             fullName = "Super Admin";
-            username = "paris14ccadmin";
+            username = "adminparis14cc";
             passwordFile = "/etc/discourse/.paris14ccadmin";
           };
           mail = {

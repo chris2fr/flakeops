@@ -9,8 +9,7 @@ let
     # proxy_set_header Upgrade $http_upgrade;
     # proxy_set_header Connection $connection_upgrade_keepalive;
   '';
-in
-{
+in {
   imports = [
     ./nginx/authentik.nix
     ./nginx/crabfit.nix
@@ -31,7 +30,8 @@ in
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-      defaultListenAddresses = [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
+      defaultListenAddresses =
+        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
@@ -53,39 +53,41 @@ in
             keepalive 10;   
           '';
         };
-        "wagtailstatic".servers = {
-          "10.245.101.15:8888" = { };
-        };
+        "wagtailstatic".servers = { "10.245.101.15:8888" = { }; };
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
       };
       virtualHosts = {
         "www.paris14.cc" = {
           forceSSL = true;
           enableACME = true;
-          serverAliases = ["paris14.cc"];
+          serverAliases = [ "paris14.cc" ];
           root = "/var/www/paris14cc/";
           locations = {
-            "/media/cr".basicAuth = {
-              cc14 = "cc14";
-            };
+            "/media/cr".basicAuth = { cc14 = "cc14"; };
             "/".extraConfig = ''
               if ($host = 'paris14.cc') {
                 return 301 $scheme://www.paris14.cc$request_uri;
               }
-              '';
+            '';
           };
+        };        
+        "publii.paris14.cc" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/publiiparis14cc/";
         };
         "0.ipv6.lesgrandsvoisins.com" = {
-          listen = [{ addr = "[2a01:4f8:241:4faa::0]"; port = 80; }];
+          listen = [{
+            addr = "[2a01:4f8:241:4faa::0]";
+            port = 80;
+          }];
           root = "/var/www/html/";
         };
         "linkding.lesgrandsvoisins.com" = {
           root = "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
-          locations."/static/" = {
-            proxyPass = null;
-          };
+          locations."/static/" = { proxyPass = null; };
           locations."^/login/$" = {
             extraConfig = ''
               return 302 $scheme://linkding.lesgrandsvoisins.com/oidc/authenticate/;
@@ -115,11 +117,8 @@ in
         "www.villagegv.com" = {
           forceSSL = true;
           enableACME = true;
-          serverAliases = [
-            "villagegv.com"
-            "www.villagegv.org"
-            "villagegv.org"
-          ];
+          serverAliases =
+            [ "villagegv.com" "www.villagegv.org" "villagegv.org" ];
           root = "/var/www/village/";
           extraConfig = ''
             return 302 $scheme://www.village.ngo$request_uri;
@@ -292,9 +291,7 @@ in
           serverAliases = [ "pocket.resdigita.com" ];
           forceSSL = true;
           enableACME = true;
-          locations."/" = {
-            proxyPass = "http://localhost:8090";
-          };
+          locations."/" = { proxyPass = "http://localhost:8090"; };
         };
         "wordpress.resdigita.com" = {
           forceSSL = true;
@@ -343,7 +340,11 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = [ "uptime-kuma.lesgv.org" "uk.lesgv.org" "up.lesgrandsvoisins.com" ];
+          serverAliases = [
+            "uptime-kuma.lesgv.org"
+            "uk.lesgv.org"
+            "up.lesgrandsvoisins.com"
+          ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -377,7 +378,8 @@ in
           };
         };
         "ethercalc.resdigita.com" = {
-          serverAliases = [ "ethercalc.lesgv.org" "table.lesgrandsvoisins.com" ];
+          serverAliases =
+            [ "ethercalc.lesgv.org" "table.lesgrandsvoisins.com" ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -497,7 +499,8 @@ in
           enableACME = true;
           forceSSL = true;
           serverAliases = [ "ete.lesgrandsvoisins.com" ];
-          locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
+          locations."/".proxyPass =
+            "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "drive.lesgrandsvoisins.com" = {
           enableACME = true;
@@ -583,8 +586,7 @@ in
           };
         };
         "vikunja.resdigita.com" = {
-          serverAliases = [
-          ];
+          serverAliases = [ ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
