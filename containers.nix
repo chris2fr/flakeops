@@ -36,7 +36,7 @@ in
   imports = [
     ./containers/cherryldap.nix
     ./containers/discourse.nix
-    ./containers/discourseparis14cc.nix
+    # ./containers/discourseparis14cc.nix
     ./containers/key.nix
     ./containers/keycloak.nix
     ./containers/keyresdigita.nix
