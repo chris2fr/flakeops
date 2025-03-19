@@ -13,6 +13,8 @@ let
     "village.ong"
     "parisle.com"
     "parisle.org"
+    "paris14.cc"
+    "discourse.paris14.cc"
   ];
 in
 {

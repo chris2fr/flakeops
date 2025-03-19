@@ -129,7 +129,7 @@ in
               passwordFile = "/etc/.secrets.listlesgrandsvoisins";
               port = 587;
               forceTLS = true;
-              opensslVerifyMode = "none";
+              # opensslVerifyMode = "none";
             };
           };
         };
