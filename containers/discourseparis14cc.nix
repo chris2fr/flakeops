@@ -127,9 +127,9 @@ in
               authentication = "plain";
               username = "list@lesgrandsvoisins.com";
               passwordFile = "/etc/.secrets.listlesgrandsvoisins";
-              # port = 587;
-              # forceTLS = true;
-              # opensslVerifyMode = "none";
+              port = 587;
+              forceTLS = true;
+              opensslVerifyMode = "none";
             };
           };
         };
