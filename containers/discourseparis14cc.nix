@@ -69,10 +69,17 @@ in
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "nginx" "discourse" ];
+            members = [ "nginx" "discourse" "wwwrun" ];
+          };
+          "discourse" = {
+              members = [ "nginx" "discourse" "wwwrun" ];
           };
         };
         users = {
+          "discourse" = {
+            isSystemUser = true;
+            group = "discourse";
+          };
           "acme" = {
             uid = 994;
             group = "acme";
