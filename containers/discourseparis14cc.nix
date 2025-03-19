@@ -71,15 +71,15 @@ in
             gid = 54;
             members = [ "nginx" "discourse" "wwwrun" ];
           };
-          "discourse" = {
-              members = [ "nginx" "discourse" "wwwrun" ];
-          };
+          # "discourse" = {
+          #     members = [ "nginx" "discourse" "wwwrun" ];
+          # };
         };
         users = {
-          "discourse" = {
-            isSystemUser = true;
-            group = "discourse";
-          };
+          # "discourse" = {
+          #   isSystemUser = true;
+          #   group = "discourse";
+          # };
           "acme" = {
             uid = 994;
             group = "acme";
@@ -132,9 +132,12 @@ in
             outgoing = {
               serverAddress = "mail.lesgrandsvoisins.com";
               authentication = "plain";
+              # authentication = "login";
               username = "noreply@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
               # port = 465;
+              # forceTLS = true;
+              # port = 587;
               # forceTLS = true;
               # opensslVerifyMode = "none";
             };
