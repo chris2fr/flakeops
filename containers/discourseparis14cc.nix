@@ -125,8 +125,8 @@ in
             outgoing = {
               serverAddress = "mail.lesgrandsvoisins.com";
               authentication = "plain";
-              username = "list@lesgrandsvoisins.com";
-              passwordFile = "/etc/.secrets.listlesgrandsvoisins";
+              username = "nobody@discourse.paris14.cc";
+              passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
               port = 587;
               forceTLS = true;
               # opensslVerifyMode = "none";
