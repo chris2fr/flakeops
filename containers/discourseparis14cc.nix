@@ -130,9 +130,9 @@ in
           };
           mail = {
             outgoing = {
-              serverAddress = "discourse.paris14.cc";
+              serverAddress = "mail.lesgrandsvoisins.com";
               authentication = "plain";
-              username = "nobody@discourse.paris14.cc";
+              username = "noreply@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
               # port = 465;
               # forceTLS = true;
