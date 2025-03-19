@@ -85,6 +85,7 @@ in
       alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
       blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
       lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
+      @discourse.paris14.cc admin@discourse.paris14.cc
     '';
 
     memcached = {
