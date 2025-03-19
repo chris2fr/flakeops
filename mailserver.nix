@@ -97,6 +97,7 @@ in
 
   ###################################################################################################################################
   mailserver = {
+    enablePop3Ssl = true;
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
