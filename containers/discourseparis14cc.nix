@@ -130,7 +130,7 @@ in
           };
           mail = {
             outgoing = {
-              serverAddress = "mail.lesgrandsvoisins.com";
+              serverAddress = "discourse.paris14.cc";
               authentication = "plain";
               username = "nobody@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
