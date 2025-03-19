@@ -2,7 +2,7 @@
 let
 in
 {
-  containers.discourseparis14cc = {
+  containers.discoursecc = {
     bindMounts = {
       "/var/lib/acme/discourse.paris14.cc/" = {
         hostPath = "/var/lib/acme/discourse.paris14.cc/";
