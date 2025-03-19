@@ -134,8 +134,8 @@ in
               authentication = "plain";
               username = "nobody@discourse.paris14.cc";
               passwordFile = "/etc/.secrets.nobodydiscourseparis14cc";
-              port = 465;
-              # forceTLS = true;
+              # port = 465;
+              forceTLS = true;
               # opensslVerifyMode = "none";
             };
           };
