@@ -629,6 +629,8 @@ in {
         "discourse.paris14.cc" = {
           enableACME = true;
           forceSSL = true;
+          root = "/var/www/discoursecc";
+          locations."/images" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
               proxy_http_version 1.1;
