@@ -39,6 +39,7 @@ in
     ./containers/key.nix
     ./containers/keycloak.nix
     ./containers/keyresdigita.nix
+    ./containers/keycloakparis14cc.nix
     # ./containers/roundcuberesdigita.nix
     ./containers/vikunjaresdigita.nix
     ./containers/lgvldap.nix
