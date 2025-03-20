@@ -80,6 +80,7 @@ in {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/publiiparis14cc/";
+          locations."/".basicAuth = { cc14 = "cc14"; };
         };
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{
