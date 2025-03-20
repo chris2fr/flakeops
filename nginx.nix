@@ -68,6 +68,7 @@ in {
               if ($host = 'paris14.cc') {
                 return 301 $scheme://www.paris14.cc$request_uri;
               }
+              rewrite ^/$ /index.html redirect;
             '';
           };
         };        
@@ -190,8 +191,10 @@ in {
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.paris14.cc";
+          serverAliases = ["adminkeycloak.paris14.cc"];
           # globalRedirect = "keycloak.paris14.cc:14443";
           locations."/" = {
+            basicAuth = { cc14 = "cc14"; };
             proxyPass = "https://192.168.110.11:14445";
             extraConfig = ''
               rewrite ^/$ https://keycloak.paris14.cc/realms/master/account/applications redirect;
@@ -632,6 +635,7 @@ in {
           # root = "/var/www/discoursecc";
           # locations."/images" = { proxyPass = null; };
           locations."/" = {
+            basicAuth = { cc14 = "cc14"; };
             extraConfig = ''
               proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
