@@ -80,7 +80,16 @@ in {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/publiiparis14cc/";
-          locations."/".basicAuth = { cc14 = "cc14"; };
+          locations."/" = {
+            basicAuth = { cc14 = "cc14"; };
+            extraConfig = ''
+              add_header Last-Modified $date_gmt;
+              add_header Cache-Control 'no-store, no-cache';
+              if_modified_since off;
+              expires off;
+              etag off;
+            '';
+          };
         };
         "0.ipv6.lesgrandsvoisins.com" = {
           listen = [{
@@ -324,6 +333,13 @@ in {
           enableACME = true;
           forceSSL = true;
           root = "/var/www/publii";
+          locations."/".extraConfig = ''
+            add_header Last-Modified $date_gmt;
+            add_header Cache-Control 'no-store, no-cache';
+            if_modified_since off;
+            expires off;
+            etag off;
+          '';
         };
         "roundcube.resdigita.com" = {
           enableACME = true;
