@@ -64,7 +64,7 @@ in
     "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo"; };
     "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age; };
     # "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age; };
-    "email.list" = { file = ./secrets/email.list.age; group = "wwwrun"; mode = "770"; };
+    "email.list" = { file = ./secrets/email.list.age; group = "wwwrun"; mode = "664"; };
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
     "vikunja.env" = {
       file = ./secrets/vikunja.env.age;
