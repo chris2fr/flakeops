@@ -82,7 +82,8 @@ in {
           mailer = {
             enabled = true;
             host = "mail.lesgrandsvoisins.com";
-            authtype = "login";
+            authtype = "plain";
+            # authtype = "login";
             username = "list@lesgrandsvoisins.com";
             password.file = "/var/run/listatlesgrandsvoisinscom";
             # username = "list@resdigita.com";
