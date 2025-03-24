@@ -76,7 +76,9 @@ in {
             enabled = true;
             host = "mail.lesgrandsvoisins.com";
             authtype = "login";
-            username = "list@resdigita.com";
+            username = "list@lesgrandsvoisins.com";
+            password.file = config.age.secrets."email.list".path;
+            # username = "list@resdigita.com";
             # password.file = config.age.secrets."email.list".path;
           };
           defaultsettings = {
