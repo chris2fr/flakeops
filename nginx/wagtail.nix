@@ -112,6 +112,7 @@ in {
         "l-g-v.com"
         "maelanc.com"
         "gdvoisins.com"
+        "afriquepartenaires.org"
         "gdvoisins.org"
       ];
       extraConfig = ''
@@ -222,6 +223,7 @@ in {
         "yanlomsprod.parisle.org"
         # "excellenxport.hopgv.com"
         # "old.lesgrandsvoisins.com"
+        "www.afriquepartenaires.org"
       ];
       enableACME = true;
       forceSSL = true;
