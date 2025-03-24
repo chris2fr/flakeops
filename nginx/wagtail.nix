@@ -224,6 +224,7 @@ in {
         # "excellenxport.hopgv.com"
         # "old.lesgrandsvoisins.com"
         "www.afriquepartenaires.org"
+        "afriquepartenaires.grandsvoisins.org"
       ];
       enableACME = true;
       forceSSL = true;
