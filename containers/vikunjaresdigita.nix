@@ -13,6 +13,13 @@ in {
     localAddress = "192.168.109.2";
     hostAddress6 = "fc00::9:1";
     localAddress6 = "fc00::9:2";
+    bindMounts = {
+      "/var/run/listatlesgrandsvoisinscom" = {
+        hostPath = config.age.secrets."email.list".path;
+        isReadOnly = true;
+      };
+      # "/run/discourse/sockets/unicorn.sock"
+    };
     # bindMounts = {
     #   "///" = {
     #     hostPath = "///";
@@ -77,7 +84,7 @@ in {
             host = "mail.lesgrandsvoisins.com";
             authtype = "login";
             username = "list@lesgrandsvoisins.com";
-            password.file = config.age.secrets."email.list".path;
+            password.file = "/var/run/listatlesgrandsvoisinscom";
             # username = "list@resdigita.com";
             # password.file = config.age.secrets."email.list".path;
           };
