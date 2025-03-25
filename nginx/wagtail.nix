@@ -267,9 +267,9 @@ in {
           # if ($host = 'parisle.org') {
           #   return 301 $scheme://www.parisle.org$request_uri;
           # }
-          # if ($host = 'grandsvoisins.org') {
-          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
-          # }
+          if ($host = 'afriquepartenaires.grandsvoisins.org') {
+            return 301 $scheme://www.afriquepartenaires.org$request_uri;
+          }
           rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
