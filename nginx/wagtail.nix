@@ -153,7 +153,7 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.grandsvoisins.com" = {
+    "www.grandsvoisins.org" = {
       serverAliases = [ "www.lesgrandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
@@ -161,11 +161,11 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8906/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          return 301 $scheme://www.grandsvoisins.org$request_uri;
+          return 301 $scheme://www.grandsvoisins.com$request_uri;
           # if ($host != 'www.grandsvoisins.com') {
           #   return 301 $scheme://www.grandsvoisins.com$request_uri;
           # }
-          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          # rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -179,7 +179,7 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.grandsvoisins.org" = {
+    "www.grandsvoisins.com" = {
       serverAliases = [
         "admin.parisle.com"
         "ai.parisle.com"
