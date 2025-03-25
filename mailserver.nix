@@ -15,6 +15,7 @@ let
     "parisle.org"
     "paris14.cc"
     "discourse.paris14.cc"
+    "afriquepartenaires.org"
   ];
 in
 {
