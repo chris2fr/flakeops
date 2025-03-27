@@ -253,6 +253,7 @@ in {
         };
         # "ldap.gv.coop" = {
         "ldap.lesgrandsvoisins.com" = {
+          # serverAliases = ["lgvldap.lesgrandsvoisins.com"];
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };

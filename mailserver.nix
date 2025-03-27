@@ -16,6 +16,7 @@ let
     "paris14.cc"
     "discourse.paris14.cc"
     "afriquepartenaires.org"
+    "yanlomsprod.org"
   ];
 in
 {

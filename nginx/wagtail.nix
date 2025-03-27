@@ -113,6 +113,7 @@ in {
         "maelanc.com"
         "gdvoisins.com"
         "afriquepartenaires.org"
+        "yanlomsprod.org"
         "gdvoisins.org"
       ];
       extraConfig = ''
@@ -225,7 +226,7 @@ in {
         # "old.lesgrandsvoisins.com"
         "www.afriquepartenaires.org"
         "afriquepartenaires.grandsvoisins.org"
-
+        "www.yanlomsprod.org"
       ];
       enableACME = true;
       forceSSL = true;
