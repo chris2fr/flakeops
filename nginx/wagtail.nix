@@ -242,8 +242,8 @@ in {
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           # return 302 $scheme://www.grandsvoisins.com$request_uri;
-          if ($host = 'www.gvois.com') {
-            return 301 $scheme://www.gvois.org$request_uri;
+          if ($host = 'www.gvois.org') {
+            return 301 $scheme://www.gvois.com$request_uri;
           }
           # if ($host = 'grandsvoisins.org') {
           #   return 301 $scheme://www.grandsvoisins.org$request_uri;
