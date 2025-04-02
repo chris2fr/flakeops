@@ -115,6 +115,8 @@ in {
         "afriquepartenaires.org"
         "yanlomsprod.org"
         "gdvoisins.org"
+        "gvois.org"
+        "gvois.com"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -227,6 +229,8 @@ in {
         "www.afriquepartenaires.org"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
+        "www.gvois.org"
+        "www.gvois.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -238,9 +242,9 @@ in {
         # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           # return 302 $scheme://www.grandsvoisins.com$request_uri;
-          # if ($host != 'www.grandsvoisins.org') {
-          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
-          # }
+          if ($host == 'www.gvois.com') {
+            return 301 $scheme://www.gvois.org$request_uri;
+          }
           # if ($host = 'grandsvoisins.org') {
           #   return 301 $scheme://www.grandsvoisins.org$request_uri;
           # }
@@ -895,7 +899,6 @@ in {
     "www.maelanc.com" = {
       enableACME = true;
       forceSSL = true;
-
       locations."/" = {
         proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
