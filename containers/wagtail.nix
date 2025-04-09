@@ -16,167 +16,167 @@ in
         isReadOnly = false;
       };
       "/home/wagtail/francemali/medias" = {
-        hostPath = "/var/www/francemali/medias";
+        hostPath   = "/var/www/francemali/medias";
         isReadOnly = false;
       };
       "/home/wagtail/francemali/staticfiles" = {
-        hostPath = "/var/www/francemali/static";
+        hostPath   = "/var/www/francemali/static";
         isReadOnly = false;
       };
       "/home/wagtail/cantine/medias" = {
-        hostPath = "/var/www/cantine/medias";
+        hostPath   = "/var/www/cantine/medias";
         isReadOnly = false;
       };
       "/home/wagtail/cantine/staticfiles" = {
-        hostPath = "/var/www/cantine/static";
+        hostPath   = "/var/www/cantine/static";
         isReadOnly = false;
       };
       "/home/wagtail/web-fastoche/medias" = {
-        hostPath = "/var/www/web-fastoche/medias";
+        hostPath   = "/var/www/web-fastoche/medias";
         isReadOnly = false;
       };
       "/home/wagtail/web-fastoche/staticfiles" = {
-        hostPath = "/var/www/web-fastoche/static";
+        hostPath   = "/var/www/web-fastoche/static";
         isReadOnly = false;
       };
       "/home/wagtail/resdigita-fastoche/medias" = {
-        hostPath = "/var/www/resdigita-fastoche/medias";
+        hostPath   = "/var/www/resdigita-fastoche/medias";
         isReadOnly = false;
       };
       "/home/wagtail/resdigita-fastoche/staticfiles" = {
-        hostPath = "/var/www/resdigita-fastoche/static";
+        hostPath   = "/var/www/resdigita-fastoche/static";
         isReadOnly = false;
       };
       "/home/wagtail/village/medias" = {
-        hostPath = "/var/www/village/medias";
+        hostPath   = "/var/www/village/medias";
         isReadOnly = false;
       };
       "/home/wagtail/village/staticfiles" = {
-        hostPath = "/var/www/village/static";
+        hostPath   = "/var/www/village/static";
         isReadOnly = false;
       };
       "/home/wagtail/villagengo/medias" = {
-        hostPath = "/var/www/villagengo/medias";
+        hostPath   = "/var/www/villagengo/medias";
         isReadOnly = false;
       };
       "/home/wagtail/villagengo/staticfiles" = {
-        hostPath = "/var/www/villagengo/static";
+        hostPath   = "/var/www/villagengo/static";
         isReadOnly = false;
       };
       "/home/wagtail/www-fastoche/medias" = {
-        hostPath = "/var/www/www-fastoche/medias";
+        hostPath   = "/var/www/www-fastoche/medias";
         isReadOnly = false;
       };
       "/home/wagtail/www-fastoche/staticfiles" = {
-        hostPath = "/var/www/www-fastoche/static";
+        hostPath   = "/var/www/www-fastoche/static";
         isReadOnly = false;
       };
       "/home/wagtail/resdigitaorg/medias" = {
-        hostPath = "/var/www/resdigitaorg/medias";
+        hostPath   = "/var/www/resdigitaorg/medias";
         isReadOnly = false;
       };
       "/home/wagtail/resdigitaorg/staticfiles" = {
-        hostPath = "/var/www/resdigitaorg/static";
+        hostPath   = "/var/www/resdigitaorg/static";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail-village/medias" = {
-        hostPath = "/var/www/wagtail-village/medias";
+        hostPath   = "/var/www/wagtail-village/medias";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail-village/staticfiles" = {
-        hostPath = "/var/www/wagtail-village/static";
+        hostPath   = "/var/www/wagtail-village/static";
         isReadOnly = false;
       };
       "/home/wagtail/coopgv/medias" = {
-        hostPath = "/var/www/coopgv/medias";
+        hostPath   = "/var/www/coopgv/medias";
         isReadOnly = false;
       };
       "/home/wagtail/coopgv/static" = {
-        hostPath = "/var/www/coopgv/static";
+        hostPath   = "/var/www/coopgv/static";
         isReadOnly = false;
       };
       "/home/wagtail/wagtailgvcoop/media" = {
-        hostPath = "/var/www/wagtailgvcoop/media";
+        hostPath   = "/var/www/wagtailgvcoop/media";
         isReadOnly = false;
       };
       "/home/wagtail/wagtailgvcoop/static" = {
-        hostPath = "/var/www/wagtailgvcoop/static";
+        hostPath   = "/var/www/wagtailgvcoop/static";
         isReadOnly = false;
       };
       "/home/wagtail/lesgrandsvoisinscom/media" = {
-        hostPath = "/var/www/wagtail-lesgrandsvoisinscom/media";
+        hostPath   = "/var/www/wagtail-lesgrandsvoisinscom/media";
         isReadOnly = false;
       };
       "/home/wagtail/lesgrandsvoisinscom/static" = {
-        hostPath = "/var/www/wagtail-lesgrandsvoisinscom/static";
+        hostPath   = "/var/www/wagtail-lesgrandsvoisinscom/static";
         isReadOnly = false;
       };
       "/home/wagtail/lesgrandsvoisins/medias" = {
-        hostPath = "/var/www/lesgrandsvoisins/medias";
+        hostPath   = "/var/www/lesgrandsvoisins/medias";
         isReadOnly = false;
       };
       "/home/wagtail/lesgrandsvoisins/staticfiles" = {
-        hostPath = "/var/www/lesgrandsvoisins/static";
+        hostPath   = "/var/www/lesgrandsvoisins/static";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail-fastoche/medias" = {
-        hostPath = "/var/www/wagtail-fastoche/medias";
+        hostPath   = "/var/www/wagtail-fastoche/medias";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail-fastoche/staticfiles" = {
-        hostPath = "/var/www/wagtail-fastoche/static";
+        hostPath   = "/var/www/wagtail-fastoche/static";
         isReadOnly = false;
       };
       "/home/wagtail/django-fastoche/media" = {
-        hostPath = "/var/www/django-fastoche/media";
+        hostPath   = "/var/www/django-fastoche/media";
         isReadOnly = false;
       };
       "/home/wagtail/django-fastoche/staticfiles" = {
-        hostPath = "/var/www/django-fastoche/static";
+        hostPath   = "/var/www/django-fastoche/static";
         isReadOnly = false;
       };
       "/home/wagtail/django-village/media" = {
-        hostPath = "/var/www/django-village/media";
+        hostPath   = "/var/www/django-village/media";
         isReadOnly = false;
       };
       "/home/wagtail/django-village/staticfiles" = {
-        hostPath = "/var/www/django-village/static";
+        hostPath   = "/var/www/django-village/static";
         isReadOnly = false;
       };
       "/home/wagtail/sites-faciles/medias" = {
-        hostPath = "/var/www/sites-faciles/medias";
+        hostPath   = "/var/www/sites-faciles/medias";
         isReadOnly = false;
       };
       "/home/wagtail/sites-faciles/staticfiles" = {
-        hostPath = "/var/www/sites-faciles/static";
+        hostPath   = "/var/www/sites-faciles/static";
         isReadOnly = false;
       };
       "/home/wagtail/designsystem-fastoche" = {
-        hostPath = "/var/www/designsystem-fastoche";
+        hostPath   = "/var/www/designsystem-fastoche";
         isReadOnly = false;
       };
       "/home/wagtail/designsystem-village/example" = {
-        hostPath = "/var/www/designsystem-village/example";
+        hostPath   = "/var/www/designsystem-village/example";
         isReadOnly = false;
       };
       "/home/wagtail/designsystem-village/dist" = {
-        hostPath = "/var/www/designsystem-village/dist";
+        hostPath   = "/var/www/designsystem-village/dist";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail.resdigita.com/media" = {
-        hostPath = "/var/www/wagtail.resdigita.com/media";
+        hostPath   = "/var/www/wagtail.resdigita.com/media";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail.resdigita.com/static" = {
-        hostPath = "/var/www/wagtail.resdigita.com/static";
+        hostPath   = "/var/www/wagtail.resdigita.com/static";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail.resdigita.com.main/media" = {
-        hostPath = "/var/www/wagtail.resdigita.com.main/media";
+        hostPath   = "/var/www/wagtail.resdigita.com.main/media";
         isReadOnly = false;
       };
       "/home/wagtail/wagtail.resdigita.com.main/static" = {
-        hostPath = "/var/www/wagtail.resdigita.com.main/static";
+        hostPath   = "/var/www/wagtail.resdigita.com.main/static";
         isReadOnly = false;
       };
       # "/run/wagtail-sockets" = { 
@@ -317,9 +317,9 @@ in
         };
       };
       systemd.services.sites-faciles = {
-        description = "Les Grands Voisins Wagtail Website based on facile";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
+        description   = "Les Grands Voisins Wagtail Website based on facile";
+        after         = [ "network.target" ];
+        wantedBy      = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/sites-faciles/";
           # ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/sites-faciles --workers 3 --bind unix:/var/lib/wagtail/sites-faciles.sock facile.wsgi:application'';
@@ -509,8 +509,8 @@ in
           ExecStart = ''/home/wagtail/coopgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/coopgv-access.log --error-logfile /var/log/wagtail/coopgv-error.log --chdir /home/wagtail/coopgv --workers 12 --bind 0.0.0.0:8904 lesgrandsvoisins.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
-          User = "wagtail";
-          Group = "users";
+          User =   "wagtail";
+          Group =    "users";
         };
         unitConfig = {
           StartLimitInterval = "1min";
