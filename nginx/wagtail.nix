@@ -229,6 +229,66 @@ in {
         "www.afriquepartenaires.org"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8894/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+          # return 302 $scheme://www.grandsvoisins.com$request_uri;
+          if ($host = 'www.gvois.org') {
+            return 301 $scheme://www.gvois.com$request_uri;
+          }
+          # if ($host = 'grandsvoisins.org') {
+          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
+          # }
+          # if ($host = 'lgv.info') {
+          #   return 301 $scheme://www.lgv.info$request_uri;
+          # }
+          # if ($host = 'lesgrandsvoisins.fr') {
+          #   return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
+          # }
+          # if ($host = 'lesgv.com') {
+          #   return 301 $scheme://www.lesgv.com$request_uri;
+          # }
+          # if ($host = 'lesgv.org') {
+          #   return 301 $scheme://www.lesgv.org$request_uri;
+          # }
+          # if ($host = 'parisle.com') {
+          #   return 301 $scheme://www.parisle.com$request_uri;
+          # }
+          # if ($host = 'yanlomsprod.parisle.org') {
+          #   return 301 $scheme://yanlomsprod.parisle.com$request_uri;
+          # }
+          # if ($host = 'coopgv.com') {
+          #   return 301 $scheme://www.coopgv.com$request_uri;
+          # }
+          # if ($host = 'parisle.org') {
+          #   return 301 $scheme://www.parisle.org$request_uri;
+          # }
+          if ($host = 'afriquepartenaires.grandsvoisins.org') {
+            return 301 $scheme://www.afriquepartenaires.org$request_uri;
+          }
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.gvois.com" = {
+      serverAliases = [
         "www.gvois.org"
         "www.gvois.com"
         "bigbluebutton.gvois.com"
@@ -297,43 +357,12 @@ in {
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
-        # proxyPass = "http://localhost:8894/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          # return 302 $scheme://www.grandsvoisins.com$request_uri;
-          if ($host = 'www.gvois.org') {
-            return 301 $scheme://www.gvois.com$request_uri;
-          }
-          # if ($host = 'grandsvoisins.org') {
-          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
-          # }
-          # if ($host = 'lgv.info') {
-          #   return 301 $scheme://www.lgv.info$request_uri;
-          # }
-          # if ($host = 'lesgrandsvoisins.fr') {
-          #   return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
-          # }
-          # if ($host = 'lesgv.com') {
-          #   return 301 $scheme://www.lesgv.com$request_uri;
-          # }
-          # if ($host = 'lesgv.org') {
-          #   return 301 $scheme://www.lesgv.org$request_uri;
-          # }
-          # if ($host = 'parisle.com') {
-          #   return 301 $scheme://www.parisle.com$request_uri;
-          # }
-          # if ($host = 'yanlomsprod.parisle.org') {
-          #   return 301 $scheme://yanlomsprod.parisle.com$request_uri;
-          # }
-          # if ($host = 'coopgv.com') {
-          #   return 301 $scheme://www.coopgv.com$request_uri;
-          # }
-          # if ($host = 'parisle.org') {
-          #   return 301 $scheme://www.parisle.org$request_uri;
-          # }
-          if ($host = 'afriquepartenaires.grandsvoisins.org') {
-            return 301 $scheme://www.afriquepartenaires.org$request_uri;
-          }
-          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'www.gvois.org') {
+              return 301 $scheme://www.gvois.com$request_uri;
+            }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
