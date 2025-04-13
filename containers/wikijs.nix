@@ -98,7 +98,7 @@ in
           settings.db = {
             host = "/run/postgresql";
             db = "wikijsconfigmagic";
-            user = "wikijsconfigmagic";
+            user = "wikijs";
           };
         };
         postgresql = {
