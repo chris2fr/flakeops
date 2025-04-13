@@ -35,6 +35,7 @@ in
   };
   imports = [
     ./containers/cherryldap.nix
+    ./containers/wikijs.nix
     ./containers/discourse.nix
     ./containers/discourseparis14cc.nix
     ./containers/key.nix

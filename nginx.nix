@@ -565,7 +565,7 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "http://127.0.0.1:9090";
+              proxyPass = "http://192.168.112.11:3000";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Proto $scheme;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
