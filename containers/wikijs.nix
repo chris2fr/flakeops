@@ -48,11 +48,13 @@ in
         };
         useHostResolvConf = lib.mkForce false;
       };
-      # systemd.tmpfiles.rules = [
-      #   # "f /etc/.secret.keycloackparis14ccdata 0660 root root"
-      #   "d /var/lib/acme/keycloak.paris14.cc/ 0750 acme wwwrun"
-      #   "f /etc/.secret.keycloackparis14cc 0660 keycloak postgres"
-      # ];
+      systemd.tmpfiles.rules = [
+        # "f /etc/.secret.keycloackparis14ccdata 0660 root root"
+        "d /etc/wikijs/ 0750 root root"
+        "f /etc/wikijs/.env 0660 root root"
+        # "d /var/lib/acme/keycloak.paris14.cc/ 0750 acme wwwrun"
+        # "f /etc/.secret.keycloackparis14cc 0660 keycloak postgres"
+      ];
       # security.acme.acceptTerms = true;
       users = {
         groups = {
@@ -89,6 +91,7 @@ in
         # };
         wiki-js = {
           enable = true;
+          environmentFile = "/etc/wikijs.env";
           settings.db = {
             host = "/run/postgresql";
             db = "wikijsconfigmagic";
