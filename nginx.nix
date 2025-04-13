@@ -344,7 +344,6 @@ in {
             # "mail.hopgv.org"
             # "mail.hopgv.com"
             "mail.gvois.org"
-            "mail.gvois.com"
             "mail.resdigita.org"
             "mail.lesgrandsvoisins.fr"
           ];
