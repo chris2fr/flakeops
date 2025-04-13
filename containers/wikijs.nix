@@ -91,10 +91,11 @@ in
         # };
         wiki-js = {
           enable = true;
-          environmentFile = "/etc/wikijs.env";
+          environmentFile = "/etc/wikijs/.env";
           settings.db = {
-            host = "/run/postgresql";
+            host = "localhost";
             db = "wikijsconfigmagic";
+            user = "wikijsconfigmagic";
           };
         };
         postgresql = {
