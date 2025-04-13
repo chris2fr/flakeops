@@ -97,14 +97,14 @@ in
           environmentFile = "/etc/wikijs/.env";
           settings.db = {
             host = "/run/postgresql";
-            db = "wikijsconfigmagic";
+            db = "wikijs";
             user = "wikijs";
           };
         };
         postgresql = {
           enable = true;
-          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}{name="wwwrun";}];
-          ensureDatabases = ["wikijsconfigmagic"];
+          ensureUsers = [{name="wikijs";ensureDBOwnership=true;}];
+          ensureDatabases = ["wikijs"];
           enableTCPIP = true;
         };
       };
