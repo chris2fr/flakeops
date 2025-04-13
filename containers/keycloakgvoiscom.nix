@@ -102,7 +102,7 @@ in
             name="keycloakgvois"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakgvois";
-            # createLocally=false;
+            createLocally=false;
             # host="localhost";
             # useSSL = false;
           };
