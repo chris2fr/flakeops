@@ -96,7 +96,8 @@ in
           enable = true;
           environmentFile = "/etc/wikijs/.env";
           settings.db = {
-            host = "/run/postgresql";
+            host = "localhost";
+            # host = "/run/postgresql";
             db = "wikijs";
             user = "wikijs";
           };
