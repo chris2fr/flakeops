@@ -87,7 +87,7 @@ in
         #   }];
         #   ensureDatabases = ["keyparis14cc"];
         # };
-        wiki-js.enable = {
+        wiki-js = {
           enable = true;
           db = {
             host = "/run/postgresql";
