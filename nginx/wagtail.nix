@@ -328,6 +328,7 @@ in {
         "cal.gvois.com"
         "cloud.gvois.com"
         "code.gvois.com"
+        "config.gvois.com"
         "contacts.gvois.com"
         "discussion.gvois.com"
         "docs.gvois.com"
