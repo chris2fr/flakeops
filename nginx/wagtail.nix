@@ -117,6 +117,7 @@ in {
         "gdvoisins.org"
         "gvois.org"
         "gvois.com"
+        "configmagic.com"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -290,7 +291,6 @@ in {
     "www.gvois.com" = {
       serverAliases = [
         "www.gvois.org"
-        "www.gvois.com"
         "bigbluebutton.gvois.com"
         "bind.gvois.com"
         "cherryldap.gvois.com"
@@ -349,6 +349,7 @@ in {
         "url.gvois.com"
         "videos.gvois.com"
         "wiki.gvois.com"
+        "www.configmagic.com"
       ];
       enableACME = true;
       forceSSL = true;
