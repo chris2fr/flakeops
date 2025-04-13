@@ -109,7 +109,7 @@ in
           enableTCPIP = true;
         };
       };
-      systemd.services.wiki-js.serviceConfig.User = "wwwrun";
+      systemd.services.wiki-js.serviceConfig.User = "wikijs";
     };
   };
 }
