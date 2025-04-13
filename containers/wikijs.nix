@@ -76,6 +76,9 @@ in
             uid = 54;
             group = "wwwrun";
           };
+          "wikijs" = {
+            isNormalUser = true;
+          };
         };
       };
       services = {
@@ -100,7 +103,7 @@ in
         };
         postgresql = {
           enable = true;
-          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}];
+          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}{name="wwwrun"}];
           ensureDatabases = ["wikijsconfigmagic"];
           enableTCPIP = true;
         };
