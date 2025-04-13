@@ -188,41 +188,12 @@ in {
         "admin.parisle.com"
         "ai.parisle.com"
         "alt.lesgrandsvoisins.com"
-        "backup.parisle.com"
-        "blog.parisle.com"
-        "cal.parisle.com"
-        "cloud.parisle.com"
-        "code.parisle.com"
-        "contacts.parisle.com"
-        "discussion.parisle.com"
-        "docs.parisle.com"
-        "drive.parisle.com"
         "en.lesgrandsvoisins.com"
-        "finance.parisle.com"
-        "forms.parisle.com"
-        "forum.parisle.com"
         "fr.lesgrandsvoisins.com"
         "gvcoop.lesgrandsvoisins.com"
-        "id.parisle.com"
-        "list.parisle.com"
-        "mail.parisle.com"
-        "mail.parisle.org"
-        "meet.parisle.com"
-        "net.parisle.com"
-        "pay.parisle.com"
-        "photos.parisle.com"
-        "secret.parisle.com"
-        "sites.parisle.com"
-        "sync.parisle.com"
-        "task.parisle.com"
         "test.lesgrandsvoisins.com"
-        "url.parisle.com"
-        "videos.parisle.com"
-        "wiki.parisle.com"
         "www.coopgv.com"
         "www.lesgrandsvoisins.fr"
-        "www.parisle.com"
-        "www.parisle.org"
         "yanlomsprod.parisle.com"
         "yanlomsprod.parisle.org"
         # "excellenxport.hopgv.com"
@@ -362,6 +333,95 @@ in {
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.gvois.com$request_uri;
+            }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.parisle.com" = {
+      serverAliases = [
+        "www.parisle.org"
+        "bigbluebutton.parisle.com"
+        "bind.parisle.com"
+        "cherryldap.parisle.com"
+        "crabfit.parisle.com"
+        "discourse.parisle.com"
+        "fossil.parisle.com"
+        "ghost.parisle.com"
+        "gitea.parisle.com"
+        "hedgedoc.parisle.com"
+        "homepagedashboard.parisle.com"
+        "keycloak.parisle.com"
+        "linkding.parisle.com"
+        "listmonk.parisle.com"
+        "nixos.parisle.com"
+        "odoo.parisle.com"
+        "openldap.parisle.com"
+        "photoprism.parisle.com"
+        "quartz.parisle.com"
+        "radicale.parisle.com"
+        "roundcube.parisle.com"
+        "seafile.parisle.com"
+        "sftpgo.parisle.com"
+        "silverbullet.parisle.com"
+        "syncthing.parisle.com"
+        "vaultwarden.parisle.com"
+        "vikunja.parisle.com"
+        "wagtail.parisle.com"
+        "webdav.parisle.com"
+        "wordpress.parisle.com"
+        "admin.parisle.com"
+        "ai.parisle.com"
+        "annuaire.parisle.com"
+        "backup.parisle.com"
+        "blog.parisle.com"
+        "cal.parisle.com"
+        "cloud.parisle.com"
+        "code.parisle.com"
+        "config.parisle.com"
+        "contacts.parisle.com"
+        "discussion.parisle.com"
+        "docs.parisle.com"
+        "drive.parisle.com"
+        "finance.parisle.com"
+        "forms.parisle.com"
+        "forum.parisle.com"
+        "id.parisle.com"
+        "list.parisle.com"
+        "mail.parisle.com"
+        "meet.parisle.com"
+        "net.parisle.com"
+        "pay.parisle.com"
+        "photos.parisle.com"
+        "secret.parisle.com"
+        "sites.parisle.com"
+        "sync.parisle.com"
+        "task.parisle.com"
+        "url.parisle.com"
+        "videos.parisle.com"
+        "wiki.parisle.com"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'www.parisle.org') {
+              return 301 $scheme://www.parisle.com$request_uri;
             }
             rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
