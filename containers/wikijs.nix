@@ -87,7 +87,18 @@ in
         #   }];
         #   ensureDatabases = ["keyparis14cc"];
         # };
-        wiki-js.enable = true;
+        wiki-js.enable = {
+          enable = true;
+          db = {
+            host = "/run/postgresql";
+            db = "wikijsconfigmagic";
+          };
+        };
+        postgresql = {
+          enable = true;
+          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}];
+          ensureDatabases = ["wikijsconfigmagic"];
+        };
       };
     };
   };
