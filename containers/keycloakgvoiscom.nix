@@ -46,7 +46,7 @@ in
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14445 ];
+          allowedTCPPorts = [ 443 587 14446 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -97,18 +97,18 @@ in
         keycloak = {
           enable = true;
           database = {
-            # username = "keycloakgvois";
+            username = "keycloakgvois";
             # name = "keycloakgvois";
-            # name="key"; # I think the database is keycloak and not key
+            name="keycloakgvois"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
-            # passwordFile = "/etc/.secret.keycloackgvoiscom";
+            passwordFile = "/etc/.secret.keycloakgvois";
             # createLocally=false;
             # host="localhost";
             # useSSL = false;
           };
           settings = {
-            https-port = 14445;
-            http-port = 14085;
+            https-port = 14446;
+            http-port = 14086;
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
