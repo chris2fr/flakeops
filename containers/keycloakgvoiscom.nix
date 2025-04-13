@@ -51,9 +51,9 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
-        # "f /etc/.secret.keycloackgvoiscomdata 0660 root root"
+        # "f /etc/.secret.keycloakgvoiscomdata 0660 root root"
         "d /var/lib/acme/keycloak.gvois.com/ 0750 acme wwwrun"
-        "f /etc/.secret.keycloackgvoiscom 0660 keycloak postgres"
+        "f /etc/.secret.keycloakgvoiscom 0660 keycloak postgres"
       ];
       # security.acme.acceptTerms = true;
       users = {
