@@ -13,8 +13,8 @@ in
     privateNetwork = true;
     hostAddress = "192.168.112.10";
     localAddress = "192.168.112.11";
-    hostAddress6 = "fa11::1";
-    localAddress6 = "fa11::2";
+    hostAddress6 = "fc00::12:1";
+    localAddress6 = "fc00::12:2";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -50,8 +50,8 @@ in
       };
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloackparis14ccdata 0660 root root"
-        "d /etc/wikijs/ 0750 root root"
-        "f /etc/wikijs/.env 0660 root root"
+        "d /etc/wikijs/ 0750 wikijs root"
+        "f /etc/wikijs/.env 0660 wikijs root"
         # "d /var/lib/acme/keycloak.paris14.cc/ 0750 acme wwwrun"
         # "f /etc/.secret.keycloackparis14cc 0660 keycloak postgres"
       ];
