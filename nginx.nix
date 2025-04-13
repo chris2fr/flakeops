@@ -231,7 +231,6 @@ in {
           serverAliases = ["adminkeycloak.gvois.com"];
           # globalRedirect = "keycloak.gvois.com:14443";
           locations."/" = {
-            basicAuth = { cc14 = "cc14"; };
             proxyPass = "https://192.168.113.11:14446";
             extraConfig = ''
               rewrite ^/$ https://keycloak.gvois.com/realms/master/account/applications redirect;
