@@ -93,7 +93,7 @@ in
           enable = true;
           environmentFile = "/etc/wikijs/.env";
           settings.db = {
-            host = "localhost";
+            host = "/run/postgresql";
             db = "wikijsconfigmagic";
             user = "wikijsconfigmagic";
           };
@@ -105,6 +105,7 @@ in
           enableTCPIP = true;
         };
       };
+      systemd.services.wiki-js.serviceConfig.User = "wwwrun";
     };
   };
 }
