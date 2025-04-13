@@ -319,8 +319,8 @@ in {
         };
         "mail.resdigita.com" = {
           serverAliases = [
-            "mail.hopgv.org"
-            "mail.hopgv.com"
+            # "mail.hopgv.org"
+            # "mail.hopgv.com"
             "mail.gvois.org"
             "mail.gvois.com"
             "mail.resdigita.org"
