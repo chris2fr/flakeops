@@ -103,7 +103,7 @@ in
         };
         postgresql = {
           enable = true;
-          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}{name="wwwrun"}];
+          ensureUsers = [{name="wikijsconfigmagic";ensureDBOwnership=true;}{name="wwwrun";}];
           ensureDatabases = ["wikijsconfigmagic"];
           enableTCPIP = true;
         };
