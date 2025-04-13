@@ -349,7 +349,6 @@ in {
         "url.gvois.com"
         "videos.gvois.com"
         "wiki.gvois.com"
-        "www.configmagic.com"
       ];
       enableACME = true;
       forceSSL = true;
