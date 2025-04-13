@@ -89,7 +89,7 @@ in
         # };
         wiki-js = {
           enable = true;
-          db = {
+          settings.db = {
             host = "/run/postgresql";
             db = "wikijsconfigmagic";
           };
