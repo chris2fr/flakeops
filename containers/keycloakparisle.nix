@@ -52,7 +52,7 @@ in
       };
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloackparislecomdata 0660 root root"
-        "d /var/lib/acme/keycloak.parisle.com/ 0750 acme wwwrun"
+        "d /var/lib/acme/keycloak.parisle.com/ 0755 acme wwwrun"
         "f /etc/.secret.keycloakparislecom 0664 keycloak postgres"
       ];
       # security.acme.acceptTerms = true;
