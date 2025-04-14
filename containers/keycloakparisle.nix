@@ -107,7 +107,7 @@ in
             createLocally=false;
             host="localhost";
             # useSSL = false;
-            host = "/run/postgresql";
+            # host = "/run/postgresql";
           };
           settings = {
             https-port = 14447;
