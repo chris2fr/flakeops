@@ -97,8 +97,8 @@ in
         keycloak = {
           enable = true;
           database = {
-            username = "keycloak";
-            # name = "keycloakparisle";
+            # username = "keycloak";
+            name = "keycloakparisle";
             name="keycloakparisle"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisle";
