@@ -85,32 +85,32 @@ in
       };
       services = {
         resolved.enable = true;
-        # postgresql = {
-        #   package = pkgs.postgresql_17;
-        #   enable = true;
-        #   # enableTCPIP = true;
-        #   ensureUsers = [{
-        #     name = "keycloakparisle";
-        #     ensureDBOwnership = true;
-        #   }];
-        #   authentication = pkgs.lib.mkOverride 10 ''
-        #     #type database  DBuser  auth-method
-        #     local all       all     password
-        #   '';
-        #   ensureDatabases = ["keycloakparisle"];
-        # };
+        postgresql = {
+          package = pkgs.postgresql_17;
+          enable = true;
+          enableTCPIP = true;
+          ensureUsers = [{
+            name = "keycloakparisle";
+            ensureDBOwnership = true;
+          }];
+          authentication = pkgs.lib.mkOverride 10 ''
+            #type database  DBuser  auth-method
+            local all       all     password
+          '';
+          ensureDatabases = ["keycloakparisle"];
+        };
         keycloak = {
           enable = true;
           database = {
-          #   # username = "keycloak";
-          #   username = "keycloakparisle";
-          #   name="keycloakparisle"; # I think the database is keycloak and not key
-          #   # passwordFile="/etc/.secrets.key";
+            # username = "keycloak";
+            username = "keycloakparisle";
+            name="keycloakparisle"; # I think the database is keycloak and not key
+            # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisle";
-          #   createLocally=false;
-          #   host="localhost";
-          #   # useSSL = false;
-          #   # host = "/run/postgresql";
+            createLocally = false;
+            # host="localhost";
+            # useSSL = false;
+            host = "/run/postgresql";
           };
           settings = {
             https-port = 14447;
