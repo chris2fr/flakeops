@@ -101,17 +101,17 @@ in
         # };
         keycloak = {
           enable = true;
-          # database = {
+          database = {
           #   # username = "keycloak";
           #   username = "keycloakparisle";
           #   name="keycloakparisle"; # I think the database is keycloak and not key
           #   # passwordFile="/etc/.secrets.key";
-          #   passwordFile = "/etc/.secret.keycloakparisle";
+            passwordFile = "/etc/.secret.keycloakparisle";
           #   createLocally=false;
           #   host="localhost";
           #   # useSSL = false;
           #   # host = "/run/postgresql";
-          # };
+          };
           settings = {
             https-port = 14447;
             http-port = 14087;
