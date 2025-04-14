@@ -88,11 +88,15 @@ in
         postgresql = {
           package = pkgs.postgresql_17;
           enable = true;
-          enableTCPIP = true;
+          # enableTCPIP = true;
           ensureUsers = [{
             name = "keycloakparisle";
             ensureDBOwnership = true;
           }];
+          authentication = pkgs.lib.mkOverride 10 ''
+            #type database  DBuser  auth-method
+            local all       all     trust
+          '';
           ensureDatabases = ["keycloakparisle"];
 
         };
