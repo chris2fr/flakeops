@@ -53,7 +53,7 @@ in
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloackparislecomdata 0660 root root"
         "d /var/lib/acme/keycloak.parisle.com/ 0750 acme wwwrun"
-        "f /etc/.secret.keycloakparislecom 0660 keycloak postgres"
+        "f /etc/.secret.keycloakparislecom 0664 keycloak postgres"
       ];
       # security.acme.acceptTerms = true;
       users = {
@@ -97,12 +97,12 @@ in
         keycloak = {
           enable = true;
           database = {
-            username = "keycloakparisle";
+            username = "keycloak";
             # name = "keycloakparisle";
             name="keycloakparisle"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisle";
-            createLocally=false;
+            # createLocally=false;
             # host="localhost";
             # useSSL = false;
           };
