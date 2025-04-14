@@ -88,11 +88,13 @@ in
         postgresql = {
           package = pkgs.postgresql_17;
           enable = true;
+          enableTCPIP = true;
           ensureUsers = [{
             name = "keycloakparisle";
             ensureDBOwnership = true;
           }];
           ensureDatabases = ["keycloakparisle"];
+
         };
         keycloak = {
           enable = true;
@@ -103,7 +105,7 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisle";
             createLocally=false;
-            # host="localhost";
+            host="localhost";
             # useSSL = false;
             host = "/run/postgresql";
           };
