@@ -109,7 +109,7 @@ in
             passwordFile = "/etc/.secret.keycloakparisle";
             createLocally = false;
             # host="localhost";
-            # useSSL = false;
+            useSSL = false;
             host = "/run/postgresql";
           };
           settings = {
