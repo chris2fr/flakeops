@@ -86,7 +86,7 @@ in
           };
         };
       };
-      systemd.services.postgresql.preStart = "cd ~postgres/ && [ -f ~postgres/server.crt ] || openssl req -new -x509 -days 365 -nodes -text -out ~postgres/server.crt  -keyout ~postgres/server.key -subj '/CN=keycloak.parisgv.com'";
+      # systemd.services.postgresql.preStart = "cd ~postgres/ && [ -f ~postgres/server.crt ] || openssl req -new -x509 -days 365 -nodes -text -out ~postgres/server.crt  -keyout ~postgres/server.key -subj '/CN=keycloak.parisgv.com'";
       systemd.services.postgresql.postStart = "cp -a ~postgres/server.crt /run/postgresql/server.crt";
       services = {
         resolved.enable = true;
@@ -103,33 +103,33 @@ in
           }];
           ensureDatabases = ["keycloakparisgv"];
         };
-        # keycloak = {
-        #   enable = true;
-        #   database = {
-        #     username = "keycloakparisgv";
-        #     # name = "keycloakparisgv";
-        #     name="keycloakparisgv"; # I think the database is keycloak and not key
-        #     # passwordFile="/etc/.secrets.key";
-        #     passwordFile = "/etc/.secret.keycloakparisgv";
-        #     createLocally=false;
-        #     host="localhost";
-        #     # useSSL = false;
-        #     caCert = "/run/postgresql/server.crt";
-        #   };
-        #   settings = {
-        #     https-port = 14446;
-        #     http-port = 14086;
-        #     # proxy = "passthrough";
-        #     # proxy = "reencrypt";
-        #     proxy-headers = "xforwarded";
-        #     hostname = "keycloak.parisgv.com";
-        #     # hostname-admin = "adminkeycloak.parisgv.com";
-        #   };
-        #   sslCertificate = "/var/lib/acme/keycloak.parisgv.com/fullchain.pem";
-        #   sslCertificateKey = "/var/lib/acme/keycloak.parisgv.com/key.pem";
-        #   initialAdminPassword = "lksajdflkasjlkghk3573985798214dskjhgfkjsahf";
-        #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        # };
+        keycloak = {
+          enable = true;
+          database = {
+            username = "keycloakparisgv";
+            # name = "keycloakparisgv";
+            name="keycloakparisgv"; # I think the database is keycloak and not key
+            # passwordFile="/etc/.secrets.key";
+            passwordFile = "/etc/.secret.keycloakparisgv";
+            createLocally=false;
+            host="localhost";
+            # useSSL = false;
+            caCert = "/run/postgresql/server.crt";
+          };
+          settings = {
+            https-port = 14446;
+            http-port = 14086;
+            # proxy = "passthrough";
+            # proxy = "reencrypt";
+            proxy-headers = "xforwarded";
+            hostname = "keycloak.parisgv.com";
+            # hostname-admin = "adminkeycloak.parisgv.com";
+          };
+          sslCertificate = "/var/lib/acme/keycloak.parisgv.com/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.parisgv.com/key.pem";
+          initialAdminPassword = "lksajdflkasjlkghk3573985afs23344dskjhgfkjsahf";
+          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+        };
       };
     };
   };
