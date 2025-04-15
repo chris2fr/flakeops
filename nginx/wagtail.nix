@@ -117,7 +117,9 @@ in {
         "yanlomsprod.org"
         "gdvoisins.org"
         "gvois.org"
+        "parisgv.org"
         "gvois.com"
+        "parisgv.com"
         "configmagic.com"
       ];
       extraConfig = ''
@@ -335,6 +337,95 @@ in {
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.gvois.com$request_uri;
+            }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.parisgv.com" = {
+      serverAliases = [
+        "www.parisgv.org"
+        "bigbluebutton.parisgv.com"
+        "bind.parisgv.com"
+        "cherryldap.parisgv.com"
+        "crabfit.parisgv.com"
+        "discourse.parisgv.com"
+        "fossil.parisgv.com"
+        "ghost.parisgv.com"
+        "gitea.parisgv.com"
+        "hedgedoc.parisgv.com"
+        "homepagedashboard.parisgv.com"
+        "keycloak.parisgv.com"
+        "linkding.parisgv.com"
+        "listmonk.parisgv.com"
+        "nixos.parisgv.com"
+        "odoo.parisgv.com"
+        "openldap.parisgv.com"
+        "photoprism.parisgv.com"
+        "quartz.parisgv.com"
+        "radicale.parisgv.com"
+        "roundcube.parisgv.com"
+        "seafile.parisgv.com"
+        "sftpgo.parisgv.com"
+        "silverbullet.parisgv.com"
+        "syncthing.parisgv.com"
+        "vaultwarden.parisgv.com"
+        "vikunja.parisgv.com"
+        "wagtail.parisgv.com"
+        "webdav.parisgv.com"
+        "wordpress.parisgv.com"
+        "admin.parisgv.com"
+        "ai.parisgv.com"
+        "annuaire.parisgv.com"
+        "backup.parisgv.com"
+        "blog.parisgv.com"
+        "cal.parisgv.com"
+        "cloud.parisgv.com"
+        "code.parisgv.com"
+        "config.parisgv.com"
+        "contacts.parisgv.com"
+        "discussion.parisgv.com"
+        "docs.parisgv.com"
+        "drive.parisgv.com"
+        "finance.parisgv.com"
+        "forms.parisgv.com"
+        "forum.parisgv.com"
+        "id.parisgv.com"
+        "list.parisgv.com"
+        "mail.parisgv.com"
+        "meet.parisgv.com"
+        "net.parisgv.com"
+        "pay.parisgv.com"
+        "photos.parisgv.com"
+        "secret.parisgv.com"
+        "sites.parisgv.com"
+        "sync.parisgv.com"
+        "task.parisgv.com"
+        "url.parisgv.com"
+        "videos.parisgv.com"
+        "wiki.parisgv.com"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'www.parisgv.org') {
+              return 301 $scheme://www.parisgv.com$request_uri;
             }
             rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
