@@ -121,7 +121,7 @@ in
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
             hostname = "keycloak.gdvox.com";
-            hostname-admin = "adminkeycloak.gdvox.com";
+            # hostname-admin = "adminkeycloak.gdvox.com";
           };
           sslCertificate = "/var/lib/acme/keycloak.gdvox.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/keycloak.gdvox.com/key.pem";
