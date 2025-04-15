@@ -91,6 +91,9 @@ in
           package = pkgs.postgresql_17;
           enable = true;
           enableTCPIP = true;
+          settings = {
+            ssl = true;
+          };
           ensureUsers = [{
             name = "keycloakgdvox";
             ensureDBOwnership = true;
