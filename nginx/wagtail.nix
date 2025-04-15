@@ -96,6 +96,7 @@ in {
         "ongvillage.com"
         "ongvillage.org"
         "parisle.com"
+        "gdvox.com"
         "parisle.org"
         "parislenuage.com" 
         "resdigita.com"
@@ -433,6 +434,27 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.gdvox.com" = {
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            # if ($host = 'www.parisle.org') {
+            #   return 301 $scheme://www.parisle.com$request_uri;
+            # }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
