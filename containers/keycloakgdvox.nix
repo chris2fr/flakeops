@@ -86,6 +86,8 @@ in
           };
         };
       };
+      systemd.services.postgresql.postStart = "cp -a ~postgres/server.crt /run/postgresql/server.crt";
+
       services = {
         resolved.enable = true;
         postgresql = {
