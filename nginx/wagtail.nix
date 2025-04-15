@@ -199,6 +199,7 @@ in {
         # "excellenxport.hopgv.com"
         # "old.lesgrandsvoisins.com"
         "www.afriquepartenaires.org"
+        "meet.mann.faith"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
       ];
@@ -1224,7 +1225,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8896.lesgrandsvoisins.com" = {
-      serverAliases = [ "8896.grandsvoisins.com" "meet.mann.faith"];
+      serverAliases = [ "8896.grandsvoisins.com"];
       root = "/var/www/village/";
       locations."/" = {
         proxyPass = "http://localhost:8896/";

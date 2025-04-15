@@ -13,8 +13,8 @@ in
     privateNetwork = true;
     hostAddress = "192.168.114.10";
     localAddress = "192.168.114.11";
-    hostAddress6 = "fc00::14:1";
-    localAddress6 = "fc00::14:2";
+    hostAddress6 = "fc00::114:1";
+    localAddress6 = "fc00::114:2";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -93,10 +93,10 @@ in
             name = "keycloakparisle";
             ensureDBOwnership = true;
           }];
-          authentication = pkgs.lib.mkOverride 10 ''
-            #type database  DBuser  auth-method
-            local all       all     password
-          '';
+          # authentication = pkgs.lib.mkOverride 10 ''
+          #   #type database  DBuser  auth-method
+          #   local all       all     password
+          # '';
           ensureDatabases = ["keycloakparisle"];
         };
         keycloak = {
