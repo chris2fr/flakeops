@@ -39,6 +39,7 @@ in
         lynx
         openldap
         postgresql_17
+        openssl
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
