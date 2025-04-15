@@ -112,7 +112,7 @@ in
             createLocally=false;
             host="127.0.0.1";
             # useSSL = false;
-            caCert = "/var/lib/postgresql/17/server.crt";
+            caCert = "/run/postgresql/server.crt";
           };
           settings = {
             https-port = 14446;
