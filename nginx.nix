@@ -224,6 +224,12 @@ in {
             '';
           };
         };
+        "keycloak.gdvox.com" = {
+          enableACME = true;
+          forceSSL = true;
+          root = "/var/www/keycloak.gvois.com";
+          serverAliases = ["adminkeycloak.gdvox.com"];
+        };
         "keycloak.gvois.com" = {
           enableACME = true;
           forceSSL = true;
