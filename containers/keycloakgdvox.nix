@@ -101,32 +101,33 @@ in
           }];
           ensureDatabases = ["keycloakgdvox"];
         };
-        # keycloak = {
-        #   enable = true;
-        #   database = {
-        #     username = "keycloakgdvox";
-        #     # name = "keycloakgdvox";
-        #     name="keycloakgdvox"; # I think the database is keycloak and not key
-        #     # passwordFile="/etc/.secrets.key";
-        #     passwordFile = "/etc/.secret.keycloakgdvoxcom";
-        #     createLocally=false;
-        #     host="127.0.0.1";
-        #     # useSSL = false;
-        #   };
-        #   settings = {
-        #     https-port = 14446;
-        #     http-port = 14086;
-        #     # proxy = "passthrough";
-        #     # proxy = "reencrypt";
-        #     proxy-headers = "xforwarded";
-        #     hostname = "keycloak.gdvox.com";
-        #     hostname-admin = "adminkeycloak.gdvox.com";
-        #   };
-        #   sslCertificate = "/var/lib/acme/keycloak.gdvox.com/fullchain.pem";
-        #   sslCertificateKey = "/var/lib/acme/keycloak.gdvox.com/key.pem";
-        #   initialAdminPassword = "lksajdflkasjlkghk3573985798214dskjhgfkjsahf";
-        #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        # };
+        keycloak = {
+          enable = true;
+          database = {
+            username = "keycloakgdvox";
+            # name = "keycloakgdvox";
+            name="keycloakgdvox"; # I think the database is keycloak and not key
+            # passwordFile="/etc/.secrets.key";
+            passwordFile = "/etc/.secret.keycloakgdvoxcom";
+            createLocally=false;
+            host="127.0.0.1";
+            # useSSL = false;
+            caCert = "/var/lib/postgresql/17/server.crt";
+          };
+          settings = {
+            https-port = 14446;
+            http-port = 14086;
+            # proxy = "passthrough";
+            # proxy = "reencrypt";
+            proxy-headers = "xforwarded";
+            hostname = "keycloak.gdvox.com";
+            hostname-admin = "adminkeycloak.gdvox.com";
+          };
+          sslCertificate = "/var/lib/acme/keycloak.gdvox.com/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.gdvox.com/key.pem";
+          initialAdminPassword = "lksajdflkasjlkghk3573985798214dskjhgfkjsahf";
+          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+        };
       };
     };
   };
