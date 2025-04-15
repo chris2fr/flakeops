@@ -54,6 +54,7 @@ in
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloakparisgvdata 0660 root root"
         "d /var/lib/acme/keycloak.parisgv.com/ 0750 acme wwwrun"
+        "d /etc/postgresql/ 0750 postgres keycloak"
         "f /etc/.secret.keycloakparisgv 0660 keycloak postgres"
       ];
       # security.acme.acceptTerms = true;
@@ -87,7 +88,7 @@ in
         };
       };
       # systemd.services.postgresql.preStart = "cd ~postgres/ && [ -f ~postgres/server.crt ] || openssl req -new -x509 -days 365 -nodes -text -out ~postgres/server.crt  -keyout ~postgres/server.key -subj '/CN=keycloak.parisgv.com'";
-      systemd.services.postgresql.postStart = "cp -a ~postgres/server.crt /run/postgresql/server.crt";
+      # systemd.services.postgresql.postStart = "cp -a ~postgres/server.crt /run/postgresql/server.crt";
       services = {
         resolved.enable = true;
         postgresql = {
@@ -96,6 +97,7 @@ in
           enableTCPIP = true;
           settings = {
             ssl = true;
+            ssl_cert_file = "/etc/postgres/server.crt";
           };
           ensureUsers = [{
             name = "keycloakparisgv";
@@ -114,7 +116,7 @@ in
             createLocally=false;
             host="localhost";
             # useSSL = false;
-            caCert = "/run/postgresql/server.crt";
+            caCert = "/etc/postgresql/server.crt";
           };
           settings = {
             https-port = 14446;
