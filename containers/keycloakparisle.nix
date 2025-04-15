@@ -88,7 +88,7 @@ in
         postgresql = {
           package = pkgs.postgresql_17;
           enable = true;
-          enableTCPIP = true;
+          # enableTCPIP = true;
           ensureUsers = [{
             name = "keycloakparisle";
             ensureDBOwnership = true;
@@ -109,8 +109,8 @@ in
             passwordFile = "/etc/.secret.keycloakparisle";
             createLocally = false;
             # host="localhost";
-            useSSL = false;
-            host = "/run/postgresql";
+            # useSSL = false;
+            # host = "/run/postgresql";
           };
           settings = {
             https-port = 14447;
