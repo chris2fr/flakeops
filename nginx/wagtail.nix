@@ -441,6 +441,66 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.gdvox.com" = {
+      serverAliases = [
+        "admin.gdvox.com"
+        "ai.gdvox.com"
+        "annuaire.gdvox.com"
+        "backup.gdvox.com"
+        "blog.gdvox.com"
+        "cal.gdvox.com"
+        "cloud.gdvox.com"
+        "code.gdvox.com"
+        "config.gdvox.com"
+        "contacts.gdvox.com"
+        "discussion.gdvox.com"
+        "docs.gdvox.com"
+        "drive.gdvox.com"
+        "finance.gdvox.com"
+        "forms.gdvox.com"
+        "forum.gdvox.com"
+        "id.gdvox.com"
+        "list.gdvox.com"
+        "mail.gdvox.com"
+        "meet.gdvox.com"
+        "net.gdvox.com"
+        "pay.gdvox.com"
+        "photos.gdvox.com"
+        "secret.gdvox.com"
+        "sites.gdvox.com"
+        "sync.gdvox.com"
+        "task.gdvox.com"
+        "url.gdvox.com"
+        "videos.gdvox.com"
+        "webdav.gdvox.com"
+        "wiki.gdvox.com"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'www.parisgv.org') {
+              return 301 $scheme://www.parisgv.com$request_uri;
+            }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "www.parisle.com" = {
       serverAliases = [
         "www.parisle.org"
