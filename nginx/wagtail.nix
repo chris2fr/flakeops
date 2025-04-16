@@ -553,8 +553,8 @@ in {
             # if ($host = 'www.parisgv.org') {
             #   return 301 $scheme://www.parisgv.com$request_uri;
             # }
-            rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/admin$ /accounts/oidc/keycloak-lesgv-org/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-lesgv-org/login/?process=cms-admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
