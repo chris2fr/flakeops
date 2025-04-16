@@ -91,47 +91,47 @@ in
 
       services = {
         resolved.enable = true;
-        postgresql = {
-          package = pkgs.postgresql_17;
-          enable = true;
-          enableTCPIP = true;
-          settings = {
-            ssl = true;
-            ssl_cert_file = "/etc/postgres/server.crt";
-          };
-          ensureUsers = [{
-            name = "keycloaklesgv";
-            ensureDBOwnership = true;
-          }];
-          ensureDatabases = ["keycloaklesgv"];
-        };
-        keycloak = {
-          enable = true;
-          database = {
-            username = "keycloaklesgv";
-            # name = "keycloaklesgv";
-            name="keycloaklesgv"; # I think the database is keycloak and not key
-            # passwordFile="/etc/.secrets.key";
-            passwordFile = "/etc/.secret.keycloaklesgvorg";
-            createLocally=false;
-            host="127.0.0.1";
-            # useSSL = false;
-            caCert = "/etc/postgres/server.crt";
-          };
-          settings = {
-            https-port = 14446;
-            http-port = 14086;
-            # proxy = "passthrough";
-            # proxy = "reencrypt";
-            proxy-headers = "xforwarded";
-            hostname = "keycloak.lesgv.org";
-            # hostname-admin = "adminkeycloak.lesgv.org";
-          };
-          sslCertificate = "/var/lib/acme/keycloak.lesgv.org/fullchain.pem";
-          sslCertificateKey = "/var/lib/acme/keycloak.lesgv.org/key.pem";
-          initialAdminPassword = "lksajdflkasjlkgh5798214dskjhgfkjsahf";
-          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        };
+        # postgresql = {
+        #   package = pkgs.postgresql_17;
+        #   enable = true;
+        #   enableTCPIP = true;
+        #   settings = {
+        #     ssl = true;
+        #     ssl_cert_file = "/etc/postgres/server.crt";
+        #   };
+        #   ensureUsers = [{
+        #     name = "keycloaklesgv";
+        #     ensureDBOwnership = true;
+        #   }];
+        #   ensureDatabases = ["keycloaklesgv"];
+        # };
+        # keycloak = {
+        #   enable = true;
+        #   database = {
+        #     username = "keycloaklesgv";
+        #     # name = "keycloaklesgv";
+        #     name="keycloaklesgv"; # I think the database is keycloak and not key
+        #     # passwordFile="/etc/.secrets.key";
+        #     passwordFile = "/etc/.secret.keycloaklesgvorg";
+        #     createLocally=false;
+        #     host="127.0.0.1";
+        #     # useSSL = false;
+        #     caCert = "/etc/postgres/server.crt";
+        #   };
+        #   settings = {
+        #     https-port = 14446;
+        #     http-port = 14086;
+        #     # proxy = "passthrough";
+        #     # proxy = "reencrypt";
+        #     proxy-headers = "xforwarded";
+        #     hostname = "keycloak.lesgv.org";
+        #     # hostname-admin = "adminkeycloak.lesgv.org";
+        #   };
+        #   sslCertificate = "/var/lib/acme/keycloak.lesgv.org/fullchain.pem";
+        #   sslCertificateKey = "/var/lib/acme/keycloak.lesgv.org/key.pem";
+        #   initialAdminPassword = "lksajdflkasjlkgh5798214dskjhgfkjsahf";
+        #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+        # };
       };
     };
   };
