@@ -3,12 +3,12 @@ let
 in
 {
   containers.keycloaklesgv = {
-    bindMounts = {
-      "/var/lib/acme/keycloak.lesgv.org/" = {
-        hostPath = "/var/lib/acme/keycloak.lesgv.org/";
-        isReadOnly = true;
-      };
-    };
+    # bindMounts = {
+    #   "/var/lib/acme/keycloak.lesgv.org/" = {
+    #     hostPath = "/var/lib/acme/keycloak.lesgv.org/";
+    #     isReadOnly = true;
+    #   };
+    # };
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.116.10";
@@ -51,12 +51,12 @@ in
         };
         useHostResolvConf = lib.mkForce false;
       };
-      systemd.tmpfiles.rules = [
-        # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
-        "d /var/lib/acme/keycloak.lesgv.org/ 0750 acme wwwrun"
-        "d /etc/postgresql/ 0750 postgres keycloak"
-        "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
-      ];
+      # systemd.tmpfiles.rules = [
+      #   # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
+      #   "d /var/lib/acme/keycloak.lesgv.org/ 0750 acme wwwrun"
+      #   "d /etc/postgresql/ 0750 postgres keycloak"
+      #   "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
+      # ];
       # security.acme.acceptTerms = true;
       users = {
         groups = {
