@@ -496,7 +496,7 @@ in {
       '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.parisle.com" = {
