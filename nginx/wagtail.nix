@@ -477,9 +477,9 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/coopgv/";
+      root = "/var/www/gdvox/";
       locations."/" = {
-        proxyPass = "http://localhost:8904/";
+        proxyPass = "http://localhost:8907/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             # if ($host = 'www.parisgv.org') {
