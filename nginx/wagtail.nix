@@ -128,7 +128,7 @@ in {
     };
     "www.gv.coop" = {
       serverAliases = [
-        "www.lesgv.org"
+        # "www.lesgv.org"
         "www.lesgv.com"
         "www.lgv.info"
         "www.libregood.com"
@@ -489,6 +489,65 @@ in {
       root = "/var/www/gdvox/";
       locations."/" = {
         proxyPass = "http://localhost:8907/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            # if ($host = 'www.parisgv.org') {
+            #   return 301 $scheme://www.parisgv.com$request_uri;
+            # }
+            rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };    
+    "www.lesgv.org" = {
+      serverAliases = [
+        "admin.lesgv.org"
+        "ai.lesgv.org"
+        "annuaire.lesgv.org"
+        "backup.lesgv.org"
+        "blog.lesgv.org"
+        "cal.lesgv.org"
+        "cloud.lesgv.org"
+        "code.lesgv.org"
+        "config.lesgv.org"
+        "contacts.lesgv.org"
+        "discussion.lesgv.org"
+        "docs.lesgv.org"
+        "drive.lesgv.org"
+        "finance.lesgv.org"
+        "forms.lesgv.org"
+        "forum.lesgv.org"
+        "id.lesgv.org"
+        "list.lesgv.org"
+        "mail.lesgv.org"
+        "meet.lesgv.org"
+        "net.lesgv.org"
+        "pay.lesgv.org"
+        "photos.lesgv.org"
+        "secret.lesgv.org"
+        "sites.lesgv.org"
+        "sync.lesgv.org"
+        "task.lesgv.org"
+        "url.lesgv.org"
+        "videos.lesgv.org"
+        "webdav.lesgv.org"
+        "wiki.lesgv.org"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/lesgvorg/";
+      locations."/" = {
+        proxyPass = "http://localhost:8908/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             # if ($host = 'www.parisgv.org') {

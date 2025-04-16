@@ -47,6 +47,8 @@ in
     "d /var/www/coopgv/medias 0775 wagtail users -"
     "d /var/www/gdvox/static 0775 wagtail users -"
     "d /var/www/gdvox/media 0775 wagtail users -"
+    "d /var/www/lesgvorg/static 0775 wagtail users -"
+    "d /var/www/lesgvorg/media 0775 wagtail users -"
     "d /run/wagtail-sockets 0770 wagtail wwwrun -"
     "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
   ];

@@ -187,6 +187,14 @@ in
         hostPath   = "/var/www/gdvox/static";
         isReadOnly = false;
       };
+      "/home/wagtail/lesgv/media" = {
+        hostPath   = "/var/www/lesgvorg/media";
+        isReadOnly = false;
+      };
+      "/home/wagtail/lesgv/static" = {
+        hostPath   = "/var/www/lesgvorg/static";
+        isReadOnly = false;
+      };
       # "/run/wagtail-sockets" = { 
       #   hostPath = "/run/wagtail-sockets";
       #   isReadOnly = false; 
@@ -307,6 +315,9 @@ in
         "d /home/wagtail/coopgv/medias 0775 wagtail users -"
         "d /home/wagtail/gdvox/static 0775 wagtail users -"
         "d /home/wagtail/gdvox/media 0775 wagtail users -"
+        "d /home/wagtail/lesgv 0755 wagtail users -"
+        "d /home/wagtail/lesgv/static 0775 wagtail users -"
+        "d /home/wagtail/lesgv/media 0775 wagtail users -"
       ];
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
@@ -534,6 +545,22 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/gdvox/";
           ExecStart = ''/home/wagtail/gdvox/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/gdvox-access.log --error-logfile /var/log/wagtail/gdvox-error.log --chdir /home/wagtail/gdvox --workers 12 --bind 0.0.0.0:8907 lesgrandsvoisins.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User =   "wagtail";
+          Group =    "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-lesgvorg = {
+        description = "www.lesgv.org on 8908";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/lesgv/";
+          ExecStart = ''/home/wagtail/lesgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/lesgv-access.log --error-logfile /var/log/wagtail/lesgv-error.log --chdir /home/wagtail/lesgv --workers 12 --bind 0.0.0.0:8908 lesgrandsvoisins.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User =   "wagtail";
