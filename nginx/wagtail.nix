@@ -214,7 +214,16 @@ in {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        # extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =  ''
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_redirect off;
+          proxy_http_version 1.1;
+          proxy_set_header X-Forwarded-Proto $scheme;
+
+          # proxy_set_header Host $host;
+          # proxy_set_header Upgrade $http_upgrade;
+          # proxy_set_header Connection $connection_upgrade_keepalive;
           # return 302 $scheme://www.grandsvoisins.com$request_uri;
           if ($host = 'www.gvois.org') {
             return 301 $scheme://www.gvois.com$request_uri;
@@ -486,6 +495,7 @@ in {
             #   return 301 $scheme://www.parisgv.com$request_uri;
             # }
             rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
