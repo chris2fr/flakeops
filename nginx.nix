@@ -266,6 +266,27 @@ in {
             '';
           };
         };
+        "keycloak.coolgv.com" = {
+          enableACME = true;
+          forceSSL = true;
+          root = "/var/www/keycloak.gvois.com";
+          serverAliases = ["adminkeycloak.coolgv.com"];
+          locations."/" = {
+            proxyPass = "https://192.168.117.11:14446";
+            extraConfig = ''
+              rewrite ^/$ https://keycloak.coolgv.com/realms/master/account/applications redirect;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host $host;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              add_header Access-Control-Allow-Credentials true;
+              proxy_ssl_certificate     /var/lib/acme/keycloak.coolgv.com/fullchain.pem;
+              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pem;
+            '';
+          };
+        };
         "keycloak.parisgv.com" = {
           enableACME = true;
           forceSSL = true;

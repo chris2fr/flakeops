@@ -4,8 +4,8 @@ in
 {
   containers.keycloaklesgv = {
     bindMounts = {
-      "/var/lib/acme/keycloak.lesgv.org/" = {
-        hostPath = "/var/lib/acme/keycloak.lesgv.org/";
+      "/var/lib/acme/keycloak.coolgv.com/" = {
+        hostPath = "/var/lib/acme/keycloak.coolgv.com/";
         isReadOnly = true;
       };
     };
@@ -53,7 +53,7 @@ in
       };
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
-        "d /var/lib/acme/keycloak.lesgv.org/ 0750 acme wwwrun"
+        "d /var/lib/acme/keycloak.coolgv.com/ 0750 acme wwwrun"
         "d /etc/postgresql/ 0750 postgres keycloak"
         "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
       ];
@@ -124,11 +124,11 @@ in
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
-            hostname = "keycloak.lesgv.org";
-            # hostname-admin = "adminkeycloak.lesgv.org";
+            hostname = "keycloak.coolgv.com";
+            # hostname-admin = "adminkeycloak.coolgv.com";
           };
-          sslCertificate = "/var/lib/acme/keycloak.lesgv.org/fullchain.pem";
-          sslCertificateKey = "/var/lib/acme/keycloak.lesgv.org/key.pem";
+          sslCertificate = "/var/lib/acme/keycloak.coolgv.com/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.coolgv.com/key.pem";
           initialAdminPassword = "lksajdflkasjlkgh5798214dskjhgfkjsahf";
           # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
         };
