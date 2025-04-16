@@ -45,6 +45,7 @@ in
     ./containers/keycloakgvoiscom.nix
     ./containers/keycloakgdvox.nix
     ./containers/keycloakparisgv.nix
+    ./containers/keycloaklesgv.nix
     # ./containers/keycloakparisle.nix
     # ./containers/roundcuberesdigita.nix
     ./containers/vikunjaresdigita.nix
