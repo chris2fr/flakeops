@@ -251,7 +251,7 @@ in {
           root = "/var/www/keycloak.gvois.com";
           serverAliases = ["adminkeycloak.lesgv.org"];
           locations."/" = {
-            proxyPass = "https://192.168.116.11:14446";
+            proxyPass = "https://192.168.117.11:14446";
             extraConfig = ''
               rewrite ^/$ https://keycloak.lesgv.org/realms/master/account/applications redirect;
               proxy_set_header Host $host;

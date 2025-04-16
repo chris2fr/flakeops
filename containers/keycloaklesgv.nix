@@ -3,18 +3,18 @@ let
 in
 {
   containers.keycloaklesgv = {
-    # bindMounts = {
-    #   "/var/lib/acme/keycloak.lesgv.org/" = {
-    #     hostPath = "/var/lib/acme/keycloak.lesgv.org/";
-    #     isReadOnly = true;
-    #   };
-    # };
+    bindMounts = {
+      "/var/lib/acme/keycloak.lesgv.org/" = {
+        hostPath = "/var/lib/acme/keycloak.lesgv.org/";
+        isReadOnly = true;
+      };
+    };
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.116.10";
-    localAddress = "192.168.116.11";
-    hostAddress6 = "fc00::116:10";
-    localAddress6 = "fc00::116:11";
+    hostAddress = "192.168.117.10";
+    localAddress = "192.168.117.11";
+    hostAddress6 = "fc00::117:10";
+    localAddress6 = "fc00::117:11";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -51,13 +51,13 @@ in
         };
         useHostResolvConf = lib.mkForce false;
       };
-      # systemd.tmpfiles.rules = [
-      #   # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
-      #   "d /var/lib/acme/keycloak.lesgv.org/ 0750 acme wwwrun"
-      #   "d /etc/postgresql/ 0750 postgres keycloak"
-      #   "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
-      # ];
-      # security.acme.acceptTerms = true;
+      systemd.tmpfiles.rules = [
+        # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
+        "d /var/lib/acme/keycloak.lesgv.org/ 0750 acme wwwrun"
+        "d /etc/postgresql/ 0750 postgres keycloak"
+        "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
+      ];
+      security.acme.acceptTerms = true;
       users = {
         groups = {
           "acme" = {
@@ -91,20 +91,20 @@ in
 
       services = {
         resolved.enable = true;
-        # postgresql = {
-        #   package = pkgs.postgresql_17;
-        #   enable = true;
-        #   enableTCPIP = true;
-        #   settings = {
-        #     ssl = true;
-        #     ssl_cert_file = "/etc/postgres/server.crt";
-        #   };
-        #   ensureUsers = [{
-        #     name = "keycloaklesgv";
-        #     ensureDBOwnership = true;
-        #   }];
-        #   ensureDatabases = ["keycloaklesgv"];
-        # };
+        postgresql = {
+          package = pkgs.postgresql_17;
+          enable = true;
+          enableTCPIP = true;
+          # settings = {
+          #   ssl = true;
+          #   ssl_cert_file = "/etc/postgres/server.crt";
+          # };
+          ensureUsers = [{
+            name = "keycloaklesgv";
+            ensureDBOwnership = true;
+          }];
+          ensureDatabases = ["keycloaklesgv"];
+        };
         # keycloak = {
         #   enable = true;
         #   database = {
