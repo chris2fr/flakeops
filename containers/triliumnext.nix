@@ -119,7 +119,8 @@ in
         };
         serviceConfig = {
           WorkingDirectory = "/home/triliumnext/trilium-server.0.93.0/";
-          ExecStart = ''node src/main.js'';
+          ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
+          # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";
           RestartSec = "10s";
           User = "triliumnext";
