@@ -62,7 +62,7 @@ in {
           enableACME = true;
           locations."/" = {
             extraConfig = ''
-              proxy_pass http://192.168.118.11:8080;
+              proxy_pass https://192.168.118.11:8080;
               proxy_set_header Host "triliumnext.lesgv.com";
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -80,6 +80,7 @@ in {
               # if ($host != "linkding.lesgrandsvoisins.com") {
               #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
               # }
+              proxy_ssl_verify off;
             '';
           };
         };
