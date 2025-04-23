@@ -55,6 +55,12 @@ in
         sqlite
         nodemon
         trilium-next-server
+        wget
+        curl
+        zlib
+        lzlib
+        dig
+        inetutils
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
