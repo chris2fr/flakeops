@@ -57,6 +57,30 @@ in {
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
       };
       virtualHosts = {
+        "triliumnext.lesgv.com" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+              proxy_pass http://192.168.118.11:8080;
+              proxy_set_header Host "triliumnext.lesgv.com";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host "triliumnext.lesgv.com";
+              proxy_set_header X-Forwarded-Proto "https";
+              proxy_set_header    X-Scheme $scheme;
+              proxy_redirect default;
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
+              # if ($host != "linkding.lesgrandsvoisins.com") {
+              #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
+              # }
+            '';
+          };
+        };
         "www.paris14.cc" = {
           forceSSL = true;
           enableACME = true;
