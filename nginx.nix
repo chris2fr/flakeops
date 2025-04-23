@@ -68,11 +68,13 @@ in {
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host "triliumnext.lesgv.com";
               proxy_set_header X-Forwarded-Proto "https";
-              proxy_set_header    X-Scheme $scheme;
+              proxy_set_header X-Scheme $scheme;
               proxy_redirect default;
+              # proxy_redirect http://127.0.0.1:8080 https://trilium.lesgv.com; # change them based on your IP, port and domain
               proxy_http_version 1.1;
               proxy_set_header   Upgrade $http_upgrade;
               proxy_set_header   Connection "upgrade";
+              proxy_read_timeout 90;
               # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               # add_header Access-Control-Allow-Credentials true;
               # if ($host != "linkding.lesgrandsvoisins.com") {

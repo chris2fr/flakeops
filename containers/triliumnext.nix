@@ -79,10 +79,10 @@ in
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" "keycloak"];
+            members = [ "acme" "wwwrun" "triliumnext"];
           };
-          "keycloak" = {
-            members = [ "keycloak" ];
+          "triliumnext" = {
+            members = [ "triliumnext" ];
           };
         };
         users = {
@@ -96,7 +96,7 @@ in
           };
           "triliumnext" = {
             group = "triliumnext";
-            # isSystemUser = true;
+            isNormalUser = true;
           };
         };
       };

@@ -7,3 +7,5 @@ install:
 	npm run build:webpack
 	npm run build:ts
 	npm run server:start
+
+# TRILIUM_NETWORK_PORT=8080 TRILIUM_DATA_DIR=/path/to/your/data-dir-A /opt/trilium/trilium.sh
