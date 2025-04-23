@@ -80,6 +80,7 @@ in
         # "f /etc/.secret.keycloaklesgvorgdata 0660 root root"
         "d /var/lib/acme/triliumnext.lesgv.com/ 0750 acme wwwrun"
         "d /var/lib/acme/triliumnext.mann.fr/ 0750 acme wwwrun"
+        "d /var/lib/acme/triliumnext.resdigita.com/ 0750 acme wwwrun"
         # "d /etc/postgresql/ 0750 postgres keycloak"
         # "f /etc/.secret.keycloaklesgvorg 0660 keycloak postgres"
       ];
@@ -142,6 +143,26 @@ in
         wantedBy = [ "multi-user.target" ];
         environment = {
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-mann/";
+        };
+        serviceConfig = {
+          WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
+          ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
+          # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "triliumnext";
+          Group = "triliumnext";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.trilium-next-server-resdigita = {
+        description = "Trilium Next Notes treliumnext.resdigita.com";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        environment = {
+          TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-resdigita/";
         };
         serviceConfig = {
           WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
