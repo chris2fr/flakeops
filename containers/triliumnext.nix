@@ -110,13 +110,33 @@ in
       };
       # systemd.services.postgresql.postStart = "cp -a ~postgres/server.crt /run/postgresql/server.crt";
 
+      systemd.services.trilium-next-server-lgv = {
+        description = "Trilium Next Notes LGV";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        environment = {
+          TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-lgv/";
+        };
+        serviceConfig = {
+          WorkingDirectory = "/home/triliumnext/trilium-server.0.93.0/";
+          ExecStart = ''node src/main.js'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "triliumnext";
+          Group = "triliumnext";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+
       services = {
         resolved.enable = true;
-        trilium-server = {
-            enable = true;
-            package = pkgs.trilium-next-server;
-            dataDir = "/var/lib/trilium";
-        };
+        # trilium-server = {
+        #     enable = true;
+        #     package = pkgs.trilium-next-server;
+        #     dataDir = "/var/lib/trilium";
+        # };
         # postgresql = {
         # #   package = pkgs.postgresql_17;
         #   enable = true;
