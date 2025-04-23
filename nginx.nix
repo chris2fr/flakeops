@@ -84,7 +84,6 @@ in {
             '';
           };
         };
-      virtualHosts = {
         "triliumnext.mann.fr" = {
           forceSSL = true;
           enableACME = true;
