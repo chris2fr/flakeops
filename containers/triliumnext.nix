@@ -53,6 +53,8 @@ in
         libjpeg
         gettext
         sqlite
+        nodemon
+        trilium-next-server
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
@@ -104,6 +106,11 @@ in
 
       services = {
         resolved.enable = true;
+        trilium-server = {
+            enable = true;
+            package = pkgs.trilium-next-server;
+            dataDir = "/var/lib/trilium";
+        };
         # postgresql = {
         # #   package = pkgs.postgresql_17;
         #   enable = true;
