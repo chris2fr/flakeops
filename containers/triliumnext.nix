@@ -118,7 +118,7 @@ in
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-lgv/";
         };
         serviceConfig = {
-          WorkingDirectory = "/home/triliumnext/trilium-server.0.93.0/";
+          WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
           ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
           # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";
