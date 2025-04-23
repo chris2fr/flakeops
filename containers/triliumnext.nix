@@ -94,9 +94,9 @@ in
             uid = 54;
             group = "wwwrun";
           };
-          "keycloak" = {
-            group = "keycloak";
-            isSystemUser = true;
+          "triliumnext" = {
+            group = "triliumnext";
+            # isSystemUser = true;
           };
         };
       };
