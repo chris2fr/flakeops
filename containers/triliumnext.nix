@@ -52,6 +52,7 @@ in
         coreutils-full
         libjpeg
         gettext
+        sqlite
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "24.11";
