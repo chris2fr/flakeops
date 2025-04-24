@@ -58,6 +58,7 @@ in {
       };
       virtualHosts = {
         "triliumnext.lesgv.com" = {
+          serverAliases = ["notes.lesgv.com" "note.lesgv.com"];
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -77,14 +78,15 @@ in {
               proxy_read_timeout 90;
               # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               # add_header Access-Control-Allow-Credentials true;
-              # if ($host != "linkding.lesgrandsvoisins.com") {
-              #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
-              # }
+              if ($host != "triliumnext.lesgv.com") {
+                return 302 $scheme://triliumnext.lesgv.com$request_uri;
+              }
               proxy_ssl_verify off;
             '';
           };
         };
         "triliumnext.mann.fr" = {
+          serverAliases = ["notes.mann.fr" "note.mann.fr"];
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -104,14 +106,15 @@ in {
               proxy_read_timeout 90;
               # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               # add_header Access-Control-Allow-Credentials true;
-              # if ($host != "linkding.lesgrandsvoisins.com") {
-              #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
-              # }
+              if ($host != "triliumnext.mann.fr") {
+                return 302 $scheme://triliumnext.mann.fr$request_uri;
+              }
               proxy_ssl_verify off;
             '';
           };
         };
         "triliumnext.resdigita.com" = {
+          serverAliases = ["notes.resdigita.com" "note.resdigita.com"];
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -131,9 +134,9 @@ in {
               proxy_read_timeout 90;
               # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               # add_header Access-Control-Allow-Credentials true;
-              # if ($host != "linkding.lesgrandsvoisins.com") {
-              #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
-              # }
+              if ($host != "triliumnext.resdigita.com") {
+                return 302 $scheme://triliumnext.resdigita.com$request_uri;
+              }
               proxy_ssl_verify off;
             '';
           };
