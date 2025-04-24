@@ -12,6 +12,10 @@ in
         hostPath = "/var/lib/acme/triliumnext.mann.fr/";
         isReadOnly = true;
       };
+      "/var/lib/acme/triliumnext.resdigita.com/" = {
+        hostPath = "/var/lib/acme/triliumnext.mann.fr/";
+        isReadOnly = true;
+      };
     };
     autoStart = true;
     privateNetwork = true;
