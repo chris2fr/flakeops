@@ -210,6 +210,11 @@ in {
       forceSSL = true;
       # root = "/var/www/lesgrandsvoisins/";      
       root = "/var/www/coopgv/";
+      locations."/index.php" = {
+          extraConfig =  ''
+            return 404;
+          '';
+      };
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
