@@ -528,7 +528,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/coopgv/";
-          ExecStart = ''/home/wagtail/coopgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/coopgv-access.log --error-logfile /var/log/wagtail/coopgv-error.log --capture-output true --chdir /home/wagtail/coopgv --workers 12 --bind 0.0.0.0:8904 lesgrandsvoisins.wsgi:application'';
+          ExecStart = ''/home/wagtail/coopgv/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/coopgv-access.log --error-logfile /var/log/wagtail/coopgv-error.log --chdir /home/wagtail/coopgv --workers 12 --bind 0.0.0.0:8904 lesgrandsvoisins.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User =   "wagtail";
