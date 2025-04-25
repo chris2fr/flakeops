@@ -52,6 +52,7 @@ in
     ./containers/lgvldap.nix
     ./containers/openldap.nix
     ./containers/silverbullet.nix
+    ./containers/triliumnext.nix
     ./containers/wagtail.nix
     ./containers/wordpress.nix
   ];

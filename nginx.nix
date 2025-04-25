@@ -57,6 +57,90 @@ in {
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
       };
       virtualHosts = {
+        "triliumnext.lesgv.com" = {
+          serverAliases = ["notes.lesgv.com" "note.lesgv.com"];
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+              proxy_pass https://192.168.118.11:8080;
+              proxy_set_header Host "triliumnext.lesgv.com";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host "triliumnext.lesgv.com";
+              proxy_set_header X-Forwarded-Proto "https";
+              proxy_set_header X-Scheme $scheme;
+              proxy_redirect default;
+              # proxy_redirect http://127.0.0.1:8080 https://trilium.lesgv.com; # change them based on your IP, port and domain
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              proxy_read_timeout 90;
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
+              if ($host != "triliumnext.lesgv.com") {
+                return 302 $scheme://triliumnext.lesgv.com$request_uri;
+              }
+              proxy_ssl_verify off;
+            '';
+          };
+        };
+        "triliumnext.mann.fr" = {
+          serverAliases = ["notes.mann.fr" "note.mann.fr"];
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+              proxy_pass https://192.168.118.11:8443;
+              proxy_set_header Host "triliumnext.mann.fr";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host "triliumnext.mann.fr";
+              proxy_set_header X-Forwarded-Proto "https";
+              proxy_set_header X-Scheme $scheme;
+              proxy_redirect default;
+              # proxy_redirect http://127.0.0.1:8443 https://triliumnext.mann.fr; # change them based on your IP, port and domain
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              proxy_read_timeout 90;
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
+              if ($host != "triliumnext.mann.fr") {
+                return 302 $scheme://triliumnext.mann.fr$request_uri;
+              }
+              proxy_ssl_verify off;
+            '';
+          };
+        };
+        "triliumnext.resdigita.com" = {
+          serverAliases = ["notes.resdigita.com" "note.resdigita.com"];
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+              proxy_pass https://192.168.118.11:8444;
+              proxy_set_header Host "triliumnext.mann.fr";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Host "triliumnext.mann.fr";
+              proxy_set_header X-Forwarded-Proto "https";
+              proxy_set_header X-Scheme $scheme;
+              proxy_redirect default;
+              # proxy_redirect http://127.0.0.1:8444 https://triliumnext.mann.fr; # change them based on your IP, port and domain
+              proxy_http_version 1.1;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+              proxy_read_timeout 90;
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
+              if ($host != "triliumnext.resdigita.com") {
+                return 302 $scheme://triliumnext.resdigita.com$request_uri;
+              }
+              proxy_ssl_verify off;
+            '';
+          };
+        };
         "www.paris14.cc" = {
           forceSSL = true;
           enableACME = true;
