@@ -58,7 +58,10 @@ in {
       };
       virtualHosts = {
         "triliumnext.lesgv.com" = {
-          serverAliases = ["notes.lesgv.com" "note.lesgv.com"];
+          serverAliases = [
+            "notes.lesgv.com" 
+            "note.lesgv.com"
+          ];
           forceSSL = true;
           enableACME = true;
           locations."/" = {

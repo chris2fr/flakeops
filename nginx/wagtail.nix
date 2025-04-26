@@ -129,7 +129,7 @@ in {
     "www.gv.coop" = {
       serverAliases = [
         # "www.lesgv.org"
-        "www.lesgv.com"
+        # "www.lesgv.com"
         "www.lgv.info"
         "www.libregood.com"
         "www.gdvoisins.com"
@@ -366,6 +366,95 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.lesgv.org" = {
+      serverAliases = [
+        "www.gvois.org"
+        "bigbluebutton.lesgv.org"
+        "bind.lesgv.org"
+        "cherryldap.lesgv.org"
+        "crabfit.lesgv.org"
+        "discourse.lesgv.org"
+        "fossil.lesgv.org"
+        "ghost.lesgv.org"
+        "gitea.lesgv.org"
+        "hedgedoc.lesgv.org"
+        "homepagedashboard.lesgv.org"
+        "keycloak.lesgv.org"
+        "linkding.lesgv.org"
+        "listmonk.lesgv.org"
+        "nixos.lesgv.org"
+        "odoo.lesgv.org"
+        "openldap.lesgv.org"
+        "photoprism.lesgv.org"
+        "quartz.lesgv.org"
+        "radicale.lesgv.org"
+        "roundcube.lesgv.org"
+        "seafile.lesgv.org"
+        "sftpgo.lesgv.org"
+        "silverbullet.lesgv.org"
+        "syncthing.lesgv.org"
+        "vaultwarden.lesgv.org"
+        "vikunja.lesgv.org"
+        "wagtail.lesgv.org"
+        "webdav.lesgv.org"
+        "wordpress.lesgv.org"
+        "admin.lesgv.org"
+        "ai.lesgv.org"
+        "annuaire.lesgv.org"
+        "backup.lesgv.org"
+        "blog.lesgv.org"
+        "cal.lesgv.org"
+        "cloud.lesgv.org"
+        "code.lesgv.org"
+        "config.lesgv.org"
+        "contacts.lesgv.org"
+        "discussion.lesgv.org"
+        "docs.lesgv.org"
+        "drive.lesgv.org"
+        "finance.lesgv.org"
+        "forms.lesgv.org"
+        "forum.lesgv.org"
+        "id.lesgv.org"
+        "list.lesgv.org"
+        "mail.lesgv.org"
+        "meet.lesgv.org"
+        "net.lesgv.org"
+        "pay.lesgv.org"
+        "photos.lesgv.org"
+        "secret.lesgv.org"
+        "sites.lesgv.org"
+        "sync.lesgv.org"
+        "task.lesgv.org"
+        "url.lesgv.org"
+        "videos.lesgv.org"
+        "wiki.lesgv.org"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";      
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'www.gvois.org') {
+              return 301 $scheme://www.lesgv.org$request_uri;
+            }
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "www.parisgv.com" = {
       serverAliases = [
         "www.parisgv.org"
@@ -514,39 +603,39 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };    
-    "www.lesgv.org" = {
+    "www.lesgv.com" = {
       serverAliases = [
-        "admin.lesgv.org"
-        "ai.lesgv.org"
-        "annuaire.lesgv.org"
-        "backup.lesgv.org"
-        "blog.lesgv.org"
-        "cal.lesgv.org"
-        "cloud.lesgv.org"
-        "code.lesgv.org"
-        "config.lesgv.org"
-        "contacts.lesgv.org"
-        "discussion.lesgv.org"
-        "docs.lesgv.org"
-        "drive.lesgv.org"
-        "finance.lesgv.org"
-        "forms.lesgv.org"
-        "forum.lesgv.org"
-        "id.lesgv.org"
-        "list.lesgv.org"
-        "mail.lesgv.org"
-        "meet.lesgv.org"
-        "net.lesgv.org"
-        "pay.lesgv.org"
-        "photos.lesgv.org"
-        "secret.lesgv.org"
-        "sites.lesgv.org"
-        "sync.lesgv.org"
-        "task.lesgv.org"
-        "url.lesgv.org"
-        "videos.lesgv.org"
-        "webdav.lesgv.org"
-        "wiki.lesgv.org"
+        "admin.lesgv.com"
+        "ai.lesgv.com"
+        "annuaire.lesgv.com"
+        "backup.lesgv.com"
+        "blog.lesgv.com"
+        "cal.lesgv.com"
+        "cloud.lesgv.com"
+        "code.lesgv.com"
+        "config.lesgv.com"
+        "contacts.lesgv.com"
+        "discussion.lesgv.com"
+        "docs.lesgv.com"
+        "drive.lesgv.com"
+        "finance.lesgv.com"
+        "forms.lesgv.com"
+        "forum.lesgv.com"
+        "id.lesgv.com"
+        "list.lesgv.com"
+        "mail.lesgv.com"
+        "meet.lesgv.com"
+        "net.lesgv.com"
+        "pay.lesgv.com"
+        "photos.lesgv.com"
+        "secret.lesgv.com"
+        "sites.lesgv.com"
+        "sync.lesgv.com"
+        "task.lesgv.com"
+        "url.lesgv.com"
+        "videos.lesgv.com"
+        "webdav.lesgv.com"
+        "wiki.lesgv.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -558,8 +647,8 @@ in {
             # if ($host = 'www.parisgv.org') {
             #   return 301 $scheme://www.parisgv.com$request_uri;
             # }
-            rewrite ^/admin$ /accounts/oidc/keycloak-lesgv-org/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-lesgv-org/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/admin$ /accounts/oidc/keycloak-lesgv.com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-lesgv.com/login/?process=cms-admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -1109,7 +1198,7 @@ in {
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
         # "discoursewww.lesgv.com" 
-        "discourse.lesgv.com"
+        # "discourse.lesgv.com"
         "discourse.resdigita.com"
         "lesgvcom.resdigita.com"
         "iriviorg.resdigita.com"
