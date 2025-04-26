@@ -639,9 +639,9 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/lesgvorg/";
+      root = "/var/www/coopgv/";
       locations."/" = {
-        proxyPass = "http://localhost:8908/";
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             # if ($host = 'www.parisgv.org') {
@@ -660,6 +660,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.parisle.com" = {
