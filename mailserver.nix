@@ -4,6 +4,7 @@ let
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [
+    "maelanc.com"
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
     "resdigita.com"
@@ -61,6 +62,7 @@ in
   ];
   services = {
     postfix.virtual = ''
+      mael@maleanc.com maelnemacherif@yahoo.fr
       axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
       alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
       alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
