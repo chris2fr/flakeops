@@ -64,6 +64,8 @@ in
     postfix.virtual = ''
       mael@maelanc.com maelnemacherif@yahoo.fr
       mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
+      chris@resdigita.com chris@mann.fr
+      sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com 
       axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
       alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
       alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
