@@ -62,6 +62,8 @@ in
   ];
   services = {
     postfix.virtual = ''
+      contact@resdigita.com sviatlana@resdigita.com
+      contact@resdigita.com chris@resdigita.com      
       mael@maelanc.com maelnemacherif@yahoo.fr
       mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
       chris@resdigita.com chris@mann.fr
