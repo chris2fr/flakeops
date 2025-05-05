@@ -84,6 +84,7 @@ in {
         "gv.coop" 
         "libregood.com" 
         "gvcoop.com"
+        "gvcoop.org"
         "interet-public.org" 
         "interetpublic.org" 
         "lesgrandsvoisins.com" 
@@ -637,6 +638,8 @@ in {
         "webdav.lesgv.com"
         "wiki.lesgv.com"
         "app.lesgv.com"
+        # "www.gv.coop"
+        "www.gvcoop.org"
       ];
       enableACME = true;
       forceSSL = true;

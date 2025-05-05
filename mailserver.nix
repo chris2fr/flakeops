@@ -5,6 +5,7 @@ let
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [
     "maelanc.com"
+    "gvcoop.org"
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
     "resdigita.com"
