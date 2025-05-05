@@ -63,6 +63,8 @@ in
   ];
   services = {
     postfix.virtual = ''
+      felicite@yanlomsprod.org associationyanlomsprod@gmail.com
+      contact@yanlomsprod.org associationyanlomsprod@gmail.com
       contact@resdigita.com sviatlana@resdigita.com
       contact@resdigita.com chris@resdigita.com      
       mael@maelanc.com maelnemacherif@yahoo.fr
