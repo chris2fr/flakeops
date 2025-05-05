@@ -636,6 +636,7 @@ in {
         "videos.lesgv.com"
         "webdav.lesgv.com"
         "wiki.lesgv.com"
+        "app.lesgv.com"
       ];
       enableACME = true;
       forceSSL = true;
@@ -644,9 +645,9 @@ in {
         proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
-            # if ($host = 'www.parisgv.org') {
-            #   return 301 $scheme://www.parisgv.com$request_uri;
-            # }
+            if ($host = 'app.lesgv.com') {
+              return 302 $scheme://www.lesgv.com$request_uri;
+            }
             rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
             rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
