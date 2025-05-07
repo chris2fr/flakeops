@@ -63,6 +63,10 @@ in
   ];
   services = {
     postfix.virtual = ''
+      contact@afriquepartenaires.org claudette@afriquepartenaires.org
+      contact@afriquepartenaires.org renel@afriquepartenaires.org
+      claudette@afriquepartenaires.org afripartenaires@gmail.com
+      renel@afriquepartenaires.org culture.coordination@gmail.com
       felicite@yanlomsprod.org associationyanlomsprod@gmail.com
       contact@yanlomsprod.org associationyanlomsprod@gmail.com
       contact@resdigita.com sviatlana@resdigita.com
