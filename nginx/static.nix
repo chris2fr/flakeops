@@ -20,5 +20,10 @@ in
       forceSSL = true;
       root = "/var/www/resdigitacom";
     };
+    "static.grandzine.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/grandzine.org_static";
+    };
   };
 }
