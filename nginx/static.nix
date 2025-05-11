@@ -31,7 +31,7 @@ in
       root = "/var/www/grandzine/prototype";
     };
     "www.grandzine.com" = {
-      serverAliases = ["grandzine.com","grandzine.org"];
+      serverAliases = ["grandzine.com" "grandzine.org"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/grandzine/prototype";
