@@ -31,11 +31,12 @@ in
       root = "/var/www/grandzine/prototype";
     };
     "www.grandzine.com" = {
+      serverAliases = ["grandzine.com","grandzine.org"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/grandzine/prototype";
       locations."/".extraConfig = ''
-        return 302 $scheme://www.grandzine.org$request_uri;
+        return 301 $scheme://www.grandzine.org$request_uri;
       '';
     };
   };
