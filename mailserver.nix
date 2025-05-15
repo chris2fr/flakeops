@@ -63,6 +63,7 @@ in
   ];
   services = {
     postfix.virtual = ''
+      donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       contact@afriquepartenaires.org claudette@afriquepartenaires.org
       contact@afriquepartenaires.org renel@afriquepartenaires.org
       contact@afriquepartenaires.org afripartenairesasso@gmail.com
