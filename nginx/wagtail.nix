@@ -340,6 +340,7 @@ in {
         "url.gvois.com"
         "videos.gvois.com"
         "wiki.gvois.com"
+        "grandv.org"
       ];
       enableACME = true;
       forceSSL = true;
@@ -1643,6 +1644,19 @@ in {
       root = "/var/www/wagtail.resdigita.com.main/";
       locations."/" = {
         proxyPass = "http://localhost:8903/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME = true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.grandv.org" = {
+      root = "/var/www/grandv/";
+      locations."/" = {
+        proxyPass = "http://localhost:8909/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       enableACME = true;

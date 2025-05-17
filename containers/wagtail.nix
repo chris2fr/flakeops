@@ -195,6 +195,14 @@ in
         hostPath   = "/var/www/lesgvorg/static";
         isReadOnly = false;
       };
+      "/home/wagtail/grandv/media" = {
+        hostPath   = "/var/www/grandv/media";
+        isReadOnly = false;
+      };
+      "/home/wagtail/grandv/static" = {
+        hostPath   = "/var/www/grandv/static";
+        isReadOnly = false;
+      };
       # "/run/wagtail-sockets" = { 
       #   hostPath = "/run/wagtail-sockets";
       #   isReadOnly = false; 
@@ -311,6 +319,9 @@ in
         "d /home/wagtail/coopgv 0755 wagtail users -"
         "d /home/wagtail/coopgv/staticfiles 0775 wagtail users -"
         "d /home/wagtail/coopgv/static 0775 wagtail users -"
+        "d /home/wagtail/grandv 0755 wagtail users -"
+        "d /home/wagtail/grandv/media 0775 wagtail users -"
+        "d /home/wagtail/grandv/static 0775 wagtail users -"
         "d /home/wagtail/gdvox 0755 wagtail users -"
         "d /home/wagtail/coopgv/medias 0775 wagtail users -"
         "d /home/wagtail/gdvox/static 0775 wagtail users -"
@@ -346,6 +357,22 @@ in
           WorkingDirectory = "/home/wagtail/sites-faciles/";
           # ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/sites-faciles --workers 3 --bind unix:/var/lib/wagtail/sites-faciles.sock facile.wsgi:application'';
           ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/sites-faciles-access.log --error-logfile /var/log/wagtail/sites-faciles-error.log --chdir /home/wagtail/sites-faciles --workers 12 --bind 0.0.0.0:8080 wagtail_village.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.grandv = {
+        description   = "www.grandv.org";
+        after         = [ "network.target" ];
+        wantedBy      = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/grandv/";
+          ExecStart = ''/home/wagtail/grandv/.venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
