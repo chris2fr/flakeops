@@ -122,6 +122,7 @@ in {
         "gvois.com"
         "parisgv.com"
         "configmagic.com"
+        "grandv.org"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -340,7 +341,6 @@ in {
         "url.gvois.com"
         "videos.gvois.com"
         "wiki.gvois.com"
-        "grandv.org"
       ];
       enableACME = true;
       forceSSL = true;

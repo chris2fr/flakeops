@@ -280,6 +280,7 @@ in
         glibcLocales
         libgcc
         libsass
+        openldap
       ];
 
       # networking = {
