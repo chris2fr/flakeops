@@ -238,23 +238,23 @@ in
           '';
         }
         )
-        python311
-        python311Packages.pillow
-        python311Packages.gunicorn
-        python311Packages.pip
-        python311Packages.libsass
-        python311Packages.pyscss
-        python311Packages.django-libsass
+        python312
+        python312Packages.pillow
+        python312Packages.gunicorn
+        python312Packages.pip
+        python312Packages.libsass
+        python312Packages.pyscss
+        python312Packages.django-libsass
         libjpeg
         zlib
         libtiff
         freetype
-        python311Packages.venvShellHook
+        python312Packages.venvShellHook
         curl
         wget
         lynx
         dig
-        python311Packages.pylibjpeg-libjpeg
+        python312Packages.pylibjpeg-libjpeg
         git
         tmux
         bat
@@ -262,11 +262,11 @@ in
         lzlib
         killall
         pwgen
-        python311Packages.pypdf2
-        python311Packages.python-ldap
-        python311Packages.pq
-        python311Packages.aiosasl
-        python311Packages.psycopg2
+        python312Packages.pypdf2
+        python312Packages.python-ldap
+        python312Packages.pq
+        python312Packages.aiosasl
+        python312Packages.psycopg2
         gettext
         sqlite
         postgresql_14
