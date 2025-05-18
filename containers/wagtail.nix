@@ -281,6 +281,7 @@ in
         libgcc
         libsass
         openldap
+        devenv
       ];
 
       # networking = {
