@@ -238,18 +238,39 @@ in
           '';
         }
         )
-        python312
-        python312Packages.pillow
-        python312Packages.gunicorn
-        python312Packages.pip
-        python312Packages.libsass
-        python312Packages.pyscss
-        python312Packages.django-libsass
+        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+            pillow
+            gunicorn
+            pip
+            libsass
+            python-ldap
+            pyscss
+            django-libsass
+            pylibjpeg-libjpeg
+            pypdf2
+            #venvShellHook
+            pq
+            aiosasl
+            psycopg2
+            django
+            wagtail
+            python-dotenv
+            dj-database-url
+            # psycopg2-binary
+            django-taggit
+            #wagtail-modeladmin
+            ## wagtailmenus
+            ## Public facing server, I think
+            python-keycloak
+            ## Dev
+            ## djlint
+            django-debug-toolbar
+        ]))
         libjpeg
         zlib
         libtiff
         freetype
-        python312Packages.venvShellHook
+        # python312Packages.venvShellHook
         curl
         wget
         lynx
