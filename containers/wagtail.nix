@@ -395,7 +395,8 @@ in
         wantedBy      = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/grandv/";
-          ExecStart = ''python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
+          # ExecStart = ''python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
+          ExecStart = "/home/wagtail/grandv/result/bin/run-django";
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
