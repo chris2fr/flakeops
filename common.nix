@@ -68,34 +68,34 @@ in
             ## djlint
             django-debug-toolbar
         ]))
-    python312Full
-    python312Packages.pip
-    python312Packages.pypdf2
-    python312Packages.python-ldap
-    python312Packages.pq
-    python312Packages.aiosasl
-    python312Packages.psycopg2
-    python312Packages.pillow
-    python312Packages.pylibjpeg-libjpeg
+    python311Full
+    python311Packages.pip
+    python311Packages.pypdf2
+    python311Packages.python-ldap
+    python311Packages.pq
+    python311Packages.aiosasl
+    python311Packages.psycopg2
+    python311Packages.pillow
+    python311Packages.pylibjpeg-libjpeg
     #    gccgo
     #    gnumake
-    #    python312Packages.ldappool
-    #    python312Packages.ldap3
-    #   python312Packages.bonsai
-    #    python312Packages.python-ldap-test
+    #    python311Packages.ldappool
+    #    python311Packages.ldap3
+    #   python311Packages.bonsai
+    #    python311Packages.python-ldap-test
     #    ldapvi
     #    shelldap
-    #    python312Packages.devtools
-    #    python312Packages.ldaptor
-    #    python312Packages.setuptools
-    #    python312Packages.libsass
+    #    python311Packages.devtools
+    #    python311Packages.ldaptor
+    #    python311Packages.setuptools
+    #    python311Packages.libsass
     #    libsass
     #    sass
     #    sassc
-    #    python312Packages.cython
-    #    python312Packages.pip
-    #    python312Packages.pyproject-api
-    #    python312Packages.pyproject-hooks
+    #    python311Packages.cython
+    #    python311Packages.pip
+    #    python311Packages.pyproject-api
+    #    python311Packages.pyproject-hooks
     busybox
     gnumake
     #  nftables

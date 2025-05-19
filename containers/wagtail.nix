@@ -270,12 +270,12 @@ in
         zlib
         libtiff
         freetype
-        # python312Packages.venvShellHook
+        # python311Packages.venvShellHook
         curl
         wget
         lynx
         dig
-        python312Packages.pylibjpeg-libjpeg
+        python311Packages.pylibjpeg-libjpeg
         git
         tmux
         bat
@@ -283,11 +283,11 @@ in
         lzlib
         killall
         pwgen
-        python312Packages.pypdf2
-        python312Packages.python-ldap
-        python312Packages.pq
-        python312Packages.aiosasl
-        python312Packages.psycopg2
+        python311Packages.pypdf2
+        python311Packages.python-ldap
+        python311Packages.pq
+        python311Packages.aiosasl
+        python311Packages.psycopg2
         gettext
         sqlite
         postgresql_14
@@ -395,7 +395,7 @@ in
         wantedBy      = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/grandv/";
-          ExecStart = ''/run/current-system/sw/bin/nix develop --command python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
+          ExecStart = ''python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
