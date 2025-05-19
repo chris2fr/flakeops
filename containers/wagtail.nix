@@ -395,7 +395,7 @@ in
         wantedBy      = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/grandv/";
-          ExecStart = ''nix develop --command python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
+          ExecStart = ''/run/current-system/sw/bin/nix develop --command python -m gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/grandv-access.log --error-logfile /var/log/wagtail/grandv-error.log --chdir /home/wagtail/grandv --workers 12 --bind 0.0.0.0:8909 settings.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
