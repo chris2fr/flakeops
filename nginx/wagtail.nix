@@ -148,7 +148,7 @@ in {
           if ($host = 'gv.coop') {
             return 301 $scheme://www.gv.coop$request_uri;
           }
-          rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
+          # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''

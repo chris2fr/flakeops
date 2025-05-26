@@ -300,6 +300,7 @@ in
         gcc
         glibcLocales
         libgcc
+        django-libsass
         libsass
         openldap
         devenv
