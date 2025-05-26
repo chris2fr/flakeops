@@ -1654,7 +1654,10 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.grandzine.org" = {
-      serverAliases = [ "8909.grandsvoisins.com", "www.grandv.org" ];
+      serverAliases = [ 
+       "8909.grandsvoisins.com"
+       "www.grandv.org" 
+      ];
       root = "/var/www/grandv/";
       locations."/" = {
         proxyPass = "http://localhost:8909/";
