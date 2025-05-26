@@ -25,11 +25,11 @@ in
       forceSSL = true;
       root = "/var/www/grandzine.org_static";
     };
-    "www.grandzine.org" = {
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/grandzine/prototype";
-    };
+    # "www.grandzine.org" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/grandzine/prototype";
+    # };
     "www.grandzine.com" = {
       serverAliases = ["grandzine.com" "grandzine.org"];
       enableACME = true;
