@@ -1100,7 +1100,8 @@ in {
       forceSSL = true;
       root = "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -1145,7 +1146,8 @@ in {
       root = "/var/www/wagtail/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "http://localhost:8008/";
+        # proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -1174,7 +1176,8 @@ in {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        # proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           if ($host = 'gv.coop') {
               return 301 $scheme://www.$host$request_uri;
@@ -1254,7 +1257,8 @@ in {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -1278,7 +1282,8 @@ in {
       # sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        # proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           if ($host = 'desgv.com') {
               return 301 $scheme://www.$host$request_uri;
@@ -1356,7 +1361,8 @@ in {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -1369,7 +1375,8 @@ in {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        # proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
           if ($host = 'maelanc.com') {
               return 301 $scheme://www.$host$request_uri;
@@ -1391,7 +1398,8 @@ in {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:8008/";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
