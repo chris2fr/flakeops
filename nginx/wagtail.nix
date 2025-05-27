@@ -277,6 +277,7 @@ in {
       '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -366,6 +367,7 @@ in {
       '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -455,6 +457,7 @@ in {
       '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -544,6 +547,7 @@ in {
       '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -756,6 +760,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "resdigita.village.ngo" = {
@@ -1107,6 +1112,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "8895.lesgrandsvoisins.com" = {
@@ -1120,6 +1126,7 @@ in {
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -1153,6 +1160,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
 
@@ -1188,6 +1196,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
       # extraConfig = ''
       #   if ($host = 'gv.coop') {
@@ -1263,6 +1272,7 @@ in {
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       root = "/var/www/wagtail";
     };
@@ -1327,6 +1337,7 @@ in {
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       root = "/var/www/wagtail";
     };
@@ -1368,6 +1379,7 @@ in {
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -1386,6 +1398,7 @@ in {
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -1405,6 +1418,7 @@ in {
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
@@ -1424,6 +1438,7 @@ in {
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "8008.lesgrandsvoisins.com" = {
@@ -1437,6 +1452,7 @@ in {
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
