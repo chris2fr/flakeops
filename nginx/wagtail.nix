@@ -1103,7 +1103,8 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/wagtail/";
+      # root = "/var/www/wagtail/";
+      root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8008/";
@@ -1150,7 +1151,8 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/wagtail/";
+      # root = "/var/www/wagtail/";
+      root = "/var/www/coopgv/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
         # proxyPass = "http://localhost:8008/";
@@ -1192,7 +1194,8 @@ in {
           }
         '';
       };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
@@ -1206,7 +1209,8 @@ in {
     };
 
     "apostrophecms.resdigita.com" = {
-      root = "/var/www/wagtail/";
+      # root = "/var/www/wagtail/";
+      root = "/var/www/coopgv/";
       serverAliases = [
         "manncoach.resdigita.com"
         "resdigitacom.resdigita.com"
@@ -1274,7 +1278,8 @@ in {
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
     };
 
     "www.coopgv.org" = {
@@ -1339,7 +1344,8 @@ in {
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
     };
     # "www.desgrandsvoisins.org" = {
     #   serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com" "www.desgrandsvoisins.com"];
@@ -1376,7 +1382,8 @@ in {
         # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
@@ -1395,7 +1402,8 @@ in {
           }
         '';
       };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
@@ -1415,7 +1423,8 @@ in {
         # proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
@@ -1449,7 +1458,8 @@ in {
         proxyPass = "http://localhost:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      root = "/var/www/wagtail";
+      # root = "/var/www/wagtail";
+      root = "/var/www/coopgv";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
