@@ -15,6 +15,19 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+
+  services.jitsi-meet = {
+    enable = true;
+    hostName = "jitsi.grandzine.org";
+    interfaceConfig = {
+      SHOW_JITSI_WATERMARK = false;
+    };
+    config = {
+      prejoinPageEnabled = true;
+      disableModeratorIndicator = true;
+    };
+  };
+
   # boot.loader.grub.devices = [ "nodev" ];
   # boot.loader.grub.efiSupport = true;
 
