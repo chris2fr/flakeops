@@ -222,7 +222,7 @@ in {
       };
       extraConfig = ''
         if ($host = 'meet.resdigita.com') {
-          return 302 $scheme://jitsi.grandzine.org/resdigita;
+          return 302 https://jitsi.grandzine.org/resdigita;
         }
       '';
       locations."/" = {
