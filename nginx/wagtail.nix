@@ -191,6 +191,7 @@ in {
     };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
+        "meet.lesgrandsvoisins.com"
         "admin.parisle.com"
         "ai.parisle.com"
         "alt.lesgrandsvoisins.com"
@@ -1138,7 +1139,7 @@ in {
     # };
     "gvoisin.resdigita.com" = {
       serverAliases = [
-        "meet.lesgrandsvoisins.com"
+        # "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
         "meet.village.ngo"
         "meet.village.ong"
