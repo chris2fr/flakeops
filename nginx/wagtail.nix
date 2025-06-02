@@ -220,6 +220,11 @@ in {
             return 404;
           '';
       };
+      extraConfig = ''
+        if ($host = 'meet.resdigita.com') {
+          return 302 $scheme://jitsi.grandzine.org/resdigita;
+        }
+      '';
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
