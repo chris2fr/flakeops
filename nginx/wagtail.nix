@@ -999,7 +999,6 @@ in {
         "fr.resdigita.com"
         "en.resdigita.org"
         "fr.resdigita.org"
-        "www.resdigita.com"
       ];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
@@ -1677,6 +1676,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.resdigita.com" = {
+      serverAliases = [ "www.resdigita.com" ];
       root = "/var/www/wagtail.resdigita.com.main/";
       locations."/" = {
         proxyPass = "http://localhost:8903/";
