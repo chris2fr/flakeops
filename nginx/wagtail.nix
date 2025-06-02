@@ -192,6 +192,7 @@ in {
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
+        "meet.resdigita.com"
         "admin.parisle.com"
         "ai.parisle.com"
         "alt.lesgrandsvoisins.com"
@@ -1093,9 +1094,8 @@ in {
       # locations."/medias" = { proxyPass = null; };
       # locations."/.well-known" = { proxyPass = null; };
     };
-    "meet.resdigita.com" = {
+    "meet.lesgv.org" = {
       serverAliases = [
-        "meet.lesgv.org"
         "meet.village.ngo"
         "meet.village.ong"
         "meet.villagengo.com"
