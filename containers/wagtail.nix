@@ -179,6 +179,14 @@ in
         hostPath   = "/var/www/wagtail.resdigita.com.main/static";
         isReadOnly = false;
       };
+      "/home/wagtail/wagtail.resdigita.com.develop/media" = {
+        hostPath   = "/var/www/wagtail.resdigita.com.develop/media";
+        isReadOnly = false;
+      };
+      "/home/wagtail/wagtail.resdigita.com.develop/static" = {
+        hostPath   = "/var/www/wagtail.resdigita.com.develop/static";
+        isReadOnly = false;
+      };
       "/home/wagtail/gdvox/media" = {
         hostPath   = "/var/www/gdvox/media";
         isReadOnly = false;
@@ -551,6 +559,23 @@ in
           Restart = "always";
           RestartSec = "10s";
           EnvironmentFile = "/home/wagtail/wagtail.resdigita.com.main/.env";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-resdigita-com-develop = {
+        description = "wagtail.resdigita.com Website from develop branch based on no template";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/wagtail.resdigita.com.develop/";
+          ExecStart = ''/home/wagtail/wagtail.resdigita.com.develop/.venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-resdigita-com-develop-access.log --error-logfile /var/log/wagtail/wagtail-resdigita-com-develop-error.log --chdir /home/wagtail/wagtail.resdigita.com.develop --workers 12 --bind 0.0.0.0:8910 settings.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          EnvironmentFile = "/home/wagtail/wagtail.resdigita.com.develop/.env";
           User = "wagtail";
           Group = "users";
         };

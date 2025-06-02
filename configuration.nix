@@ -55,6 +55,12 @@ in
     "d /var/www/lesgvorg/media 0775 wagtail users -"
     "d /run/wagtail-sockets 0770 wagtail wwwrun -"
     "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
+    "d /var/www/wagtail.resdigita.com.main 0775 wagtail users -"
+    "d /var/www/wagtail.resdigita.com.main/static 0775 wagtail users -"
+    "d /var/www/wagtail.resdigita.com.main/media 0775 wagtail users -"
+    "d /var/www/wagtail.resdigita.com.develop 0775 wagtail users -"
+    "d /var/www/wagtail.resdigita.com.develop/static 0775 wagtail users -"
+    "d /var/www/wagtail.resdigita.com.develop/media 0775 wagtail users -"
   ];
   # Use the systemd-boot EFI boot loader.
   environment.systemPackages = with pkgs; [

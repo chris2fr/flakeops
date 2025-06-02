@@ -1694,6 +1694,19 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "develop.resdigita.com" = {
+      root = "/var/www/wagtail.resdigita.com.develop/";
+      locations."/" = {
+        proxyPass = "http://localhost:8910/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME = true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "www.grandzine.org" = {
       serverAliases = [ 
        "8909.grandsvoisins.com"
