@@ -33,6 +33,7 @@ in
     };
     nextcloud = {
       enable = true;
+      hostname = "roses.lesgrandsvoisins.com";
     };
   };
   
