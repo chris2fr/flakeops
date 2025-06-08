@@ -22,6 +22,9 @@ in
   environment.sessionVariables = {
     EDITOR="vim";
   };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "sftpgo"
+  ];
   services = {
     locate = {
       enable = true;
