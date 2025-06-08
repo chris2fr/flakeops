@@ -33,16 +33,30 @@ in
       package = pkgs.mlocate;
       localuser = null;
     };
-    nextcloud = {
+    # nextcloud = {
+    #   enable = true;
+    #   hostName = "roses.lesgrandsvoisins.com";
+    #   config = {
+    #     adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
+    #     dbtype = "sqlite";
+    #   };
+    #   # database = {
+    #   #   createLocally = true;
+    #   # };
+    # };
+    seafile = {
       enable = true;
-      hostName = "roses.lesgrandsvoisins.com";
-      config = {
-        adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
-        dbtype = "sqlite";
-      };
-      # database = {
-      #   createLocally = true;
-      # };
+
+      adminEmail = "chris@lesgrandsvoisins.com";
+      initialAdminPassword = "change this later!";
+
+      ccnetSettings.General.SERVICE_URL = "https://roses.lesgrandsvoisins.com";
+
+      seafileSettings = {
+        fileserver = {
+          host = "unix:/run/seafile/server.sock";
+        };
+      }; 
     };
   };
   
