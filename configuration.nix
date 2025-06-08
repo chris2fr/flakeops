@@ -37,6 +37,7 @@ in
       hostName = "roses.lesgrandsvoisins.com";
       config = {
         adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
+        dbtype = "sqlite";
       };
       database = {
         createLocally = true;
