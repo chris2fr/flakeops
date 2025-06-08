@@ -41,5 +41,6 @@ in
     wget
     zlib
     nftables
+    firefox
   ];
 }
