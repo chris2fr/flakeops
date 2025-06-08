@@ -26,6 +26,7 @@ in
   #   "sftpgo"
   # ];
   services = {
+    xserver.xkb.layout = "fr";
     locate = {
       enable = true;
       package = pkgs.mlocate;
@@ -36,6 +37,9 @@ in
       hostName = "roses.lesgrandsvoisins.com";
       config = {
         adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
+      };
+      database = {
+        createLocally = true;
       };
     };
   };
