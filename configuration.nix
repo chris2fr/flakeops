@@ -33,7 +33,16 @@ in
   console.keyMap = "fr";
 
   services = {
-    # xserver.xkb.layout = "fr";
+    # 
+    xserver = {
+      xserver.xkb.layout = "fr";
+      enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
+    };
+    displayManager.defaultSession = "xfce";
     locate = {
       enable = true;
       package = pkgs.mlocate;
