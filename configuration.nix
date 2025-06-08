@@ -35,7 +35,7 @@ in
   services = {
     # 
     xserver = {
-      xserver.xkb.layout = "fr";
+      xkb.layout = "fr";
       enable = true;
       desktopManager = {
         xterm.enable = false;
