@@ -124,6 +124,7 @@ in
     rsyncd.enable = true;
     nginx = {
       enable = true;
+      clientMaxBodySize = "6G";
       virtualHosts = {
         localhost = {
           locations."/" = {

@@ -42,5 +42,6 @@ in
     zlib
     nftables
     firefox
+    seafile-client
   ];
 }
