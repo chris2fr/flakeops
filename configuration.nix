@@ -25,6 +25,7 @@ in
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #   "sftpgo"
   # ];
+  
   services = {
     xserver.xkb.layout = "fr";
     locate = {
@@ -39,9 +40,9 @@ in
         adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
         dbtype = "sqlite";
       };
-      database = {
-        createLocally = true;
-      };
+      # database = {
+      #   createLocally = true;
+      # };
     };
   };
   
