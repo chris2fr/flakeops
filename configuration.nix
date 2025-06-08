@@ -34,6 +34,9 @@ in
     nextcloud = {
       enable = true;
       hostName = "roses.lesgrandsvoisins.com";
+      config = {
+        adminpassFile = "/etc/.secrets/.nextcloud/.adminpass";
+      };
     };
   };
   
