@@ -22,10 +22,15 @@ in
   environment.sessionVariables = {
     EDITOR="vim";
   };
-  services.locate = {
-    enable = true;
-    package = pkgs.mlocate;
-    localuser = null;
+  services = {
+    locate = {
+      enable = true;
+      package = pkgs.mlocate;
+      localuser = null;
+    };
+    sftpgo = {
+      enable = true;
+    };
   };
   
 
