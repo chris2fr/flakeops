@@ -30,8 +30,10 @@ in
     defaults.email = "chris@lesgrandsvoisins.com";
   };
 
+  console.keyMap = "fr";
+
   services = {
-    xserver.xkb.layout = "fr";
+    # xserver.xkb.layout = "fr";
     locate = {
       enable = true;
       package = pkgs.mlocate;
