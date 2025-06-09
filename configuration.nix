@@ -106,10 +106,10 @@ in
         OAUTH_AUTHORIZATION_URL = 'https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth'
         OAUTH_TOKEN_URL = 'https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/token'
         OAUTH_USER_INFO_URL = 'https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/userinfo'
-        OAUTH_SCOPE = ["profile"]
+        OAUTH_SCOPE = ["openid",]
         OAUTH_ATTRIBUTE_MAP = {
-          "email": (True, "email"),
-          "username": (True, "uid"),
+          "sub": (True, "uid"),
+          # "email": (True, "email"),
           "username": (False, "name"),
           "email": (False, "contact_email"),  
         }
