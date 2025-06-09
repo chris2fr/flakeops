@@ -3,7 +3,7 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
     ./common.nix # Des configurations communes pratiques

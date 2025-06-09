@@ -4,7 +4,7 @@
     # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
     # configuration.nix. You can also use latter versions if you wish to
     # upgrade.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
   #    home-manager = {
   #      url = "github:nix-community/home-manager";
   #      inputs.nixpkgs.follows = "nixpkgs";
