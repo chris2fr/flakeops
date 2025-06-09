@@ -41,6 +41,10 @@ in
 
   services = {
     # 
+    # oauth2-proxy = {
+    #   enable = true;
+
+    # };
     xserver = {
       xkb.layout = "fr";
       enable = true;
