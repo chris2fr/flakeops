@@ -109,7 +109,7 @@ in
         OAUTH_SCOPE = ["openid","profile","email"]
         OAUTH_ATTRIBUTE_MAP = {
           "email": (True, "email"),
-          "sub": (True, "uid"),
+          "username": (True, "uid"),
           "username": (False, "name"),
           "email": (False, "contact_email"),  
         }
