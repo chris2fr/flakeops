@@ -31,6 +31,13 @@ in
   };
 
   console.keyMap = "fr";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "fr_FR.UTF-8"; 
+     console = { 
+     font = "Lat2-Terminus16";
+     keyMap = "fr";
+     useXkbConfig = true; # use xkb.options in tty.
+   };
 
   services = {
     # 
