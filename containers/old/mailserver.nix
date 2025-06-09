@@ -25,7 +25,7 @@ in
   #       })
   #     ];
   #     nix.settings.experimental-features = "nix-command flakes";
-  #     system.stateVersion = "24.11";
+  #     system.stateVersion = "25.05";
   #     networking = {
   #       firewall.allowedTCPPorts = [ 22 80 443 1360 11211 25 ];
   #       # trustedInterfaces = ["eno1" "lo"];

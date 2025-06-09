@@ -22,7 +22,7 @@ in {
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
-      system.stateVersion = "24.11";
+      system.stateVersion = "25.05";
       networking = {
         firewall.enable = false;
         # firewall = {

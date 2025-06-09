@@ -11,7 +11,7 @@ in
   #   home.packages = with pkgs; [ 
   #     yarn
   #   ];
-  #   home.stateVersion = "24.11";
+  #   home.stateVersion = "25.05";
   #   programs.home-manager.enable = true;
   # };
   home-manager.users = {
@@ -19,7 +19,7 @@ in
       home.packages = with pkgs; [
         fossil
       ];
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
     # radicale = {pkgs, ...}: {
@@ -27,7 +27,7 @@ in
     #     python311
     #     python311Packages.gunicorn
     #   ];
-    #   home.stateVersion = "24.11";
+    #   home.stateVersion = "25.05";
     #   programs.home-manager.enable = true;
     # };
     guichet = { pkgs, ... }: {
@@ -37,14 +37,14 @@ in
         python311
         nodejs_20
       ];
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
     filebrowser = { pkgs, ... }: {
       home.packages = with pkgs; [
         filebrowser
       ];
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
     mannchri = { pkgs, ... }: {
@@ -53,7 +53,7 @@ in
         pkgs.httpie
         pkgs.nodejs_20
       ];
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
       programs.vim = {
         enable = true;

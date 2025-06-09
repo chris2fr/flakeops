@@ -81,7 +81,7 @@ in
       };
       system = {
         # copySystemConfiguration = true;
-        stateVersion = "24.11";
+        stateVersion = "25.05";
       };
       environment.sessionVariables = rec {
         EDITOR = "vim";
@@ -107,7 +107,7 @@ in
       };
       # home-manager.users.mannchri = {pkgs, ...}: {
       #   home.packages = [ pkgs.atool pkgs.httpie ];
-      #   home.stateVersion = "24.11";
+      #   home.stateVersion = "25.05";
       #   programs.home-manager.enable = true;
       #   programs.vim = {
       #     enable = true;

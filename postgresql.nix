@@ -141,7 +141,7 @@ in
         services.postgresql.enable = true;
         services.postgresql.package = pkgs.postgresql_14;
         time.timeZone = "Europe/Amsterdam";
-        system.stateVersion = "24.11";
+        system.stateVersion = "25.05";
       };
     };
 }

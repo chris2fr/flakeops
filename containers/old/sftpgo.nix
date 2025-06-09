@@ -70,7 +70,7 @@
   #     };
   #     system = {
   #       # copySystemConfiguration = true;
-  #       stateVersion = "24.11";
+  #       stateVersion = "25.05";
   #     };
   #     time.timeZone = "Europe/Paris";
   #     i18n.defaultLocale = "fr_FR.UTF-8";  

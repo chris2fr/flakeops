@@ -9,7 +9,7 @@ in
     pkgs.httpie 
     pkgs.nodejs_20
   ];
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   programs.home-manager.enable = true;
   programs.vim = {
     enable = true;
