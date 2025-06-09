@@ -54,7 +54,7 @@ in
     locate = {
       enable = true;
       package = pkgs.mlocate;
-      localuser = null;
+      # localuser = null;
     };
     # nextcloud = {
     #   enable = true;
