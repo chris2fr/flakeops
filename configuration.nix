@@ -109,8 +109,8 @@ in
         OAUTH_SCOPE = ["profile","email"]
         OAUTH_ATTRIBUTE_MAP = {
           "email": (True, "email"),
-          "email": (True, "uid"),
-          "unsername": (False, "name"),
+          "username": (True, "uid"),
+          "username": (False, "name"),
           "email": (False, "contact_email"),  
         }
       '';
