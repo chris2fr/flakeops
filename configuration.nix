@@ -108,10 +108,10 @@ in
         OAUTH_USER_INFO_URL = 'https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/userinfo'
         OAUTH_SCOPE = ["profile","email"]
         OAUTH_ATTRIBUTE_MAP = {
-            "id": (True, "email"),  # Please keep the 'email' option unchanged to be compatible with the login of users of version 11.0 and earlier.
-            "name": (False, "username"),
-            "email": (False, "email"),
-            "uid": (True, "username"),   # Seafile v11.0 + 
+          "email": (True, "email"),
+          "uid": (True, "uid") ,
+          "unsername": (False, "name"),
+          "email": (False, "contact_email"),  
         }
       '';
     };
