@@ -249,7 +249,7 @@ in
               extraConfig = ''
                 # auth_request http://127.0.0.1:4180/oauth2/auth;
                 # auth_request_set $user  $upstream_http_x_auth_request_user;
-                proxy_set_header X-User $user;
+                # proxy_set_header X-User $user;
                 proxy_set_header   Host $host;
                 proxy_set_header   X-Real-IP $remote_addr;
                 proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
