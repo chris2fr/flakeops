@@ -93,26 +93,29 @@ in
         };
       }; 
       seahubExtraConf = ''
-        ENABLE_REMOTE_USER_AUTHENTICATION = True
+        FILE_PREVIEW_MAX_SIZE = 100 * 1024 * 1024
+        THUMBNAIL_IMAGE_SIZE_LIMIT = 100 # MB
+        
+        # ENABLE_REMOTE_USER_AUTHENTICATION = True
 
-        # Optional, HTTP header, which is configured in your web server conf file,
-        # used for Seafile to get user's unique id, default value is 'HTTP_REMOTE_USER'.
-        REMOTE_USER_HEADER = 'HTTP_REMOTE_USER'
+        # # Optional, HTTP header, which is configured in your web server conf file,
+        # # used for Seafile to get user's unique id, default value is 'HTTP_REMOTE_USER'.
+        # REMOTE_USER_HEADER = 'HTTP_REMOTE_USER'
 
-        # Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
-        # Seafile will build a email-like unique id from the value of 'REMOTE_USER_HEADER'
-        # and this domain, e.g. user1@example.com.
-        REMOTE_USER_DOMAIN = 'lesgrandsvoisins.com'
+        # # Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
+        # # Seafile will build a email-like unique id from the value of 'REMOTE_USER_HEADER'
+        # # and this domain, e.g. user1@example.com.
+        # REMOTE_USER_DOMAIN = 'lesgrandsvoisins.com'
 
-        # Optional, whether to create new user in Seafile system, default value is True.
-        # If this setting is disabled, users doesn't preexist in the Seafile DB cannot login.
-        # The admin has to first import the users from external systems like LDAP.
-        REMOTE_USER_CREATE_UNKNOWN_USER = True
+        # # Optional, whether to create new user in Seafile system, default value is True.
+        # # If this setting is disabled, users doesn't preexist in the Seafile DB cannot login.
+        # # The admin has to first import the users from external systems like LDAP.
+        # REMOTE_USER_CREATE_UNKNOWN_USER = True
 
-        # Optional, whether to activate new user in Seafile system, default value is True.
-        # If this setting is disabled, user will be unable to login by default.
-        # the administrator needs to manually activate this user.
-        REMOTE_USER_ACTIVATE_USER_AFTER_CREATION = True
+        # # Optional, whether to activate new user in Seafile system, default value is True.
+        # # If this setting is disabled, user will be unable to login by default.
+        # # the administrator needs to manually activate this user.
+        # REMOTE_USER_ACTIVATE_USER_AFTER_CREATION = True
 
         # # Optional, map user attribute in HTTP header and Seafile's user attribute.
         # REMOTE_USER_ATTRIBUTE_MAP = {
