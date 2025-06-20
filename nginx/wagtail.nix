@@ -132,7 +132,7 @@ in {
       serverAliases = [
         # "www.lesgv.org"
         # "www.lesgv.com"
-        "www.lgv.info"
+        # "www.lgv.info"
         "www.libregood.com"
         "www.gdvoisins.com"
         "www.gdvoisins.org"
@@ -210,6 +210,7 @@ in {
         "meet.mann.faith"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
+        "www.lgv.info"
       ];
       enableACME = true;
       forceSSL = true;
@@ -653,6 +654,7 @@ in {
         "app.lesgv.com"
         # "www.gv.coop"
         "www.gvcoop.org"
+        # "www.lgv.info"
       ];
       enableACME = true;
       forceSSL = true;
