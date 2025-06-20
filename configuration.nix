@@ -266,7 +266,7 @@ in
             #     proxy_set_header X-Scheme $scheme;
             #     proxy_set_header X-Auth-Request-Redirect $request_uri;
             #   '';
-            };
+            # };
             "/seafhttp" = {
               proxyPass = "http://unix:/run/seafile/server.sock";
               extraConfig = ''
