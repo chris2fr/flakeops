@@ -40,19 +40,19 @@ in
    };
 
   services = {
-    oauth2-proxy = {
-      enable = true;
-      provider = "oidc";  # or "google", "github", etc.
-      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/";
-      clientID = "seafile";
-      # clientSecret = "YOUR_CLIENT_SECRET";
-      keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      redirectURL = "https://roses.lesgrqndsvoisins.com/oauth2/callback";
-      # cookieSecret = "long-random-cookie-secret";  # must be 16, 24, or 32 chars
-      setXauthrequest = true;
-      passAccessToken = true;
-      # ... add other options as needed ...
-    };
+    # oauth2-proxy = {
+    #   enable = true;
+    #   provider = "oidc";  # or "google", "github", etc.
+    #   oidcIssuerUrl = "https://key.lesgrandsvoisins.com/";
+    #   clientID = "seafile";
+    #   # clientSecret = "YOUR_CLIENT_SECRET";
+    #   keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
+    #   redirectURL = "https://roses.lesgrqndsvoisins.com/oauth2/callback";
+    #   # cookieSecret = "long-random-cookie-secret";  # must be 16, 24, or 32 chars
+    #   setXauthrequest = true;
+    #   passAccessToken = true;
+    #   # ... add other options as needed ...
+    # };
     xserver = {
       xkb.layout = "fr";
       enable = true;
@@ -95,7 +95,7 @@ in
       seahubExtraConf = ''
         FILE_PREVIEW_MAX_SIZE = 100 * 1024 * 1024
         THUMBNAIL_IMAGE_SIZE_LIMIT = 100 # MB
-        
+
         # ENABLE_REMOTE_USER_AUTHENTICATION = True
 
         # # Optional, HTTP header, which is configured in your web server conf file,
