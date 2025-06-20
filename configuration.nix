@@ -247,8 +247,8 @@ in
             "/" = {
               proxyPass = "http://unix:/run/seahub/gunicorn.sock";
               extraConfig = ''
-                auth_request http://127.0.0.1:4180/oauth2/auth;
-                auth_request_set $user  $upstream_http_x_auth_request_user;
+                # auth_request http://127.0.0.1:4180/oauth2/auth;
+                # auth_request_set $user  $upstream_http_x_auth_request_user;
                 proxy_set_header X-User $user;
                 proxy_set_header   Host $host;
                 proxy_set_header   X-Real-IP $remote_addr;
@@ -258,22 +258,22 @@ in
                 client_max_body_size 0;
               '';
             };
-            "/oauth2/" = {
-              extraConfig = ''
-                proxy_pass http://127.0.0.1:4180/;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Scheme $scheme;
-                proxy_set_header X-Auth-Request-Redirect $request_uri;
-              '';
+            # "/oauth2/" = {
+            #   extraConfig = ''
+            #     proxy_pass http://127.0.0.1:4180/;
+            #     proxy_set_header Host $host;
+            #     proxy_set_header X-Real-IP $remote_addr;
+            #     proxy_set_header X-Scheme $scheme;
+            #     proxy_set_header X-Auth-Request-Redirect $request_uri;
+            #   '';
             };
             "/seafhttp" = {
               proxyPass = "http://unix:/run/seafile/server.sock";
               extraConfig = ''
                 rewrite ^/seafhttp(.*)$ $1 break;
                 # 
-                auth_request_set $user  $upstream_http_x_auth_request_user;
-                proxy_set_header X-User $user;
+                # auth_request_set $user  $upstream_http_x_auth_request_user;
+                # proxy_set_header X-User $user;
                 # 
                 client_max_body_size 0;
                 proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
