@@ -55,8 +55,11 @@ in
       cookie.secure = false; # Revisit
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
+      # nginx.domain = "roses.lgv.info";
+
       extraConfig = {
         code-challenge-method="S256";
+        whitelist-domain="roses.lgv.info"
       };
     };
     xserver = {
