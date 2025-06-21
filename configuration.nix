@@ -305,17 +305,17 @@ in
                 # proxy_set_header X-Auth-Request-Redirect $request_uri;
               '';
             };
-            # "/oauth2/auth" = {
-            #   extraConfig = ''
-            #     proxy_pass       http://127.0.0.1:4180;
-            #     proxy_set_header Host             $host;
-            #     proxy_set_header X-Real-IP        $remote_addr;
-            #     proxy_set_header X-Forwarded-Uri  $request_uri;
-            #     # nginx auth_request includes headers but not body
-            #     proxy_set_header Content-Length   "";
-            #     proxy_pass_request_body           off;
-            #   '';
-            # };
+            "/oauth2/auth" = {
+              extraConfig = ''
+                proxy_pass       http://127.0.0.1:4180;
+                proxy_set_header Host             $host;
+                proxy_set_header X-Real-IP        $remote_addr;
+                proxy_set_header X-Forwarded-Uri  $request_uri;
+                # nginx auth_request includes headers but not body
+                proxy_set_header Content-Length   "";
+                proxy_pass_request_body           off;
+              '';
+            };
           };
         };
         "roses.lesgrandsvoisins.com" = {
