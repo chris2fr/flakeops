@@ -59,7 +59,7 @@ in
 
       extraConfig = {
         code-challenge-method="S256";
-        whitelist-domain="roses.lgv.info"
+        whitelist-domain="roses.lgv.info";
       };
     };
     xserver = {
