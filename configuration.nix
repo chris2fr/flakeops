@@ -43,7 +43,7 @@ in
     oauth2-proxy = {
       enable = true;
       provider = "oidc";  # or "google", "github", etc.
-      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/";
+      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
       keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
