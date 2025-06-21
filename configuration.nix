@@ -45,7 +45,7 @@ in
       
       provider = "keycloak-oidc";  # or "google", "github", etc.
       # provider = "oidc";  # or "google", "github", etc.
-      # httpAddress = "https://192.168.1.100:41443";
+      httpAddress = "https://roses.lgv.info:41443";
       tls = {
         key = "/var/lib/acme/roses.lgv.info/key.pem";
         certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
