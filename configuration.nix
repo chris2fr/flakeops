@@ -53,7 +53,7 @@ in
       passAccessToken = true;
       email.domains = ["*"];
       # ... add other options as needed ...
-      passHostHeader = false;
+      # passHostHeader = false;
       # extraConfig = ''
       #   OAUTH2_PROXY_PASS_HOST_HEADER=false
       # '';
@@ -246,7 +246,7 @@ in
         "roses.lgv.info" = {
           forceSSL = true;
           enableACME = true;
-          root = "/tmp";
+          root = "/var/www/default";
           locations = {
             "/" = {
               extraConfig = ''
