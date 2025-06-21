@@ -52,8 +52,9 @@ in
       setXauthrequest = true;
       passAccessToken = true;
       email.domains = ["*"];
+      cooie.secure = false; # Revisit
       # ... add other options as needed ...
-      # passHostHeader = false;
+      # passHostHeader = false;lesgrandsvoisins.com
       # extraConfig = ''
       #   OAUTH2_PROXY_PASS_HOST_HEADER=false
       # '';
