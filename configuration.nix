@@ -53,6 +53,10 @@ in
       passAccessToken = true;
       email.domains = ["*"];
       # ... add other options as needed ...
+      passHostHeader = false;
+      # extraConfig = ''
+      #   OAUTH2_PROXY_PASS_HOST_HEADER=false
+      # '';
     };
     xserver = {
       xkb.layout = "fr";
