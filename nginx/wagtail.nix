@@ -210,7 +210,7 @@ in {
         "meet.mann.faith"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
-        "www.lgv.info"
+        # "www.lgv.info"
       ];
       enableACME = true;
       forceSSL = true;
@@ -665,6 +665,70 @@ in {
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'app.lesgv.com') {
               return 302 $scheme://www.lesgv.com$request_uri;
+            }
+            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.lgv.info" = {
+      serverAliases = [
+        "admin.lgv.info"
+        "ai.lgv.info"
+        "annuaire.lgv.info"
+        "backup.lgv.info"
+        "blog.lgv.info"
+        "cal.lgv.info"
+        "cloud.lgv.info"
+        "code.lgv.info"
+        "config.lgv.info"
+        "contacts.lgv.info"
+        "discussion.lgv.info"
+        "docs.lgv.info"
+        "drive.lgv.info"
+        "finance.lgv.info"
+        "forms.lgv.info"
+        "forum.lgv.info"
+        "id.lgv.info"
+        "list.lgv.info"
+        "mail.lgv.info"
+        "meet.lgv.info"
+        "net.lgv.info"
+        "pay.lgv.info"
+        "photos.lgv.info"
+        "secret.lgv.info"
+        "sites.lgv.info"
+        "sync.lgv.info"
+        "task.lgv.info"
+        "url.lgv.info"
+        "videos.lgv.info"
+        "webdav.lgv.info"
+        "wiki.lgv.info"
+        "app.lgv.info"
+        # "www.gv.coop"
+        "www.gvcoop.org"
+        # "www.lgv.info"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'app.lgv.info') {
+              return 302 $scheme://www.lgv.info$request_uri;
             }
             rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
             rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
