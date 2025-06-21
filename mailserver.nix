@@ -19,6 +19,7 @@ let
     "discourse.paris14.cc"
     "afriquepartenaires.org"
     "yanlomsprod.org"
+    "lgv.info"
   ];
 in
 {
