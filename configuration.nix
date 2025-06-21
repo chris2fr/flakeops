@@ -47,7 +47,7 @@ in
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
       keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      redirectURL = "https://roses.lgv.info/oauth2/callback";
+      # redirectURL = "https://roses.lgv.info/oauth2/callback";
       # cookieSecret = "long-random-cookie-secret";  # must be 16, 24, or 32 chars
       setXauthrequest = true;
       passAccessToken = true;
