@@ -52,7 +52,7 @@ in
       setXauthrequest = true;
       passAccessToken = true;
       email.domains = ["*"];
-      cooie.secure = false; # Revisit
+      cookie.secure = false; # Revisit
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
       # extraConfig = ''
