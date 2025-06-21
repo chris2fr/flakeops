@@ -112,7 +112,7 @@
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-24.11",
+        "ref": "release-25.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -144,7 +144,7 @@
       },
       "original": {
         "id": "nixpkgs",
-        "ref": "nixos-24.11",
+        "ref": "nixos-25.05",
         "type": "indirect"
       }
     },
@@ -159,7 +159,7 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-24.11",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -204,7 +204,7 @@
       },
       "original": {
         "owner": "simple-nixos-mailserver",
-        "ref": "nixos-24.11",
+        "ref": "nixos-25.05",
         "repo": "nixos-mailserver",
         "type": "gitlab"
       }
