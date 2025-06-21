@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let 
-  oidcseafilesecret = import secrets/oidcseafile.nix;
+  # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
   # age.secrets = {
@@ -52,7 +52,7 @@ in
             ProxyAddHeaders On
             OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
             OIDCClientID seafile
-            OIDCClientSecret ${oidcseafilesecret}
+            OIDCClientSecret open("/etc/.secrets/.seafile_client_secret").read().strip()
             OIDCRedirectURI https://roses.lgv.info/redirect_uri_from_oauth2
             OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
             <Location "/">
