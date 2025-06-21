@@ -56,7 +56,7 @@ in
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
       extraConfig = {
-        code_challenge_method="S256";
+        code-challenge-method="S256";
       };
     };
     xserver = {
