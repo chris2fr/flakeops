@@ -43,6 +43,13 @@ in
     oauth2-proxy = {
       enable = true;
       provider = "oidc";  # or "google", "github", etc.
+      # httpAddress = "https://192.168.1.100:41443";
+      tls = {
+        key = "/var/lib/acme/roses.lgv.info/key.pem";
+        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+        httpsAddress = ":41443";
+        enable = true;
+      };
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
@@ -58,7 +65,7 @@ in
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
       nginx.domain = "roses.lgv.info";
-      nginx.proxy = "192.168.1.100";
+      # nginx.proxy = "192.168.1.100";
 
       extraConfig = {
         code-challenge-method="S256";
