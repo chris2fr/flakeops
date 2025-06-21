@@ -65,16 +65,18 @@ in
       email.domains = ["*"];
       scope = "profile openid email";
       reverseProxy = true;
-      cookie.secure = false; # Revisit
+      # cookie.secure = false; # Revisit
+      cookie.domain = "roses.lgv.info";
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
-      nginx.domain = "roses.lgv.info";
+      # nginx.domain = "roses.lgv.info";
       # nginx.proxy = "192.168.1.100";
 
       extraConfig = {
         code-challenge-method="S256";
         whitelist-domain="roses.lgv.info";
         insecure-oidc-allow-unverified-email="true";
+        cookie-domains="roses.lgv.info";
       };
     };
     xserver = {
