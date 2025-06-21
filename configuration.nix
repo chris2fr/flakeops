@@ -52,7 +52,7 @@ in
         httpsAddress = ":41443";
         enable = true;
       };
-      upstream = "file:///var/www/default";
+      upstream = ["file://var/www/default/" "file:///var/www/default/"];
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
