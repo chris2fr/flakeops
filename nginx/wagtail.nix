@@ -701,7 +701,7 @@ in {
         "forms.lgv.info"
         "forum.lgv.info"
         "id.lgv.info"
-        "list.lgv.info"
+        # "list.lgv.info"
         "mail.lgv.info"
         "meet.lgv.info"
         "net.lgv.info"
@@ -714,11 +714,9 @@ in {
         "url.lgv.info"
         "videos.lgv.info"
         "webdav.lgv.info"
-        "wiki.lgv.info"
+        # "wiki.lgv.info"
         "app.lgv.info"
         # "www.gv.coop"
-        "www.gvcoop.org"
-        # "www.lgv.info"
       ];
       enableACME = true;
       forceSSL = true;
