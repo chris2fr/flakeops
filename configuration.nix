@@ -250,11 +250,11 @@ in
           root = "/var/www/default";
           locations = {
             "/" = {
-              extraConfig = ''
-                auth_request http://127.0.0.1:4180/oauth2/auth;
-                auth_request_set $user  $upstream_http_x_auth_request_user;
-                proxy_set_header X-User $user;
-                '';
+              # extraConfig = ''
+              #   auth_request http://127.0.0.1:4180/oauth2/auth;
+              #   auth_request_set $user  $upstream_http_x_auth_request_user;
+              #   proxy_set_header X-User $user;
+              #   '';
             };
             "/oauth2/" = {
               extraConfig = ''
