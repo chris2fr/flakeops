@@ -3,7 +3,7 @@ let
 in
 {
   services = {
-        oauth2-proxy = {
+    oauth2-proxy = {
       enable = true;
       
       provider = "keycloak-oidc";  # or "google", "github", etc.
