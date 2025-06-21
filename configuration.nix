@@ -252,7 +252,7 @@ in
                 '';
             };
             "/oauth2/" = {
-              extraConfig = ''lesgrandsvoisins.com
+              extraConfig = ''
                 proxy_pass http://127.0.0.1:4180/;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
