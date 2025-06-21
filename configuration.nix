@@ -52,10 +52,13 @@ in
       setXauthrequest = true;
       passAccessToken = true;
       email.domains = ["*"];
-      cookie.secure = false; # Revisit
+      scope = "profile openid email";
+      reverseProxy = true;
+      # cookie.secure = false; # Revisit
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
-      # nginx.domain = "roses.lgv.info";
+      nginx.domain = "roses.lgv.info";
+      nginx.proxy = "192.168.1.100";
 
       extraConfig = {
         code-challenge-method="S256";
@@ -254,7 +257,7 @@ in
           locations = {
             "/" = {
               extraConfig = ''
-                auth_request http://127.0.0.1:4180/oauth2/auth;
+                auth_request http://127.0.0.1:4180/oauth2;
                 auth_request_set $user  $upstream_http_x_auth_request_user;
                 proxy_set_header X-User $user;
               '';
@@ -295,27 +298,27 @@ in
               #   }
               #   '';
             };
-            "/oauth2" = {
-              extraConfig = ''
-                proxy_pass http://127.0.0.1:4180/;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Scheme $scheme;
-                proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
-                # proxy_set_header X-Auth-Request-Redirect $request_uri;
-              '';
-            };
-            "/oauth2/auth" = {
-              extraConfig = ''
-                proxy_pass       http://127.0.0.1:4180;
-                proxy_set_header Host             $host;
-                proxy_set_header X-Real-IP        $remote_addr;
-                proxy_set_header X-Forwarded-Uri  $request_uri;
-                # nginx auth_request includes headers but not body
-                proxy_set_header Content-Length   "";
-                proxy_pass_request_body           off;
-              '';
-            };
+            # "/oauth2" = {
+            #   extraConfig = ''
+            #     proxy_pass http://127.0.0.1:4180/;
+            #     proxy_set_header Host $host;
+            #     proxy_set_header X-Real-IP $remote_addr;
+            #     proxy_set_header X-Scheme $scheme;
+            #     proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
+            #     # proxy_set_header X-Auth-Request-Redirect $request_uri;
+            #   '';
+            # };
+            # "/oauth2/auth" = {
+            #   extraConfig = ''
+            #     proxy_pass       http://127.0.0.1:4180;
+            #     proxy_set_header Host             $host;
+            #     proxy_set_header X-Real-IP        $remote_addr;
+            #     proxy_set_header X-Forwarded-Uri  $request_uri;
+            #     # nginx auth_request includes headers but not body
+            #     proxy_set_header Content-Length   "";
+            #     proxy_pass_request_body           off;
+            #   '';
+            # };
           };
         };
         "roses.lesgrandsvoisins.com" = {
