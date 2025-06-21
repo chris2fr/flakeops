@@ -47,10 +47,11 @@ in
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
       keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      redirectURL = "https://roses.lesgrqndsvoisins.com/oauth2/callback";
+      redirectURL = "https://roses.lgv.info/oauth2/callback";
       # cookieSecret = "long-random-cookie-secret";  # must be 16, 24, or 32 chars
       setXauthrequest = true;
       passAccessToken = true;
+      email.domains = ["*"];
       # ... add other options as needed ...
     };
     xserver = {
@@ -242,6 +243,24 @@ in
           forceSSL = true;
           enableACME = true;
           root = "/tmp";
+          locations = {
+            "/" = {
+              extraConfig = ''
+                auth_request http://127.0.0.1:4180/oauth2/auth;
+                auth_request_set $user  $upstream_http_x_auth_request_user;
+                proxy_set_header X-User $user;
+                '';
+            };
+            "/oauth2/" = {
+              extraConfig = ''lesgrandsvoisins.com
+                proxy_pass http://127.0.0.1:4180/;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Scheme $scheme;
+                proxy_set_header X-Auth-Request-Redirect $request_uri;
+              '';
+            };
+          };
         };
         "roses.lesgrandsvoisins.com" = {
           # sslCertificate = "/path/to/cert.pem";
