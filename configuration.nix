@@ -64,7 +64,7 @@ in
       email.domains = ["*"];
       scope = "profile openid email";
       reverseProxy = true;
-      # cookie.secure = false; # Revisit
+      cookie.secure = false; # Revisit
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
       nginx.domain = "roses.lgv.info";
