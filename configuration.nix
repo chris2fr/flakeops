@@ -55,9 +55,9 @@ in
       cookie.secure = false; # Revisit
       # ... add other options as needed ...
       # passHostHeader = false;lesgrandsvoisins.com
-      # extraConfig = ''
-      #   OAUTH2_PROXY_PASS_HOST_HEADER=false
-      # '';
+      extraConfig = ''
+        force_code_challenge_method="S256"
+      '';
     };
     xserver = {
       xkb.layout = "fr";
