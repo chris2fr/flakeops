@@ -42,7 +42,9 @@ in
   services = {
     oauth2-proxy = {
       enable = true;
-      provider = "oidc";  # or "google", "github", etc.
+      
+      provider = "keycloak-oidc";  # or "google", "github", etc.
+      # provider = "oidc";  # or "google", "github", etc.
       # httpAddress = "https://192.168.1.100:41443";
       tls = {
         key = "/var/lib/acme/roses.lgv.info/key.pem";
@@ -55,7 +57,7 @@ in
       clientID = "seafile";
       # clientSecret = "YOUR_CLIENT_SECRET";
       keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      # redirectURL = "https://roses.lgv.info/oauth2/callback";
+      redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
       # cookieSecret = "long-random-cookie-secret";  # must be 16, 24, or 32 chars
       setXauthrequest = true;
       passAccessToken = true;
@@ -71,6 +73,7 @@ in
       extraConfig = {
         code-challenge-method="S256";
         whitelist-domain="roses.lgv.info";
+        insecure-oidc-allow-unverified-email="true";
       };
     };
     xserver = {
