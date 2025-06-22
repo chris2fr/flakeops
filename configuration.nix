@@ -132,9 +132,9 @@ in
                 proxy_set_header Content-Length "";
                 # auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
                 # these return values are used by the @error401 call
-                auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-                auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-                auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+                # auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+                # auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+                # auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
               '';
                 # forward the /validate request to Vouch Proxy
                 # extraConfig = ''
