@@ -12,6 +12,16 @@ in
     # ./httpd.nix
     ./nfs.nix
   ];
+
+  age.identityPaths = [ "/etc/.secrets/.age.key" ];
+  age.secrets = {
+    # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
+    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
+    owner = "oauth2-proxy";
+    group = "oauth2-proxy";};
+    # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
+    # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
+  };
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -58,7 +68,7 @@ in
       # Cookie settings
       cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
       
-      # Additional settings
+      # Additional settingsenvironment.systemPackages = with pkgs; [
       # upstream = "http://localhost:1234"; # your backend service
       httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
       reverseProxy = false;

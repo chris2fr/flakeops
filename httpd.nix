@@ -4,16 +4,7 @@ let
   # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
-  age.identityPaths = [ "/etc/.secrets/.age.key" ];
 
-  age.secrets = {
-    # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
-    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
-    owner = "oauth2-proxy";
-    group = "oauth2-proxy";};
-    # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
-    # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
-  };
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   services = {
     # httpd = {
