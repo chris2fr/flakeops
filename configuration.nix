@@ -100,7 +100,7 @@ in
             # be sure to pass the original host header
             # proxy_set_header Host $http_host;
             # }
-            recommendedProxySettings = true;
+            # recommendedProxySettings = true;
             extraConfig = ''
                 proxy_ssl_verify off;
                 proxy_set_header Host $http_host;
