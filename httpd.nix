@@ -10,9 +10,11 @@ in
     # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
     # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
+  environment.systemPackages = with pkgs; [ curl cjose ];
   services = {
     httpd = {
       enable = true;
+      package = pkgs.apacheHttpd;
       enablePHP = false;
       extraConfig = ''
         KeepAlive On
