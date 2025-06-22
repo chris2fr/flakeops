@@ -9,7 +9,7 @@ in {
     mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = mannchriRsaPublic;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "nginx" "users" ];
     };
     admin = {
       isNormalUser = true;
