@@ -97,7 +97,7 @@ in
           listen = { addr = "127.0.0.1"; port = 8080; };
           providers.oidc = {
             client_id = "seafile";
-            client_secret = "seafile";
+            client_secret = "${oidcSeafileSecret}";
             # Optional, defaults to "OpenID Connect"
             issuer_name = "Key Lesgrandsvoisins Com";
             issuer_url = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
