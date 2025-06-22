@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 let 
+  oidcSeafileSecret = import ../vars/oidc-seafile-secret.nix;
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
