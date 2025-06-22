@@ -17,9 +17,9 @@
       let
         pkgs = import nixpkgs { inherit system; };
       in {
-        packages = {
-          mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
-        };
+        # packages = {
+        #   mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
+        # };
       }
     ) // {
       # NOTE: 'nixos' is the default hostname set by the installer
@@ -29,13 +29,13 @@
           system = "x86_64-linux";
           modules = [   
             ./configuration.nix
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  mod_auth_openidc = self.packages.${prev.system}.mod_auth_openidc;
-                })
-              ];
-            })
+            # ({ pkgs, ... }: {
+            #   nixpkgs.overlays = [
+            #     (final: prev: {
+            #       mod_auth_openidc = self.packages.${prev.system}.mod_auth_openidc;
+            #     })
+            #   ];
+            # })
             agenix.nixosModules.default
           ];
         };

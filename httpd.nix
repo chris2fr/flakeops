@@ -4,39 +4,43 @@ let
   # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
+  age.identityPaths = [ "/etc/.secrets/.age.key" ];
+
   age.secrets = {
     # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
-    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; owner="wwwrun";};
+    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
+    owner = "oauth2-proxy";
+    group = "oauth2-proxy";};
     # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
     # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   services = {
-    httpd = {
-      enable = true;
-      package = pkgs.apacheHttpd;
-      enablePHP = false;
-      extraConfig = ''
-        KeepAlive On
-        MaxKeepAliveRequests 100
-        KeepAliveTimeout 3
-        Protocols h2 http/1.1
-      '';
-      adminAddr = "chris@lesgrandsvoisins.com";
-      extraModules = [ 
-      #   "proxy" 
-      #   "proxy_http" 
-      #   "dav" 
-      #   "ldap" 
-      #   "authnz_ldap" 
-      #   "alias" 
-      #   "ssl" 
-      #   "rewrite" 
-      #   "proxy_fcgi" 
-      #   "http2" 
-      #   "proxy_uwsgi"
-        { name = "auth_openidc"; path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; }
-      ];
+    # httpd = {
+    #   enable = true;
+    #   package = pkgs.apacheHttpd;
+    #   enablePHP = false;
+    #   extraConfig = ''
+    #     KeepAlive On
+    #     MaxKeepAliveRequests 100
+    #     KeepAliveTimeout 3
+    #     Protocols h2 http/1.1
+    #   '';
+    #   adminAddr = "chris@lesgrandsvoisins.com";
+    #   extraModules = [ 
+    #   #   "proxy" 
+    #   #   "proxy_http" 
+    #   #   "dav" 
+    #   #   "ldap" 
+    #   #   "authnz_ldap" 
+    #   #   "alias" 
+    #   #   "ssl" 
+    #   #   "rewrite" 
+    #   #   "proxy_fcgi" 
+    #   #   "http2" 
+    #   #   "proxy_uwsgi"
+    #     # { name = "auth_openidc"; path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; }
+    #   ];
       virtualHosts = {
         "roses.lgv.info" = {
           forceSSL = true;
