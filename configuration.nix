@@ -91,25 +91,25 @@ in
       clientMaxBodySize = "10G";
 
       virtualHosts = {
-        "vouch.lgv.info" = {
-          forceSSL = true;
-          enableACME = true;
-          root = "/var/www/default";
-          locations."/" = {
-            proxyPass = "https://192.168.1.100:41443";
-            # be sure to pass the original host header
-            # proxy_set_header Host $host;
-            # }
-            # recommendedProxySettings = true;
-            extraConfig = ''
-                proxy_ssl_verify off;
-                proxy_set_header Host $host;
-                # Maybe
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
-            '';
-          };
-        };
+        # "vouch.lgv.info" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   root = "/var/www/default";
+        #   locations."/" = {
+        #     proxyPass = "https://192.168.1.100:41443";
+        #     # be sure to pass the original host header
+        #     # proxy_set_header Host $host;
+        #     # }
+        #     # recommendedProxySettings = true;
+        #     extraConfig = ''
+        #         proxy_ssl_verify off;
+        #         proxy_set_header Host $host;
+        #         # Maybe
+        #         proxy_pass_request_body off;
+        #         proxy_set_header Content-Length "";
+        #     '';
+        #   };
+        # };
         "roses.lgv.info" = {
           forceSSL = true;
           enableACME = true;
@@ -128,53 +128,53 @@ in
           # extraConfig = ''
           #   auth_request /validate;
           # '';
-          locations = {
-            "/validate" = {
-              proxyPass = "https://vouch.lgv.info/validate";
-              # recommendedProxySettings = true;
-              extraConfig = ''
-                # proxy_ssl_verify off;
-                proxy_set_header Host $host;
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
-                # auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-                # these return values are used by the @error401 call
-                # auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-                # auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-                # auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
-              '';
-                # forward the /validate request to Vouch Proxy
-                # extraConfig = ''
-                #   # forward the /validate request to Vouch Proxy
-                #   proxy_pass http://127.0.0.1:9090/validate;
-                #   # be sure to pass the original host header
-                #   proxy_set_header Host $host;
+          # locations = {
+          #   "/validate" = {
+          #     proxyPass = "https://vouch.lgv.info/validate";
+          #     # recommendedProxySettings = true;
+          #     extraConfig = ''
+          #       # proxy_ssl_verify off;
+          #       proxy_set_header Host $host;
+          #       proxy_pass_request_body off;
+          #       proxy_set_header Content-Length "";
+          #       # auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+          #       # these return values are used by the @error401 call
+          #       # auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+          #       # auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+          #       # auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+          #     '';
+          #       # forward the /validate request to Vouch Proxy
+          #       # extraConfig = ''
+          #       #   # forward the /validate request to Vouch Proxy
+          #       #   proxy_pass http://127.0.0.1:9090/validate;
+          #       #   # be sure to pass the original host header
+          #       #   proxy_set_header Host $host;
 
-                #   # Vouch Proxy only acts on the request headers
-                #   proxy_pass_request_body off;
-                #   proxy_set_header Content-Length "";
+          #       #   # Vouch Proxy only acts on the request headers
+          #       #   proxy_pass_request_body off;
+          #       #   proxy_set_header Content-Length "";
 
-                #   # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
-                #   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+          #       #   # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
+          #       #   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
 
-                #   # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
-                #   #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
-                #   #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
-                #   # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
-                #   #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
-                #   #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
+          #       #   # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
+          #       #   #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+          #       #   #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+          #       #   # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
+          #       #   #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
+          #       #   #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
 
-                #   # these return values are used by the @error401 call
-                #   auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-                #   auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-                #   auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+          #       #   # these return values are used by the @error401 call
+          #       #   auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+          #       #   auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+          #       #   auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
 
-                #   # Vouch Proxy can run behind the same Nginx reverse proxy
-                #   # may need to comply to "upstream" server naming
-                #   # proxy_pass http://vouch.yourdomain.com/validate;
-                #   # proxy_set_header Host $host;
-                # '';
-            };
+          #       #   # Vouch Proxy can run behind the same Nginx reverse proxy
+          #       #   # may need to comply to "upstream" server naming
+          #       #   # proxy_pass http://vouch.yourdomain.com/validate;
+          #       #   # proxy_set_header Host $host;
+          #       # '';
+          #   };
             # "/protected/" = {
             #   extraConfig = ''
             #     # auth_request https://roses.lgv.info:41443/oauth2;
@@ -182,7 +182,7 @@ in
             #     # proxy_set_header X-User $user;
             #   '';
             # };
-          };
+          # };
         };
       };
     };
