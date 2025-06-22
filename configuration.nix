@@ -63,7 +63,7 @@ in
       
       # Client credentials (register your app with the OAuth provider)
       clientID = "searfile";
-      clientSecretFile = "/etc/.secrets/.seafile_client_secret";
+      keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
       # clientSecret = "your-client-secret";
       
       # Cookie settings
