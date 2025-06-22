@@ -80,6 +80,8 @@ in
         key = "/var/lib/acme/roses.lgv.info/privkey.pem";
         httpsAddress = ":443";
       };
+      redirectURL = "https://roses.lgv.info/oauth2/callback";
+      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
     };
 
     xserver = {
