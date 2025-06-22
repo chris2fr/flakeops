@@ -10,7 +10,7 @@ in
     # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
     # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
   };
-  environment.systemPackages = with pkgs; [ curl cjose ];
+  environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   services = {
     httpd = {
       enable = true;
