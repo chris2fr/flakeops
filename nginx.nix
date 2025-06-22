@@ -42,7 +42,7 @@ in
         # cookie-domains="roses.lgv.info";
       };
     };
-        nginx = {
+    nginx = {
       enable = true;
       clientMaxBodySize = "6G";
       virtualHosts = {

@@ -52,7 +52,26 @@ in
 
   services = {
 
-    nginx.enable = true;
+    nginx = {
+      enable = true;
+      clientMaxBodySize = "10G";
+      virtualHosts = {
+        "roses.lgv.info" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/default";
+          locations = {
+            "/protected/" = {
+              extraConfig = ''
+                auth_request https://roses.lgv.info:41443/oauth2;
+                auth_request_set $user  $upstream_http_x_auth_request_user;
+                proxy_set_header X-User $user;
+              '';
+            };
+          };
+        };
+      };
+    };
 
     oauth2-proxy = {
       enable = true;
@@ -72,13 +91,13 @@ in
       # Additional settingsenvironment.systemPackages = with pkgs; [
       # upstream = "http://localhost:1234"; # your backend service
       httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-      reverseProxy = false;
+      reverseProxy = true;
       upstream = "file:///var/www/default";
       tls = {
         enable = true;
         certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
         key = "/var/lib/acme/roses.lgv.info/key.pem";
-        httpsAddress = ":443";
+        httpsAddress = ":41443";
       };
       redirectURL = "https://roses.lgv.info/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
