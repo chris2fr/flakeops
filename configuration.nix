@@ -63,7 +63,8 @@ in
       
       # Client credentials (register your app with the OAuth provider)
       clientID = "searfile";
-      clientSecret = "your-client-secret";
+      clientSecretFile = "/etc/.secrets/.seafile_client_secret";
+      # clientSecret = "your-client-secret";
       
       # Cookie settings
       cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
