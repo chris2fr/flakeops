@@ -12,7 +12,7 @@ in
     # ./httpd.nix
     ./nfs.nix
   ];
-
+  environment.systemPackages = with pkgs; [ agenix-cli ];
   age.identityPaths = [ "/etc/.secrets/.age.key" ];
   # age.secrets = {
   #   # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
