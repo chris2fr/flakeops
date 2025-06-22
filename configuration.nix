@@ -24,6 +24,7 @@ in
     # libgnurl
     # jansson
     vouch-proxy
+    nodenv
   ];
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
@@ -89,7 +90,32 @@ in
     nginx = {
       enable = true;
       clientMaxBodySize = "10G";
-
+      sso = {
+        enable = true;
+        configuration = {
+          listen = { addr = "127.0.0.1"; port = 8080; };
+          providers.oidc = {
+            client_id = "seafile";
+            client_secret = "seafile";
+            # Optional, defaults to "OpenID Connect"
+            issuer_name = "Key Lesgrandsvoisins Com";
+            issuer_url = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+            redirect_url = "https://roses.lgv.info/login";
+            # Optional, defaults to no limitations
+            # require_domain = "lesgrandsvoisins.com";
+            # Optional, defaults to "subject"
+            # user_id_method = "full-email";
+          };
+          acl = {
+            rule_sets = [
+              # {
+              #   rules = [ { field = "x-application"; equals = "MyApp"; } ];
+              #   allow = [ "myuser" ];
+              # }
+            ];
+          };
+        };
+      };
       virtualHosts = {
         # "vouch.lgv.info" = {
         #   forceSSL = true;
