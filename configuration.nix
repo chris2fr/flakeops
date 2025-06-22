@@ -94,6 +94,17 @@ in
         "roses.lgv.info" = {
           forceSSL = true;
           enableACME = true;
+          locations."/" = {
+              proxyPass = "https://roses.lgv.info:41443";
+              # be sure to pass the original host header
+              # proxy_set_header Host $http_host;
+              recommendedProxySettings = true;
+            }
+          };
+        }
+        "roses.lgv.info" = {
+          forceSSL = true;
+          enableACME = true;
           root = "/var/www/default";
           # extraConfig = ''
           #   auth_request /validate;
