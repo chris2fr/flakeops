@@ -83,6 +83,12 @@ in
       redirectURL = "https://roses.lgv.info/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+      extraConfig = {
+        code-challenge-method="S256";
+        whitelist-domain="roses.lgv.info";
+        insecure-oidc-allow-unverified-email="true";
+        # cookie-domains="roses.lgv.info";
+      };
     };
 
     xserver = {
