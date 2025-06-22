@@ -10,23 +10,41 @@
   #      inputs.nixpkgs.follows = "nixpkgs";
   #    };
     agenix.url = "github:ryantm/agenix";
+    flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs: {
-    # NOTE: 'nixos' is the default hostname set by the installer
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # NOTE: Change this to aarch64-linux if you are on ARM
-      system = "x86_64-linux";
-      modules = [   
-        ./configuration.nix
-        agenix.nixosModules.default
-      ];
+  outputs = { self, nixpkgs, flake-utils, home-manager, agenix, ... }@inputs: 
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in {
+        packages = {
+          mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc.nix {};
+        };
+      }
+    ) // {
+      # NOTE: 'nixos' is the default hostname set by the installer
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          # NOTE: Change this to aarch64-linux if you are on ARM
+          system = "x86_64-linux";
+          modules = [   
+            ./configuration.nix
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  mod_auth_openidc = self.packages.${prev.system}.mod_auth_openidc;
+                })
+              ];
+            })
+            agenix.nixosModules.default
+          ];
+        };
+      };
+      # homeConfigurations = {
+      # #  mannchri = home-manager.lib.homeManagerConfiguration {
+      # #    extraSpecialArgs = {inherit nixpkgs;};
+      # #    modules = [./home-manager/mannchri.nix];
+      # #  };
+      # };
     };
-    # homeConfigurations = {
-    # #  mannchri = home-manager.lib.homeManagerConfiguration {
-    # #    extraSpecialArgs = {inherit nixpkgs;};
-    # #    modules = [./home-manager/mannchri.nix];
-    # #  };
-    # };
-  };
 }
-

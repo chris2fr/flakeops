@@ -1,14 +1,15 @@
 { config, pkgs, lib, ... }:
 let 
+  mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc.nix {};
   # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
-  # age.secrets = {
-  #   # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
-  #   "newuser" = { file = ./secrets/newuser.age; owner="wwwrun";};
-  #   "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
-  #   "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
-  # };
+  age.secrets = {
+    # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
+    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; owner="wwwrun";};
+    # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
+    # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
+  };
   services = {
     httpd = {
       enable = true;
@@ -20,7 +21,7 @@ in
         Protocols h2 http/1.1
       '';
       adminAddr = "chris@lesgrandsvoisins.com";
-      # extraModules = [ 
+      extraModules = [ 
       #   "proxy" 
       #   "proxy_http" 
       #   "dav" 
@@ -32,11 +33,11 @@ in
       #   "proxy_fcgi" 
       #   "http2" 
       #   "proxy_uwsgi"
-      #   { 
-      #     name = "auth_openidc"; 
-      #     path = "/usr/local/lib/modules/mod_auth_openidc.so"; 
-      #   }
-      # ];
+        { 
+          name = "auth_openidc"; 
+          path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; 
+        }
+      ];
       virtualHosts = {
         "roses.lgv.info" = {
           forceSSL = true;
@@ -46,6 +47,19 @@ in
           # sslServerChain = "/var/lib/acme/roses.lgv.info/fullchain.pem";
           # sslServerKey = "/var/lib/acme/roses.lgv.info/key.pem";
           documentRoot = "/var/www/default";
+          extraConfig = ''
+            OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+            OIDCClientID seafile
+            Include /etc/.secrets/.apache2.oidcclientsecret.seafile
+            OIDCRedirectURI https://roses.lgv.info/redirect_uri_from_oauth2
+            
+            <Location /protected>
+              AuthType openid-connect
+              Require valid-user
+            </Location>
+          '';
+
+
           # extraConfig = ''
           #   ProxyPreserveHost On
           #   # ProxyVia On
