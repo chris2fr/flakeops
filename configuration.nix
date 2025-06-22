@@ -12,7 +12,24 @@ in
     # ./httpd.nix
     ./nfs.nix
   ];
-  environment.systemPackages = with pkgs; [ agenix-cli ];
+  environment.systemPackages = with pkgs; [ 
+    # agenix-cli 
+    # gcc
+    # apacheHttpd
+    # pkg-config
+    # apr
+    # aprutil
+    # curlFull
+    # lzlib
+    # libgnurl
+    # jansson
+    vouch-proxy
+  ];
+  # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
+  # export APR_CFLAGS="`apr-1-config --cflags`"
+  # export APR_LIBS="`apr-1-config --libs`"
+  # export LIBCURL_CFLAGS="`gnurl-config --cflags`"
+
   age.identityPaths = [ "/etc/.secrets/.age.key" ];
   # age.secrets = {
   #   # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
@@ -55,17 +72,62 @@ in
     nginx = {
       enable = true;
       clientMaxBodySize = "10G";
+
       virtualHosts = {
         "roses.lgv.info" = {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
+          extraConfig = ''
+            auth_request /validate;
+            error_page 401 = @error401;
+            location @error401 {
+                # redirect to Vouch Proxy for login
+                return 302 https://vouch.yourdomain.com/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+                # you usually *want* to redirect to Vouch running behind the same Nginx config proteced by https
+                # but to get started you can just forward the end user to the port that vouch is running on
+                # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+            }
+          '';
           locations = {
+            "/validate" = {
+                # forward the /validate request to Vouch Proxy
+                extraConfig = ''
+                  # forward the /validate request to Vouch Proxy
+                  proxy_pass http://127.0.0.1:9090/validate;
+                  # be sure to pass the original host header
+                  proxy_set_header Host $http_host;
+
+                  # Vouch Proxy only acts on the request headers
+                  proxy_pass_request_body off;
+                  proxy_set_header Content-Length "";
+
+                  # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
+                  auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+
+                  # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
+                  #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+                  #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+                  # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
+                  #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
+                  #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
+
+                  # these return values are used by the @error401 call
+                  auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+                  auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+                  auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+
+                  # Vouch Proxy can run behind the same Nginx reverse proxy
+                  # may need to comply to "upstream" server naming
+                  # proxy_pass http://vouch.yourdomain.com/validate;
+                  # proxy_set_header Host $http_host;
+                '';
+            };
             "/protected/" = {
               extraConfig = ''
-                auth_request https://roses.lgv.info:41443/oauth2;
-                auth_request_set $user  $upstream_http_x_auth_request_user;
-                proxy_set_header X-User $user;
+                # auth_request https://roses.lgv.info:41443/oauth2;
+                # auth_request_set $user  $upstream_http_x_auth_request_user;
+                # proxy_set_header X-User $user;
               '';
             };
           };
@@ -73,42 +135,42 @@ in
       };
     };
 
-    oauth2-proxy = {
-      enable = true;
+    # oauth2-proxy = {
+    #   enable = true;
 
-      # Common configuration
-      provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
-      email.domains = ["*"]; # restrict to specific email domains
+    #   # Common configuration
+    #   provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
+    #   email.domains = ["*"]; # restrict to specific email domains
       
-      # Client credentials (register your app with the OAuth provider)
-      clientID = "searfile";
-      keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      # clientSecret = "your-client-secret";
+    #   # Client credentials (register your app with the OAuth provider)
+    #   clientID = "searfile";
+    #   keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
+    #   # clientSecret = "your-client-secret";
       
-      # Cookie settings
-      cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+    #   # Cookie settings
+    #   cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
       
-      # Additional settingsenvironment.systemPackages = with pkgs; [
-      # upstream = "http://localhost:1234"; # your backend service
-      httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-      reverseProxy = true;
-      upstream = "file:///var/www/default";
-      tls = {
-        enable = true;
-        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-        key = "/var/lib/acme/roses.lgv.info/key.pem";
-        httpsAddress = ":41443";
-      };
-      redirectURL = "https://roses.lgv.info/oauth2/callback";
-      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
-      # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
-      extraConfig = {
-        code-challenge-method="S256";
-        whitelist-domain="roses.lgv.info";
-        insecure-oidc-allow-unverified-email="true";
-        # cookie-domains="roses.lgv.info";
-      };
-    };
+    #   # Additional settingsenvironment.systemPackages = with pkgs; [
+    #   # upstream = "http://localhost:1234"; # your backend service
+    #   httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
+    #   reverseProxy = true;
+    #   upstream = "file:///var/www/default";
+    #   tls = {
+    #     enable = true;
+    #     certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+    #     key = "/var/lib/acme/roses.lgv.info/key.pem";
+    #     httpsAddress = ":41443";
+    #   };
+    #   redirectURL = "https://roses.lgv.info/oauth2/callback";
+    #   oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
+    #   # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+    #   extraConfig = {
+    #     code-challenge-method="S256";
+    #     whitelist-domain="roses.lgv.info";
+    #     insecure-oidc-allow-unverified-email="true";
+    #     # cookie-domains="roses.lgv.info";
+    #   };
+    # };
 
     xserver = {
       xkb.layout = "fr";
