@@ -94,6 +94,7 @@ in
         "vouch.lgv.info" = {
           forceSSL = true;
           enableACME = true;
+          root = "/var/www/default";
           locations."/" = {
             proxyPass = "https://vouch.lgv.info:41443";
             # be sure to pass the original host header
@@ -117,13 +118,24 @@ in
           #       # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
           #   }
           # '';
-          extraConfig = ''
-            auth_request /validate;
-          '';
+          # extraConfig = ''
+          #   auth_request /validate;
+          # '';
           locations = {
             "/validate" = {
-              proxyPass = "https://roses.lgv.info:41443/validate";
-              recommendedProxySettings = true;
+              proxyPass = "https://vouch.lgv.info/validate";
+              # recommendedProxySettings = true;
+              extraConfig = ''
+                proxy_ssl_verify       off;
+                proxy_set_header Host $http_host;
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                # auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+                # these return values are used by the @error401 call
+                auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+                auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+                auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+              '';
                 # forward the /validate request to Vouch Proxy
                 # extraConfig = ''
                 #   # forward the /validate request to Vouch Proxy
