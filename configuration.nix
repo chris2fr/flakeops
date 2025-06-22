@@ -9,7 +9,7 @@ in
     ./common.nix # Des configurations communes pratiques
     ./networking.nix
     ./users.nix
-    ./httpd.nix
+    # ./httpd.nix
     ./nfs.nix
   ];
   # Use the systemd-boot EFI boot loader.
@@ -41,6 +41,33 @@ in
    };
 
   services = {
+
+    oauth2-proxy = {
+      enable = true;
+
+      # Common configuration
+      provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
+      email.domains = ["*"]; # restrict to specific email domains
+      
+      # Client credentials (register your app with the OAuth provider)
+      clientID = "searfile";
+      clientSecret = "your-client-secret";
+      
+      # Cookie settings
+      cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u%"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      
+      # Additional settings
+      # upstream = "http://localhost:1234"; # your backend service
+      httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
+      reverseProxy = false;
+      upstream = "file:///var/www/default";
+      tls = {
+        enable = true;
+        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+        key = "/var/lib/acme/roses.lgv.info/privkey.pem";
+        httpsAddress = ":443";
+      };
+    };
 
     xserver = {
       xkb.layout = "fr";
