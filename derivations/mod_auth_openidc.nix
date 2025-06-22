@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/OpenIDC/mod_auth_openidc/releases/download/v${version}/mod_auth_openidc-${version}.tar.gz";
-    sha256 = ""; # Update with actual hash
+    sha256 = "sha256-1lAifqKaPDxmQh368O/CHY7TWluj9aWGzR4BI8gr2Xw="; # Update with actual hash
   };
 
   buildInputs = [ apacheHttpd openssl curl cjose pkg-config ];
