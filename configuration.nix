@@ -14,14 +14,14 @@ in
   ];
 
   age.identityPaths = [ "/etc/.secrets/.age.key" ];
-  age.secrets = {
-    # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
-    "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
-    owner = "oauth2-proxy";
-    group = "oauth2-proxy";};
-    # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
-    # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
-  };
+  # age.secrets = {
+  #   # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
+  #   "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
+  #   owner = "oauth2-proxy";
+  #   group = "oauth2-proxy";};
+  #   # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
+  #   # "httpd.newuser.conf" = { file = ./secrets/httpd.newuser.conf.age; owner="wwwrun";};
+  # };
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
