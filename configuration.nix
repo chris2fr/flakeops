@@ -78,58 +78,58 @@ in
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
-          extraConfig = ''
-            auth_request /validate;
-            error_page 401 = @error401;
-            location @error401 {
-                # redirect to Vouch Proxy for login
-                return 302 https://vouch.yourdomain.com/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
-                # you usually *want* to redirect to Vouch running behind the same Nginx config proteced by https
-                # but to get started you can just forward the end user to the port that vouch is running on
-                # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
-            }
-          '';
+          # extraConfig = ''
+          #   auth_request /validate;
+          #   error_page 401 = @error401;
+          #   location @error401 {
+          #       # redirect to Vouch Proxy for login
+          #       return 302 https://vouch.yourdomain.com/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+          #       # you usually *want* to redirect to Vouch running behind the same Nginx config proteced by https
+          #       # but to get started you can just forward the end user to the port that vouch is running on
+          #       # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+          #   }
+          # '';
           locations = {
             "/validate" = {
                 # forward the /validate request to Vouch Proxy
-                extraConfig = ''
-                  # forward the /validate request to Vouch Proxy
-                  proxy_pass http://127.0.0.1:9090/validate;
-                  # be sure to pass the original host header
-                  proxy_set_header Host $http_host;
+                # extraConfig = ''
+                #   # forward the /validate request to Vouch Proxy
+                #   proxy_pass http://127.0.0.1:9090/validate;
+                #   # be sure to pass the original host header
+                #   proxy_set_header Host $http_host;
 
-                  # Vouch Proxy only acts on the request headers
-                  proxy_pass_request_body off;
-                  proxy_set_header Content-Length "";
+                #   # Vouch Proxy only acts on the request headers
+                #   proxy_pass_request_body off;
+                #   proxy_set_header Content-Length "";
 
-                  # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
-                  auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+                #   # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
+                #   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
 
-                  # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
-                  #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
-                  #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
-                  # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
-                  #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
-                  #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
+                #   # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
+                #   #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+                #   #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+                #   # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
+                #   #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
+                #   #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
 
-                  # these return values are used by the @error401 call
-                  auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-                  auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-                  auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+                #   # these return values are used by the @error401 call
+                #   auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+                #   auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+                #   auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
 
-                  # Vouch Proxy can run behind the same Nginx reverse proxy
-                  # may need to comply to "upstream" server naming
-                  # proxy_pass http://vouch.yourdomain.com/validate;
-                  # proxy_set_header Host $http_host;
-                '';
+                #   # Vouch Proxy can run behind the same Nginx reverse proxy
+                #   # may need to comply to "upstream" server naming
+                #   # proxy_pass http://vouch.yourdomain.com/validate;
+                #   # proxy_set_header Host $http_host;
+                # '';
             };
-            "/protected/" = {
-              extraConfig = ''
-                # auth_request https://roses.lgv.info:41443/oauth2;
-                # auth_request_set $user  $upstream_http_x_auth_request_user;
-                # proxy_set_header X-User $user;
-              '';
-            };
+            # "/protected/" = {
+            #   extraConfig = ''
+            #     # auth_request https://roses.lgv.info:41443/oauth2;
+            #     # auth_request_set $user  $upstream_http_x_auth_request_user;
+            #     # proxy_set_header X-User $user;
+            #   '';
+            # };
           };
         };
       };
