@@ -18,7 +18,7 @@
         pkgs = import nixpkgs { inherit system; };
       in {
         packages = {
-          mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc.nix {};
+          mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
         };
       }
     ) // {

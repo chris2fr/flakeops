@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let 
-  mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc.nix {};
+  mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
   # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
@@ -35,10 +35,7 @@ in
       #   "proxy_fcgi" 
       #   "http2" 
       #   "proxy_uwsgi"
-        { 
-          name = "auth_openidc"; 
-          path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; 
-        }
+        { name = "auth_openidc"; path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; }
       ];
       virtualHosts = {
         "roses.lgv.info" = {
@@ -54,10 +51,16 @@ in
             OIDCClientID seafile
             Include /etc/.secrets/.apache2.oidcclientsecret.seafile
             OIDCRedirectURI https://roses.lgv.info/redirect_uri_from_oauth2
+            OIDCScope "openid email profile"
+            OIDCPKCEMethod S256
+            OIDCOAuthVerifyJwksUri https://key.lesgrandsvoisins.com/auth/realms/master/protocol/openid-connect/certs
+
             
             <Location /protected>
               AuthType openid-connect
               Require valid-user
+              # Additional Keycloak role requirements if needed:
+              # Require claim realm_access.roles:your-role
             </Location>
           '';
 
