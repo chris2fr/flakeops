@@ -67,6 +67,23 @@ in
      useXkbConfig = true; # use xkb.options in tty.
    };
 
+  systemd.services.vouch-proxy = {
+    description = "Vouch-Proxy OpenIDC server for Nginx";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      WorkingDirectory = "/home/mannchri/vouch-proxy/";
+      ExecStart = "/run/current-system/sw/bin/vouch-proxy -config /home/mannchri/vouch-proxy/config.yml";
+      Restart = "always";
+      RestartSec = "10s";
+      User = "mannchri";
+      Group = "users";
+    };
+    unitConfig = {
+      StartLimitInterval = "1min";
+    };
+  };
+
   services = {
 
     nginx = {
@@ -89,8 +106,13 @@ in
           #       # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
           #   }
           # '';
+          extraConfig = ''
+            auth_request /validate;
+          '';
           locations = {
             "/validate" = {
+              proxyPass = "https://roses.lgv.info:41443/validate";
+              recommendedProxySettings = true;
                 # forward the /validate request to Vouch Proxy
                 # extraConfig = ''
                 #   # forward the /validate request to Vouch Proxy
