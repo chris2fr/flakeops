@@ -96,11 +96,18 @@ in
           enableACME = true;
           root = "/var/www/default";
           locations."/" = {
-            proxyPass = "https://vouch.lgv.info:41443";
+            proxyPass = "https://192.168.1.100:41443";
             # be sure to pass the original host header
             # proxy_set_header Host $http_host;
             # }
             recommendedProxySettings = true;
+            extraConfig = ''
+                proxy_ssl_verify off;
+                proxy_set_header Host $http_host;
+                # Maybe
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+            '';
           };
         };
         "roses.lgv.info" = {
@@ -126,7 +133,7 @@ in
               proxyPass = "https://vouch.lgv.info/validate";
               # recommendedProxySettings = true;
               extraConfig = ''
-                proxy_ssl_verify       off;
+                # proxy_ssl_verify off;
                 proxy_set_header Host $http_host;
                 proxy_pass_request_body off;
                 proxy_set_header Content-Length "";
