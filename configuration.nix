@@ -101,7 +101,7 @@ in
               # }
               recommendedProxySettings = true;
           };
-        }
+        };
         "roses.lgv.info" = {
           forceSSL = true;
           enableACME = true;
