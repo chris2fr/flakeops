@@ -91,15 +91,15 @@ in
       clientMaxBodySize = "10G";
 
       virtualHosts = {
-        "roses.lgv.info" = {
+        "vouch.lgv.info" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-              proxyPass = "https://roses.lgv.info:41443";
-              # be sure to pass the original host header
-              # proxy_set_header Host $http_host;
-              # }
-              recommendedProxySettings = true;
+            proxyPass = "https://vouch.lgv.info:41443";
+            # be sure to pass the original host header
+            # proxy_set_header Host $http_host;
+            # }
+            recommendedProxySettings = true;
           };
         };
         "roses.lgv.info" = {
