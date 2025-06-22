@@ -77,7 +77,7 @@ in
       tls = {
         enable = true;
         certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-        key = "/var/lib/acme/roses.lgv.info/privkey.pem";
+        key = "/var/lib/acme/roses.lgv.info/key.pem";
         httpsAddress = ":443";
       };
       redirectURL = "https://roses.lgv.info/oauth2/callback";
