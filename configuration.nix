@@ -42,6 +42,8 @@ in
 
   services = {
 
+    nginx.enable = true;
+
     oauth2-proxy = {
       enable = true;
 
