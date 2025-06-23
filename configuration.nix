@@ -94,7 +94,7 @@ in
       sso = {
         enable = true;
         configuration = {
-          listen = { addr = "127.0.0.1"; port = 8080; };
+          listen = { addr = "127.0.0.1"; port = 8082; };
           providers.oidc = {
             client_id = "seafile";
             client_secret = "${oidcSeafileSecret}";
@@ -109,10 +109,10 @@ in
           };
           acl = {
             rule_sets = [
-              # {
-              #   rules = [ { field = "x-application"; equals = "MyApp"; } ];
-              #   allow = [ "myuser" ];
-              # }
+              {
+                rules = [ { field = "x-application"; equals = "kibana"; } ];
+                allow = [ "chris" ];
+              }
             ];
           };
         };
@@ -141,6 +141,44 @@ in
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
+          locations = {
+            "/protected" = {
+              extraConfig = ''
+                
+                # Protect this location using the auth_request
+                auth_request /sso-auth;
+
+                # ## Optionally set a header to pass through the username
+                # #auth_request_set $username $upstream_http_x_username;
+                # #proxy_set_header X-User $username;
+
+                # # Automatically renew SSO cookie on request
+                # auth_request_set $cookie $upstream_http_set_cookie;
+                # add_header Set-Cookie $cookie;
+
+                # proxy_pass http://127.0.0.1:1720/;
+              '';
+            };
+            "/sso-auth" = {
+              extraConfig = ''
+                # # Do not allow requests from outside
+                # internal;
+                # Access /auth endpoint to query login state
+                proxy_pass http://127.0.0.1:8082/auth;
+                # Do not forward the request body (nginx-sso does not care about it)
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                # Set custom information for ACL matching: Each one is available as
+                # a field for matching: X-Host = x-host, ...
+                proxy_set_header X-Origin-URI $request_uri;
+                proxy_set_header X-Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Application "kibana";
+              '';
+            };
+          };
           # extraConfig = ''
           #   auth_request /validate;
           #   error_page 401 = @error401;
