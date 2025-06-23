@@ -69,22 +69,22 @@ in
      useXkbConfig = true; # use xkb.options in tty.
    };
 
-  systemd.services.vouch-proxy = {
-    description = "Vouch-Proxy OpenIDC server for Nginx";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      WorkingDirectory = "/home/mannchri/vouch-proxy/";
-      ExecStart = "/run/current-system/sw/bin/vouch-proxy -config /home/mannchri/vouch-proxy/config.yml";
-      Restart = "always";
-      RestartSec = "10s";
-      User = "mannchri";
-      Group = "users";
-    };
-    unitConfig = {
-      StartLimitInterval = "1min";
-    };
-  };
+  # systemd.services.vouch-proxy = {
+  #   description = "Vouch-Proxy OpenIDC server for Nginx";
+  #   after = [ "network.target" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/mannchri/vouch-proxy/";
+  #     ExecStart = "/run/current-system/sw/bin/vouch-proxy -config /home/mannchri/vouch-proxy/config.yml";
+  #     Restart = "always";
+  #     RestartSec = "10s";
+  #     User = "mannchri";
+  #     Group = "users";
+  #   };
+  #   unitConfig = {
+  #     StartLimitInterval = "1min";
+  #   };
+  # };
 
   services = {
 
