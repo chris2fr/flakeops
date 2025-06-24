@@ -147,9 +147,19 @@ in
           locations = {
             "/protected" = {
               extraConfig = ''
+
+                auth_request /oauth2/auth;
+                error_page 401 =403 /oauth2/sign_in;
+
+                # pass information via X-User and X-Email headers to backend,
+                # requires running with --set-xauthrequest flag
+                auth_request_set $user   $upstream_http_x_auth_request_user;
+                auth_request_set $email  $upstream_http_x_auth_request_email;
+                proxy_set_header X-User  $user;
+                proxy_set_header X-Email $email;
                 
                 # Protect this location using the auth_request
-                auth_request /sso-auth;
+                # auth_request /sso-auth;
 
                 # ## Optionally set a header to pass through the username
                 # #auth_request_set $username $upstream_http_x_username;
@@ -162,25 +172,46 @@ in
                 # proxy_pass http://127.0.0.1:1720/;
               '';
             };
-            "/sso-auth" = {
+            "/oauth2/" = {
               extraConfig = ''
-                # # Do not allow requests from outside
-                # internal;
-                # Access /auth endpoint to query login state
-                proxy_pass http://127.0.0.1:8082/auth;
-                # Do not forward the request body (nginx-sso does not care about it)
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
-                # Set custom information for ACL matching: Each one is available as
-                # a field for matching: X-Host = x-host, ...
-                proxy_set_header X-Origin-URI $request_uri;
-                proxy_set_header X-Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header X-Application "kibana";
+                proxy_pass       http://127.0.0.1:4180;
+                proxy_set_header Host                    $host;
+                proxy_set_header X-Real-IP               $remote_addr;
+                proxy_set_header X-Auth-Request-Redirect $request_uri;
+                # or, if you are handling multiple domains:
+                # proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
               '';
             };
+            "/oauth2/auth" = {
+              extraConfig = ''
+                proxy_pass       http://127.0.0.1:4180;
+                proxy_set_header Host             $host;
+                proxy_set_header X-Real-IP        $remote_addr;
+                proxy_set_header X-Forwarded-Uri  $request_uri;
+                # nginx auth_request includes headers but not body
+                proxy_set_header Content-Length   "";
+                proxy_pass_request_body           off;
+              '';
+            };
+            # "/sso-auth" = {
+            #   extraConfig = ''
+            #     # # Do not allow requests from outside
+            #     # internal;
+            #     # Access /auth endpoint to query login state
+            #     proxy_pass http://127.0.0.1:8082/auth;
+            #     # Do not forward the request body (nginx-sso does not care about it)
+            #     proxy_pass_request_body off;
+            #     proxy_set_header Content-Length "";
+            #     # Set custom information for ACL matching: Each one is available as
+            #     # a field for matching: X-Host = x-host, ...
+            #     proxy_set_header X-Origin-URI $request_uri;
+            #     proxy_set_header X-Host $http_host;
+            #     proxy_set_header X-Real-IP $remote_addr;
+            #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #     proxy_set_header X-Forwarded-Proto $scheme;
+            #     proxy_set_header X-Application "kibana";
+            #   '';
+            # };
           };
           # extraConfig = ''
           #   auth_request /validate;
@@ -258,37 +289,66 @@ in
     oauth2-proxy = {
       enable = true;
 
-      # Common configuration
-      provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
-      email.domains = ["*"]; # restrict to specific email domains
+      # # Common configuration
+      # provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
+      # email.domains = ["*"]; # restrict to specific email domains
       
-      # Client credentials (register your app with the OAuth provider)
-      clientID = "searfile";
+      # # Client credentials (register your app with the OAuth provider)
+      clientID = "seafile";
       keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      # clientSecret = "your-client-secret";
+      # # clientSecret = "your-client-secret";
       
-      # Cookie settings
-      cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      # # Cookie settings
+      # cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
       
-      # Additional settingsenvironment.systemPackages = with pkgs; [
-      # upstream = "http://localhost:1234"; # your backend service
-      httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-      reverseProxy = false;
-      upstream = "file:///var/www/default";
-      tls = {
-        enable = true;
-        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-        key = "/var/lib/acme/roses.lgv.info/key.pem";
-        httpsAddress = ":41443";
-      };
-      redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
-      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
-      # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+      # # Additional settingsenvironment.systemPackages = with pkgs; [
+      # # upstream = "http://localhost:1234"; # your backend service
+      # httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
+      # reverseProxy = false;
+      # upstream = "file:///var/www/default";
+      # tls = {
+      #   enable = true;
+      #   certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+      #   key = "/var/lib/acme/roses.lgv.info/key.pem";
+      #   httpsAddress = ":41443";
+      # };
+      # redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
+      # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       extraConfig = {
+        approval-prompt="force";
+        client-id="seafile";
+        client-secret-file="/etc/.secrets/.seafile_oauthproxy_keyfile";
         code-challenge-method="S256";
-        whitelist-domain="roses.lgv.info";
-        insecure-oidc-allow-unverified-email="true";
+        cookie-csrf-expire="5m";
+        cookie-csrf-per-request="true";
         cookie-domain="roses.lgv.info";
+        cookie-expire="168h0m0s";
+        cookie-httponly="false";
+        cookie-name="_oauth2_proxy_roses";
+        cookie-refresh="5m";
+        cookie-samesite="none";
+        cookie-secret="NgbKPVOqtJn5bipSRGuR22BwasVS1J5u";
+        cookie-secure="false";
+        email-domain="*" ;
+        http-address=":4180";
+        https-address=":41443";
+        insecure-oidc-allow-unverified-email="true" ;
+        oidc-issuer-url="https://key.lesgrandsvoisins.com/realms/master";
+        pass-access-token="true";
+        pass-authorization-header="true";
+        pass-host-header="true" ;
+        provider="keycloak-oidc";
+        proxy-prefix="/oauth2" ;
+        redirect-url="https://roses.lgv.info/oauth2/callback";
+        request-logging="true";
+        reverse-proxy="true";
+        session-store-type="cookie";
+        set-authorization-header="true";
+        set-xauthrequest="true";
+        skip-provider-button="false";
+        tls-cert-file="/var/lib/acme/roses.lgv.info/fullchain.pem";
+        tls-key-file="/var/lib/acme/roses.lgv.info/key.pem";
+        upstream="file:///var/www/default";
       };
     };
 
