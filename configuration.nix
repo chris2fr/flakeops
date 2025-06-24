@@ -288,7 +288,7 @@ in
         code-challenge-method="S256";
         whitelist-domain="roses.lgv.info";
         insecure-oidc-allow-unverified-email="true";
-        cookie-domains="roses.lgv.info";
+        cookie-domain="roses.lgv.info";
       };
     };
 
