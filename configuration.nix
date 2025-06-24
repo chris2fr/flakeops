@@ -24,7 +24,7 @@ in
     # lzlib
     # libgnurl
     # jansson
-    vouch-proxy
+    # vouch-proxy
     nodenv
   ];
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
@@ -141,6 +141,9 @@ in
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
+          extraConfig = ''
+            auth_request /sso-auth;
+          '';
           locations = {
             "/protected" = {
               extraConfig = ''

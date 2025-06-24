@@ -1,0 +1,50 @@
+{
+    "login": {
+        "title": "LGV Roses",
+        "default_method": "oidc",
+        "default_redirect": "https://roses.lgv.info/protected/",
+        "names": {
+            "oidc": "Key.Lesgrandsvoisins.com"
+        }
+    },
+    "acl": {
+        "rule_sets": [{
+            "allow": [
+                "@_authenticated"
+            ],
+            "rules": [{
+                "equals": "kibana",
+                "field": "x-application"
+            }]
+        }]
+    },
+    "listen": {
+        "addr": "127.0.0.1",
+        "port": 8082
+    },
+    "providers": {
+        "oidc": {
+            "client_id": "seafile",
+            "client_secret": "ZT3QfcUoXXUHB15Z9XzTismSLfkLj7y8",
+            "issuer_name": "Key Lesgrandsvoisins Com",
+            "issuer_url": "https://key.lesgrandsvoisins.com/realms/master",
+            "redirect_url": "https://roses.lgv.info/login"
+        }
+    },
+    "audit_log": {
+        "targets": [
+            "fd://stdout",
+            "file:///var/log/nginx-sso/audit.jsonl"
+        ],
+        "events": ["access_denied", "login_success", "login_failure", "logout", "validate"],
+        "headers": ["x-origin-uri"],
+        "trusted_ip_headers": ["X-Forwarded-For", "RemoteAddr", "X-Real-IP"]
+    },
+    "cookie": {
+        "domain": "roses.lgv.info",
+        "authentication_key": "p4myC7H0LL3SQkYJ866K5wLR7Ob6MRezOBsvWkT5F9YFK2oJVBPp2IWmG0q460",
+        "expire": 3600,
+        "default": 3600,
+        "prefix": "nginx-sso"
+    }
+}
