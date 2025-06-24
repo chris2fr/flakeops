@@ -89,7 +89,7 @@ in
   services = {
 
     nginx = {
-      enable = false;
+      enable = true;
       clientMaxBodySize = "10G";
       sso = {
         enable = true;
