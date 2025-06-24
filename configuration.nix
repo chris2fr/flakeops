@@ -89,7 +89,7 @@ in
   services = {
 
     nginx = {
-      enable = true;
+      enable = false;
       clientMaxBodySize = "10G";
       sso = {
         enable = true;
@@ -255,42 +255,42 @@ in
       };
     };
 
-    # oauth2-proxy = {
-    #   enable = true;
+    oauth2-proxy = {
+      enable = true;
 
-    #   # Common configuration
-    #   provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
-    #   email.domains = ["*"]; # restrict to specific email domains
+      # Common configuration
+      provider = "keycloak-oidc"; # or "github", "gitlab", "azure", etc.
+      email.domains = ["*"]; # restrict to specific email domains
       
-    #   # Client credentials (register your app with the OAuth provider)
-    #   clientID = "searfile";
-    #   keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-    #   # clientSecret = "your-client-secret";
+      # Client credentials (register your app with the OAuth provider)
+      clientID = "searfile";
+      keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
+      # clientSecret = "your-client-secret";
       
-    #   # Cookie settings
-    #   cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      # Cookie settings
+      cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
       
-    #   # Additional settingsenvironment.systemPackages = with pkgs; [
-    #   # upstream = "http://localhost:1234"; # your backend service
-    #   httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-    #   reverseProxy = true;
-    #   upstream = "file:///var/www/default";
-    #   tls = {
-    #     enable = true;
-    #     certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-    #     key = "/var/lib/acme/roses.lgv.info/key.pem";
-    #     httpsAddress = ":41443";
-    #   };
-    #   redirectURL = "https://roses.lgv.info/oauth2/callback";
-    #   oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
-    #   # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
-    #   extraConfig = {
-    #     code-challenge-method="S256";
-    #     whitelist-domain="roses.lgv.info";
-    #     insecure-oidc-allow-unverified-email="true";
-    #     # cookie-domains="roses.lgv.info";
-    #   };
-    # };
+      # Additional settingsenvironment.systemPackages = with pkgs; [
+      # upstream = "http://localhost:1234"; # your backend service
+      httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
+      reverseProxy = false;
+      upstream = "file:///var/www/default";
+      tls = {
+        enable = true;
+        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+        key = "/var/lib/acme/roses.lgv.info/key.pem";
+        httpsAddress = ":41443";
+      };
+      redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
+      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
+      # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+      extraConfig = {
+        code-challenge-method="S256";
+        whitelist-domain="roses.lgv.info";
+        insecure-oidc-allow-unverified-email="true";
+        cookie-domains="roses.lgv.info";
+      };
+    };
 
     xserver = {
       xkb.layout = "fr";
