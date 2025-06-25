@@ -567,8 +567,9 @@ in {
           forceSSL = true;
           root = "/var/www/roundcube";
         };
-        "vaultwarden.resdigita.com" = {
+        "vaultwarden.lgv.info" = {
           serverAliases = [
+            "vaultwarden.resdigita.com"
             "vaultwarden.gv.coop"
             "bitwarden.gv.coop"
             "vaultwarden.lesgv.org"
