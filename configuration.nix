@@ -347,7 +347,7 @@ in
         cookie-secret="NgbKPVOqtJn5bipSRGuR22BwasVS1J5u";
         cookie-secure="false";
         email-domain="*" ;
-        http-address="127.0.0.1:4180";
+        http-address=":4180";
         https-address=":41443";
         insecure-oidc-allow-unverified-email="true" ;
         oidc-issuer-url="https://key.lesgrandsvoisins.com/realms/master";
