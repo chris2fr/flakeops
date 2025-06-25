@@ -64,7 +64,6 @@ in
   ];
   services = {
     postfix.virtual = ''
-      merouane@lesgrandsvoisins.com kachamarou2020@gmail.com
       donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       contact@afriquepartenaires.org claudette@afriquepartenaires.org
       contact@afriquepartenaires.org renel@afriquepartenaires.org
