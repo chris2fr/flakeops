@@ -1487,6 +1487,7 @@ in {
     "www.mann.fr" = {
       enableACME = true;
       forceSSL = true;
+      serverAliases = ["meet.mann.fr"];
       locations."/" = {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
