@@ -142,14 +142,14 @@ in
       };
 
       systemd.services.trilium-next-server-mann = {
-        description = "Trilium Next Notes treliumnext.MANN.fr";
+        description = "Trilium Next Notes triliumnext.MANN.fr";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         environment = {
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-mann/";
         };
         serviceConfig = {
-          WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
+          WorkingDirectory = "/home/triliumnext/TriliumNotes-Server-0.97.2-linux-x64/";
           ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
           # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";

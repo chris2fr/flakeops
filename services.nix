@@ -53,7 +53,8 @@ in {
       enable = true;
     };
     ethercalc = {
-      enable = true;
+      # enable = true;
+      enable = false;
       port = 8123;
     };
     xandikos = {
