@@ -128,8 +128,8 @@ in
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-lgv/";
         };
         serviceConfig = {
-          WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
-          ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
+          WorkingDirectory = "/home/triliumnext/TriliumNotes-Server-0.97.2-linux-x64/";
+          ExecStart = ''${pkgs.nodejs_22}/bin/node main.cjs'';
           # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";
           RestartSec = "10s";
@@ -150,7 +150,8 @@ in
         };
         serviceConfig = {
           WorkingDirectory = "/home/triliumnext/TriliumNotes-Server-0.97.2-linux-x64/";
-          ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
+          ExecStart = ''${pkgs.nodejs_22}/bin/node main.cjs'';
+          # ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
           # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";
           RestartSec = "10s";
@@ -169,8 +170,8 @@ in
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-resdigita/";
         };
         serviceConfig = {
-          WorkingDirectory = "/home/triliumnext/trilium-server-0.93.0/";
-          ExecStart = ''${pkgs.nodejs_22}/bin/node src/main.js'';
+          WorkingDirectory = "/home/triliumnext/TriliumNotes-Server-0.97.2-linux-x64/";
+          ExecStart = ''${pkgs.nodejs_22}/bin/node main.cjs'';
           # ExecStart = ''/run/current-system/sw/bin/node src/main.js'';
           Restart = "always";
           RestartSec = "10s";
