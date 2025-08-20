@@ -1114,11 +1114,11 @@ in {
     "django.village.ngo" = {
       enableACME = true;
       serverAliases = [
-        "django.fastoche.org"
-        "django.cfran.org"
+        # "django.fastoche.org"
+        # "django.cfran.org"
         "django.village.ong"
-        "django.villagengo.com"
-        "django.villagengo.org"
+        # "django.villagengo.com"
+        # "django.villagengo.org"
       ];
       # extraConfig = ''
       #   if ($host != 'django.cfran.org') {
@@ -1140,12 +1140,12 @@ in {
       enableACME = true;
       forceSSL = true;
       serverAliases = [
-        "designsystem.fastoche.org"
+        # "designsystem.fastoche.org"
         "designsystem.village.ngo"
-        "designsystem.cfran.org"
-        "designsystem.village.ong"
-        "designsystem.villagengo.com"
-        "designsystem.villagengo.org"
+        # "designsystem.cfran.org"
+        # "designsystem.village.ong"
+        # "designsystem.villagengo.com"
+        # "designsystem.villagengo.org"
       ];
       # extraConfig = ''
       #   if ($host != 'designsystem.cfran.org') {
