@@ -20,6 +20,7 @@ let
     "afriquepartenaires.org"
     "yanlomsprod.org"
     "lgv.info"
+    "discourse.lgv.info"
   ];
 in
 {
@@ -108,6 +109,7 @@ in
       blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
       lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
       @discourse.paris14.cc admin@discourse.paris14.cc
+      @discourse.lgv.info discourse@lgv.info
     '';
 
     memcached = {

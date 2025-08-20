@@ -162,7 +162,8 @@ in {
               etag off;
             '';
           };
-        };        
+        };
+       
         "publii.paris14.cc" = {
           forceSSL = true;
           enableACME = true;
@@ -904,6 +905,28 @@ in {
               proxy_set_header   Host $host;
               proxy_pass         https://192.168.111.11;
               proxy_ssl_trusted_certificate /var/lib/acme/discourse.paris14.cc/full.pem;
+              proxy_ssl_verify   off;
+              proxy_set_header   Upgrade $http_upgrade;
+              proxy_set_header   Connection "upgrade";
+            '';
+          };
+        };
+        "discourse.lgv.info" = {
+          enableACME = true;
+          forceSSL = true;
+          # root = "/var/www/discoursecc";
+          # locations."/images" = { proxyPass = null; };
+          locations."/" = {
+            # basicAuth = { cc14 = "cc14"; };
+            extraConfig = ''
+              proxy_http_version 1.1;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_redirect off;
+              proxy_set_header   Host $host;
+              proxy_pass         https://192.168.119.11;
+              proxy_ssl_trusted_certificate /var/lib/acme/discourse.lgv.info/full.pem;
               proxy_ssl_verify   off;
               proxy_set_header   Upgrade $http_upgrade;
               proxy_set_header   Connection "upgrade";
