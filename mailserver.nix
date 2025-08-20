@@ -66,6 +66,7 @@ in
     postfix.virtual = ''
       pauline@lesgrandsvoisins.com poteomiranda@gmail.com
       rayhane@lesgrandsvoisins.com rayhane.baghdadddi@gmail.com
+      rayhane@lesgrandsvoisins.com rayhane@lesgrandsvoisins.com
       donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       contact@afriquepartenaires.org claudette@afriquepartenaires.org
       contact@afriquepartenaires.org renel@afriquepartenaires.org
