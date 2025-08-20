@@ -89,7 +89,7 @@ in {
           };
         };
         "triliumnext.mann.fr" = {
-          serverAliases = ["notes.mann.fr" "note.mann.fr"];
+          # serverAliases = ["notes.mann.fr" "note.mann.fr"];
           forceSSL = true;
           enableACME = true;
           locations."/" = {

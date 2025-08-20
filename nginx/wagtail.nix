@@ -834,20 +834,20 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "resdigita.village.ngo" = {
-      serverAliases = [ "resdigita.fastoche.org" ];
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/resdigita-fastoche/";
-      locations."/" = {
-        proxyPass = "http://localhost:8892/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };
+    # "resdigita.village.ngo" = {
+    #   serverAliases = [ "resdigita.fastoche.org" ];
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/resdigita-fastoche/";
+    #   locations."/" = {
+    #     proxyPass = "http://localhost:8892/";
+    #     extraConfig = nginxLocationWagtailExtraConfig;
+    #   };
+    #   locations."/favicon.ico" = { proxyPass = null; };
+    #   locations."/static" = { proxyPass = null; };
+    #   locations."/medias" = { proxyPass = null; };
+    #   locations."/.well-known" = { proxyPass = null; };
+    # };
     "www.parislenuage.com" = {
       locations."/" = {
         extraConfig = ''
@@ -953,17 +953,17 @@ in {
     };
     "www.village.ngo" = {
       enableACME = true;
-      serverAliases = [
-        "www.villagengo.org"
-        "www.villagengo.com"
-        "www.villageparis.org"
-        "www.ngovillage.org"
-        "www.ngvillage.org"
-        "www.ongovillage.com"
-        "www.ongovillage.org"
-        "www.ongvillage.org"
-        "www.ongvillage.com"
-      ];
+      # serverAliases = [
+      #   "www.villagengo.org"
+      #   "www.villagengo.com"
+      #   "www.villageparis.org"
+      #   "www.ngovillage.org"
+      #   "www.ngvillage.org"
+      #   "www.ongovillage.com"
+      #   "www.ongovillage.org"
+      #   "www.ongvillage.org"
+      #   "www.ongvillage.com"
+      # ];
       forceSSL = true;
       root = "/var/www/village/";
       # extraConfig = ''
@@ -1019,29 +1019,29 @@ in {
     #   locations."/medias" = { proxyPass = null; };
     #   locations."/.well-known" = { proxyPass = null; };
     # };
-    "web.cfran.org" = {
-      enableACME = true;
-      serverAliases = [  "www.cfran.org" "web.fastoche.org" ];
-      forceSSL = true;
-      root = "/var/www/web-fastoche/";
-      # extraConfig = ''
-      #   if ($host != 'web.cfran.org') {
-      #     return 301 $scheme://web.cfran.org$request_uri;
-      #   }
-      #   '';
-      locations."/" = {
-        proxyPass = "http://localhost:8889/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host != 'web.cfran.org') {
-            return 301 $scheme://web.cfran.org$request_uri;
-          }
-        '';
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };
+    # "web.cfran.org" = {
+    #   enableACME = true;
+    #   serverAliases = [  "www.cfran.org" "web.fastoche.org" ];
+    #   forceSSL = true;
+    #   root = "/var/www/web-fastoche/";
+    #   # extraConfig = ''
+    #   #   if ($host != 'web.cfran.org') {
+    #   #     return 301 $scheme://web.cfran.org$request_uri;
+    #   #   }
+    #   #   '';
+    #   locations."/" = {
+    #     proxyPass = "http://localhost:8889/";
+    #     extraConfig = nginxLocationWagtailExtraConfig + ''
+    #       if ($host != 'web.cfran.org') {
+    #         return 301 $scheme://web.cfran.org$request_uri;
+    #       }
+    #     '';
+    #   };
+    #   locations."/favicon.ico" = { proxyPass = null; };
+    #   locations."/static" = { proxyPass = null; };
+    #   locations."/medias" = { proxyPass = null; };
+    #   locations."/.well-known" = { proxyPass = null; };
+    # };
     "wagtail.village.ngo" = {
       enableACME = true;
       forceSSL = true;
