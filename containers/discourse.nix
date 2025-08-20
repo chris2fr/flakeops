@@ -116,7 +116,7 @@ in
             # config.services.discourse.package.plugins.discourse-saml
           ];
           admin = {
-            email = "list@lesgrandsvoisins.com";
+            email = "gv@village.ngo";
             fullName = "Super Admin";
             username = "admin";
             passwordFile = "/etc/discourse/.admin";
@@ -125,10 +125,8 @@ in
             outgoing = {
               serverAddress = "mail.lesgrandsvoisins.com";
               authentication = "plain";
-              username = "list@lesgrandsvoisins.com";
-              passwordFile = "/etc/.secrets.listlesgrandsvoisins";
-              # username = "gv@village.ngo";
-              # passwordFile = "/etc/.secrets.gvvillagengo";
+              username = "gv@village.ngo";
+              passwordFile = "/etc/.secrets.gvvillagengo";
               # port = 587;
               # forceTLS = true;
               # opensslVerifyMode = "none";
