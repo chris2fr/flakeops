@@ -1089,7 +1089,7 @@ in {
 
     };
     "wagtail.village.ong" = {
-      serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" ];
+      # serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" ];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtail-village/";
