@@ -2,7 +2,7 @@
 let
 in
 {
-  containers.discoursecc = {
+  containers.discourselgvinfo = {
     bindMounts = {
       "/var/lib/acme/discourse.lgv.info/" = {
         hostPath = "/var/lib/acme/discourse.lgv.info/";

@@ -37,7 +37,7 @@ in
     ./containers/cherryldap.nix
     ./containers/wikijs.nix
     ./containers/discourse.nix
-    # ./containers/discourselgvinfo.nix
+    ./containers/discourselgvinfo.nix
     ./containers/discourseparis14cc.nix
     ./containers/key.nix
     ./containers/keycloak.nix
