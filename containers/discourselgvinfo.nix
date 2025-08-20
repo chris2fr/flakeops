@@ -147,7 +147,7 @@ in
         };
         postgresql = {
           enable = true;
-          # package = pkgs.postgresql_13;
+          package = pkgs.postgresql_13;
         };
       };
     };
