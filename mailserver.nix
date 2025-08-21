@@ -65,7 +65,13 @@ in
   ];
   services = {
     postfix.virtual = ''
+      sviatlana@lesgrandsvoisins.com sviatlana.viarbitskaya@gmail.com
+      sviatlana@lesgrandsvoisins.com sviatlana@lesgrandsvoisins.com
+      arezki@lesgrandsvoisins.com arezkisef@yahoo.fr
+      arezki@lesgrandsvoisins.com arezki@lesgrandsvoisins.com
+      caroline@lesgrandsvoisins.com clhomme@gmail.com
       pauline@lesgrandsvoisins.com poteomiranda@gmail.com
+      pauline@lesgrandsvoisins.com pauline@lesgrandsvoisins.com
       rayhane@lesgrandsvoisins.com rayhane.baghdadddi@gmail.com
       rayhane@lesgrandsvoisins.com rayhane@lesgrandsvoisins.com
       donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
@@ -80,6 +86,7 @@ in
       contact@resdigita.com chris@resdigita.com      
       mael@maelanc.com maelnemacherif@yahoo.fr
       mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
+      mael@lesgrandsvoisins.com mael@lesgrandsvoisins.com
       chris@resdigita.com chris@mann.fr
       sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com 
       axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
