@@ -39,8 +39,7 @@ in
         # postgresql_17
         git
         lynx
-        nodejs
-        npm
+        nodejs_24
         redis
         imagemagick
         icu
@@ -76,7 +75,10 @@ in
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "nginx" "discourse" "wwwrun" ];
+            members = [ "nginx" "nodebb" "wwwrun" ];
+          };
+          "nodebb" = {
+              members = [ "nginx" "nodebb" "wwwrun" ];
           };
           # "discourse" = {
           #     members = [ "nginx" "discourse" "wwwrun" ];
