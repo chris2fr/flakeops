@@ -98,7 +98,7 @@ in
           enable = true;
           sitename = "Mattermost LGV Info";
           host = "0.0.0.0";
-          siteUrl = "https://mm.lgv.info"
+          siteUrl = "https://mm.lgv.info";
         };
         # nginx.virtualHosts."discourse.lgv.info" = {
         #   sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
