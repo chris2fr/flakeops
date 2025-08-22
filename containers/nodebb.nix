@@ -39,7 +39,7 @@ in
         # postgresql_17
         git
         lynx
-        nodejs
+        nodejs_24
         redis
         imagemagick
         icu
