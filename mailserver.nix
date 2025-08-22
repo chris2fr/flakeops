@@ -21,7 +21,7 @@ let
     "yanlomsprod.org"
     "lgv.info"
     "discourse.lgv.info"
-    "mm.lgv.info"
+    "nodebb.lgv.info"
   ];
 in
 {

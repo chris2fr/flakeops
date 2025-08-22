@@ -911,7 +911,7 @@ in {
             '';
           };
         };
-        "mm.lgv.info" = {
+        "nodebb.lgv.info" = {
           enableACME = true;
           forceSSL = true;
           # root = "/var/www/mmcc";
@@ -926,7 +926,7 @@ in {
               proxy_redirect off;
               proxy_set_header   Host $host;
               proxy_pass         https://192.168.119.11;
-              proxy_ssl_trusted_certificate /var/lib/acme/mm.lgv.info/full.pem;
+              proxy_ssl_trusted_certificate /var/lib/acme/nodebb.lgv.info/full.pem;
               proxy_ssl_verify   off;
               proxy_set_header   Upgrade $http_upgrade;
               proxy_set_header   Connection "upgrade";

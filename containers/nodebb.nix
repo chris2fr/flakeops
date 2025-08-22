@@ -2,10 +2,10 @@
 let
 in
 {
-  containers.mattermost = {
+  containers.nodebb = {
     bindMounts = {
-      "/var/lib/acme/mm.lgv.info/" = {
-        hostPath = "/var/lib/acme/mm.lgv.info/";
+      "/var/lib/acme/nodebb.lgv.info/" = {
+        hostPath = "/var/lib/acme/nodebb.lgv.info/";
         isReadOnly = true;
       };
       # "/run/discourse/sockets/unicorn.sock"
@@ -39,6 +39,11 @@ in
         # postgresql_17
         git
         lynx
+        nodejs
+        npm
+        redis
+        imagemagick
+        icu
       ];
       # nixpkgs.config.permittedInsecurePackages = [
       #   "discourse-3.2.5"
@@ -94,12 +99,12 @@ in
       };
       services = {
         resolved.enable = true;
-        mattermost = {
-          enable = true;
-          sitename = "Mattermost LGV Info";
-          host = "0.0.0.0";
-          siteUrl = "https://mm.lgv.info";
-        };
+        # mattermost = {
+        #   enable = true;
+        #   sitename = "Mattermost LGV Info";
+        #   host = "0.0.0.0";
+        #   siteUrl = "https://nodebb.lgv.info";
+        # };
         # nginx.virtualHosts."discourse.lgv.info" = {
         #   sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
         #   sslCertificateKey = "/var/lib/acme/discourse.lgv.info/key.pem";
