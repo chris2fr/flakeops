@@ -92,7 +92,7 @@ in
           "nodebb" = {
             isNormalUser = true;
             group = "nodebb";
-          }
+          };
           "acme" = {
             uid = 994;
             group = "acme";
