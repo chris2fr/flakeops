@@ -21,6 +21,7 @@ let
     "yanlomsprod.org"
     "lgv.info"
     "discourse.lgv.info"
+    "mm.lgv.info"
   ];
 in
 {
@@ -82,6 +83,10 @@ in
       renel@afriquepartenaires.org culture.coordination@gmail.com
       felicite@yanlomsprod.org associationyanlomsprod@gmail.com
       contact@yanlomsprod.org associationyanlomsprod@gmail.com
+      felicite@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
+      contact@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
+      yanlomsprod@lesgrandsvoisins.com associationyanlomsprod@gmail.com
+      yanlomsprod@lesgrandsvoisins.com yanlomsprod@lesgrandsvoisins.com
       contact@resdigita.com sviatlana@resdigita.com
       contact@resdigita.com chris@resdigita.com      
       mael@maelanc.com maelnemacherif@yahoo.fr

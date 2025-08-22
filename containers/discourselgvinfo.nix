@@ -2,10 +2,10 @@
 let
 in
 {
-  containers.discourselgvinfo = {
+  containers.mattermost = {
     bindMounts = {
-      "/var/lib/acme/discourse.lgv.info/" = {
-        hostPath = "/var/lib/acme/discourse.lgv.info/";
+      "/var/lib/acme/mm.lgv.info/" = {
+        hostPath = "/var/lib/acme/mm.lgv.info/";
         isReadOnly = true;
       };
       # "/run/discourse/sockets/unicorn.sock"
@@ -40,12 +40,12 @@ in
         git
         lynx
       ];
-      nixpkgs.config.permittedInsecurePackages = [
-        "discourse-3.2.5"
-        "discourse-3.4.7"
-        "discourse-3.5.0"
-      ];
-      virtualisation.docker.enable = true;
+      # nixpkgs.config.permittedInsecurePackages = [
+      #   "discourse-3.2.5"
+      #   "discourse-3.4.7"
+      #   "discourse-3.5.0"
+      # ];
+      # virtualisation.docker.enable = true;
       system.stateVersion = "25.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
@@ -94,61 +94,67 @@ in
       };
       services = {
         resolved.enable = true;
-        nginx.virtualHosts."discourse.lgv.info" = {
-          sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
-          sslCertificateKey = "/var/lib/acme/discourse.lgv.info/key.pem";
-          locations."/" = {
-            proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
-            extraConfig = ''
-              proxy_set_header Host $host;
-              proxy_http_version 1.1;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_ssl_trusted_certificate /var/lib/acme/discourse.lgv.info/full.pem;
-              proxy_ssl_verify off;
-            '';
-          };
-        };
-        discourse = {
+        mattermost = {
           enable = true;
-          hostname = "discourse.lgv.info";
-          sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
-          sslCertificateKey = "/var/lib/acme/discourse.lgv.info/key.pem";
-          siteSettings = {
-            security.forceHttps = true;
-          };
-          enableACME = false;
-          plugins = [
-            config.services.discourse.package.plugins.discourse-openid-connect
-            # config.services.discourse.package.plugins.discourse-oauth2-basic
-            # config.services.discourse.package.plugins.discourse-saml
-          ];
-          admin = {
-            email = "discourse@lgv.info";
-            fullName = "Super Admin";
-            username = "admindiscourselgvinfo";
-            passwordFile = "/etc/discourse/.lgvinfoadmin";
-          };
-          mail = {
-            outgoing = {
-              serverAddress = "mail.lesgrandsvoisins.com";
-              authentication = "plain";
-              # authentication = "login";
-              username = "noreply@lgv.info";
-              passwordFile = "/etc/.secrets.nobodydiscourselgvinfo";
-              # port = 465;
-              # forceTLS = true;
-              # port = 587;
-              # forceTLS = true;
-              # opensslVerifyMode = "none";
-            };
-          };
+          sitename = "Mattermost LGV Info";
+          host = "0.0.0.0";
+          siteUrl = "https://mm.lgv.info"
         };
-        postgresql = {
-          enable = true;
-          package = pkgs.postgresql_13;
-        };
+        # nginx.virtualHosts."discourse.lgv.info" = {
+        #   sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
+        #   sslCertificateKey = "/var/lib/acme/discourse.lgv.info/key.pem";
+        #   locations."/" = {
+        #     proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
+        #     extraConfig = ''
+        #       proxy_set_header Host $host;
+        #       proxy_http_version 1.1;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_ssl_trusted_certificate /var/lib/acme/discourse.lgv.info/full.pem;
+        #       proxy_ssl_verify off;
+        #     '';
+        #   };
+        # };
+        # discourse = {
+        #   enable = true;
+        #   hostname = "discourse.lgv.info";
+        #   sslCertificate = "/var/lib/acme/discourse.lgv.info/full.pem";
+        #   sslCertificateKey = "/var/lib/acme/discourse.lgv.info/key.pem";
+        #   siteSettings = {
+        #     security.forceHttps = true;
+        #   };
+        #   enableACME = false;
+        #   plugins = [
+        #     config.services.discourse.package.plugins.discourse-openid-connect
+        #     # config.services.discourse.package.plugins.discourse-oauth2-basic
+        #     # config.services.discourse.package.plugins.discourse-saml
+        #   ];
+        #   admin = {
+        #     email = "discourse@lgv.info";
+        #     fullName = "Super Admin";
+        #     username = "admindiscourselgvinfo";
+        #     passwordFile = "/etc/discourse/.lgvinfoadmin";
+        #   };
+        #   mail = {
+        #     outgoing = {
+        #       serverAddress = "mail.lesgrandsvoisins.com";
+        #       authentication = "plain";
+        #       # authentication = "login";
+        #       username = "noreply@lgv.info";
+        #       passwordFile = "/etc/.secrets.nobodydiscourselgvinfo";
+        #       # port = 465;
+        #       # forceTLS = true;
+        #       # port = 587;
+        #       # forceTLS = true;
+        #       # opensslVerifyMode = "none";
+        #     };
+        #   };
+        # };
+        # postgresql = {
+        #   enable = true;
+        #   package = pkgs.postgresql_13;
+        # };
       };
     };
   };
