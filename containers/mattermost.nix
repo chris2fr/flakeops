@@ -103,7 +103,7 @@ in
           siteName = "mm.lgv.info : Les Grands Voisins : Matermost ";
           # host = "192.168.119.11";
           # mutableConfig = true;
-          # siteUrl = "mm.lgv.info";
+          siteUrl = "mm.lgv.info";
           # plugins = [];
           # settings = {};
         };

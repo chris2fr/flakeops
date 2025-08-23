@@ -918,6 +918,7 @@ in {
           # locations."/images" = { proxyPass = null; };
           locations."/" = {
             # basicAuth = { cc14 = "cc14"; };
+            # proxyWebsockets = true;
             extraConfig = ''
               proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
