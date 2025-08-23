@@ -101,11 +101,11 @@ in
         mattermost = {
           enable = true;
           siteName = "MaterMost MM.LGV.INFO";
-          # host = "192.168.119.11";
-          # mutableConfig = true;
-          siteUrl = "mm.lgv.info";
-          # plugins = [];
-          # settings = {};
+          host = "192.168.119.11";
+          mutableConfig = true;
+          siteUrl = "https://mm.lgv.info";
+          plugins = [];
+          settings = {};
         };
       };
     };
