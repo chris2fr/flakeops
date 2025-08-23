@@ -100,7 +100,7 @@ in
         resolved.enable = true;
         mattermost = {
           enable = true;
-          siteName = "mm.lgv.info : Les Grands Voisins : Matermost ";
+          siteName = "MaterMost MM.LGV.INFO";
           # host = "192.168.119.11";
           # mutableConfig = true;
           siteUrl = "mm.lgv.info";
