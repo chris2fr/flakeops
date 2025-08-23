@@ -105,6 +105,9 @@ in
       };
       services = {
         resolved.enable = true;
+        # redis = {
+        #   servers."127.0.0.1"
+        # };
         # mattermost = {
         #   enable = true;
         #   sitename = "Mattermost LGV Info";

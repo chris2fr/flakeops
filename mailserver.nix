@@ -66,6 +66,7 @@ in
   ];
   services = {
     postfix.virtual = ''
+      discourseadmin@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       sviatlana@lesgrandsvoisins.com sviatlana.viarbitskaya@gmail.com
       sviatlana@lesgrandsvoisins.com sviatlana@lesgrandsvoisins.com
       arezki@lesgrandsvoisins.com arezkisef@yahoo.fr
@@ -75,6 +76,8 @@ in
       pauline@lesgrandsvoisins.com pauline@lesgrandsvoisins.com
       rayhane@lesgrandsvoisins.com rayhane.baghdadddi@gmail.com
       rayhane@lesgrandsvoisins.com rayhane@lesgrandsvoisins.com
+      abel@lesgrandsvoisins.com abel@lesgrandsvoisins.com
+      abel@lesgrandsvoisins.com abelmavura@gmail.com
       donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       contact@afriquepartenaires.org claudette@afriquepartenaires.org
       contact@afriquepartenaires.org renel@afriquepartenaires.org
