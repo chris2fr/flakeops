@@ -39,7 +39,7 @@ in
         # postgresql_17
         git
         lynx
-        mattermostLatest
+        # mattermostLatest
       ];
       # nixpkgs.config.permittedInsecurePackages = [
       #   "discourse-3.2.5"

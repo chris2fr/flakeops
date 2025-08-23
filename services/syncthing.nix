@@ -4,7 +4,7 @@ in {
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    overrideFolders = true;
+    # overrideFolders = true;
     overrideDevices = true;
     settings = {
       devices = {
