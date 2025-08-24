@@ -101,7 +101,7 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  system.swtich.enableNG = false; # https://github.com/NixOS/nixpkgs/issues/347315
+  system.switch.enableNG = false; # https://github.com/NixOS/nixpkgs/issues/347315
   environment.sessionVariables = rec {
     EDITOR = "vim";
     WAGTAIL_ENV = "production";
