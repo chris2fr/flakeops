@@ -84,28 +84,30 @@ in
         UMask = "0002";
       };
     };
-    crabfitfront = {
-      enable = true;
-      wantedBy = [ "default.target" ];
-      script = "${pkgs.yarn}/bin/yarn run start -p 3080";
-      description = "Crab.fit front-end NextJS";
-      serviceConfig = {
-        WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
-        User = "crabfit";
-        Group = "users";
-      };
-    };
-    crabfitback = {
-      enable = true;
-      wantedBy = [ "default.target" ];
-      script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
-      description = "Crab.fit back in Rust avec Postgres";
-      serviceConfig = {
-        WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
-        User = "crabfit";
-        Group = "users";
-      };
-    };
+    # chris2fr mannchri 2025-08-24
+    # crabfitfront = {
+    #   enable = true;
+    #   wantedBy = [ "default.target" ];
+    #   script = "${pkgs.yarn}/bin/yarn run start -p 3080";
+    #   description = "Crab.fit front-end NextJS";
+    #   serviceConfig = {
+    #     WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
+    #     User = "crabfit";
+    #     Group = "users";
+    #   };
+    # };
+    # chris2fr mannchri 2025-08-24
+    # crabfitback = {
+    #   enable = true;
+    #   wantedBy = [ "default.target" ];
+    #   script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
+    #   description = "Crab.fit back in Rust avec Postgres";
+    #   serviceConfig = {
+    #     WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
+    #     User = "crabfit";
+    #     Group = "users";
+    #   };
+    # };
     # haproxy-config = {
     #   enable = true;
     #   description = "HA Proxy Service";

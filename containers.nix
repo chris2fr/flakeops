@@ -40,7 +40,7 @@ in
     ./containers/mattermost.nix
     ./containers/discourseparis14cc.nix
     ./containers/key.nix
-    ./containers/keycloak.nix
+    # ./containers/keycloak.nix
     ./containers/keyresdigita.nix
     ./containers/keycloakparis14cc.nix
     ./containers/keycloakgvoiscom.nix
