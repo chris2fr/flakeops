@@ -104,8 +104,11 @@ in
         #       "2001:4860:4860::8844"
         #     ];
         # };
+        #
+        # THIS LOOKS LIKE A PROBLEM
+        # 
         tomcat = {
-          enable = true;
+          enable = false;
           extraEnvironment = [
             "PWM_APPLICATIONPATH=/var/tomcat/pwm"
           ];
