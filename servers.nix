@@ -165,7 +165,9 @@ in
   #     nodejs_18
   #   ];
   # };
-  virtualisation.lxd.enable = true;
+  # virtualisation.lxd.enable = true;
+  # chris2fr 2025-08-24 chris2fr
+  virtualisation.lxd.enable = false;
   # virtualisation.lxc.enable = true;
   virtualisation.lxc.lxcfs.enable = true;
 }
