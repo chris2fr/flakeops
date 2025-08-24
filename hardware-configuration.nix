@@ -5,37 +5,103 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/52315095-3267-40de-8318-6ecd575a04cd";
+    { device = "/dev/disk/by-uuid/52315095-3267-40de-8318-6ecd575a04cd";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/F825-D697";
+    { device = "/dev/disk/by-uuid/F825-D697";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  fileSystems."/var/lib/lxcfs" =
+    { device = "lxcfs";
+      fsType = "fuse.lxcfs";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/479d10e08a2a9caa4de13851ee0b4cf8916dc1929a2f79db65f0fe0840508a76/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/a78257b84c33535d8cc7a32da821273f14c8959ee22d7b318d7c4efe0f759411/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/51de43ea0a3ea92c2d748d8a6b0be09582a71b0c54cd806fba7cc3b0ef8906ac/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/503394345fa4fd00d9b98a2cb1c497f23afc8c15f151e4b1a35c611bd2109150/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/c36b54d8b5e4f618dd0ad1f3cf5230fd7fb20a04ee37f16b999c0089cf7e10da/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/var/lib/docker/overlay2/e836634c3d823d4dab6a15038397d27910f570a599af9e6f2c98cee3282aa032/merged" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/f791c1a9-f17e-4895-9240-a34baa098357"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-19560da18c98.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-28fa1dcaf7c8.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-3fc510d4760f.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-62f2b8269394.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-798dd766bb9b.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-9542da3c180b.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-9d3c9a06d5a7.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-a836959d2ca7.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-aa300a66d598.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-cherryldap.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-discourse.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-discoursecc.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-key.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keycloakg-UG.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keycloakJ3ud.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keycloakkl97.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keycloakWDwb.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keyparis14cc.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-keyresdigita.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-mm.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-silverbullet.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-triliumnext.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-vikunjarWTgg.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-wikijs.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ve-wordpress.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth1ebe15c.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth4ff7ebe.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth749fcf0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth9d58ef8.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethabdc218.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethdc2e559.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
