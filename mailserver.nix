@@ -188,27 +188,28 @@ in
     maxproc = 1;
   };
   ###################################################################################################################################
-  services.postgresql = {
-    enable = true;
-    enableTCPIP = true;
-    ensureDatabases = [
-      "sogo"
-      "odoo"
-      "odootoo"
-      "odoothree"
-      "odoofor"
-    ];
-    settings = {
-      max_connections = 150;
-      shared_buffers = "60MB";
-    };
-    ensureUsers = [
-      {
-        name = "sogo";
-        ensureDBOwnership = true;
-      }
-    ];
-  };
+  # Chris chris2f mannchri 2025-08-24
+  # services.postgresql = {
+  #   enable = true;
+  #   enableTCPIP = true;
+  #   ensureDatabases = [
+  #     "sogo"
+  #     "odoo"
+  #     "odootoo"
+  #     "odoothree"
+  #     "odoofor"
+  #   ];
+  #   settings = {
+  #     max_connections = 150;
+  #     shared_buffers = "60MB";
+  #   };
+  #   ensureUsers = [
+  #     {
+  #       name = "sogo";
+  #       ensureDBOwnership = true;
+  #     }
+  #   ];
+  # };
   ###################################################################################################################################
   # networking.firewall = {
   #   allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14636 ];
