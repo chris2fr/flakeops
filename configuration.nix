@@ -107,6 +107,7 @@ in
     WAGTAIL_ENV = "production";
   };
   virtualisation.libvirtd.enable = true;
+  # virtualisation.libvirtd.enable = false;
   nixpkgs.config.permittedInsecurePackages = [
     "sope-5.11.2"
   ];
