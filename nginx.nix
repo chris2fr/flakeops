@@ -229,8 +229,8 @@ in {
         "www.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
-          # serverAliases =
-          #   [ "villagegv.com" "www.villagegv.org" "villagegv.org" ];
+          serverAliases =
+            ["www.gdvoisins.org" ];
           root = "/var/www/gdvoisins/";
           # extraConfig = ''
           #   return 302 $scheme://www.village.ngo$request_uri;
