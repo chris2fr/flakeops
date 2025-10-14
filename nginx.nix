@@ -162,8 +162,7 @@ in {
               etag off;
             '';
           };
-        };
-       
+        };       
         "publii.paris14.cc" = {
           forceSSL = true;
           enableACME = true;
@@ -226,6 +225,16 @@ in {
           extraConfig = ''
             return 302 $scheme://www.village.ngo$request_uri;
           '';
+        };
+        "www.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          # serverAliases =
+          #   [ "villagegv.com" "www.villagegv.org" "villagegv.org" ];
+          root = "/var/www/gdvoisins/";
+          # extraConfig = ''
+          #   return 302 $scheme://www.village.ngo$request_uri;
+          # '';
         };
         "keycloak.village.ngo" = {
           enableACME = true;

@@ -134,7 +134,7 @@ in {
         # "www.lesgv.com"
         # "www.lgv.info"
         "www.libregood.com"
-        "www.gdvoisins.com"
+        # "www.gdvoisins.com"
         "www.gdvoisins.org"
         # "www.hopgv.org"
       ];
