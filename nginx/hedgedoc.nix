@@ -20,8 +20,8 @@ in
     #   ];
     #   globalRedirect = "hedgedoc.resdigita.com";
     # };
-    "hedgedoc.lesgrandsvoisins.com" = {
-      serverAliases = [ "hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" "mark.resdigita.com" ];
+    "hd.gdvoisins.com" = {
+      serverAliases = [ "hedgedoc.lesgrandsvoisins.com"  "hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" "mark.resdigita.com" ];
       enableACME = true;
       forceSSL = true;
       locations."/".proxyPass = "http://localhost:3333/";

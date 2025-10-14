@@ -185,7 +185,9 @@ in {
           }];
           root = "/var/www/html/";
         };
-        "linkding.lesgrandsvoisins.com" = {
+        "ld.gdvoisins.com" = {
+          serverAliases =
+            [ "linkding.lesgrandsvoisins.com" ];
           root = "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
@@ -577,8 +579,9 @@ in {
           forceSSL = true;
           root = "/var/www/roundcube";
         };
-        "vw.lgv.info" = {
+        "vw.gdvoisins.com" = {
           serverAliases = [
+            "vw.lgv.info"
             "vaultwarden.lgv.info"
             "vaultwarden.resdigita.com"
             "vaultwarden.gv.coop"
@@ -829,13 +832,14 @@ in {
             };
           };
         };
-        "vikunja.village.ngo" = {
+        "vk.gdvoisins.com" = {
           serverAliases = [
             "vikunja.gv.coop"
             "vikunja.lesgv.org"
             "task.lesgrandsvoisins.com"
             "vikunja.lesgrandsvoisins.com"
             "task.resdigita.com"
+            # "vikunja.village.ngo"
           ];
           enableACME = true;
           forceSSL = true;
