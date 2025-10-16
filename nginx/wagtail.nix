@@ -115,6 +115,8 @@ in {
         "maelanc.com"
         "gdvoisins.com"
         "l14s.com"
+        "gdv1.com"
+        "gdv1.org"
         "afriquepartenaires.org"
         "yanlomsprod.org"
         "gdvoisins.org"

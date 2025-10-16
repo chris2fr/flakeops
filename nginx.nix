@@ -233,6 +233,12 @@ in {
           enableACME = true;
           root = "/var/www/l14s/";
         };
+        "www.gdv1.com" = {
+          serverAliases = ["www.gdv1.org"];
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/gdv1/";
+        };
         "www.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
@@ -657,7 +663,6 @@ in {
         };
         "radicale.resdigita.com" = {
           serverAliases = [
-            "radicale.lesgv.org"
             "radicale.lesgv.org"
             "radicale.lesgrandsvoisins.com"
           ];
