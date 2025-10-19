@@ -100,32 +100,32 @@ in
     nginx = {
       enable = true;
       clientMaxBodySize = "10G";
-      sso = {
-        enable = true;
-        configuration = {
-          listen = { addr = "127.0.0.1"; port = 8082; };
-          providers.oidc = {
-            client_id = "seafile";
-            client_secret = "${oidcSeafileSecret}";
-            # Optional, defaults to "OpenID Connect"
-            issuer_name = "Key Lesgrandsvoisins Com";
-            issuer_url = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
-            redirect_url = "https://roses.lgv.info/login";
-            # Optional, defaults to no limitations
-            # require_domain = "lesgrandsvoisins.com";
-            # Optional, defaults to "subject"
-            # user_id_method = "full-email";
-          };
-          acl = {
-            rule_sets = [
-              {
-                rules = [ { field = "x-application"; equals = "kibana"; } ];
-                allow = [ "chris" ];
-              }
-            ];
-          };
-        };
-      };
+      # sso = {
+      #   enable = true;
+      #   configuration = {
+      #     listen = { addr = "127.0.0.1"; port = 8082; };
+      #     providers.oidc = {
+      #       client_id = "seafile";
+      #       client_secret = "${oidcSeafileSecret}";
+      #       # Optional, defaults to "OpenID Connect"
+      #       issuer_name = "Key Lesgrandsvoisins Com";
+      #       issuer_url = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
+      #       redirect_url = "https://roses.lgv.info/login";
+      #       # Optional, defaults to no limitations
+      #       # require_domain = "lesgrandsvoisins.com";
+      #       # Optional, defaults to "subject"
+      #       # user_id_method = "full-email";
+      #     };
+      #     acl = {
+      #       rule_sets = [
+      #         {
+      #           rules = [ { field = "x-application"; equals = "kibana"; } ];
+      #           allow = [ "chris" ];
+      #         }
+      #       ];
+      #     };
+      #   };
+      # };
       virtualHosts = {
         "roses.lgv.info" = {
           forceSSL = true;
