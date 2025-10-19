@@ -7,11 +7,11 @@ in {
     # nftables = {
     #   enable = true;
     # };
-    bridges = {
-      br0 = {
-        interfaces = [];
-      };
-    };
+    # bridges = {
+    #   br0 = {
+    #     interfaces = ["tuncontain"];
+    #   };
+    # };
     # firewall = {
     #   enable = true;
     #   trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0"];
@@ -21,14 +21,14 @@ in {
     # };
     hostName = "rosest330"; 
     enableIPv6 = true;
-    # nat = {
-    #   enable = true;
-    #   # Use "ve-*" when using nftables instead of iptables
-    #   internalInterfaces = ["ve-+"];
-    #   externalInterface = "eno1";
-    #   # Lazy IPv6 connectivity for the container
-    #   enableIPv6 = true;
-    # };
+    nat = {
+      enable = true;
+      # Use "ve-*" when using nftables instead of iptables
+      internalInterfaces = ["ve-+"];
+      externalInterface = "eno1";
+      # Lazy IPv6 connectivity for the container
+      enableIPv6 = true;
+    };
     interfaces."tuncontain" = {
       useDHCP = false;
       virtual = true;
