@@ -26,6 +26,8 @@ in {
     # };
     interfaces."conet" = {
       useDHCP = false;
+      virtual = true;
+      name = "conet";
       ipv4.addresses = [{
         address = "192.168.100.11";
         prefixLength = 24;
