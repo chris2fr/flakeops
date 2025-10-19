@@ -28,6 +28,7 @@ in
     # vouch-proxy
     nodenv
     filestash
+    vips
   ];
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   systemd.services.copyparty = {
