@@ -47,6 +47,20 @@ in
         wget
         perl
         podman
+        # for fielstash
+        ffmpeg
+        libjpeg
+        libtiff
+        libpng
+        libwebp
+        libraw
+        libheif
+        giflib
+        vips
+        go_1_23
+        glibc
+        perl
+        jansson
 
       ];
       # systemd.tmpfiles.rules = [];
