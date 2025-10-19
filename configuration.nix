@@ -92,11 +92,11 @@ in
     filestash = {
       enable = true;
       # # optionally customize configuration
-      # settings = {
-      #   public_url = "https://roses.lgv.info";
-      #   data_dir = "/var/lib/filestash";
-      #   port = 8334;
-      # };
+      settings = {
+        public_url = "https://roses.lgv.info";
+        data_dir = "/var/lib/filestash";
+        port = 8334;
+      };
     };
     nginx = {
       enable = true;
