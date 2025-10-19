@@ -76,11 +76,11 @@ in
       ];
       # systemd.tmpfiles.rules = [];
       virtualisation.docker = {
-        enable = false;
-        rootless = {
-          enable = true;
-          setSocketVariable = true;
-        };
+        enable = true;
+        # rootless = {
+        #   enable = true;
+        #   setSocketVariable = true;
+        # };
 
       };
       # virtualisation.podman.enable = true;
