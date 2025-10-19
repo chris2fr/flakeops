@@ -91,11 +91,11 @@ in
   services = {
     filestash = {
       enable = true;
-      # paths = {
-      #   config = "/etc/filestash";
-      #   tmp = "/tmp/filestash";
-      #   log = "/var/log/filestash";
-      # };
+      paths = {
+        config = "/etc/filestash/config.json";
+        # tmp = "/tmp/filestash";
+        log = "/var/log/filestash";
+      };
       # # optionally customize configuration
       # settings = {
       #   public_url = "https://roses.lgv.info";
