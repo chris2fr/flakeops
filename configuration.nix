@@ -27,6 +27,7 @@ in
     # jansson
     # vouch-proxy
     nodenv
+    filestash
   ];
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
@@ -88,15 +89,15 @@ in
   # };
 
   services = {
-    filestash = {
-      enable = true;
-      # optionally customize configuration
-      settings = {
-        public_url = "https://roses.lgv.info";
-        data_dir = "/var/lib/filestash";
-        port = 8334;
-      };
-    };
+    # filestash = {
+    #   enable = true;
+    #   # optionally customize configuration
+    #   settings = {
+    #     public_url = "https://roses.lgv.info";
+    #     data_dir = "/var/lib/filestash";
+    #     port = 8334;
+    #   };
+    # };
     nginx = {
       enable = true;
       clientMaxBodySize = "10G";
