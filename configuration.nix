@@ -133,14 +133,16 @@ in
           enableACME = true;
           root = "/var/www/default";
           locations."/" = {
-            proxyPass = "http://localhost:8334";
-            recommendedProxySettings = true;
+            proxyPass = "http://127.0.0.1:8334";
+            # recommendedProxySettings = true;
             extraConfig = ''
-                proxy_ssl_verify off;
-                proxy_set_header Host $host;
-                # Maybe
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
+              proxy_buffering off;
+              proxy_cache off;
+              proxy_read_timeout   86400;
+              proxy_set_header     Host $host:$server_port;
+              proxy_set_header     X-Real-IP $remote_addr;
+              proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header     X-Forwarded-Proto $scheme;
             '';
           };
         };
