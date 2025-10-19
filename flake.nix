@@ -38,7 +38,9 @@
             #   ];
             # })
             agenix.nixosModules.default
+            filestash.nixosModules.default
           ];
+          specialArgs = { inherit filestash; };
         };
       };
       # homeConfigurations = {

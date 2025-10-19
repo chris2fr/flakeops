@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, filestash, ... }:
 let 
   oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
 in
@@ -12,7 +12,7 @@ in
     ./users.nix
     # ./httpd.nix
     ./nfs.nix
-    ./containers.nix
+    # ./containers.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
