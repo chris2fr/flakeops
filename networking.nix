@@ -24,18 +24,18 @@ in {
     #   # Lazy IPv6 connectivity for the container
     #   enableIPv6 = true;
     # };
-    # interfaces."tuncontain" = {
-    #   useDHCP = false;
-    #   virtual = true;
-    #   name = "tuncontain";
-    #   ipv4.addresses = [{
-    #     address = "192.168.101.11";
-    #     prefixLength = 24;
-    #   }];
-    #   ipv6.addresses = [{
-    #     address = "fa00::2";
-    #     prefixLength = 96;
-    #   }];
-    # };
+    interfaces."tuncontain" = {
+      useDHCP = false;
+      virtual = true;
+      name = "tuncontain";
+      ipv4.addresses = [{
+        address = "192.168.101.1";
+        prefixLength = 24;
+      }];
+      ipv6.addresses = [{
+        address = "fa80::1";
+        prefixLength = 96;
+      }];
+    };
   };
 }
