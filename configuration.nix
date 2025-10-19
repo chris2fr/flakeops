@@ -29,6 +29,7 @@ in
     nodenv
     filestash
   ];
+  systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
   # export APR_LIBS="`apr-1-config --libs`"
