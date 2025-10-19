@@ -4,28 +4,28 @@ let
   allowedUDPPorts = [ 53 67 68 123 111 2049 4000 4001 4002 20048 ];
 in {
   networking = {
-    # nftables = {
-    #   enable = true;
-    # };
+    nftables = {
+      enable = true;
+    };
     # bridges = {
     #   br0 = {
     #     interfaces = ["tuncontain"];
     #   };
     # };
-    # firewall = {
-    #   enable = true;
-    #   trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0"];
-    #   # interfaces."eno1" = {
-    #   #   allowedTCPPorts = [22 80 443];
-    #   # };
-    # };
+    firewall = {
+      enable = true;
+      trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0"];
+      # interfaces."eno1" = {
+      #   allowedTCPPorts = [22 80 443];
+      # };
+    };
     hostName = "rosest330"; 
     enableIPv6 = true;
     nat = {
       enable = true;
       # # Use "ve-*" when using nftables instead of iptables
       internalInterfaces = ["ve-+"];
-      externalInterface = "eno2";
+      externalInterface = "eno1";
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
