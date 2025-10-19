@@ -12,6 +12,7 @@ in
     ./users.nix
     # ./httpd.nix
     ./nfs.nix
+    ./containers.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
