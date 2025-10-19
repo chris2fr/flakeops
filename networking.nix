@@ -24,10 +24,10 @@ in {
     #   # Lazy IPv6 connectivity for the container
     #   enableIPv6 = true;
     # };
-    interfaces."conet" = {
+    interfaces."tuncontain" = {
       useDHCP = false;
       virtual = true;
-      name = "conet";
+      name = "tuncontain";
       ipv4.addresses = [{
         address = "192.168.100.11";
         prefixLength = 24;
