@@ -5,13 +5,13 @@ in
   containers.filestash = {
     autoStart = true;
     privateNetwork = true;
-    extraVeths.eveth0 = {
-      hostAddress = "192.168.100.100";
-      localAddress = "192.168.100.111";
-      hostAddress6 = "fb00::1";
-      localAddress6 = "fb00::2";
-    };
-    macvlans = ["eno1"];
+    # extraVeths.eveth0 = {
+    #   hostAddress = "192.168.100.100";
+    #   localAddress = "192.168.100.111";
+    #   hostAddress6 = "fb00::1";
+    #   localAddress6 = "fb00::2";
+    # };
+    # macvlans = ["eno1"];
 
     # hostBridge = "br-erdock";
     # hostAddress = "192.168.1.100";
@@ -32,8 +32,8 @@ in
         # };
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
-        defaultGateway = "192.168.100.100";
-        defaultGateway6 = "fb00::1";
+        # defaultGateway = "192.168.100.100";
+        # defaultGateway6 = "fb00::1";
       };
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
