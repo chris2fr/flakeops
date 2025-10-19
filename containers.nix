@@ -53,7 +53,7 @@ in
             " ...
           '';
         })
-        docker-compose
+        # docker-compose
         git
         wget
         perl
@@ -75,23 +75,23 @@ in
 
       ];
       # systemd.tmpfiles.rules = [];
-      virtualisation.docker = {
-        enable = true;
-        # rootless = {
-        #   enable = true;
-        #   setSocketVariable = true;
-        # };
+      # virtualisation.docker = {
+      #   enable = true;
+      #   # rootless = {
+      #   #   enable = true;
+      #   #   setSocketVariable = true;
+      #   # };
 
-      };
+      # };
       # virtualisation.podman.enable = true;
       services = {
         resolved.enable = true;
       };
       users.users.filestash = {
         isNormalUser = true;
-        extraGroups = ["docker"];
+        # extraGroups = ["docker"];
       };
-      users.extraGroups.docker.members = [ "filestash" ];
+      # users.extraGroups.docker.members = [ "filestash" ];
     };
   };
 }

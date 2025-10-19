@@ -5,6 +5,7 @@
     # configuration.nix. You can also use latter versions if you wish to
     # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    filestash.url = "github:dermetfan/filestash.nix";
   #    home-manager = {
   #      url = "github:nix-community/home-manager";
   #      inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +13,7 @@
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, flake-utils, home-manager, agenix, ... }@inputs: 
+  outputs = { self, nixpkgs, flake-utils, filestash, agenix, ... }@inputs: 
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
