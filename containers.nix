@@ -18,7 +18,7 @@ in
     # localAddress = "192.168.1.111";
     # hostAddress6 = "fe80::1298:36ff:fea0:2131";
     # localAddress6 = "fe80::1298:36ff:fea0:0111";
-    interfaces = ["eno1"];
+    # interfaces = ["eno1"];
     # bindMounts = {};
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
