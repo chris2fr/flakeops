@@ -5,7 +5,14 @@ in
   containers.filestash = {
     autoStart = true;
     privateNetwork = true;
-    macvlans = ["eno1"];
+    extraVeths.eveth0 = {
+      hostAddress = "192.168.1.100";
+      localAddress = "192.168.1.111";
+      hostAddress6 = "fe80::1298:36ff:fea0:2131";
+      localAddress6 = "fe80::1298:36ff:fea0:0111";
+    };
+    # macvlans = ["eno1"];
+
     # hostBridge = "br-erdock";
     # hostAddress = "192.168.1.100";
     # localAddress = "192.168.1.111";
