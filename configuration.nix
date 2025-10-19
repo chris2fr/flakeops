@@ -94,7 +94,7 @@ in
       paths = {
         config = "/etc/filestash/config.json";
         # tmp = "/tmp/filestash";
-        log = "/var/log/filestash";
+        # log = "/var/log/filestash";
       };
       # # optionally customize configuration
       # settings = {
