@@ -32,8 +32,8 @@ in
         # };
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
-        defaultGateway = "192.168.1.100";
-        defaultGateway6 = "fe80::1298:36ff:fea0:2131";
+        defaultGateway = "192.168.100.100";
+        defaultGateway6 = "fb00::1";
       };
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
