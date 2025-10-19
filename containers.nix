@@ -4,7 +4,7 @@ in
 {
   containers.filestash = {
     autoStart = true;
-    privateNetwork = true;
+    # privateNetwork = true;
     # extraVeths.eveth0 = {
     #   hostAddress = "192.168.100.100";
     #   localAddress = "192.168.100.111";
@@ -14,11 +14,11 @@ in
     # macvlans = ["eno1"];
 
     # hostBridge = "br-erdock";
-    hostAddress = "192.168.2.100";
-    localAddress = "192.168.2.111";
-    hostAddress6 = "fb80::1";
-    localAddress6 = "fb80::2";
-    # interfaces = ["eno1"];
+    # hostAddress = "192.168.2.100";
+    # localAddress = "192.168.2.111";
+    # hostAddress6 = "fb80::1";
+    # localAddress6 = "fb80::2";
+    interfaces = ["tuncontain"];
     # bindMounts = {};
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
