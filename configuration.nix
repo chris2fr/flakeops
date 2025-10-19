@@ -91,12 +91,17 @@ in
   services = {
     filestash = {
       enable = true;
-      # # optionally customize configuration
-      settings = {
-        public_url = "https://roses.lgv.info";
-        data_dir = "/var/lib/filestash";
-        port = 8334;
+      paths = {
+        config = "/etc/filestash";
+        tmp = "/tmp/filestash";
+        log = "/var/log/filestash";
       };
+      # # optionally customize configuration
+      # settings = {
+      #   public_url = "https://roses.lgv.info";
+      #   data_dir = "/var/lib/filestash";
+      #   port = 8334;
+      # };
     };
     nginx = {
       enable = true;
