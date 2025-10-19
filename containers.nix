@@ -11,7 +11,7 @@ in
       hostAddress6 = "fb00::1";
       localAddress6 = "fb00::2";
     };
-    # macvlans = ["eno1"];
+    macvlans = ["eno1"];
 
     # hostBridge = "br-erdock";
     # hostAddress = "192.168.1.100";
