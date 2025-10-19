@@ -29,11 +29,11 @@ in {
     #   virtual = true;
     #   name = "tuncontain";
     #   ipv4.addresses = [{
-    #     address = "192.168.100.11";
+    #     address = "192.168.101.11";
     #     prefixLength = 24;
     #   }];
     #   ipv6.addresses = [{
-    #     address = "fc00::2";
+    #     address = "fa00::2";
     #     prefixLength = 96;
     #   }];
     # };
