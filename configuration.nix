@@ -30,6 +30,17 @@ in
     filestash
   ];
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
+  systemd.services.copyparty = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty /home/mannchri/copyparty/copyparty.conf ";
+    description = "CopyParty";
+    serviceConfig = {
+      WorkingDirectory = "/mnt/chrisdatalive/chris";
+      User = "mannchri";
+      Group = "users";
+    };
+  };
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
   # export APR_LIBS="`apr-1-config --libs`"
@@ -152,7 +163,7 @@ in
             '';
           };
         };
-        "roses.gdvoisins.com"  = {
+        "roses.lesgrandsvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
