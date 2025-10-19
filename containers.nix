@@ -6,10 +6,10 @@ in
     autoStart = true;
     privateNetwork = true;
     extraVeths.eveth0 = {
-      hostAddress = "192.168.1.100";
-      localAddress = "192.168.1.111";
-      hostAddress6 = "fe80::1298:36ff:fea0:2131";
-      localAddress6 = "fe80::1298:36ff:fea0:0111";
+      hostAddress = "192.168.100.100";
+      localAddress = "192.168.100.111";
+      hostAddress6 = "fb00::1";
+      localAddress6 = "fb00::2";
     };
     # macvlans = ["eno1"];
 
