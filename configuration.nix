@@ -102,6 +102,11 @@ in
   # };
 
   services = {
+    syncthing = {
+      enable=true;
+      openDefaultPorts=true;
+      
+    };
     filestash = {
       enable = true;
       paths = {
