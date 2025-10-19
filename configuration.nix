@@ -34,7 +34,7 @@ in
   systemd.services.copyparty = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty /home/mannchri/copyparty/copyparty.conf ";
+    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty --xff-hdr x-forwarded-for --rproxy 1 --xff-src=lan -c /home/mannchri/copyparty/copyparty.conf ";
     description = "CopyParty";
     serviceConfig = {
       WorkingDirectory = "/mnt/chrisdatalive/chris";
