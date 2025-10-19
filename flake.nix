@@ -6,6 +6,7 @@
     # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     filestash.url = "github:dermetfan/filestash.nix";
+    # copyparty.url = "github:9001/copyparty";
   #    home-manager = {
   #      url = "github:nix-community/home-manager";
   #      inputs.nixpkgs.follows = "nixpkgs";
