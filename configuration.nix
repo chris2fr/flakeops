@@ -151,7 +151,7 @@ in
       #   };
       # };
       virtualHosts = {
-        "roses.lgv.info" = {
+        "fs.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
@@ -169,7 +169,7 @@ in
             '';
           };
         };
-        "roses.lesgrandsvoisins.com"  = {
+        "cp.roses.gdvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
