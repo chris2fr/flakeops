@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }: {
-
+let
+    oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
+    jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
+in
   systemd.services.vouch-proxy =
     let
       vouchConfig = {
@@ -11,24 +14,25 @@
           # TODO this allows everybody that can authenticate to kanidm, so no
           # further scoping possible atm.
           allowAllUsers = true;
-          cookie.domain = "erictapen.name";
+          cookie.domain = "gdvoisins.com";
 
           jwt.secret = "redacted, don't know where I got this from";
         };
         oauth =
           let
-            kanidmOrigin = config.services.kanidm.serverSettings.origin;
+            keycloaskOrigin = "https://key.lesgrandsvoisins.com/";
+            keycloakRealm = "master";
           in
           rec {
             provider = "oidc";
-            client_id = "gollum";
+            client_id = "rosest330";
             # oauth2_rs_basic_secret from `kanidm system oauth2 get gollum`
             client_secret = "redacted";
-            auth_url = "${kanidmOrigin}/ui/oauth2";
-            token_url = "${kanidmOrigin}/oauth2/token";
-            user_info_url = "${kanidmOrigin}/oauth2/openid/${client_id}/userinfo";
-            scopes = [ "login" ];
-            callback_url = "https://login.erictapen.name/auth";
+            auth_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/auth";
+            token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
+            user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
+            scopes = [ "openid" "email" "profile" ];
+            callback_url = "https://vouch.gdvoisins.com/auth";
             code_challenge_method = "S256";
           };
       };
