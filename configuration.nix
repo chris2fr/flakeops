@@ -204,9 +204,9 @@ in
                 # be sure to pass the original host header
                 proxy_set_header Host $http_host;
 
-                # Vouch Proxy only acts on the request headers
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
+                # # Vouch Proxy only acts on the request headers
+                # proxy_pass_request_body off;
+                # proxy_set_header Content-Length "";
 
                 # # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
                 # auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
