@@ -31,7 +31,7 @@
             callback_url = "https://vouch.gdvoisins.com/auth";
             code_challenge_method = "S256";
             tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
-            tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
+            tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
           };
       };
     in
