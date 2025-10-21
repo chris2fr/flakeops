@@ -11,6 +11,7 @@
           # further scoping possible atm.
           allowAllUsers = true;
           cookie.domain = "gdvoisins.com";
+          domain = "gdvoisins.com";
 
           jwt.secret = import ./secrets/jwt-vouch-secret.nix;
         };
