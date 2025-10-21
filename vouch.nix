@@ -4,7 +4,7 @@
       vouchConfig = {
         vouch = {
           # testing = true;
-          listen = "[::1]";
+          listen = "127.0.0.1";
           port = 30746;
 
           # TODO this allows everybody that can authenticate to kanidm, so no
@@ -67,7 +67,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://[::1]:${toString 30746}/";
+      proxyPass = "http://127.0.0.1:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
         add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
@@ -81,7 +81,7 @@
   #     enableACME = true;
   #     forceSSL = true;
   #     locations."/" = {
-  #       proxyPass = "http://[::1]:${toString 30746}/";
+  #       proxyPass = "http://127.0.0.1:${toString 30746}/";
   #       extraConfig = ''
   #         proxy_set_header Host $host;
   #         add_header Access-Control-Allow-Origin https://auth.erictapen.name;

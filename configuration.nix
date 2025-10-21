@@ -200,7 +200,7 @@ in
             "/validate" = {
               extraConfig = ''
                 # # forward the /validate request to Vouch Proxy
-                # proxy_pass http://[::1]:30746/validate;
+                # proxy_pass http://127.0.0.1:30746/validate;
                 # # be sure to pass the original host header
                 # proxy_set_header Host $http_host;
 
