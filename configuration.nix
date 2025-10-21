@@ -199,10 +199,10 @@ in
             };
             "/validate" = {
               extraConfig = ''
-                # forward the /validate request to Vouch Proxy
-                proxy_pass http://[::1]:30746/validate;
-                # be sure to pass the original host header
-                proxy_set_header Host $http_host;
+                # # forward the /validate request to Vouch Proxy
+                # proxy_pass http://[::1]:30746/validate;
+                # # be sure to pass the original host header
+                # proxy_set_header Host $http_host;
 
                 # # Vouch Proxy only acts on the request headers
                 # proxy_pass_request_body off;
