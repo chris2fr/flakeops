@@ -12,6 +12,7 @@ in
     ./users.nix
     # ./httpd.nix
     ./nfs.nix
+    ./vouch.nix
     # ./containers.nix
   ];
   environment.systemPackages = with pkgs; [ 
@@ -29,6 +30,7 @@ in
     nodenv
     filestash
     vips
+    vouch-proxy
   ];
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   systemd.services.copyparty = {
