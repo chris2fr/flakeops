@@ -226,8 +226,8 @@ in
 
                 # Vouch Proxy can run behind the same Nginx reverse proxy
                 # may need to comply to "upstream" server naming
-                proxy_pass https://vouch.roses.gdvoisins.com/validate;
-                proxy_set_header Host $host;
+                # proxy_pass https://vouch.roses.gdvoisins.com/validate;
+                # proxy_set_header Host $host;
               '';
             };
           };
