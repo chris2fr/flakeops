@@ -28,10 +28,10 @@
             token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
             user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
             scopes = [ "openid" "email" "profile" ];
-            callback_url = "https://vouch.gdvoisins.com/auth";
+            callback_url = "https://vouch.roses.gdvoisins.com/auth";
             code_challenge_method = "S256";
-            tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
-            tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
+            # tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
+            # tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
           };
       };
     in
@@ -61,6 +61,19 @@
     group = "vouch-proxy";
   };
   users.groups.vouch-proxy = { };
+
+
+  services.nginx.virtualHosts."vouch.roses.gdvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://[::1]:${toString 30746}/";
+      extraConfig = ''
+        proxy_set_header Host $host;
+        add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
+      '';
+    };
+  };
 
   # services.nginx = {
   #   enable = true;

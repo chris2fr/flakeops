@@ -155,11 +155,11 @@ in
       #   };
       # };
       virtualHosts = {
-        "vouch.roses.gdvoisins.com" = {
-          forceSSL = true;
-          root = "/var/www/default";
-          enableACME = true;
-        };
+        # "vouch.roses.gdvoisins.com" = {
+        #   forceSSL = true;
+        #   root = "/var/www/default";
+        #   enableACME = true;
+        # };
         "fs.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
