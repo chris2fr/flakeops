@@ -155,6 +155,11 @@ in
       #   };
       # };
       virtualHosts = {
+        "vouch.roses.gdvoisins.com" = {
+          forceSSL = true;
+          root = "/var/www/default";
+          enableACME = true;
+        }
         "fs.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
@@ -202,7 +207,7 @@ in
             '';
           };
         };
-        # "vouch.lgv.info" = {
+        # "vouch.roses.gdvoisins.com" = {
         #   forceSSL = true;
         #   enableACME = true;
         #   root = "/var/www/default";
@@ -330,7 +335,7 @@ in
           # '';
           # locations = {
           #   "/validate" = {
-          #     proxyPass = "https://vouch.lgv.info/validate";
+          #     proxyPass = "https://vouch.roses.gdvoisins.com/validate";
           #     # recommendedProxySettings = true;
           #     extraConfig = ''
           #       # proxy_ssl_verify off;
