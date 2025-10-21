@@ -229,7 +229,7 @@ in
           #       # proxy_set_header Host $http_host;
           #     '';
           #   };
-          };
+          # };
         };
         "cp.roses.gdvoisins.com"  = {
           forceSSL = true;
