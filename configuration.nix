@@ -178,6 +178,59 @@ in
             '';
           };
         };
+        "static.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/default";
+          locations = {
+            "/" = {
+              extraConfig = ''
+                auth_request /validate;
+
+                # set user header (usually an email)
+                proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
+                # optionally pass any custom claims you are tracking
+                #     proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
+                #     proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
+                # optionally pass the accesstoken or idtoken
+                #     proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
+                #     proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
+              '';
+            };
+            "/validate" = {
+              extraConfig = ''
+                # forward the /validate request to Vouch Proxy
+                proxy_pass http://[::1]:30746/validate;
+                # be sure to pass the original host header
+                proxy_set_header Host $http_host;
+
+                # Vouch Proxy only acts on the request headers
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+
+                # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
+                auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+
+                # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
+                #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+                #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+                # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
+                #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
+                #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
+
+                # these return values are used by the @error401 call
+                auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+                auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+                auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+
+                # Vouch Proxy can run behind the same Nginx reverse proxy
+                # may need to comply to "upstream" server naming
+                # proxy_pass http://vouch.yourdomain.com/validate;
+                # proxy_set_header Host $http_host;
+              '';
+            };
+          };
+        };
         "cp.roses.gdvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
@@ -187,16 +240,7 @@ in
             proxyPass = "https://192.168.1.100:3923";
             # recommendedProxySettings = true;
             extraConfig = ''
-            auth_request /validate;
-
-            # set user header (usually an email)
-            proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
-            # optionally pass any custom claims you are tracking
-            #     proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
-            #     proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
-            # optionally pass the accesstoken or idtoken
-            #     proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
-            #     proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
+            
 
             proxy_redirect off;
             # disable buffering (next 4 lines)
@@ -217,38 +261,6 @@ in
             # NOTE: with cloudflare you want this X-Forwarded-For instead:
             #proxy_set_header   X-Forwarded-For   $http_cf_connecting_ip;
             '';
-          };
-          locations."/validate" = {
-            proxyPass = "http://[::1]:30746/validate";
-            extraConfig = ''
-            # be sure to pass the original host header
-            proxy_set_header Host $http_host;
-
-            # Vouch Proxy only acts on the request headers
-            proxy_pass_request_body off;
-            proxy_set_header Content-Length "";
-
-            # optionally add X-Vouch-User as returned by Vouch Proxy along with the request
-            auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-
-            # optionally add X-Vouch-IdP-Claims-* custom claims you are tracking
-            #    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
-            #    auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
-            # optinally add X-Vouch-IdP-AccessToken or X-Vouch-IdP-IdToken
-            #    auth_request_set $auth_resp_x_vouch_idp_accesstoken $upstream_http_x_vouch_idp_accesstoken;
-            #    auth_request_set $auth_resp_x_vouch_idp_idtoken $upstream_http_x_vouch_idp_idtoken;
-
-            # these return values are used by the @error401 call
-            auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-            auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-            auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
-
-            # Vouch Proxy can run behind the same Nginx reverse proxy
-            # may need to comply to "upstream" server naming
-            # proxy_pass http://vouch.yourdomain.com/validate;
-            # proxy_set_header Host $http_host;
-          '';
-
           };
         };
         # "vouch.roses.gdvoisins.com" = {
