@@ -1,6 +1,8 @@
 { config, pkgs, lib, filestash, ... }:
 let 
-  oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
+  # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
+    oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
+    jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -615,12 +617,16 @@ in
   services = {
     openssh = {
       enable = true;
-      # listenAddresses = [
-      #   {
-      #     addr = "0.0.0.0";
-      #     port = 22;
-      #   } 
-      # ];
+      listenAddresses = [
+        {
+          addr = "0.0.0.0";
+          port = 22;
+        } 
+        {
+          addr = "[::]";
+          port = 22;
+        } 
+      ];
       settings.PermitRootLogin = "no";
     };
     rsyncd.enable = true;

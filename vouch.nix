@@ -1,8 +1,4 @@
 { config, pkgs, lib, ... }: {
-let
-    oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
-    jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
-in
   systemd.services.vouch-proxy =
     let
       vouchConfig = {
@@ -16,7 +12,7 @@ in
           allowAllUsers = true;
           cookie.domain = "gdvoisins.com";
 
-          jwt.secret = "redacted, don't know where I got this from";
+          jwt.secret = import ./secrets/jwt-vouch-secret.nix;
         };
         oauth =
           let
@@ -27,7 +23,7 @@ in
             provider = "oidc";
             client_id = "rosest330";
             # oauth2_rs_basic_secret from `kanidm system oauth2 get gollum`
-            client_secret = "redacted";
+            client_secret = import ./secrets/oidc-roses-secret.nix;
             auth_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/auth";
             token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
             user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
