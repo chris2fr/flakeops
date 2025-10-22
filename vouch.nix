@@ -41,8 +41,8 @@
             scopes = [ "openid" "email" "profile" ];
             callback_url = "https://vouch.roses.gdvoisins.com/auth";
             code_challenge_method = "S256";
-            # tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
-            # tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
+            tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
+            tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
           };
       };
     in
@@ -79,7 +79,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://vouch-proxy";
+      proxyPass = "https://vouch-proxy";
       # proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
