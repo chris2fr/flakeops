@@ -80,7 +80,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "https://vouch-proxy";
+      proxyPass = "http://vouch-proxy";
       # proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
