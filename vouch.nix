@@ -28,7 +28,7 @@
         };
         oauth =
           let
-            keycloaskOrigin = "https://key.lesgrandsvoisins.com/";
+            keycloaskOrigin = "https://key.lesgrandsvoisins.com";
             keycloakRealm = "master";
           in
           rec {
