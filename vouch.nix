@@ -24,7 +24,7 @@
           # cookie.secure = false;
           domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
 
-          jwt.secret = import ./secrets/jwt-vouch-secret.nix;
+          # jwt.secret = import ./secrets/jwt-vouch-secret.nix;
         };
         oauth =
           let
