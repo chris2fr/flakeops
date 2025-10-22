@@ -111,8 +111,11 @@ in
               proxy_set_header     Host $host:$server_port;
               proxy_set_header     X-Real-IP $remote_addr;
               proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header     X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-Proto https;
+
             '';
+              # proxy_set_header     X-Forwarded-Proto $scheme;
+
           };
         };
         "static.roses.gdvoisins.com" = {
@@ -136,7 +139,8 @@ in
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Forwarded-Host $host;
-                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-Proto https;
+                
               '';
             };
             "/" = {
@@ -198,13 +202,14 @@ in
         "cp.roses.gdvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
+          # recommendedProxySettings = true;
           root = "/var/www/default";
           locations."/" = {
 
             proxyPass = "https://192.168.1.100:3923";
-            # recommendedProxySettings = true;
             extraConfig = ''
-            
+            proxy_set_header X-Forwarded-Proto https;
+
 
             proxy_redirect off;
             # disable buffering (next 4 lines)
@@ -220,7 +225,7 @@ in
             proxy_set_header   Connection        "Keep-Alive";
             proxy_set_header   Host              $host;
             proxy_set_header   X-Real-IP         $remote_addr;
-            proxy_set_header   X-Forwarded-Proto $scheme;
+            # proxy_set_header   X-Forwarded-Proto $scheme;
             proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
             # NOTE: with cloudflare you want this X-Forwarded-For instead:
             #proxy_set_header   X-Forwarded-For   $http_cf_connecting_ip;
