@@ -24,7 +24,7 @@
           # cookie.secure = false;
           domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
 
-          # jwt.secret = import ./secrets/jwt-vouch-secret.nix;
+          jwt.secret = import ./secrets/jwt-vouch-secret.nix;
         };
         oauth =
           let
@@ -35,7 +35,7 @@
             provider = "oidc";
             client_id = "rosest330";
             # oauth2_rs_basic_secret from `kanidm system oauth2 get gollum`
-            client_secret = import ./secrets/oidc-roses-secret.nix;
+            # client_secret = import ./secrets/oidc-roses-secret.nix;
             auth_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/auth";
             token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
             user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
