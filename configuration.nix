@@ -234,6 +234,7 @@ in
             "/" = {
               extraConfig = ''
                 auth_request /validate;
+                error_page 401 = @error401;
 
                 # you may need to set these variables in this block as per https://github.com/vouch/vouch-proxy/issues/26#issuecomment-425215810
                    auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
