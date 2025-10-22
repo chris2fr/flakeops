@@ -21,7 +21,7 @@
           # further scoping possible atm.
           # allowAllUsers = true;
           cookie.domain = "roses.gdvoisins.com";
-          cookie.secure = false;
+          # cookie.secure = false;
           domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
 
           jwt.secret = import ./secrets/jwt-vouch-secret.nix;
@@ -80,7 +80,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://vouch-proxy";
+      proxyPass = "https://vouch-proxy";
       # proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;

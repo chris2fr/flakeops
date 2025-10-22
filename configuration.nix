@@ -253,7 +253,7 @@ in
             };
             "/validate" = {
               # proxyPass = "http://unix://run/vouch-proxy/socket";
-              proxyPass = "http://vouch-proxy/validate";
+              proxyPass = "https://vouch-proxy/validate";
               # proxyPass = "https://vouch.roses.gdvoisins.com/validate";
               extraConfig = ''
                 # forward the /validate request to Vouch Proxy
@@ -440,7 +440,7 @@ in
           #       return 302 https://vouch.yourdomain.com/login?url=$scheme://$host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
           #       # you usually *want* to redirect to Vouch running behind the same Nginx config proteced by https
           #       # but to get started you can just forward the end user to the port that vouch is running on
-          #       # return 302 http://vouch.yourdomain.com:9090/login?url=$scheme://$host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+          #       # return 302 https://vouch.yourdomain.com:9090/login?url=$scheme://$host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
           #   }
           # '';
           # extraConfig = ''
@@ -489,7 +489,7 @@ in
 
           #       #   # Vouch Proxy can run behind the same Nginx reverse proxy
           #       #   # may need to comply to "upstream" server naming
-          #       #   # proxy_pass http://vouch.yourdomain.com/validate;
+          #       #   # proxy_pass https://vouch.yourdomain.com/validate;
           #       #   # proxy_set_header Host $host;
           #       # '';
           #   };
