@@ -14,7 +14,7 @@
           # socket_group: users # VOUCH_SOCKETGROUP
 
 
-          testing = true;
+          # testing = true;
           logLevel = "debug";
 
           # TODO this allows everybody that can authenticate to kanidm, so no
