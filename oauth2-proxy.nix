@@ -66,7 +66,7 @@ in
         set-authorization-header="true";
         set-xauthrequest="true";
         skip-provider-button="false";
-        tls-cert-file="/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+        tls-cert-file="/var/lib/acme/roses.gdvoisins.com/full.pem";
         tls-key-file="/var/lib/acme/roses.gdvoisins.com/key.pem";
         upstream="file:///var/www/default";
       };
