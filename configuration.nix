@@ -264,25 +264,25 @@ in
             '';
           };
         };
-        "vouch.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
-          root = "/var/www/default";
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:30746";
-            # be sure to pass the original host header
-            # proxy_set_header Host $host;
-            # }
-            # recommendedProxySettings = true;
-            extraConfig = ''
-                proxy_ssl_verify off;
-                proxy_set_header Host $host;
-                # Maybe
-                proxy_pass_request_body off;
-                proxy_set_header Content-Length "";
-            '';
-          };
-        };
+        # "vouch.roses.gdvoisins.com" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   root = "/var/www/default";
+        #   locations."/" = {
+        #     proxyPass = "http://127.0.0.1:30746";
+        #     # be sure to pass the original host header
+        #     # proxy_set_header Host $host;
+        #     # }
+        #     # recommendedProxySettings = true;
+        #     extraConfig = ''
+        #         proxy_ssl_verify off;
+        #         proxy_set_header Host $host;
+        #         # Maybe
+        #         proxy_pass_request_body off;
+        #         proxy_set_header Content-Length "";
+        #     '';
+        #   };
+        # };
         # "roses.lgv.info" = {
         #   forceSSL = true;
         #   enableACME = true;
