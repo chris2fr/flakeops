@@ -30,12 +30,13 @@ in
         enable = true;
         certificate = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
         key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
-        httpsAddress = ":41443";
+        httpsAddress = "roses.gdvoisins.com:41443";
       };
       redirectURL = "https://roses.gdvoisins.com:41443/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
-      validateURL = "";
+      # validateURL = "";
+      httpOnly = false;
       # extraConfig = {
       #   approval-prompt="force";
       #   client-id="seafile";
