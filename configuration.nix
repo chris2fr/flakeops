@@ -235,6 +235,11 @@ in
               extraConfig = ''
                 auth_request /validate;
 
+                # you may need to set these variables in this block as per https://github.com/vouch/vouch-proxy/issues/26#issuecomment-425215810
+                   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+                   auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+                   auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+
                 # set user header (usually an email)
                 proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
                 # optionally pass any custom claims you are tracking
