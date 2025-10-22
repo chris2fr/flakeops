@@ -24,8 +24,8 @@ in
       # # Additional settingsenvironment.systemPackages = with pkgs; [
       # # upstream = "http://localhost:1234"; # your backend service
       # httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-      # reverseProxy = false;
-      # upstream = "file:///var/www/default";
+      reverseProxy = false;
+      upstream = "file:///var/www/default";
       tls = {
         enable = true;
         certificate = "/var/lib/acme/roses.gdvoisins.com/full.pem";
