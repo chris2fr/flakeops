@@ -6,14 +6,16 @@
           # testing = true;
           listen = "0.0.0.0";
           port = 30746;
+
           testing = true;
+          logLevel = "debug";
 
           # TODO this allows everybody that can authenticate to kanidm, so no
           # further scoping possible atm.
-          allowAllUsers = true;
-          cookie.domain = "gdvoisins.com";
+          # allowAllUsers = true;
+          cookie.domain = "roses.gdvoisins.com";
           # cookie.secure = false;
-          # domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
+          domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
 
           jwt.secret = import ./secrets/jwt-vouch-secret.nix;
         };
