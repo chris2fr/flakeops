@@ -6,7 +6,7 @@
           # testing = true;
           # listen = "0.0.0.0";
           # port = 30746;
-          listen: unix:/run/vouch-proxy/socket # VOUCH_LISTEN
+          listen = "unix:/run/vouch-proxy/socket"; # VOUCH_LISTEN
           # Optionally set the mode of the Unix domain socket. The default if not specified is 0777.
           # socket_mode: 0770 # VOUCH_SOCKETMODE
           # Optionally set the group owner of the Unix domain socket.
