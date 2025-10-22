@@ -252,8 +252,8 @@ in
             };
             "/validate" = {
               # proxyPass = "http://unix://run/vouch-proxy/socket";
-              # proxyPass = "http://vouch-proxy/validate";
-              proxyPass = "https://vouch.roses.gdvoisins.com/validate";
+              proxyPass = "http://vouch-proxy/validate";
+              # proxyPass = "https://vouch.roses.gdvoisins.com/validate";
               extraConfig = ''
                 # forward the /validate request to Vouch Proxy
                 # proxy_pass http://127.0.0.1:30746/validate;
