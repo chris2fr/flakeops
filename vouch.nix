@@ -85,7 +85,7 @@
       extraConfig = ''
         proxy_set_header Host $host;
         add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
-        # proxy_ssl_verify off;
+        proxy_ssl_verify off;
         # proxy_set_header Host $host;
         # Maybe
         proxy_pass_request_body off;
