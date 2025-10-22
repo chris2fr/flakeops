@@ -182,6 +182,9 @@ in
           forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
+          extraConfig = ''
+                auth_request /validate;
+                '';
           locations = {
             "/" = {
               extraConfig = ''
