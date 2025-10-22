@@ -94,6 +94,8 @@ in
               proxy_connect_timeout 1;
               proxy_send_timeout 30;
               proxy_read_timeout 30;
+              proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto https;
             '';
           };
         };
