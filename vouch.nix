@@ -73,12 +73,14 @@
   };
   users.groups.vouch-proxy = { };
 
+  services.nginx.upstreams."vouch-proxy".servers."unix:/run/vouch-proxy/socket" = {}; 
 
   services.nginx.virtualHosts."vouch.roses.gdvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
+      proxyPass = "http://vouch-proxy";
+      # proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
         add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
