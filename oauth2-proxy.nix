@@ -20,6 +20,7 @@ in
       
       # # Cookie settings
       cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      cookie.httpOnly = false;
       cookie.secure = true;
       
       # # Additional settingsenvironment.systemPackages = with pkgs; [
@@ -38,7 +39,6 @@ in
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
       # validateURL = "";
-      httpOnly = false;
       # extraConfig = {
       #   approval-prompt="force";
       #   client-id="seafile";
