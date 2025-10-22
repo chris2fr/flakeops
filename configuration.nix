@@ -190,11 +190,11 @@ in
                 # set user header (usually an email)
                 proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
                 # optionally pass any custom claims you are tracking
-                #     proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
-                #     proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
+                    # proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
+                    # proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
                 # optionally pass the accesstoken or idtoken
-                #     proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
-                #     proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
+                    # proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
+                    # proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
               '';
             };
             "/validate" = {
@@ -226,8 +226,8 @@ in
 
                 # Vouch Proxy can run behind the same Nginx reverse proxy
                 # may need to comply to "upstream" server naming
-                # proxy_pass https://vouch.roses.gdvoisins.com/validate;
-                # proxy_set_header Host $host;
+                proxy_pass https://vouch.roses.gdvoisins.com/validate;
+                proxy_set_header Host $host;
               '';
             };
           };
