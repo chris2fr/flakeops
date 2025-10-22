@@ -41,7 +41,7 @@
             user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
             scopes = [ "openid" "email" "profile" ];
             callback_url = "https://vouch.roses.gdvoisins.com/auth";
-            code_challenge_method = "S256";
+            # code_challenge_method = "S256";
             tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
             tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
           };
@@ -85,7 +85,7 @@
       extraConfig = ''
         proxy_set_header Host $host;
         add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
-        proxy_ssl_verify off;
+        # proxy_ssl_verify off;
         # proxy_set_header Host $host;
         # Maybe
         proxy_pass_request_body off;
