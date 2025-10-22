@@ -19,7 +19,7 @@ in
       # # clientSecret = "your-client-secret";
       
       # # Cookie settings
-      cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      cookie.secret = "xyT0uniw4ybkjUEHx8yDh_FxwK98jIhg7OS1AXxJaew="; # generate with: openssl rand -base64 32 | head -c 32 | base64
       cookie.httpOnly = false;
       cookie.secure = true;
       
