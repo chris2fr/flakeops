@@ -6,7 +6,7 @@ let
 in
 {
 
-    seervices.oauth2-proxy = {
+    services.oauth2-proxy = {
       enable = true;
 
       # # Common configuration
