@@ -20,19 +20,21 @@ in
       
       # # Cookie settings
       cookie.secret = "NgbKPVOqtJn5bipSRGuR22BwasVS1J5u"; # generate with: openssl rand -base64 32 | head -c 32 | base64
+      cookie.secure = true;
       
       # # Additional settingsenvironment.systemPackages = with pkgs; [
       # # upstream = "http://localhost:1234"; # your backend service
-      # httpAddress = "0.0.0.0:4180"; # where oauth2-proxy listens
-      reverseProxy = false;
-      upstream = "file:///var/www/default";
-      tls = {
-        enable = true;
-        certificate = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
-        key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
-        httpsAddress = "roses.gdvoisins.com:41443";
-      };
-      redirectURL = "https://roses.gdvoisins.com:41443/oauth2/callback";
+      httpAddress = "127.0.0.1:4180"; # where oauth2-proxy listens
+      reverseProxy = true;
+      upstream = "http://127.0.0.1:4180";
+      # upstream = "file:///var/www/default";
+      # tls = {
+      #   enable = true;
+      #   certificate = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+      #   key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
+      #   httpsAddress = "roses.gdvoisins.com:41443";
+      # };
+      redirectURL = "https://op.roses.gdvoisins.com/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
       # validateURL = "";

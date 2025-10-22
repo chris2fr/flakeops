@@ -78,7 +78,25 @@ in
         #   forceSSL = true;
         #   root = "/var/www/default";
         #   enableACME = true;
-        # };
+        # };à
+        "op.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/default";
+          extraConfig = ''
+            add_header Strict-Transport-Security max-age=2592000;
+          '';
+          location."/" = {
+            proxyPass = "http://127.0.0.1:4180";
+            extraConfig = ''
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_connect_timeout 1;
+              proxy_send_timeout 30;
+              proxy_read_timeout 30;
+            '';
+          };
+        };
         "fs.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
