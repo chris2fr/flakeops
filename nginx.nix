@@ -3,45 +3,45 @@ let
 in
 {
   services = {
-    oauth2-proxy = {
-      enable = true;
+    # oauth2-proxy = {
+    #   enable = true;
       
-      provider = "keycloak-oidc";  # or "google", "github", etc.
-      # provider = "oidc";  # or "google", "github", etc.
-      httpAddress = "https://roses.lgv.info:41443";
-      tls = {
-        key = "/var/lib/acme/roses.lgv.info/key.pem";
-        certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-        httpsAddress = ":41443";
-        enable = true;
-      };
-      upstream = ["file://var/www/default/" "file:///var/www/default/"];
-      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
-      clientID = "seafile";
-      # clientSecret = "YOUR_CLIENT_SECRET";
-      keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
-      redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
-      cookie.secret = "afet530fdxaf24506hgnsdfr";  # must be 16, 24, or 32 chars
-      cookie.httpOnly = false;
-      setXauthrequest = true;
-      passAccessToken = true;
-      email.domains = ["*"];
-      scope = "profile openid email";
-      reverseProxy = true;
-      # cookie.secure = false; # Revisit
-      cookie.domain = "roses.lgv.info";
-      # ... add other options as needed ...
-      # passHostHeader = false;lesgrandsvoisins.com
-      # nginx.domain = "roses.lgv.info";
-      # nginx.proxy = "192.168.1.100";
+    #   provider = "keycloak-oidc";  # or "google", "github", etc.
+    #   # provider = "oidc";  # or "google", "github", etc.
+    #   httpAddress = "https://roses.lgv.info:41443";
+    #   tls = {
+    #     key = "/var/lib/acme/roses.lgv.info/key.pem";
+    #     certificate = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+    #     httpsAddress = ":41443";
+    #     enable = true;
+    #   };
+    #   upstream = ["file://var/www/default/" "file:///var/www/default/"];
+    #   oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
+    #   clientID = "seafile";
+    #   # clientSecret = "YOUR_CLIENT_SECRET";
+    #   keyFile = "/etc/.secrets/.seafile_oauthproxy_keyfile";
+    #   redirectURL = "https://roses.lgv.info:41443/oauth2/callback";
+    #   cookie.secret = "afet530fdxaf24506hgnsdfr";  # must be 16, 24, or 32 chars
+    #   cookie.httpOnly = false;
+    #   setXauthrequest = true;
+    #   passAccessToken = true;
+    #   email.domains = ["*"];
+    #   scope = "profile openid email";
+    #   reverseProxy = true;
+    #   # cookie.secure = false; # Revisit
+    #   cookie.domain = "roses.lgv.info";
+    #   # ... add other options as needed ...
+    #   # passHostHeader = false;lesgrandsvoisins.com
+    #   # nginx.domain = "roses.lgv.info";
+    #   # nginx.proxy = "192.168.1.100";
 
-      extraConfig = {
-        code-challenge-method="S256";
-        whitelist-domain="roses.lgv.info";
-        insecure-oidc-allow-unverified-email="true";
-        # cookie-domains="roses.lgv.info";
-      };
-    };
+    #   extraConfig = {
+    #     code-challenge-method="S256";
+    #     whitelist-domain="roses.lgv.info";
+    #     insecure-oidc-allow-unverified-email="true";
+    #     # cookie-domains="roses.lgv.info";
+    #   };
+    # };
     nginx = {
       enable = true;
       clientMaxBodySize = "6G";
