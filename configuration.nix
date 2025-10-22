@@ -39,7 +39,7 @@ in
     oauth2-proxy
     docker
   ];
-  virtualisation.docker.enable = true
+  virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   systemd.services.copyparty = {
     enable = true;
