@@ -70,7 +70,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString 30746}/";
+      proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
         add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
