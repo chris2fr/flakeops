@@ -28,7 +28,7 @@ in
       upstream = "file:///var/www/default";
       tls = {
         enable = true;
-        certificate = "/var/lib/acme/roses.gdvoisins.com/full.pem";
+        certificate = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
         key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
         httpsAddress = ":41443";
       };
