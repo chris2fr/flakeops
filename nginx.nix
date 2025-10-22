@@ -86,7 +86,7 @@ in
           extraConfig = ''
             add_header Strict-Transport-Security max-age=2592000;
           '';
-          location."/" = {
+          locations."/" = {
             proxyPass = "http://127.0.0.1:4180";
             extraConfig = ''
               proxy_set_header Host $host;
