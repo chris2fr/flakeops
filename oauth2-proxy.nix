@@ -35,6 +35,7 @@ in
       redirectURL = "https://roses.gdvoisins.com:41443/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
+      validateURL = "";
       # extraConfig = {
       #   approval-prompt="force";
       #   client-id="seafile";
