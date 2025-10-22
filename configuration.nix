@@ -213,7 +213,7 @@ in
               '';
             };
             "/validate" = {
-              proxyPass = "https://vouch.roses.gdvoisins.com/validate";
+              proxyPass = "https://vouch.roses.gdvoisins.com:30746/validate";
               extraConfig = ''
                 # forward the /validate request to Vouch Proxy
                 # proxy_pass http://127.0.0.1:30746/validate;
