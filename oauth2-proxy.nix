@@ -32,8 +32,8 @@ in
         key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
         httpsAddress = ":41443";
       };
-      # redirectURL = "https://roses.gdvoisins.com:41443/oauth2/callback";
-      # oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
+      redirectURL = "https://roses.gdvoisins.com:41443/oauth2/callback";
+      oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       # extraConfig = {
       #   approval-prompt="force";
       #   client-id="seafile";
