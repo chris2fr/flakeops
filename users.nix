@@ -17,7 +17,6 @@ in {
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
-    oauth2-proxy.extraGroups = [ "nginx" "acme" ];
     # nfsuser = {
     #   isNormalUser = true;
     #   description = "User nor NFS Shares";
