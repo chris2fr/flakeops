@@ -38,6 +38,8 @@ in
     vouch-proxy
     oauth2-proxy
     docker
+    docker-compose
+    docker-ls
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
