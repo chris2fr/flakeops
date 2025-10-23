@@ -147,26 +147,26 @@ in
               '';
             };
             "/" = {
-              proxyPass = "http://127.0.0.1:9090";
+              # proxyPass = "http://127.0.0.1:9090";
               # extraConfig = ''
               #   auth_request /oauth2/auth;
               #   error_page 401 = @error401;
               # '';
-              extraConfig = ''
-                # you may need to set these variables in this block as per https://github.com/vouch/vouch-proxy/issues/26#issuecomment-425215810
-                   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-                   auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
-                   auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
+              # extraConfig = ''
+              #   # you may need to set these variables in this block as per https://github.com/vouch/vouch-proxy/issues/26#issuecomment-425215810
+              #      auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+              #      auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
+              #      auth_request_set $auth_resp_x_vouch_idp_claims_given_name $upstream_http_x_vouch_idp_claims_given_name;
 
-                # set user header (usually an email)
-                proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
-                # optionally pass any custom claims you are tracking
-                    # proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
-                    # proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
-                # optionally pass the accesstoken or idtoken
-                    # proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
-                    # proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
-              '';
+              #   # set user header (usually an email)
+              #   proxy_set_header X-Vouch-User $auth_resp_x_vouch_user;
+              #   # optionally pass any custom claims you are tracking
+              #       # proxy_set_header X-Vouch-IdP-Claims-Groups $auth_resp_x_vouch_idp_claims_groups;
+              #       # proxy_set_header X-Vouch-IdP-Claims-Given_Name $auth_resp_x_vouch_idp_claims_given_name;
+              #   # optionally pass the accesstoken or idtoken
+              #       # proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
+              #       # proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
+              # '';
             };
             "/validate" = {
               # proxyPass = "http://unix://run/vouch-proxy/socket";
