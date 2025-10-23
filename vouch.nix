@@ -74,7 +74,7 @@
   };
   users.groups.vouch-proxy = { };
 
-  services.nginx.upstreams."vouch-proxy".servers."127.0.0.1:4180" = {}; 
+  services.nginx.upstreams."vouch-proxy".servers."0.0.0.0:9090" = {}; 
   # services.nginx.upstreams."vouch-proxy".servers."unix:/run/vouch-proxy/socket" = {}; 
 
   services.nginx.virtualHosts."vp.roses.gdvoisins.com" = {
