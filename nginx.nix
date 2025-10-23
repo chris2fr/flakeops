@@ -147,7 +147,7 @@ in
               '';
             };
             "/" = {
-              proxy_pass = "http://127.0.0.1:9090";
+              proxyPass = "http://127.0.0.1:9090";
               # extraConfig = ''
               #   auth_request /oauth2/auth;
               #   error_page 401 = @error401;
