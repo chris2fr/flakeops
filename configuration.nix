@@ -40,6 +40,8 @@ in
     docker
     docker-compose
     docker-ls
+    authentik
+    authentik-outposts.proxy
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
