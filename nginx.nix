@@ -147,11 +147,12 @@ in
               '';
             };
             "/" = {
-              proxy_pass http://127.0.0.1:9090;
+              proxy_pass = "http://127.0.0.1:9090";
               # extraConfig = ''
               #   auth_request /oauth2/auth;
               #   error_page 401 = @error401;
               # '';
+              extraConfig = ''
                 # you may need to set these variables in this block as per https://github.com/vouch/vouch-proxy/issues/26#issuecomment-425215810
                    auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
                    auth_request_set $auth_resp_x_vouch_idp_claims_groups $upstream_http_x_vouch_idp_claims_groups;
@@ -165,6 +166,7 @@ in
                 # optionally pass the accesstoken or idtoken
                     # proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
                     # proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
+              '';
             };
             "/validate" = {
               # proxyPass = "http://unix://run/vouch-proxy/socket";
