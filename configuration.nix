@@ -14,10 +14,10 @@ in
     ./users.nix
     # ./httpd.nix
     ./nfs.nix
-    # ./vouch.nix
+    ./vouch.nix
     ./nginx.nix
     ./seafile.nix
-    ./oauth2-proxy.nix
+    # ./oauth2-proxy.nix
     # ./containers.nix
   ];
   environment.systemPackages = with pkgs; [ 

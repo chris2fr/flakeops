@@ -1,72 +1,72 @@
 { config, pkgs, lib, ... }: {
-  systemd.services.vouch-proxy =
-    let
-      vouchConfig = {
-        vouch = {
-          # testing = true;
-          # listen = "0.0.0.0";
-          # port = 30746;
-          listen = "unix:/run/vouch-proxy/socket"; # VOUCH_LISTEN
-          # Optionally set the mode of the Unix domain socket. The default if not specified is 0777.
-          # socket_mode: 0770 # VOUCH_SOCKETMODE
-          socket_mode = "0777";
-          # Optionally set the group owner of the Unix domain socket.
-          # socket_group: users # VOUCH_SOCKETGROUP
+  # systemd.services.vouch-proxy =
+  #   let
+  #     vouchConfig = {
+  #       vouch = {
+  #         # testing = true;
+  #         # listen = "0.0.0.0";
+  #         # port = 30746;
+  #         listen = "unix:/run/vouch-proxy/socket"; # VOUCH_LISTEN
+  #         # Optionally set the mode of the Unix domain socket. The default if not specified is 0777.
+  #         # socket_mode: 0770 # VOUCH_SOCKETMODE
+  #         socket_mode = "0777";
+  #         # Optionally set the group owner of the Unix domain socket.
+  #         # socket_group: users # VOUCH_SOCKETGROUP
 
 
-          # testing = true;
-          logLevel = "debug";
+  #         # testing = true;
+  #         logLevel = "debug";
 
-          # TODO this allows everybody that can authenticate to kanidm, so no
-          # further scoping possible atm.
-          # allowAllUsers = true;
-          cookie.domain = "roses.gdvoisins.com";
-          # cookie.secure = false;
-          domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
+  #         # TODO this allows everybody that can authenticate to kanidm, so no
+  #         # further scoping possible atm.
+  #         # allowAllUsers = true;
+  #         cookie.domain = "roses.gdvoisins.com";
+  #         # cookie.secure = false;
+  #         domains = ["gdvoisins.com" "roses.gdvoisins.com" "vouch.roses.gdvoisins.com" "static.roses.gdvoisins.com"];
 
-          # jwt.secret = import ./secrets/jwt-vouch-secret.nix;
-        };
-        oauth =
-          let
-            keycloaskOrigin = "https://key.lesgrandsvoisins.com";
-            keycloakRealm = "master";
-          in
-          rec {
-            provider = "oidc";
-            client_id = "rosest330";
-            # oauth2_rs_basic_secret from `kanidm system oauth2 get gollum`
-            client_secret = import ./secrets/oidc-roses-secret.nix;
-            auth_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/auth";
-            token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
-            user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
-            scopes = [ "openid" "email" "profile" ];
-            callback_url = "https://vouch.roses.gdvoisins.com/auth";
-            # code_challenge_method = "S256";
-            tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
-            tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
-          };
-      };
-    in
-    {
-      description = "Vouch-proxy";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        ExecStart =
-          ''
-            ${pkgs.vouch-proxy}/bin/vouch-proxy \
-              -config ${(pkgs.formats.yaml {}).generate "config.yml" vouchConfig}
-          '';
-        Restart = "on-failure";
-        RestartSec = 5;
-        WorkingDirectory = "/var/lib/vouch-proxy";
-        StateDirectory = "vouch-proxy";
-        RuntimeDirectory = "vouch-proxy";
-        User = "vouch-proxy";
-        Group = "vouch-proxy";
-        StartLimitBurst = 3;
-      };
-    };
+  #         # jwt.secret = import ./secrets/jwt-vouch-secret.nix;
+  #       };
+  #       oauth =
+  #         let
+  #           keycloaskOrigin = "https://key.lesgrandsvoisins.com";
+  #           keycloakRealm = "master";
+  #         in
+  #         rec {
+  #           provider = "oidc";
+  #           client_id = "rosest330";
+  #           # oauth2_rs_basic_secret from `kanidm system oauth2 get gollum`
+  #           client_secret = import ./secrets/oidc-roses-secret.nix;
+  #           auth_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/auth";
+  #           token_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/token";
+  #           user_info_url = "${keycloaskOrigin}/realms/${keycloakRealm}/protocol/openid-connect/userinfo";
+  #           scopes = [ "openid" "email" "profile" ];
+  #           callback_url = "https://vouch.roses.gdvoisins.com/auth";
+  #           # code_challenge_method = "S256";
+  #           tls.cert = "/var/lib/acme/vouch.roses.gdvoisins.com/full.pem";
+  #           tls.key = "/var/lib/acme/vouch.roses.gdvoisins.com/key.pem";
+  #         };
+  #     };
+  #   in
+  #   {
+  #     description = "Vouch-proxy";
+  #     after = [ "network.target" ];
+  #     wantedBy = [ "multi-user.target" ];
+  #     serviceConfig = {
+  #       ExecStart =
+  #         ''
+  #           ${pkgs.vouch-proxy}/bin/vouch-proxy \
+  #             -config ${(pkgs.formats.yaml {}).generate "config.yml" vouchConfig}
+  #         '';
+  #       Restart = "on-failure";
+  #       RestartSec = 5;
+  #       WorkingDirectory = "/var/lib/vouch-proxy";
+  #       StateDirectory = "vouch-proxy";
+  #       RuntimeDirectory = "vouch-proxy";
+  #       User = "vouch-proxy";
+  #       Group = "vouch-proxy";
+  #       StartLimitBurst = 3;
+  #     };
+  #   };
 
   users.users.vouch-proxy = {
     isSystemUser = true;
@@ -74,9 +74,10 @@
   };
   users.groups.vouch-proxy = { };
 
-  services.nginx.upstreams."vouch-proxy".servers."unix:/run/vouch-proxy/socket" = {}; 
+  services.nginx.upstreams."vouch-proxy".servers."127.0.0.1:4180" = {}; 
+  # services.nginx.upstreams."vouch-proxy".servers."unix:/run/vouch-proxy/socket" = {}; 
 
-  services.nginx.virtualHosts."vouch.roses.gdvoisins.com" = {
+  services.nginx.virtualHosts."vp.roses.gdvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
@@ -84,7 +85,8 @@
       # proxyPass = "https://vouch.roses.gdvoisins.com:${toString 30746}/";
       extraConfig = ''
         proxy_set_header Host $host;
-        add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
+        # add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
+        # add_header Access-Control-Allow-Origin https://key.lesgrandsvoisins.com;
         # proxy_ssl_verify off;
         # proxy_set_header Host $host;
         # Maybe
