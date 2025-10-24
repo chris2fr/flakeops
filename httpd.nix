@@ -49,7 +49,7 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           extraConfig = ''
-              SSLProxyCACertificateFile /home/mannchri/copyparty/ssl/cert.pem
+              SSLProxyCACertificatePath /home/mannchri/copyparty/ssl/
           '';
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
