@@ -22,6 +22,7 @@ in
         MellonCacheEntrySize 196608
         # MellonDiagnosticsFile logs/mellon_diagnostics
         # MellonDiagnosticsEnable Off
+        
 
         ProxyAddHeaders On
         # RequestHeader set X-Forwarded-Host $host
@@ -68,12 +69,13 @@ in
               MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+              MellonUser "username"
 
               # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
-              RequestHeader set REMOTE_USER "chris"
-              RequestHeader set X-REMOTE-USER "pauline"
+              # RequestHeader set REMOTE_USER "chris"
+              # RequestHeader set X-REMOTE-USER "pauline"
 
 
               # RewriteEngine on
