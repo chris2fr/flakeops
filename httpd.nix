@@ -38,6 +38,7 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           locations."/" = {
+            # proxyPass = "http://127.0.0.1:8334/";
             proxyPass = "http://127.0.0.1:4180/";
             extraConfig = ''
             '';
@@ -48,9 +49,10 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8334/";
+            proxyPass = "https://0.0.0.0:3923/";
               extraConfig = ''
               Require valid-user
+              SSLProxyCheckPeerCN Off
               AuthType "Mellon"
               MellonEnable "auth"
               MellonSecureCookie On
@@ -60,8 +62,13 @@ in
               MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
-              
+
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+
+              # RewriteEngine on
+              # RewriteCond %{REMOTE_USER} (.*)
+              # RewriteRule .* - [E=X_REMOTE_USER:%1]
+              # RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
             '';
           };
         };
