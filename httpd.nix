@@ -48,11 +48,13 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
+          extraConfig = ''
+              SSLProxyCheckPeerCN Off
+          '';
           locations."/" = {
             proxyPass = "https://0.0.0.0:3923/";
               extraConfig = ''
               Require valid-user
-              SSLProxyCheckPeerCN Off
               AuthType "Mellon"
               MellonEnable "auth"
               MellonSecureCookie On
