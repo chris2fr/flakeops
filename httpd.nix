@@ -45,19 +45,21 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
-          proxyPass = "http://127.0.0.1:8334";
-          locations."/".extraConfig = ''
-            Require valid-user
-            AuthType "Mellon"
-            MellonEnable "auth"
-            MellonSecureCookie On
-            MellonCookieSameSite none
-            MellonEndpointPath "/mellon/"
-            MellonSPPrivateKeyFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.key"
-            MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
-            MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
-            MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
-          '';
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8334";
+              extraConfig = ''
+              Require valid-user
+              AuthType "Mellon"
+              MellonEnable "auth"
+              MellonSecureCookie On
+              MellonCookieSameSite none
+              MellonEndpointPath "/mellon/"
+              MellonSPPrivateKeyFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.key"
+              MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
+              MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
+              MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+            '';
+          };
         };
         "static.roses.gdvoisins.com" = {
           forceSSL = true;
