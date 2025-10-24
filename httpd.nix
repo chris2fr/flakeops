@@ -93,10 +93,10 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
-          proxyPass = "http://127.0.0.1:8088/";
 
           locations = {
             "/" = {
+              proxyPass = "http://127.0.0.1:8088/";
               extraConfig = ''
                 Require valid-user
                 AuthType "Mellon"
@@ -121,6 +121,9 @@ in
                 MellonSPMetadataFile "/etc/mellon/https_static.roses.gdvoisins.com_mellon_metadata.xml"
                 MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
                 # MellonRedirectDomains [self]
+
+                RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+                RequestHeader set X-THE-USER %{REMOTE_USER}s
               '';
             };
           };
