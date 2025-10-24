@@ -47,6 +47,19 @@ in
             '';
           };
         };
+        "public.cp.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          documentRoot = "/var/www/default";
+          extraConfig = ''
+              SSLProxyCACertificatePath /var/lib/copyparty/ssl/
+              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
+              SSLProxyEngine on
+          '';
+          locations."/" = {
+            proxyPass = "https://[::1]:3923/";
+          };
+        };
         "cp.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
