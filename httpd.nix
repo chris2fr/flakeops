@@ -12,6 +12,7 @@ in
   ];
   services = {
     httpd = {
+      enable = true;
       enableMellon = true;
       extraConfig = ''
         MellonCacheSize 100

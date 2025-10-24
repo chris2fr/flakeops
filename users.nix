@@ -17,11 +17,11 @@ in {
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
-    # nfsuser = {
-    #   isNormalUser = true;
-    #   description = "User nor NFS Shares";
-    #   extraGroups = [ "users" ];
-    #   openssh.authorizedKeys.keys = mannchriRsaPublic;
-    # };
+    nfsuser = {
+      isNormalUser = true;
+      description = "User nor NFS Shares";
+      extraGroups = [ "users" ];
+      openssh.authorizedKeys.keys = mannchriRsaPublic;
+    };
   };
 }
