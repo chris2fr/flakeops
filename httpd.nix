@@ -71,6 +71,10 @@ in
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
               MellonUser "username"
 
+
+              RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+
               # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
               # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
               # RequestHeader set X-REMOTE-USER expr=%{REMOTE_USER}s
@@ -79,10 +83,10 @@ in
               # RequestHeader set X-REMOTE-USER "pauline"
 
 
-              RewriteEngine on
-              RewriteCond %{REMOTE_USER} (.*)
-              RewriteRule .* - [E=X_REMOTE_USER:%1]
-              RequestHeader set X-REMOTE-USER %{X_REMOTE_USER}e
+              # RewriteEngine on
+              # RewriteCond %{REMOTE_USER} (.*)
+              # RewriteRule .* - [E=X_REMOTE_USER:%1]
+              # RequestHeader set X-REMOTE-USER %{X_REMOTE_USER}e
 
 
               # RewriteEngine On
