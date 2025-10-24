@@ -50,7 +50,7 @@ in
     cfssl
     mutagen
     ffmpeg
-    python
+    python3
     uv
   ];
   virtualisation.docker.enable = true;
