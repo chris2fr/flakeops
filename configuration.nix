@@ -44,6 +44,9 @@ in
     # authentik-outposts.proxy
     apacheHttpd
     apacheHttpdPackages.mod_auth_mellon
+    openssl
+    lasso
+    pkg-config
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
