@@ -52,6 +52,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
+              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
           '';
           locations."/" = {
