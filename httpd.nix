@@ -20,6 +20,12 @@ in
         MellonCacheEntrySize 196608
         # MellonDiagnosticsFile logs/mellon_diagnostics
         # MellonDiagnosticsEnable Off
+
+        ProxyAddHeaders On
+        RequestHeader set X-Forwarded-Host proxy-pathfactory-development.com
+        RequestHeader set X-Real-IP $remote_addr
+        RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
+        ProxyPreserveHost On
       '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
@@ -31,11 +37,27 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
+          proxyPass = "http://127.0.0.1:8334";
+          extraConfig = ''
+          '';
         };
         "cp.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
+          proxyPass = "http://127.0.0.1:8334";
+          locations."/".extraConfig = ''
+            Require valid-user
+            AuthType "Mellon"
+            MellonEnable "auth"
+            MellonSecureCookie On
+            MellonCookieSameSite none
+            MellonEndpointPath "/mellon/"
+            MellonSPPrivateKeyFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.key"
+            MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
+            MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
+            MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+          '';
         };
         "static.roses.gdvoisins.com" = {
           forceSSL = true;
