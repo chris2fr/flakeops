@@ -20,10 +20,6 @@ in
         MellonCacheEntrySize 196608
         # MellonDiagnosticsFile logs/mellon_diagnostics
         # MellonDiagnosticsEnable Off
-        # MellonVariable "cookie"
-        MellonSecureCookie On
-        # MellonCookiePath /
-        MellonCookieSameSite none
       '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
@@ -52,6 +48,10 @@ in
                 AuthType "Mellon"
                 MellonEnable "auth"
 
+                # MellonVariable "cookie"
+                MellonSecureCookie On
+                # MellonCookiePath /
+                MellonCookieSameSite none
 
                 # MellonUser "NAME_ID"
                 # MellonSetEnv "e-mail" "mail"
