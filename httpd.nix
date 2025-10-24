@@ -74,7 +74,7 @@ in
 
               RewriteEngine  on
               RewriteCond %{REMOTE_USER} (.*)
-              Redirect "/user" "/%{REMOTE_USER}"
+              Redirect "/user" /%{REMOTE_USER}
 
               # RewriteEngine on
               # RewriteCond %{REMOTE_USER} (.*)
