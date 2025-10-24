@@ -67,6 +67,18 @@ in
       Group = "users";
     };
   };
+  systemd.services.copyparty-public = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty -c /home/mannchri/copyparty/copyparty-public .conf ";
+    # script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty --xff-hdr x-forwarded-for --rproxy 1 --xff-src=lan -c /home/mannchri/copyparty/copyparty.conf ";
+    description = "CopyParty Public";
+    serviceConfig = {
+      WorkingDirectory = "/mnt/chrisdatalive/chris";
+      User = "mannchri";
+      Group = "users";
+    };
+  };
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
   # export APR_LIBS="`apr-1-config --libs`"

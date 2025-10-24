@@ -57,7 +57,7 @@ in
               SSLProxyEngine on
           '';
           locations."/" = {
-            proxyPass = "https://[::1]:3923/";
+            proxyPass = "https://[::1]:3924/";
           };
         };
         "cp.roses.gdvoisins.com" = {
