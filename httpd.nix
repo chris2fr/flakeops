@@ -69,17 +69,14 @@ in
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
 
-              ResponseHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              ResponseHeader set X-REMOTE-USER %{REMOTE_USER}s
+              # ResponseHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+              # ResponseHeader set X-REMOTE-USER %{REMOTE_USER}s
 
-              RewriteEngine  on
+
+              RewriteEngine on
               RewriteCond %{REMOTE_USER} (.*)
-              Redirect "/user" expr="%{REMOTE_USER}"
-
-              # RewriteEngine on
-              # RewriteCond %{REMOTE_USER} (.*)
-              # RewriteRule .* - [E=X_REMOTE_USER:%1]
-              # RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
+              RewriteRule .* - [E=X_REMOTE_USER:%1]
+              RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
             '';
           };
         };
