@@ -35,8 +35,8 @@ in
     nodenv
     filestash
     vips
-    vouch-proxy
-    oauth2-proxy
+    # vouch-proxy
+    # oauth2-proxy
     docker
     docker-compose
     docker-ls
@@ -98,10 +98,10 @@ in
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8"; 
   console = { 
-     font = "Lat2-Terminus16";
-     # keyMap = "fr";
-     useXkbConfig = true; # use xkb.options in tty.
-   };
+    font = "Lat2-Terminus16";
+    # keyMap = "fr";
+    useXkbConfig = true; # use xkb.options in tty.
+  };
 
   # systemd.services.vouch-proxy = {
   #   description = "Vouch-Proxy OpenIDC server for Nginx";
