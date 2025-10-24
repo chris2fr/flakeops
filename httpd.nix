@@ -70,11 +70,12 @@ in
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
 
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+              RequestHeader set "X-Copy-User" expr=%{REMOTE_USER}
 
-              RewriteEngine on
-              RewriteCond %{REMOTE_USER} (.*)
-              RewriteRule .* - [E=X_REMOTE_USER:%1]
-              RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
+              # RewriteEngine on
+              # RewriteCond %{REMOTE_USER} (.*)
+              # RewriteRule .* - [E=X_REMOTE_USER:%1]
+              # RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
             '';
           };
         };
