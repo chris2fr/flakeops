@@ -52,6 +52,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
+              SSLProxyEngine on
           '';
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
