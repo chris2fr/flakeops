@@ -9,6 +9,7 @@ in
   systemd.tmpfiles.rules = [
     "d /var/lib/mellon/cache 1777 root root"
     "d /etc/mellon 0750 root root"
+    "d /var/lib/copyparty/ssl 0775 wwwrun users"
   ];
   services = {
     httpd = {
