@@ -52,8 +52,8 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           extraConfig = ''
-              SSLProxyCACertificatePath /var/lib/copyparty/ssl/
-              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
+              SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
+              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
           '';
           locations."/" = {
