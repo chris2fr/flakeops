@@ -18,8 +18,12 @@ in
         MellonCacheSize 100
         MellonPostDirectory "/var/lib/mellon/cache"
         MellonCacheEntrySize 196608
-        MellonDiagnosticsFile logs/mellon_diagnostics
-        MellonDiagnosticsEnable Off
+        # MellonDiagnosticsFile logs/mellon_diagnostics
+        # MellonDiagnosticsEnable Off
+        # MellonVariable "cookie"
+        MellonSecureCookie On
+        # MellonCookiePath /
+        MellonCookieSameSite none
       '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
@@ -47,24 +51,22 @@ in
                 Require valid-user
                 AuthType "Mellon"
                 MellonEnable "auth"
-                
-                MellonVariable "cookie"
-                MellonSecureCookie On
-                MellonCookiePath /
-                MellonCookieSameSite none
-                MellonUser "NAME_ID"
-                MellonSetEnv "e-mail" "mail"
-                MellonSetEnvNoPrefix "DISPLAY_NAME" "displayName"
-                MellonEnvPrefix "NOLLEM_"
-                MellonEnvVarsSetCount On
-                MellonSessionDump Off
-                MellonSamlResponseDump Off
-                MellonEndpointPath "/mellon"
-                MellonSessionLength 86400
-                MellonSPPrivateKeyFile "/etc/mellon/mymellon.key"
-                MellonSPCertFile "/etc/mellon/mymellon.cert"
-                MellonIdPMetadataFile "/etc/mellon/mymellon.xml"
-                MellonRedirectDomains [self]
+
+
+                # MellonUser "NAME_ID"
+                # MellonSetEnv "e-mail" "mail"
+                # MellonSetEnvNoPrefix "DISPLAY_NAME" "displayName"
+                # MellonEnvPrefix "NOLLEM_"
+                # MellonEnvVarsSetCount On
+                # MellonSessionDump Off
+                # MellonSamlResponseDump Off
+                MellonEndpointPath "/mellon/"
+                # MellonSessionLength 86400
+                MellonSPPrivateKeyFile "/etc/mellon/https_static.roses.gdvoisins.com_mellon_metadata.key"
+                MellonSPCertFile "/etc/mellon/https_static.roses.gdvoisins.com_mellon_metadata.cert"
+                MellonSPMetadataFile "/etc/mellon/https_static.roses.gdvoisins.com_mellon_metadata.xml"
+                MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+                # MellonRedirectDomains [self]
               '';
             };
           };
