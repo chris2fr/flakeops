@@ -56,8 +56,8 @@ in
               SSLProxyEngine on
           '';
           locations."/" = {
-            proxyPass = "https://[::1]:3923/";
-              extraConfig = ''
+            #  proxyPass = "https://[::1]:3923/";
+            extraConfig = ''
               Require valid-user
               AuthType "Mellon"
               MellonEnable "auth"
@@ -69,8 +69,12 @@ in
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
 
-              RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+              # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+
+              RewriteEngine  on
+              RewriteCond %{REMOTE_USER} (.*)
+              Redirect "/user" "/%{REMOTE_USER}"
 
               # RewriteEngine on
               # RewriteCond %{REMOTE_USER} (.*)
