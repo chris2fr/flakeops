@@ -69,7 +69,7 @@ in
               MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
-              MellonUser "username"
+              # MellonUser "username"
 
 
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
