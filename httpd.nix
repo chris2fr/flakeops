@@ -93,6 +93,8 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
+          proxyPass = "http://127.0.0.1:8088/";
+
           locations = {
             "/" = {
               extraConfig = ''
