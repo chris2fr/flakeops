@@ -7,9 +7,10 @@ in
 
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   systemd.tmpfiles.rules = [
-    "d /var/lib/mellon/cache 1777 root root"
-    "d /etc/mellon 0750 root root"
-    "d /var/lib/copyparty/ssl 0775 wwwrun users"
+    "d /var/lib/mellon/ 1770 wwwrun users"
+    "d /var/lib/mellon/cache 1770 wwwrun users"
+    "d /etc/mellon 0770 root wwwrun"
+    "d /var/lib/copyparty/ssl 0770 wwwrun users"
   ];
   services = {
     httpd = {
