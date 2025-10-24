@@ -1,12 +1,69 @@
 { config, pkgs, lib, ... }:
 let 
-  mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
+  # mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
   # oidcseafilesecret = import secrets/oidcseafile.nix;
 in
 { 
 
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   services = {
+    httpd = {
+      enableMellon = true;
+      virtualHosts = {
+        "roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          documentRoot = "/var/www/default";
+        };
+        "fs.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          documentRoot = "/var/www/default";
+        };
+        "cp.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          documentRoot = "/var/www/default";
+        };
+        "static.roses.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          documentRoot = "/var/www/default";
+          locations = {
+            "/" = {
+              extraConfig = ''
+        Require valid-user
+        AuthType "Mellon"
+        MellonEnable "auth"
+        MellonVariable "cookie"
+        MellonSecureCookie On
+        MellonCookiePath /
+        MellonCookieSameSite lax
+        MellonUser "NAME_ID"
+        MellonSetEnv "e-mail" "mail"
+        MellonSetEnvNoPrefix "DISPLAY_NAME" "displayName"
+        MellonEnvPrefix "NOLLEM_"
+        MellonEnvVarsSetCount On
+        MellonSessionDump Off
+        MellonSamlResponseDump Off
+        MellonEndpointPath "/mellon"
+        MellonSessionLength 86400
+        MellonSPPrivateKeyFile /etc/apache2/mellon/sp-private-key.pem
+        MellonSPCertFile /etc/apache2/mellon/sp-cert.pem
+        MellonIdPMetadataFile /etc/apache2/mellon/idp-metadata.xml
+        MellonRedirectDomains [self]
+
+              '';
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
+
+
     # httpd = {
     #   enable = true;
     #   package = pkgs.apacheHttpd;
@@ -18,7 +75,7 @@ in
     #     Protocols h2 http/1.1
     #   '';
     #   adminAddr = "chris@lesgrandsvoisins.com";
-    #   extraModules = [ 
+      # extraModules = [ 
     #   #   "proxy" 
     #   #   "proxy_http" 
     #   #   "dav" 
@@ -32,32 +89,32 @@ in
     #   #   "proxy_uwsgi"
     #     # { name = "auth_openidc"; path = "${mod_auth_openidc}/modules/mod_auth_openidc.so"; }
     #   ];
-      virtualHosts = {
-        "roses.lgv.info" = {
-          forceSSL = true;
-          enableACME = true;
-          # listen = [{port = 443; ssl=true;}];
-          # sslServerCert = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-          # sslServerChain = "/var/lib/acme/roses.lgv.info/fullchain.pem";
-          # sslServerKey = "/var/lib/acme/roses.lgv.info/key.pem";
-          documentRoot = "/var/www/default";
-          extraConfig = ''
-            OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
-            OIDCClientID seafile
-            Include /etc/.secrets/.apache2.oidcclientsecret.seafile
-            OIDCRedirectURI https://roses.lgv.info/redirect_uri_from_oauth2
-            OIDCScope "openid email profile"
-            OIDCPKCEMethod S256
-            OIDCOAuthVerifyJwksUri https://key.lesgrandsvoisins.com/auth/realms/master/protocol/openid-connect/certs
+      # virtualHosts = {
+      #   "roses.lgv.info" = {
+      #     forceSSL = true;
+      #     enableACME = true;
+      #     # listen = [{port = 443; ssl=true;}];
+      #     # sslServerCert = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+      #     # sslServerChain = "/var/lib/acme/roses.lgv.info/fullchain.pem";
+      #     # sslServerKey = "/var/lib/acme/roses.lgv.info/key.pem";
+      #     documentRoot = "/var/www/default";
+      #     extraConfig = ''
+      #       OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+      #       OIDCClientID seafile
+      #       Include /etc/.secrets/.apache2.oidcclientsecret.seafile
+      #       OIDCRedirectURI https://roses.lgv.info/redirect_uri_from_oauth2
+      #       OIDCScope "openid email profile"
+      #       OIDCPKCEMethod S256
+      #       OIDCOAuthVerifyJwksUri https://key.lesgrandsvoisins.com/auth/realms/master/protocol/openid-connect/certs
 
             
-            <Location /protected>
-              AuthType openid-connect
-              Require valid-user
-              # Additional Keycloak role requirements if needed:
-              # Require claim realm_access.roles:your-role
-            </Location>
-          '';
+      #       <Location /protected>
+      #         AuthType openid-connect
+      #         Require valid-user
+      #         # Additional Keycloak role requirements if needed:
+      #         # Require claim realm_access.roles:your-role
+      #       </Location>
+      #     '';
 
 
           # extraConfig = ''
@@ -81,10 +138,10 @@ in
           #     # RequestHeader set Host $host
           #   </Location>
           # '';
-        };
-      };
-    };
-  };
+  #       };
+  #     };
+  #   };
+  # };
 
   # users.users.wwwrun.extraGroups = [ 
   #   "acme" 
@@ -94,4 +151,4 @@ in
   #   #"ghostio" 
   #   #"guichet" 
   # ];
-}
+# }

@@ -15,8 +15,8 @@ in
     # ./httpd.nix
     ./nfs.nix
     ./vouch.nix
-    ./nginx.nix
-    ./seafile.nix
+    # ./nginx.nix
+    # ./seafile.nix
     # ./oauth2-proxy.nix
     # ./containers.nix
   ];
@@ -40,8 +40,10 @@ in
     docker
     docker-compose
     docker-ls
-    authentik
-    authentik-outposts.proxy
+    # authentik
+    # authentik-outposts.proxy
+    apacheHttpd
+    apacheHttpd.mod_auth_mellon
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
