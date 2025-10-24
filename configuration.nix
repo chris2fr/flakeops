@@ -47,6 +47,11 @@ in
     openssl
     lasso
     pkg-config
+    cfssl
+    mutagen
+    ffmpeg
+    python
+    uv
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";

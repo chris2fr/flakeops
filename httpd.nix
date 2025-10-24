@@ -38,7 +38,7 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8334";
+            proxyPass = "http://127.0.0.1:4180/";
             extraConfig = ''
             '';
           };
@@ -48,7 +48,7 @@ in
           enableACME = true;
           documentRoot = "/var/www/default";
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8334";
+            proxyPass = "http://127.0.0.1:8334/";
               extraConfig = ''
               Require valid-user
               AuthType "Mellon"
@@ -60,6 +60,8 @@ in
               MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
               MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+              
+              RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
             '';
           };
         };
