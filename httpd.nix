@@ -47,7 +47,7 @@ in
                 Require valid-user
                 AuthType "Mellon"
                 MellonEnable "auth"
-                # MellonEnable "info"
+                
                 MellonVariable "cookie"
                 MellonSecureCookie On
                 MellonCookiePath /
@@ -65,9 +65,6 @@ in
                 MellonSPCertFile "/etc/mellon/mymellon.cert"
                 MellonIdPMetadataFile "/etc/mellon/mymellon.xml"
                 MellonRedirectDomains [self]
-                AuthType Mellon
-                MellonEnable auth
-                Require valid-user
               '';
             };
           };
