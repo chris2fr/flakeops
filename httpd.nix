@@ -6,9 +6,20 @@ in
 { 
 
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
+  systemd.tmpfiles.rules = [
+    "d /var/lib/mellon/cache 1777 root root"
+    "d /etc/mellon 0750 root root"
+  ];
   services = {
     httpd = {
       enableMellon = true;
+      extraConfig = ''
+        MellonCacheSize 100
+        MellonPostDirectory "/var/lib/mellon/cache"
+        MellonCacheEntrySize 196608
+        MellonDiagnosticsFile logs/mellon_diagnostics
+        MellonDiagnosticsEnable Off
+      '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
           forceSSL = true;
@@ -32,27 +43,30 @@ in
           locations = {
             "/" = {
               extraConfig = ''
-        Require valid-user
-        AuthType "Mellon"
-        MellonEnable "auth"
-        MellonVariable "cookie"
-        MellonSecureCookie On
-        MellonCookiePath /
-        MellonCookieSameSite lax
-        MellonUser "NAME_ID"
-        MellonSetEnv "e-mail" "mail"
-        MellonSetEnvNoPrefix "DISPLAY_NAME" "displayName"
-        MellonEnvPrefix "NOLLEM_"
-        MellonEnvVarsSetCount On
-        MellonSessionDump Off
-        MellonSamlResponseDump Off
-        MellonEndpointPath "/mellon"
-        MellonSessionLength 86400
-        MellonSPPrivateKeyFile /etc/apache2/mellon/sp-private-key.pem
-        MellonSPCertFile /etc/apache2/mellon/sp-cert.pem
-        MellonIdPMetadataFile /etc/apache2/mellon/idp-metadata.xml
-        MellonRedirectDomains [self]
-
+                Require valid-user
+                AuthType "Mellon"
+                MellonEnable "auth"
+                # MellonEnable "info"
+                MellonVariable "cookie"
+                MellonSecureCookie On
+                MellonCookiePath /
+                MellonCookieSameSite none
+                MellonUser "NAME_ID"
+                MellonSetEnv "e-mail" "mail"
+                MellonSetEnvNoPrefix "DISPLAY_NAME" "displayName"
+                MellonEnvPrefix "NOLLEM_"
+                MellonEnvVarsSetCount On
+                MellonSessionDump Off
+                MellonSamlResponseDump Off
+                MellonEndpointPath "/mellon"
+                MellonSessionLength 86400
+                MellonSPPrivateKeyFile /etc/mellon/mymellon.key
+                MellonSPCertFile /etc/mellon/mymellon.cert
+                MellonIdPMetadataFile /etc/mellon/mymellon.xml
+                MellonRedirectDomains [self]
+                AuthType Mellon
+                MellonEnable auth
+                Require valid-user
               '';
             };
           };
