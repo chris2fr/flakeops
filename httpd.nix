@@ -70,7 +70,7 @@ in
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
 
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              RequestHeader set "X-Copy-User" expr=%{REMOTE_USER}
+              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
               # RewriteEngine on
               # RewriteCond %{REMOTE_USER} (.*)
