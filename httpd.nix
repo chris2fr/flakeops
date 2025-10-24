@@ -37,9 +37,11 @@ in
           forceSSL = true;
           enableACME = true;
           documentRoot = "/var/www/default";
-          proxyPass = "http://127.0.0.1:8334";
-          extraConfig = ''
-          '';
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8334";
+            extraConfig = ''
+            '';
+          };
         };
         "cp.roses.gdvoisins.com" = {
           forceSSL = true;
