@@ -56,12 +56,12 @@ in
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
           '';
-          locations."/public/" = {
-              extraConfig = ''
-                Satisfy Any
-                Allow from all
-              '';
-          };
+          # locations."/public/" = {
+          #     extraConfig = ''
+          #       Satisfy Any
+          #       Allow from all
+          #     '';
+          # };
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
             extraConfig = ''
