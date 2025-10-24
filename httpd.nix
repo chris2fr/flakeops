@@ -52,7 +52,7 @@ in
               SSLProxyCheckPeerCN Off
           '';
           locations."/" = {
-            proxyPass = "https://0.0.0.0:3923/";
+            proxyPass = "https://[::1]:3923/";
               extraConfig = ''
               Require valid-user
               AuthType "Mellon"
