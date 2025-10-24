@@ -61,9 +61,9 @@ in
                 MellonSamlResponseDump Off
                 MellonEndpointPath "/mellon"
                 MellonSessionLength 86400
-                MellonSPPrivateKeyFile /etc/mellon/mymellon.key
-                MellonSPCertFile /etc/mellon/mymellon.cert
-                MellonIdPMetadataFile /etc/mellon/mymellon.xml
+                MellonSPPrivateKeyFile "/etc/mellon/mymellon.key"
+                MellonSPCertFile "/etc/mellon/mymellon.cert"
+                MellonIdPMetadataFile "/etc/mellon/mymellon.xml"
                 MellonRedirectDomains [self]
                 AuthType Mellon
                 MellonEnable auth
