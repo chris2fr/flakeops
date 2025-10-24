@@ -56,7 +56,7 @@ in
               SSLProxyEngine on
           '';
           locations."/" = {
-            #  proxyPass = "https://[::1]:3923/";
+            proxyPass = "https://[::1]:3923/";
             extraConfig = ''
               Require valid-user
               AuthType "Mellon"
@@ -77,6 +77,12 @@ in
               RewriteCond %{REMOTE_USER} (.*)
               RewriteRule .* - [E=X_REMOTE_USER:%1]
               RequestHeader set REMOTE_USER %{X_REMOTE_USER}e
+
+
+              # RewriteEngine On
+              # RewriteCond %{LA-U:REMOTE_USER} (.+)
+              # RewriteRule . - [E=RU:%1]
+              # RequestHeader set X-Remote-User "%{RU}e" env=RU
             '';
           };
         };
