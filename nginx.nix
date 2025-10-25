@@ -60,21 +60,21 @@ in {
         enable = true;
         configuration = {
           listen = { addr = "127.0.0.1"; port = 8082; };
+          providers = {
+            oidc = {
+              client_id = "nsso";
+              client_secret = "swTVFLJIH5RtJssPG0YfL3uYr22kH4jT";
+              # Optional, defaults to "OpenID Connect"
+              issuer_name = "Key.Lesgrandsvoisins.com";
+              issuer_url = "https://key.lesgrandsvosins.com/realms/master";
+              redirect_url = "https://nsso.gdvoisins.com/login";
 
-          oidc = {
-            client_id = "nsso";
-            client_secret = "swTVFLJIH5RtJssPG0YfL3uYr22kH4jT";
-            # Optional, defaults to "OpenID Connect"
-            issuer_name = "Key.Lesgrandsvoisins.com";
-            issuer_url = "https://key.lesgrandsvosins.com/realms/master";
-            redirect_url = "https://nsso.gdvoisins.com/login";
-
-            # Optional, defaults to no limitations
-            # require_domain = "example.com";
-            # Optional, defaults to "subject"
-            # user_id_method = "full-email";
+              # Optional, defaults to no limitations
+              # require_domain = "example.com";
+              # Optional, defaults to "subject"
+              # user_id_method = "full-email";
+            };
           };
-
           acl = {
             rule_sets = [
               {
