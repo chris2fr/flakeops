@@ -66,7 +66,7 @@ in {
               client_secret = "swTVFLJIH5RtJssPG0YfL3uYr22kH4jT";
               # Optional, defaults to "OpenID Connect"
               issuer_name = "Key.Lesgrandsvoisins.com";
-              issuer_url = "https://key.lesgrandsvosins.com/realms/master";
+              issuer_url = "https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration";
               redirect_url = "https://nsso.gdvoisins.com/login";
 
               # Optional, defaults to no limitations
