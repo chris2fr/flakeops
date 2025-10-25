@@ -67,6 +67,8 @@ in
   ];
   services = {
     postfix.virtual = ''
+      max@gdvoisins.com max@lesgrandsvoisins.com
+      chris@gdvoisins.com chris@lesgrandsvoisins.com
       discourseadmin@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       sviatlana@lesgrandsvoisins.com sviatlana.viarbitskaya@gmail.com
       sviatlana@lesgrandsvoisins.com sviatlana@lesgrandsvoisins.com
