@@ -22,6 +22,7 @@ let
     "lgv.info"
     "discourse.lgv.info"
     "mm.lgv.info"
+    "gdvoisins.com"
   ];
 in
 {
