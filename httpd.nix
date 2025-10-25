@@ -68,6 +68,11 @@ in
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
+              # Not happy about below chris2fr
+              SSLProxyVerify none 
+              SSLProxyCheckPeerCN off
+              SSLProxyCheckPeerName off
+              SSLProxyCheckPeerExpire off
           '';
           # locations."/public/" = {
           #     extraConfig = ''
