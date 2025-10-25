@@ -56,7 +56,86 @@ in {
         "wagtailstatic".servers = { "10.245.101.15:8888" = { }; };
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
       };
+      sso = {
+        enable = true;
+        configuration = {
+          listen = { addr = "127.0.0.1"; port = 8082; };
+
+          oidc = {
+            client_id = "nsso";
+            client_secret = "swTVFLJIH5RtJssPG0YfL3uYr22kH4jT";
+            # Optional, defaults to "OpenID Connect"
+            issuer_name = "Key.Lesgrandsvoisins.com";
+            issuer_url = "https://key.lesgrandsvosins.com/realms/master";
+            redirect_url = "https://nsso.gdvoisins.com/login";
+
+            # Optional, defaults to no limitations
+            # require_domain = "example.com";
+            # Optional, defaults to "subject"
+            # user_id_method = "full-email";
+          };
+
+          acl = {
+            rule_sets = [
+              {
+                rules = [ { field = "x-application"; equals = "nsso"; } ];
+                allow = [ "chris" ];
+              }
+            ];
+          };
+        };
+      };
       virtualHosts = {
+        "nsso.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = ''
+            error_page 401 = @error401;
+          '';
+          root = "/var/www/html/";
+          
+          locations = {
+            "/" = {
+              extraConfig = ''
+                # Protect this location using the auth_request
+                auth_request /sso-auth;
+
+                ## Optionally set a header to pass through the username
+                #auth_request_set $username $upstream_http_x_username;
+                #proxy_set_header X-User $username;
+
+                # Automatically renew SSO cookie on request
+                auth_request_set $cookie $upstream_http_set_cookie;
+                add_header Set-Cookie $cookie;
+              '';
+            };
+            "/logout".extraConfig = ''
+              # Another server{} directive also proxying to http://127.0.0.1:8082
+              return 302 https://nsso.gdvoisins.com/logout?go=$scheme://$http_host/;
+            '';
+            "/sso-auth".extraConfig = ''
+              # Do not allow requests from outside
+              internal;
+              # Access /auth endpoint to query login state
+              proxy_pass http://127.0.0.1:8082/auth;
+              # Do not forward the request body (nginx-sso does not care about it)
+              proxy_pass_request_body off;
+              proxy_set_header Content-Length "";
+              # Set custom information for ACL matching: Each one is available as
+              # a field for matching: X-Host = x-host, ...
+              proxy_set_header X-Origin-URI $request_uri;
+              proxy_set_header X-Host $http_host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Application "nsso";
+            '';
+            "/sso@error401".extraConfig = ''
+              # Another server{} directive also proxying to http://127.0.0.1:8082
+              return 302 https://nsso.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
+            '';
+          };
+        };
         "triliumnext.lesgv.com" = {
           serverAliases = [
             "notes.lesgv.com" 
