@@ -78,7 +78,7 @@ in {
           login = {
             title = "key lesgrandsvoisins com";
             default_method = "oidc";
-            default_redirect = "https://nsso.gdvoisins.com";
+            default_redirect = "https://login.gdvoisins.com/login";
             names = {
               "oidc" = "OIDC avec Key Lesgrandsvoisins Com";
             };
