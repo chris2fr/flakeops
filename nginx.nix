@@ -282,6 +282,15 @@ in {
           enableACME = true;
           locations."/" = {
             proxyPass = "http://[::1]:8082";
+            extraConfig = ''
+              proxy_set_header X-Origin-URI $request_uri;
+              proxy_set_header X-Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+              auth_request_set $cookie $upstream_http_set_cookie;
+              add_header Set-Cookie $cookie;
+              '';
             # extraConfig = nginxSsoProxExtraConfig;
           };
           # locations = {
