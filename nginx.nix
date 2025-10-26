@@ -132,12 +132,12 @@ in {
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
               redirect_url = "https://login.gdvoisins.com/login";
               # Optional, defaults to no limitations
-              # require_domain = "example.com";
+              # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
-              # user_id_method = "full-email";
+              user_id_method = "username";
             };
           };
-};
+        };
       };
       virtualHosts = {
         "protection.gdvoisins.com" = {
@@ -175,8 +175,8 @@ in {
           extraConfig = ''
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
-            # Protect this server using the auth_request
-            auth_request /sso-auth;
+            ## Protect this server using the auth_request
+            # auth_request /sso-auth;
           '';
           root = "/var/www/html/";
           
@@ -184,11 +184,11 @@ in {
             "/" = {
               extraConfig = ''
               #   # Protect this location using the auth_request
-              #   auth_request /sso-auth;
+                auth_request /sso-auth;
 
                 ## Optionally set a header to pass through the username
-                #auth_request_set $username $upstream_http_x_username;
-                #proxy_set_header X-User $username;
+                auth_request_set $username $upstream_http_x_username;
+                proxy_set_header X-User $username;
 
                 # Automatically renew SSO cookie on request
                 auth_request_set $cookie $upstream_http_set_cookie;
@@ -217,9 +217,9 @@ in {
               proxy_set_header X-Forwarded-Proto $scheme;
               # Extra
               proxy_set_header X-Application "nsso";
-              proxy_redirect    off;
-              proxy_max_temp_file_size 0;
-              proxy_set_header  X-Url-Scheme $scheme;
+              # proxy_redirect    off;
+              # proxy_max_temp_file_size 0;
+              # proxy_set_header  X-Url-Scheme $scheme;
             '';
             "@error401".extraConfig = ''
               # Another server{} directive also proxying to http://127.0.0.1:8082
