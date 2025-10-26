@@ -259,7 +259,7 @@ in {
           forceSSL = true;
           enableACME = true;
           proxyPass = "http://127.0.0.1:8082";
-          extraConfig = nginxSsoProxExtraConfig;
+          locations."/".extraConfig = nginxSsoProxExtraConfig;
           # locations = {
           #   "/login" = {
           #     proxyPass = "http://127.0.0.1:8082/login";
