@@ -258,8 +258,10 @@ in {
         "login.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
-          proxyPass = "http://127.0.0.1:8082";
-          locations."/".extraConfig = nginxSsoProxExtraConfig;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8082";
+            extraConfig = nginxSsoProxExtraConfig;
+          };
           # locations = {
           #   "/login" = {
           #     proxyPass = "http://127.0.0.1:8082/login";
