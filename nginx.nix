@@ -224,7 +224,7 @@ in {
             title = "key lesgrandsvoisins com";
           };
           plugins = {
-            directory = "./plugins/";
+            directory = "/var/lib/nginx-sso/plugins/";
           };
           providers = {
             oidc = {
