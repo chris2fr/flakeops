@@ -9,7 +9,10 @@ in
     enableIPv6 = true;
     interfaces.eno1.ipv6 = {
       addresses = [
-        { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
+        { address = "2a01:4f8:241:4faa::0"; prefixLength = 126; }
+        { address = "2a01:4f8:241:4faa::4"; prefixLength = 126; }
+        { address = "2a01:4f8:241:4faa::10"; prefixLength = 125; }
+        { address = "2a01:4f8:241:4faa::443"; prefixLength = 120; }
       ];
     };
     nat = {
