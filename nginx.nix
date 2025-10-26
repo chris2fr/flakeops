@@ -85,7 +85,13 @@ in {
           };
           plugins.directory = "./plugins/";
           audit_log = {
-            events = "['access_denied', 'login_success', 'login_failure', 'logout', 'validate']";
+            targets = [
+              "fd://stdout"
+              "file:///var/log/nginx-sso/audit.jsonl"
+            ];
+            events = ["access_denied" "login_success" "login_failure" "logout" "validate"];
+            headers = ["x-origin-uri"];
+            trusted_ip_headers = ["X-Forwarded-For" "RemoteAddr" "X-Real-IP"];
           };
           cookie = {
             domain = ".gdvoisins.com";
