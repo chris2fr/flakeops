@@ -92,10 +92,10 @@ in {
           root = "/var/www/html";
 
         };
-        "login.gdvoisins.com".locations."/" = {
+        "login.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
-          proxyPass = "http://127.0.0.1:8082/";
+          locations."/".proxyPass = "http://127.0.0.1:8082/";
         };
         "nsso.gdvoisins.com" = {
           forceSSL = true;
