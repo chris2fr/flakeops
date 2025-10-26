@@ -9,6 +9,21 @@ let
     # proxy_set_header Upgrade $http_upgrade;
     # proxy_set_header Connection $connection_upgrade_keepalive;
   '';
+  nginxSsoProxExtraConfig = ''
+      # Set custom information for ACL matching: Each one is available as
+      # a field for matching: X-Host = x-host, ...
+      proxy_set_header X-Origin-URI $request_uri;
+      proxy_set_header X-Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      # proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      # # Extra
+      # proxy_set_header X-Application "nsso";
+      # proxy_redirect    off;
+      # proxy_max_temp_file_size 0;
+      # proxy_set_header  X-Url-Scheme $scheme;
+    '';
 in {
   imports = [
     ./nginx/authentik.nix
@@ -71,7 +86,7 @@ in {
               # Optional, defaults to "OpenID Connect"
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://login.gdvoisins.com/login";
+              redirect_url = "https://login.gdvoisins.com/auth";
 
               # Optional, defaults to no limitations
               # require_domain = "example.com";
@@ -100,24 +115,17 @@ in {
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/" = {
-              proxyPass = "http://127.0.0.1:8082/";
-              extraConfig = ''
-            
-                # Set custom information for ACL matching: Each one is available as
-                # a field for matching: X-Host = x-host, ...
-                proxy_set_header X-Origin-URI $request_uri;
-                proxy_set_header X-Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                # proxy_set_header X-Forwarded-For $remote_addr;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                # # Extra
-                # proxy_set_header X-Application "nsso";
-                # proxy_redirect    off;
-                # proxy_max_temp_file_size 0;
-                # proxy_set_header  X-Url-Scheme $scheme;
-              '';
+            "/login" = {
+              proxyPass = "http://127.0.0.1:8082/login";
+              extraConfig = nginxSsoProxExtraConfig;
+            };
+            "/logout" = {
+              proxyPass = "http://127.0.0.1:8082/logout";
+              extraConfig = nginxSsoProxExtraConfig;
+            };
+            "/auth" = {
+              proxyPass = "http://127.0.0.1:8082/auth";
+              extraConfig = nginxSsoProxExtraConfig;
             };
           };
         };
