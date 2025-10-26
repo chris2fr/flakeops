@@ -25,8 +25,7 @@ let
       # proxy_set_header  X-Url-Scheme $scheme;
     '';
     nginxSsoLocations =  {
-      "/" = {
-        extraConfig = ''
+      "/".extraConfig = ''
         #   # Protect this location using the auth_request
           auth_request /sso-auth;
 
