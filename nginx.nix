@@ -28,7 +28,7 @@ let
       "/" = {
         extraConfig = ''
         #   # Protect this location using the auth_request
-          auth_request /auth;
+          auth_request /sso-auth;
 
           ## Optionally set a header to pass through the username
           # auth_request_set $username $upstream_http_x_username;
@@ -50,11 +50,14 @@ let
         # Another server{} directive also proxying to http://127.0.0.1:8082
         return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
       '';
-      "/auth".extraConfig = ''
+      "/sso-auth" = {
+        proxyPass = "https://login.gdvoisins.com/auth";
+        # proxyPass = "http://127.0.0.1:8082/auth";
+        extraConfig = ''
         # Do not allow requests from outside
-        internal;
-        # Access /auth endpoint to query login state
-        proxy_pass http://127.0.0.1:8082/auth;
+        # internal;
+        # # Access /auth endpoint to query login state
+        # proxy_pass http://127.0.0.1:8082/auth;
         # Do not forward the request body (nginx-sso does not care about it)
         proxy_pass_request_body off;
         proxy_set_header Content-Length "";
@@ -174,7 +177,7 @@ in {
           };
           login = {
             default_method = "oidc";
-            default_redirect = "https://login.gdvoisins.com/auth";
+            default_redirect = "https://login.gdvoisins.com/login";
             names = {
               oidc = "OIDC avec Key Lesgrandsvoisins Com";
             };
@@ -189,7 +192,7 @@ in {
               client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://login.gdvoisins.com/auth";
+              redirect_url = "https://login.gdvoisins.com/login";
               # Optional, defaults to no limitations
               # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
@@ -207,7 +210,7 @@ in {
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             # Protect this server using the auth_request
-            auth_request /auth;
+            auth_request /sso-auth;
           '';
           locations = nginxSsoLocations;
         };
@@ -236,7 +239,7 @@ in {
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             ## Protect this server using the auth_request
-            # auth_request /auth;
+            # auth_request /sso-auth;
           '';
           root = "/var/www/html/";
           locations = nginxSsoLocations;
