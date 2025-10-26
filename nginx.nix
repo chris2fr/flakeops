@@ -71,7 +71,7 @@ let
       "/sso-auth" = {
         # proxyPass = "https://login.gdvoisins.com";
         # proxyPass = "http://127.0.0.1:8082/auth";
-        proxyPass = "http://127.0.0.1:8082";
+        proxyPass = "http://127.0.0.1:8082/auth";
         extraConfig = ''
         # Do not allow requests from outside
         # internal;
@@ -258,20 +258,22 @@ in {
         "login.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
-          locations = {
-            "/login" = {
-              proxyPass = "http://127.0.0.1:8082/login";
-              extraConfig = nginxSsoProxExtraConfig;
-            };
-            "/logout" = {
-              proxyPass = "http://127.0.0.1:8082/logout";
-              extraConfig = nginxSsoProxExtraConfig;
-            };
-            # "/auth" = {
-            #   proxyPass = "http://127.0.0.1:8082/auth";
-            #   extraConfig = nginxSsoProxExtraConfig;
-            # };
-          };
+          proxyPass = "http://127.0.0.1:8082";
+          extraConfig = nginxSsoProxExtraConfig;
+          # locations = {
+          #   "/login" = {
+          #     proxyPass = "http://127.0.0.1:8082/login";
+          #     extraConfig = nginxSsoProxExtraConfig;
+          #   };
+          #   "/logout" = {
+          #     proxyPass = "http://127.0.0.1:8082/logout";
+          #     extraConfig = nginxSsoProxExtraConfig;
+          #   };
+          #   # "/auth" = {
+          #   #   proxyPass = "http://127.0.0.1:8082/auth";
+          #   #   extraConfig = nginxSsoProxExtraConfig;
+          #   # };
+          # };
         };
         "nsso.gdvoisins.com" = {
           forceSSL = true;
