@@ -31,8 +31,8 @@ let
                 auth_request /sso-auth;
 
                 ## Optionally set a header to pass through the username
-                auth_request_set $username $upstream_http_x_username;
-                proxy_set_header X-User $username;
+                # auth_request_set $username $upstream_http_x_username;
+                # proxy_set_header X-User $username;
 
                 # Automatically renew SSO cookie on request
                 auth_request_set $cookie $upstream_http_set_cookie;
