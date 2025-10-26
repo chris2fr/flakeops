@@ -24,6 +24,52 @@ let
       # proxy_max_temp_file_size 0;
       # proxy_set_header  X-Url-Scheme $scheme;
     '';
+    nginxSsoLocations =  {
+            "/" = {
+              extraConfig = ''
+              #   # Protect this location using the auth_request
+                auth_request /sso-auth;
+
+                ## Optionally set a header to pass through the username
+                auth_request_set $username $upstream_http_x_username;
+                proxy_set_header X-User $username;
+
+                # Automatically renew SSO cookie on request
+                auth_request_set $cookie $upstream_http_set_cookie;
+                add_header Set-Cookie $cookie;
+              '';
+            };
+            "/logout".extraConfig = ''
+              # Another server{} directive also proxying to http://127.0.0.1:8082
+              return 302 https://login.gdvoisins.com/logout?go=$scheme://$http_host/;
+            '';
+            "/sso-auth".extraConfig = ''
+              # Do not allow requests from outside
+              internal;
+              # Access /auth endpoint to query login state
+              proxy_pass http://127.0.0.1:8082/auth;
+              # Do not forward the request body (nginx-sso does not care about it)
+              proxy_pass_request_body off;
+              proxy_set_header Content-Length "";
+              # Set custom information for ACL matching: Each one is available as
+              # a field for matching: X-Host = x-host, ...
+              proxy_set_header X-Origin-URI $request_uri;
+              proxy_set_header X-Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-For $remote_addr;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              # Extra
+              # proxy_set_header X-Application "nsso";
+              # proxy_redirect    off;
+              # proxy_max_temp_file_size 0;
+              # proxy_set_header  X-Url-Scheme $scheme;
+            '';
+            "@error401".extraConfig = ''
+              # Another server{} directive also proxying to http://127.0.0.1:8082
+              return 302 https://login.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
+            '';
+          };
 in {
   imports = [
     ./nginx/authentik.nix
@@ -150,6 +196,7 @@ in {
             # Protect this server using the auth_request
             auth_request /sso-auth;
           '';
+          locations = nginxSsoLocations;
         };
         "login.gdvoisins.com" = {
           forceSSL = true;
@@ -179,53 +226,7 @@ in {
             # auth_request /sso-auth;
           '';
           root = "/var/www/html/";
-          
-          locations = {
-            "/" = {
-              extraConfig = ''
-              #   # Protect this location using the auth_request
-                auth_request /sso-auth;
-
-                ## Optionally set a header to pass through the username
-                auth_request_set $username $upstream_http_x_username;
-                proxy_set_header X-User $username;
-
-                # Automatically renew SSO cookie on request
-                auth_request_set $cookie $upstream_http_set_cookie;
-                add_header Set-Cookie $cookie;
-              '';
-            };
-            "/logout".extraConfig = ''
-              # Another server{} directive also proxying to http://127.0.0.1:8082
-              return 302 https://login.gdvoisins.com/logout?go=$scheme://$http_host/;
-            '';
-            "/sso-auth".extraConfig = ''
-              # Do not allow requests from outside
-              internal;
-              # Access /auth endpoint to query login state
-              proxy_pass http://127.0.0.1:8082/auth;
-              # Do not forward the request body (nginx-sso does not care about it)
-              proxy_pass_request_body off;
-              proxy_set_header Content-Length "";
-              # Set custom information for ACL matching: Each one is available as
-              # a field for matching: X-Host = x-host, ...
-              proxy_set_header X-Origin-URI $request_uri;
-              proxy_set_header X-Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-For $remote_addr;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              # Extra
-              # proxy_set_header X-Application "nsso";
-              # proxy_redirect    off;
-              # proxy_max_temp_file_size 0;
-              # proxy_set_header  X-Url-Scheme $scheme;
-            '';
-            "@error401".extraConfig = ''
-              # Another server{} directive also proxying to http://127.0.0.1:8082
-              return 302 https://login.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
-            '';
-          };
+          locations = nginxSsoLocations;
         };
         "triliumnext.lesgv.com" = {
           serverAliases = [
