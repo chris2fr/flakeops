@@ -16,7 +16,6 @@ let
         proxy_set_header X-Real-Ip $remote_addr;
         proxy_set_header REMOTE_ADDR $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_redirect off;
         # proxy_redirect default;
@@ -26,6 +25,9 @@ let
         proxy_read_timeout 90;
 
         proxy_set_header  X-Url-Scheme $scheme;
+        
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
 
 
       # # Set custom information for ACL matching: Each one is available as
@@ -82,9 +84,7 @@ let
         proxy_set_header X-Host $host;
         proxy_set_header X-Real-Ip $remote_addr;
         proxy_set_header REMOTE_ADDR $remote_addr;
-        proxy_set_header X-Real-IP $proxy_add_x_forwarded_for;
-        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        # proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_redirect default;
         proxy_http_version 1.1;
@@ -93,6 +93,9 @@ let
         proxy_read_timeout 90;
 
         proxy_set_header  X-Url-Scheme $scheme;
+
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
 
 
         # proxy_ssl_verify off;
