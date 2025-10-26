@@ -53,7 +53,7 @@ let
         # proxyPass = "http://127.0.0.1:8082/auth";
         extraConfig = ''
         # Do not allow requests from outside
-        # internal;
+        internal;
         # # Access /auth endpoint to query login state
         # proxy_pass http://127.0.0.1:8082/auth;
         # Do not forward the request body (nginx-sso does not care about it)
@@ -69,7 +69,7 @@ let
         # proxy_set_header X-Forwarded-Proto $scheme;
         # Extra
         # proxy_set_header X-Application "nsso";
-        # proxy_redirect    off;
+        proxy_redirect    off;
         # proxy_max_temp_file_size 0;
         # proxy_set_header  X-Url-Scheme $scheme;
             proxy_set_header X-Origin-URI $request_uri;
