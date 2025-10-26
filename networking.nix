@@ -31,6 +31,39 @@ in
       package = pkgs.nftables;
       trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "lo" ];
       # source: https://docs.syncthing.net/users/firewall.html
+      interfaces."eno1".allowedTCPPorts = [
+
+        22
+        25
+        53
+        80
+        143
+        443
+        587
+        # 636
+        993
+        995
+        1360
+        8384
+        8443
+        9080
+        9443
+        10080
+        10389
+        10443
+        10636
+        11211
+        11443
+        11447
+        12080
+        12443
+        14389
+        14443
+        14636
+        20000
+        21027
+        22000
+      ];
       allowedTCPPorts = [
         22
         25
