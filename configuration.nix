@@ -69,6 +69,7 @@ in
     cacert
     # burp
     openssl
+    acme-sh
     # postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )

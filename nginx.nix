@@ -265,6 +265,16 @@ in {
         };
       };
       virtualHosts = {
+        # "oauth.gdvoisins.com" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   root = "/var/www/html";
+        # };
+        # services.acme-dns = {
+        #   enable = true;
+
+        # };
+
         "protection.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
