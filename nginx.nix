@@ -67,7 +67,7 @@ in {
               # Optional, defaults to "OpenID Connect"
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://nsso.gdvoisins.com/login";
+              redirect_url = "https://login.gdvoisins.com/login";
 
               # Optional, defaults to no limitations
               # require_domain = "example.com";
@@ -86,26 +86,31 @@ in {
         };
       };
       virtualHosts = {
-        "_" = {
-          serverAliases = ["nsso.gdvoisins.com"];
-          forceSSL = true;
-          enableACME = true;
-          root = "/var/www/html";
-          
-        };
         "protection.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
+          root = "/var/www/html";
+
+        };
+        "login.gdvoisins.com" = {
+          proxyPass = "http://127.0.0.1:8082/";
+        };
+        "nsso.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
           extraConfig = ''
+            # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
+            # Protect this server using the auth_request
+            auth_request /sso-auth;
           '';
           root = "/var/www/html/";
           
           locations = {
             "/" = {
               extraConfig = ''
-                # Protect this location using the auth_request
-                auth_request /sso-auth;
+              #   # Protect this location using the auth_request
+              #   auth_request /sso-auth;
 
                 ## Optionally set a header to pass through the username
                 #auth_request_set $username $upstream_http_x_username;
@@ -118,7 +123,7 @@ in {
             };
             "/logout".extraConfig = ''
               # Another server{} directive also proxying to http://127.0.0.1:8082
-              return 302 https://nsso.gdvoisins.com/logout?go=$scheme://$http_host/;
+              return 302 https://login.gdvoisins.com/logout?go=$scheme://$http_host/;
             '';
             "/sso-auth".extraConfig = ''
               # Do not allow requests from outside
@@ -136,6 +141,7 @@ in {
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               # proxy_set_header X-Forwarded-For $remote_addr;
               proxy_set_header X-Forwarded-Proto $scheme;
+              # Extra
               proxy_set_header X-Application "nsso";
               proxy_redirect    off;
               proxy_max_temp_file_size 0;
@@ -143,7 +149,7 @@ in {
             '';
             "@error401".extraConfig = ''
               # Another server{} directive also proxying to http://127.0.0.1:8082
-              return 302 https://nsso.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
+              return 302 https://login.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
             '';
           };
         };
