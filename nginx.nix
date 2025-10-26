@@ -130,7 +130,7 @@ in {
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Application "nsso";
             '';
-            "/sso@error401".extraConfig = ''
+            "@error401".extraConfig = ''
               # Another server{} directive also proxying to http://127.0.0.1:8082
               return 302 https://nsso.gdvoisins.com/login?go=$scheme://$http_host$request_uri;
             '';
