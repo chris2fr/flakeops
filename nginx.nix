@@ -65,18 +65,18 @@ let
             proxy_set_header X-Forwarded-Proto $scheme;
         '';
       "/logout".extraConfig = ''
-        # Another server{} directive also proxying to http://127.0.0.1:8082
-        return 302 https://nsso.gdvoisins.com/logout?go=$scheme://$host/;
+        # Another server{} directive also proxying to http://[::1]:8082
+        return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
       '';
       "/sso-auth" = {
         # proxyPass = "https://login.gdvoisins.com";
-        # proxyPass = "http://127.0.0.1:8082/auth";
-        proxyPass = "http://127.0.0.1:8082/auth";
+        # proxyPass = "http://[::1]:8082/auth";
+        proxyPass = "http://[::1]:8082/auth";
         extraConfig = ''
         # Do not allow requests from outside
         # internal;
         # # Access /auth endpoint to query login state
-        # proxy_pass http://127.0.0.1:8082/auth;
+        # proxy_pass http://[::1]:8082/auth;
         # Do not forward the request body (nginx-sso does not care about it)
         proxy_pass_request_body off;
         proxy_set_header Content-Length "";
@@ -123,7 +123,7 @@ let
       '';
       };
       "/login" = {
-        proxyPass = "http://127.0.0.1:8082/login";
+        proxyPass = "http://[::1]:8082/login";
         extraConfig = ''  
           proxy_set_header X-Origin-URI $request_uri;
           proxy_set_header X-Host $host;
@@ -145,8 +145,8 @@ let
         '';
       };
       "@error401".extraConfig = ''
-        # Another server{} directive also proxying to http://127.0.0.1:8082
-        return 302 https://nsso.gdvoisins.com/login?go=$scheme://$host$request_uri;
+        # Another server{} directive also proxying to http://[::1]:8082
+        return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
       '';
     };
 in {
@@ -240,7 +240,7 @@ in {
           };
           login = {
             default_method = "oidc";
-            default_redirect = "https://nsso.gdvoisins.com/login";
+            default_redirect = "https://login.gdvoisins.com/login";
             names = {
               oidc = "OIDC avec Key Lesgrandsvoisins Com";
             };
@@ -255,7 +255,7 @@ in {
               client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://nsso.gdvoisins.com/login";
+              redirect_url = "https://login.gdvoisins.com/login";
               # Optional, defaults to no limitations
               # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
@@ -281,20 +281,20 @@ in {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8082";
+            proxyPass = "http://[::1]:8082";
             # extraConfig = nginxSsoProxExtraConfig;
           };
           # locations = {
           #   "/login" = {
-          #     proxyPass = "http://127.0.0.1:8082/login";
+          #     proxyPass = "http://[::1]:8082/login";
           #     extraConfig = nginxSsoProxExtraConfig;
           #   };
           #   "/logout" = {
-          #     proxyPass = "http://127.0.0.1:8082/logout";
+          #     proxyPass = "http://[::1]:8082/logout";
           #     extraConfig = nginxSsoProxExtraConfig;
           #   };
           #   # "/auth" = {
-          #   #   proxyPass = "http://127.0.0.1:8082/auth";
+          #   #   proxyPass = "http://[::1]:8082/auth";
           #   #   extraConfig = nginxSsoProxExtraConfig;
           #   # };
           # };
