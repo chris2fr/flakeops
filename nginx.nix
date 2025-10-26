@@ -69,11 +69,12 @@ let
         return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
       '';
       "/sso-auth" = {
-        # proxyPass = "https://login.gdvoisins.com/auth";
-        proxyPass = "http://127.0.0.1:8082/auth";
+        # proxyPass = "https://login.gdvoisins.com";
+        # proxyPass = "http://127.0.0.1:8082/auth";
+        proxyPass = "http://127.0.0.1:8082";
         extraConfig = ''
         # Do not allow requests from outside
-        internal;
+        # internal;
         # # Access /auth endpoint to query login state
         # proxy_pass http://127.0.0.1:8082/auth;
         # Do not forward the request body (nginx-sso does not care about it)
