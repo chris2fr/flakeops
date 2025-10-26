@@ -120,6 +120,11 @@ in
 
           };
         };
+        "fontenay.gdvoisins.com" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/default";
+        };
         "static.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
