@@ -122,6 +122,28 @@ let
             
       '';
       };
+      "/login" = {
+        proxyPass = "http://127.0.0.1:8082/login";
+        extraConfig = ''  
+          proxy_set_header X-Origin-URI $request_uri;
+          proxy_set_header X-Host $host;
+          # proxy_set_header X-Real-IP $remote_addr;
+          # proxy_set_header REMOTE_ADDR $remote_addr;
+          # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_redirect off;
+          # proxy_redirect default;
+          proxy_http_version 1.1;
+          proxy_set_header   Upgrade $http_upgrade;
+          proxy_set_header   Connection "upgrade";
+          proxy_read_timeout 90;
+
+          proxy_set_header  X-Url-Scheme $scheme;
+
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Server $host;
+        '';
+      };
       "@error401".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
         return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
@@ -218,7 +240,7 @@ in {
           };
           login = {
             default_method = "oidc";
-            default_redirect = "https://login.gdvoisins.com/login";
+            default_redirect = "https://nsso.gdvoisins.com/login";
             names = {
               oidc = "OIDC avec Key Lesgrandsvoisins Com";
             };
