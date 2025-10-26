@@ -66,7 +66,7 @@ let
         '';
       "/logout".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
-        return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
+        return 302 https://nsso.gdvoisins.com/logout?go=$scheme://$host/;
       '';
       "/sso-auth" = {
         # proxyPass = "https://login.gdvoisins.com";
@@ -146,7 +146,7 @@ let
       };
       "@error401".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
-        return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
+        return 302 https://nsso.gdvoisins.com/login?go=$scheme://$host$request_uri;
       '';
     };
 in {
@@ -255,7 +255,7 @@ in {
               client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://login.gdvoisins.com/login";
+              redirect_url = "https://nsso.gdvoisins.com/login";
               # Optional, defaults to no limitations
               # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
@@ -282,7 +282,7 @@ in {
           enableACME = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8082";
-            extraConfig = nginxSsoProxExtraConfig;
+            # extraConfig = nginxSsoProxExtraConfig;
           };
           # locations = {
           #   "/login" = {
