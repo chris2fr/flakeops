@@ -10,19 +10,36 @@ let
     # proxy_set_header Connection $connection_upgrade_keepalive;
   '';
   nginxSsoProxExtraConfig = ''
-      # Set custom information for ACL matching: Each one is available as
-      # a field for matching: X-Host = x-host, ...
-      proxy_set_header X-Origin-URI $request_uri;
-      proxy_set_header X-Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-For $remote_addr;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      # # Extra
-      # proxy_set_header X-Application "nsso";
-      # proxy_redirect    off;
-      # proxy_max_temp_file_size 0;
-      # proxy_set_header  X-Url-Scheme $scheme;
+
+        proxy_set_header X-Origin-URI $request_uri;
+        proxy_set_header X-Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+        # proxy_redirect default;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_read_timeout 90;
+
+        proxy_set_header  X-Url-Scheme $scheme;
+
+
+      # # Set custom information for ACL matching: Each one is available as
+      # # a field for matching: X-Host = x-host, ...
+      # proxy_set_header X-Origin-URI $request_uri;
+      # proxy_set_header X-Host $host;
+      # proxy_set_header X-Real-IP $remote_addr;
+      # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      # proxy_set_header X-Forwarded-For $remote_addr;
+      # proxy_set_header X-Forwarded-Proto $scheme;
+      # # # Extra
+      # # proxy_set_header X-Application "nsso";
+      # # proxy_redirect    off;
+      # # proxy_max_temp_file_size 0;
+      # # proxy_set_header  X-Url-Scheme $scheme;
     '';
     nginxSsoLocations =  {
       "/".extraConfig = ''
@@ -59,6 +76,29 @@ let
         # Do not forward the request body (nginx-sso does not care about it)
         proxy_pass_request_body off;
         proxy_set_header Content-Length "";
+
+        proxy_set_header X-Origin-URI $request_uri;
+        proxy_set_header X-Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+        # proxy_redirect default;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_read_timeout 90;
+
+        proxy_set_header  X-Url-Scheme $scheme;
+
+
+        # proxy_ssl_verify off;
+
+
+
+
+
         # Set custom information for ACL matching: Each one is available as
         # a field for matching: X-Host = x-host, ...
         # proxy_set_header X-Origin-URI $request_uri;
@@ -69,15 +109,10 @@ let
         # proxy_set_header X-Forwarded-Proto $scheme;
         # Extra
         # proxy_set_header X-Application "nsso";
-        proxy_redirect    off;
+        # proxy_redirect    off;
         # proxy_max_temp_file_size 0;
         # proxy_set_header  X-Url-Scheme $scheme;
-            proxy_set_header X-Origin-URI $request_uri;
-            proxy_set_header X-Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header X-Forwarded-Proto $scheme;
+            
       '';
       };
       "@error401".extraConfig = ''
