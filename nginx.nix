@@ -86,7 +86,14 @@ in {
         };
       };
       virtualHosts = {
-        "nsso.gdvoisins.com" = {
+        "_" = {
+          serverAliases = ["nsso.gdvoisins.com"];
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/html";
+          
+        };
+        "protection.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
           extraConfig = ''
@@ -127,6 +134,7 @@ in {
               proxy_set_header X-Host $http_host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_set_header X-Forwarded-For $remote_addr;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Application "nsso";
               proxy_redirect    off;
