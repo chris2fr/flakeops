@@ -100,7 +100,7 @@ in {
           providers = {
             oidc = {
               client_id = "nsso";
-              client_secret = "swTVFLJIH5RtJssPG0YfL3uYr22kH4jT";
+              client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
               # Optional, defaults to "OpenID Connect"
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
