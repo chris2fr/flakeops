@@ -161,7 +161,7 @@ in {
           };
           login = {
             default_method = "oidc";
-            default_redirect = "https://login.gdvoisins.com/login";
+            default_redirect = "https://login.gdvoisins.com/auth";
             names = {
               oidc = "OIDC avec Key Lesgrandsvoisins Com";
             };
@@ -176,7 +176,7 @@ in {
               client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://login.gdvoisins.com/login";
+              redirect_url = "https://login.gdvoisins.com/auth";
               # Optional, defaults to no limitations
               # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
