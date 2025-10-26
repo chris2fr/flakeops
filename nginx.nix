@@ -69,7 +69,7 @@ let
         return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
       '';
       "/sso-auth" = {
-        proxyPass = "https://login.gdvoisins.com";
+        proxyPass = "https://login.gdvoisins.com/auth";
         # proxyPass = "http://[::1]:8082/auth";
         # proxyPass = "http://[::1]:8082/auth";
         extraConfig = ''
