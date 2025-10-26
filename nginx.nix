@@ -127,7 +127,12 @@ in {
           forceSSL = true;
           enableACME = true;
           root = "/var/www/html";
-
+          extraConfig = ''
+            # Redirect the user to the login page when they are not logged in
+            error_page 401 = @error401;
+            # Protect this server using the auth_request
+            auth_request /sso-auth;
+          '';
         };
         "login.gdvoisins.com" = {
           forceSSL = true;
