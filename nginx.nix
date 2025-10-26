@@ -75,6 +75,18 @@ in {
         enable = true;
         configuration = {
           listen = { addr = "127.0.0.1"; port = 8082; };
+          login = {
+            title = "key lesgrandsvoisins com";
+            default_method = "oidc";
+            default_redirect = "https://nsso.gdvoisins.com";
+            names = {
+              "oidc" = "OIDC avec Key Lesgrandsvoisins Com";
+            };
+          };
+          plugins.directory = "./plugins/";
+          audit_log = {
+            events = "['access_denied', 'login_success', 'login_failure', 'logout', 'validate']";
+          };
           cookie = {
             domain = ".gdvoisins.com";
             authentication_key = "Ff1uWJcLouKu9kwxgbnKcU3ps47gps72sxEz79TGHFCpJNfeew66FDisM4MWbstH";
