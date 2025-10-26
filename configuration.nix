@@ -70,6 +70,7 @@ in
     # burp
     openssl
     acme-sh
+    acme-client
     # postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
