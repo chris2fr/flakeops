@@ -1,10 +1,10 @@
 {
     "acl": {
         "rule_sets": [{
-            "rules": null,
             "allow": [
                 "chris"
-            ]
+            ],
+            "rules": null
         }]
     },
     "audit_log": {
@@ -53,7 +53,8 @@
             "client_secret": "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf",
             "issuer_name": "Key.Lesgrandsvoisins.com",
             "issuer_url": "https://key.lesgrandsvoisins.com/realms/master",
-            "redirect_url": "https://login.gdvoisins.com/login"
+            "redirect_url": "https://login.gdvoisins.com/login",
+            "user_id_method": "username"
         }
     }
 }

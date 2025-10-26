@@ -28,7 +28,7 @@ let
       "/" = {
         extraConfig = ''
         #   # Protect this location using the auth_request
-          auth_request /sso-auth;
+          auth_request /auth;
 
           ## Optionally set a header to pass through the username
           # auth_request_set $username $upstream_http_x_username;
@@ -37,13 +37,20 @@ let
           # Automatically renew SSO cookie on request
           auth_request_set $cookie $upstream_http_set_cookie;
           add_header Set-Cookie $cookie;
+
+            proxy_set_header X-Origin-URI $request_uri;
+            proxy_set_header X-Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
         '';
       };
       "/logout".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
         return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
       '';
-      "/sso-auth".extraConfig = ''
+      "/auth".extraConfig = ''
         # Do not allow requests from outside
         internal;
         # Access /auth endpoint to query login state
@@ -53,17 +60,23 @@ let
         proxy_set_header Content-Length "";
         # Set custom information for ACL matching: Each one is available as
         # a field for matching: X-Host = x-host, ...
-        proxy_set_header X-Origin-URI $request_uri;
-        proxy_set_header X-Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        # proxy_set_header X-Origin-URI $request_uri;
+        # proxy_set_header X-Host $host;
+        # proxy_set_header X-Real-IP $remote_addr;
+        ## proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # proxy_set_header X-Forwarded-For $remote_addr;
+        # proxy_set_header X-Forwarded-Proto $scheme;
         # Extra
         # proxy_set_header X-Application "nsso";
         # proxy_redirect    off;
         # proxy_max_temp_file_size 0;
         # proxy_set_header  X-Url-Scheme $scheme;
+            proxy_set_header X-Origin-URI $request_uri;
+            proxy_set_header X-Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
       '';
       "@error401".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
@@ -143,7 +156,7 @@ in {
             ];
             targets = [
               "fd://stdout"
-              "file:///var/log/nginx-sso/audit.jsonl"
+              "file:///var/lib/nginx-sso/audit.jsonl"
             ];
             trusted_ip_headers = [
               "X-Forwarded-For"
@@ -180,7 +193,7 @@ in {
               # Optional, defaults to no limitations
               # require_domain = "gdvoisins.com";
               # Optional, defaults to "subject"
-              user_id_method = "username";
+              # user_id_method = "username";
             };
           };
         };
@@ -194,7 +207,7 @@ in {
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             # Protect this server using the auth_request
-            auth_request /sso-auth;
+            auth_request /auth;
           '';
           locations = nginxSsoLocations;
         };
@@ -223,7 +236,7 @@ in {
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             ## Protect this server using the auth_request
-            # auth_request /sso-auth;
+            # auth_request /auth;
           '';
           root = "/var/www/html/";
           locations = nginxSsoLocations;
