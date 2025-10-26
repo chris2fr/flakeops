@@ -71,6 +71,7 @@ in
     openssl
     acme-sh
     acme-client
+    certbot
     # postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
