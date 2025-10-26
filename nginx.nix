@@ -60,6 +60,10 @@ in {
         enable = true;
         configuration = {
           listen = { addr = "127.0.0.1"; port = 8082; };
+          cookie = {
+            domain = ".gdvoisins.com";
+            authentication_key = "Ff1uWJcLouKu9kwxgbnKcU3ps47gps72sxEz79TGHFCpJNfeew66FDisM4MWbstH";
+          };
           providers = {
             oidc = {
               client_id = "nsso";
