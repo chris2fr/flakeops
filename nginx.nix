@@ -44,7 +44,6 @@ let
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
         '';
-      };
       "/logout".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
         return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
@@ -80,6 +79,7 @@ let
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
       '';
+      };
       "@error401".extraConfig = ''
         # Another server{} directive also proxying to http://127.0.0.1:8082
         return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
