@@ -92,7 +92,7 @@ in {
           root = "/var/www/html";
 
         };
-        "login.gdvoisins.com" = {
+        "login.gdvoisins.com".locations."/" = {
           proxyPass = "http://127.0.0.1:8082/";
         };
         "nsso.gdvoisins.com" = {
