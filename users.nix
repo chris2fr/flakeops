@@ -36,7 +36,7 @@ in
       mannchri = {
         isNormalUser = true;
         openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-        extraGroups = [ "wheel" "syncthing" "libvirtd" "wwwrun" "acme" ];
+        extraGroups = [ "wheel" "syncthing" "libvirtd" "wwwrun" "acme" "nginx-sso" ];
       };
       crabfit = {
         isNormalUser = true;

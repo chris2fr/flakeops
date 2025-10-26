@@ -1,0 +1,65 @@
+{
+  acl = {
+    rule_sets = [
+      {
+        rules = null;
+        allow = [
+          "chris"
+        ];
+      }
+    ];
+  };
+  audit_log = {
+    events = [
+      "access_denied"
+      "login_success"
+      "login_failure"
+      "logout"
+      "validate"
+    ];
+    headers = [
+      "x-origin-uri"
+    ];
+    targets = [
+      "fd://stdout"
+      "file:///var/log/nginx-sso/audit.jsonl"
+    ];
+    trusted_ip_headers = [
+      "X-Forwarded-For"
+      "RemoteAddr"
+      "X-Real-IP"
+    ];
+  };
+  cookie = {
+    authentication_key = "Ff1uWJcLouKu9kwxgbnKcU3ps47gps72sxEz79TGHFCpJNfeew66FDisM4MWbstH";
+    domain = ".gdvoisins.com";
+  };
+  listen = {
+    addr = "127.0.0.1";
+    port = 8082;
+  };
+  login = {
+    default_method = "oidc";
+    default_redirect = "https://login.gdvoisins.com/login";
+    names = {
+      oidc = "OIDC avec Key Lesgrandsvoisins Com";
+    };
+    title = "key lesgrandsvoisins com";
+  };
+  plugins = {
+    directory = "./plugins/";
+  };
+  providers = {
+    oidc = {
+      client_id = "nsso";
+      client_secret = "tnyynKSrchCcAXxrDmGbTStmBMPJXlWf";
+      issuer_name = "Key.Lesgrandsvoisins.com";
+      issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
+      redirect_url = "https://login.gdvoisins.com/login";
+      # Optional, defaults to no limitations
+      # require_domain = "example.com";
+      # Optional, defaults to "subject"
+      # user_id_method = "full-email";
+    };
+  };
+}
