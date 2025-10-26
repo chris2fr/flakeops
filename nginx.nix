@@ -104,7 +104,7 @@ in {
               # Optional, defaults to "OpenID Connect"
               issuer_name = "Key.Lesgrandsvoisins.com";
               issuer_url = "https://key.lesgrandsvoisins.com/realms/master";
-              redirect_url = "https://login.gdvoisins.com/auth";
+              redirect_url = "https://login.gdvoisins.com/login";
 
               # Optional, defaults to no limitations
               # require_domain = "example.com";
