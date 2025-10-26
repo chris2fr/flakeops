@@ -30,8 +30,8 @@ let
           auth_request /sso-auth;
 
           ## Optionally set a header to pass through the username
-          # auth_request_set $username $upstream_http_x_username;
-          # proxy_set_header X-User $username;
+          auth_request_set $username $upstream_http_x_username;
+          proxy_set_header X-User $username;
 
           # Automatically renew SSO cookie on request
           auth_request_set $cookie $upstream_http_set_cookie;
@@ -53,7 +53,7 @@ let
         # proxyPass = "http://127.0.0.1:8082/auth";
         extraConfig = ''
         # Do not allow requests from outside
-        internal;
+        # internal;
         # # Access /auth endpoint to query login state
         # proxy_pass http://127.0.0.1:8082/auth;
         # Do not forward the request body (nginx-sso does not care about it)
