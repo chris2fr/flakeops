@@ -43,7 +43,8 @@ in
     firewall = {
       enable = true;
       package = pkgs.nftables;
-      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "lo" "ve-key" "ve-key-postgres"];
+      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "ve-key-postgres" "lo"];
+      interfaces."ve-key-postgres".allowedTCPPorts = [5432];
       # source: https://docs.syncthing.net/users/firewall.html
       # interfaces."eno1".allowedTCPPorts = [
 
