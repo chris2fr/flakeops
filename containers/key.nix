@@ -15,6 +15,11 @@ in
     hostAddress6 = "2a01:4f8:241:4faa::10:10";
     localAddress6 = "2a01:4f8:241:4faa::10:11";
     config = { config, pkgs, lib, ... }: {
+      networking.extraHosts =
+        ''
+          192.168.105.11 key-postgres
+        '';
+
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
           name = "vim";
@@ -81,6 +86,11 @@ in
           # settings.port = 5433;
           enableTCPIP = true;
           enable = true;
+          settings = {
+            ssl_cert_file = "/etc/postgresql/server.crt";
+            ssl_key_file = "/etc/postgresql/server.key";
+            ssl_ca_file = "/etc/postgresql/root.crt";
+          };
         };
       };
     };
@@ -117,6 +127,10 @@ in
     #   }
     # ];
     config = { config, pkgs, lib, ... }: {
+      networking.extraHosts =
+        ''
+          192.168.105.11 key-postgres
+        '';
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
           name = "vim";
@@ -190,9 +204,10 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
             createLocally=false;
-            host="192.168.105.11";
+            host="key-postgres";
             # useSSL = false;
             # port = 5433;
+            caCert = "/etc/postgresql/root.crt";
           };
           settings = {
             https-port = 443;
