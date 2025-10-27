@@ -1469,9 +1469,10 @@ in {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host = 'maelanc.com') {
-              return 301 $scheme://www.$host$request_uri;
-          }
+          return 302 https://maelnemacherif.wixsite.com/anc1;
+          # if ($host = 'maelanc.com') {
+          #     return 301 $scheme://www.$host$request_uri;
+          # }
         '';
       };
       root = "/var/www/wagtail/";
