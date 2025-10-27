@@ -51,7 +51,7 @@ in
     nftables.enable = true;
     firewall = {
       # extraForwardRules = ''
-
+        # ip6 saddr 2a01:4f8:241:4faa::10 tcp dnat to 2a01:4f8:241:4faa::11
       # '';
       enable = true;
       package = pkgs.nftables;

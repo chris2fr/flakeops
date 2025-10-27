@@ -218,7 +218,8 @@ in
             # http-port = 14080;            
             https-port = 443;
             http-port = 80;
-            http-host = "[2a01:4f8:241:4faa::11]";
+            http-host = "192.168.105.11";
+            # http-host = "2a01:4f8:241:4faa::11";
 
             # proxy = "passthrough";
             # proxy = "reencrypt";
