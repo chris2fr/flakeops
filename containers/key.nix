@@ -111,7 +111,7 @@ in
 
     hostAddress = "192.168.105.10";
     localAddress = "192.168.105.11";
-    hostAddress6 = "2a01:4f8:241:4faa::12";
+    hostAddress6 = "2a01:4f8:241:4faa::10";
     localAddress6 = "2a01:4f8:241:4faa::11";
 
     # forwardPorts = [
@@ -212,8 +212,8 @@ in
             # caCert = "/etc/postgresql/root.crt";
           };
           settings = {
-            https-port = 443;
-            http-port = 80;
+            https-port = 14443;
+            http-port = 10080;
             http-host = "[2a01:4f8:241:4faa::11]";
             # proxy = "passthrough";
             # proxy = "reencrypt";
