@@ -12,8 +12,8 @@ in
 
     hostAddress = "192.168.105.10";
     localAddress = "192.168.105.11";
-    hostAddress6 = "2a01:4f8:241:4faa:10:10";
-    localAddress6 = "2a01:4f8:241:4faa:10:11";
+    hostAddress6 = "2a01:4f8:241:4faa::10:10";
+    localAddress6 = "2a01:4f8:241:4faa::10:11";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -76,9 +76,12 @@ in
       };      
       services = {
         resolved.enable = true;
-        postgresql.package = pkgs.postgresql_15;
-        # postgresql.settings.port = 5433;
-        postgresql.enableTCPIP = true;
+        postgresql = {
+          package = pkgs.postgresql_15;
+          # settings.port = 5433;
+          enableTCPIP = true;
+          enable = true;
+        };
       };
     };
   };
