@@ -45,13 +45,18 @@ in
           proto = "tcp";
           sourcePort = 11443;
         }
+        {
+          destination = "192.168.105.11:14443";
+          proto = "tcp";
+          sourcePort = 14443;
+        }
       ];
     };
     # firewall.enable = false;
     nftables.enable = true;
     firewall = {
       extraForwardRules = ''
-        ip6 saddr 2a01:4f8:241:4faa::10 tcp dnat to 2a01:4f8:241:4faa::11
+        ip6 saddr 2a01:4f8:241:4faa::10 tcp dnat to fa01::2
       '';
       enable = true;
       package = pkgs.nftables;
