@@ -10,16 +10,16 @@ in
       };
     };
     autoStart = true;
-    # privateNetwork = true;
+    privateNetwork = true;
     # macvlans = [
     #   "eno1"
     # ];
     # hostBridge = "brkey";
 
-    # hostAddress = "192.168.105.10";
-    # localAddress = "192.168.105.11";
-    # hostAddress6 = "2a01:4f8:241:4faa::10/125";
-    # localAddress6 = "2a01:4f8:241:4faa::11/125";
+    hostAddress = "192.168.105.10";
+    localAddress = "192.168.105.11";
+    hostAddress6 = "2a01:4f8:241:4faa:10:10";
+    localAddress6 = "2a01:4f8:241:4faa:10:11";
 
     # forwardPorts = [
     #   {
@@ -97,7 +97,7 @@ in
       services = {
         resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
-        postgresql.settings.port = 5433;
+        # postgresql.settings.port = 5433;
         # postgresql.enableTCPIP = true;
         keycloak = {
           enable = true;
@@ -107,9 +107,9 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
-            host="localhost";
+            # host="localhost";
             # useSSL = false;
-            port = 5433;
+            # port = 5433;
           };
           settings = {
             https-port = 443;
