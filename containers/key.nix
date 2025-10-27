@@ -204,8 +204,8 @@ in
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
-            createLocally=false;
-            # host="key-localhsot";
+            # createLocally=false;
+            host="localhsot";
             # useSSL = false;
             # port = 5433;
             # caCert = "/etc/postgresql/root.crt";
@@ -213,7 +213,7 @@ in
           settings = {
             https-port = 443;
             http-port = 80;
-            http-host = "[2a01:4f8:241:4faa::10]";
+            http-host = "[2a01:4f8:241:4faa::11]";
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
