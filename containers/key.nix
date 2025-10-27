@@ -111,6 +111,8 @@ in
 
     hostAddress = "192.168.105.10";
     localAddress = "192.168.105.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     hostAddress6 = "2a01:4f8:241:4faa::10";
     localAddress6 = "2a01:4f8:241:4faa::11";
 
@@ -206,15 +208,18 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             createLocally=true;
-            host="localhost";
-            useSSL = false;
+            # host="localhost";
+            # useSSL = false;
             # port = 5433;
             # caCert = "/etc/postgresql/root.crt";
           };
           settings = {
-            https-port = 14443;
-            http-port = 10080;
-            http-host = "[2a01:4f8:241:4faa::11]";
+            # https-port = 14443;
+            # http-port = 14080;            
+            https-port = 443;
+            http-port = 80;
+            # http-host = "[2a01:4f8:241:4faa::11]";
+
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
