@@ -206,7 +206,7 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             host="localhsot";
-            # useSSL = false;
+            useSSL = false;
             # port = 5433;
             # caCert = "/etc/postgresql/root.crt";
           };
