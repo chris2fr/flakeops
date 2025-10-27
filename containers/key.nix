@@ -183,7 +183,7 @@ in
         # postgresql.settings.port = 5433;
         # postgresql.enableTCPIP = true;
         keycloak = {
-          enable = false;
+          enable = true;
           database = {
             username = "key";
             # name="key"; # I think the database is keycloak and not key
