@@ -7,6 +7,17 @@ in
     hostName = "hetzner005"; # Define your hostname
     useDHCP = true;
     enableIPv6 = true;
+    # bridges = {
+    #   br0 = {
+    #     interfaces = [
+    #       "eno1"
+    #     ];
+    #   };
+    # };
+    # interfaces.br0.ipv6.addresses = {
+    #   address = "2a01:4f8:241:4faa::443";
+    #   prefixLength = 120;
+    # };
     interfaces.eno1.ipv6 = {
       addresses = [
         { address = "2a01:4f8:241:4faa::0"; prefixLength = 126; }
