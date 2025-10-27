@@ -97,7 +97,8 @@ in
       services = {
         resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
-        postgresql.port = 5433;
+        postgresql.settings.port = 5433;
+        # postgresql.enableTCPIP = true;
         keycloak = {
           enable = true;
           database = {
@@ -106,7 +107,7 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
-            # host="localhost";
+            host="localhost";
             # useSSL = false;
             port = 5433;
           };
