@@ -544,7 +544,8 @@ in {
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           locations."/" = {
-            proxyPass = "https://192.168.105.11:14443";
+            proxyPass = "https://[2a01:4f8:241:4faa::10]:443";
+            # proxyPass = "https://192.168.105.11:14443";
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
               proxy_set_header Host $host;
@@ -552,8 +553,8 @@ in {
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host $host;
               proxy_set_header X-Forwarded-Proto $scheme;
-              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-              add_header Access-Control-Allow-Credentials true;
+              # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+              # add_header Access-Control-Allow-Credentials true;
               proxy_ssl_certificate     /var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem;
               proxy_ssl_certificate_key /var/lib/acme/key.lesgrandsvoisins.com/key.pem;
             '';

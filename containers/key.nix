@@ -10,11 +10,11 @@ in
       };
     };
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
+    # privateNetwork = true;
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -44,10 +44,10 @@ in
       system.stateVersion = "25.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-        firewall = {
-          enable = false;
-          allowedTCPPorts = [ 443 587 14443 ];
-        };
+        # firewall = {
+        #   enable = false;
+        #   allowedTCPPorts = [ 443 587 14443 ];
+        # };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
@@ -91,8 +91,9 @@ in
             # useSSL = false;
           };
           settings = {
-            https-port = 14443;
-            http-port = 14080;
+            https-port = 443;
+            http-port = 80;
+            http-host = "[2a01:4f8:241:4faa::10]";
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
