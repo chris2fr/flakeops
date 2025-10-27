@@ -13,15 +13,20 @@ in
     privateNetwork = true;
     # hostBridge = "brkey";
 
-    # hostAddress = "192.168.105.10";
-    # localAddress = "192.168.105.11";
+    hostAddress = "192.168.105.10";
+    localAddress = "192.168.105.11";
     hostAddress6 = "[2a01:4f8:241:4faa::10]";
     localAddress6 = "[2a01:4f8:241:4faa::11]";
 
     forwardPorts = [
       {
+        containerPort = 443;
+        hostPort = 443;
+        protocol = "tcp";
+      }
+      {
         containerPort = 80;
-        hostPort = 8080;
+        hostPort = 80;
         protocol = "tcp";
       }
     ];
@@ -103,7 +108,7 @@ in
           settings = {
             https-port = 443;
             http-port = 80;
-            http-host = "[2a01:4f8:241:4faa::10]";
+            http-host = "[2a01:4f8:241:4faa::11]";
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
