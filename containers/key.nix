@@ -2,13 +2,7 @@
 let
 in
 {
-  containers.key = {
-    bindMounts = {
-      "/var/lib/acme/key.lesgrandsvoisins.com/" = {
-        hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
-        isReadOnly = true;
-      };
-    };
+  containers.key-postgres = {
     autoStart = true;
     privateNetwork = true;
     # macvlans = [
@@ -20,6 +14,92 @@ in
     localAddress = "192.168.105.11";
     hostAddress6 = "2a01:4f8:241:4faa:10:10";
     localAddress6 = "2a01:4f8:241:4faa:10:11";
+    config = { config, pkgs, lib, ... }: {
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override { }).customize {
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+        }
+        )
+        git
+        lynx
+        openldap
+        postgresql_15
+      ];  
+      # virtualisation.docker.enable = true;
+      system.stateVersion = "25.05";
+      nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        # firewall = {
+        #   enable = false;
+        #   allowedTCPPorts = [ 443 587 14443 ];
+        # };
+        useHostResolvConf = lib.mkForce false;
+      };      systemd.tmpfiles.rules = [
+        "f /etc/.secret.keydata 0660 root root"
+      ];
+      # security.acme.acceptTerms = true;
+      users = {
+        groups = {
+          "acme" = {
+            gid = 993;
+            members = [ "acme" ];
+          };
+          "wwwrun" = {
+            gid = 54;
+            members = [ "acme" "wwwrun" ];
+          };
+        };
+        users = {
+          "acme" = {
+            uid = 994;
+            group = "acme";
+          };
+          "wwwrun" = {
+            uid = 54;
+            group = "wwwrun";
+          };
+        };
+      };      
+      services = {
+        resolved.enable = true;
+        postgresql.package = pkgs.postgresql_15;
+        # postgresql.settings.port = 5433;
+        postgresql.enableTCPIP = true;
+      };
+    };
+  };
+  containers.key = {
+    bindMounts = {
+      "/var/lib/acme/key.lesgrandsvoisins.com/" = {
+        hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
+        isReadOnly = true;
+      };
+    };
+    autoStart = true;
+    # privateNetwork = true;
+    # # macvlans = [
+    # #   "eno1"
+    # # ];
+    # # hostBridge = "brkey";
+
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    # hostAddress6 = "2a01:4f8:241:4faa:10:10";
+    # localAddress6 = "2a01:4f8:241:4faa:10:11";
 
     # forwardPorts = [
     #   {
@@ -61,13 +141,13 @@ in
       # virtualisation.docker.enable = true;
       system.stateVersion = "25.05";
       nix.settings.experimental-features = "nix-command flakes";
-      networking = {
-        # firewall = {
-        #   enable = false;
-        #   allowedTCPPorts = [ 443 587 14443 ];
-        # };
-        useHostResolvConf = lib.mkForce false;
-      };
+      # networking = {
+      #   # firewall = {
+      #   #   enable = false;
+      #   #   allowedTCPPorts = [ 443 587 14443 ];
+      #   # };
+      #   useHostResolvConf = lib.mkForce false;
+      # };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
       ];
@@ -95,19 +175,19 @@ in
         };
       };
       services = {
-        resolved.enable = true;
-        postgresql.package = pkgs.postgresql_15;
+        # resolved.enable = true;
+        # postgresql.package = pkgs.postgresql_15;
         # postgresql.settings.port = 5433;
         # postgresql.enableTCPIP = true;
         keycloak = {
-          enable = true;
+          enable = false;
           database = {
             username = "key";
             # name="key"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
-            # createLocally=false;
-            # host="localhost";
+            createLocally=false;
+            host="192.168.105.11";
             # useSSL = false;
             # port = 5433;
           };
