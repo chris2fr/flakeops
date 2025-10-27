@@ -8,15 +8,18 @@ in
     useDHCP = true;
     enableIPv6 = true;
     # bridges = {
-    #   br0 = {
+    #   brkey = {
     #     interfaces = [
     #       "eno1"
     #     ];
     #   };
     # };
-    # interfaces.br0.ipv6.addresses = {
-    #   address = "2a01:4f8:241:4faa::443";
-    #   prefixLength = 120;
+    # interfaces.brkey = {
+    #   useDHCP = false;
+    #   ipv6.addresses = {
+    #     address = "2a01:4f8:241:4faa::443";
+    #     prefixLength = 120;
+    #   };
     # };
     interfaces.eno1.ipv6 = {
       addresses = [

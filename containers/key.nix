@@ -11,25 +11,28 @@ in
     };
     autoStart = true;
     privateNetwork = true;
+    # macvlans = [
+    #   "eno1"
+    # ];
     # hostBridge = "brkey";
 
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "2a01:4f8:241:4faa::10";
-    localAddress6 = "2a01:4f8:241:4faa::11";
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    hostAddress6 = "2a01:4f8:241:4faa::10/125";
+    localAddress6 = "2a01:4f8:241:4faa::11/125";
 
-    forwardPorts = [
-      {
-        containerPort = 443;
-        hostPort = 443;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 80;
-        hostPort = 80;
-        protocol = "tcp";
-      }
-    ];
+    # forwardPorts = [
+    #   {
+    #     containerPort = 443;
+    #     hostPort = 443;
+    #     protocol = "tcp";
+    #   }
+    #   {
+    #     containerPort = 80;
+    #     hostPort = 80;
+    #     protocol = "tcp";
+    #   }
+    # ];
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
