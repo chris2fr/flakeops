@@ -103,7 +103,7 @@ in
       };
     };
     autoStart = true;
-    # privateNetwork = true;
+    privateNetwork = true;
     # # macvlans = [
     # #   "eno1"
     # # ];
