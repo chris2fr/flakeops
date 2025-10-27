@@ -156,16 +156,16 @@ in
         lynx
         openldap
         postgresql_15
-        inetutils
+        # inetutils
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "25.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-      #   # firewall = {
-      #   #   enable = false;
-      #   #   allowedTCPPorts = [ 443 587 14443 ];
-      #   # };
+        firewall = {
+          enable = false;
+          allowedTCPPorts = [ 443 587 14443 ];
+        };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
@@ -207,7 +207,7 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
-            createLocally=true;
+            # createLocally=true;
             # host="localhost";
             # useSSL = false;
             # port = 5433;
@@ -218,7 +218,7 @@ in
             http-port = 14080;            
             # https-port = 443;
             # http-port = 80;
-            http-host = "192.168.105.11";
+            # http-host = "192.168.105.11";
             # http-host = "2a01:4f8:241:4faa::11";
 
             # proxy = "passthrough";
