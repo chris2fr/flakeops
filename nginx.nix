@@ -518,7 +518,7 @@ in {
           serverAliases =
             ["www.gdvoisins.org" ];
           root = "/var/www/gdvoisins/";
-          locations.'/'.extraConfig = ''
+          locations."/".extraConfig = ''
             # kill cache
             add_header Last-Modified $date_gmt;
             add_header Cache-Control 'no-store, no-cache';

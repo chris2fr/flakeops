@@ -228,6 +228,26 @@ in {
         if ($host = 'meet.resdigita.com') {
           return 302 https://jitsi.grandzine.org/resdigita;
         }
+        # Static assets: cache for a year (with versioned filenames)
+        location ~* \.(?:css|js|woff2?|ttf|eot|ico|gif|jpg|jpeg|png|webp|svg)$ {
+            expires 1w;
+            add_header Cache-Control "public, max-age=31536000, immutable";
+        }
+
+        # HTML: cache very briefly (optional)
+        location ~* \.(?:html)$ {
+            expires 5m;
+            add_header Cache-Control "public, max-age=300, must-revalidate";
+        }
+
+        # # API responses: no caching
+        # location /api/ {
+        #     add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+        #     proxy_pass http://localhost:8080;
+        # }
+
+        # Optionally disable ETag if you rely on versioned files
+        etag off;
       '';
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
@@ -239,6 +259,11 @@ in {
           proxy_redirect off;
           proxy_http_version 1.1;
           proxy_set_header X-Forwarded-Proto $scheme;
+
+          # add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+
+          expires 5m;
+          add_header Cache-Control "public, max-age=300, must-revalidate";
 
           # proxy_set_header Host $host;
           # proxy_set_header Upgrade $http_upgrade;
