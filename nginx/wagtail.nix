@@ -709,6 +709,67 @@ in {
       locations."/media" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
+    };    
+    "apps.gdvoisins.com" = {
+      serverAliases = [
+        "admin.gdvoisins.com"
+        "ai.gdvoisins.com"
+        "annuaire.gdvoisins.com"
+        "backup.gdvoisins.com"
+        "blog.gdvoisins.com"
+        "cal.gdvoisins.com"
+        "cloud.gdvoisins.com"
+        "code.gdvoisins.com"
+        "config.gdvoisins.com"
+        "contacts.gdvoisins.com"
+        "discussion.gdvoisins.com"
+        "docs.gdvoisins.com"
+        "drive.gdvoisins.com"
+        "finance.gdvoisins.com"
+        "forms.gdvoisins.com"
+        "forum.gdvoisins.com"
+        "id.gdvoisins.com"
+        "list.gdvoisins.com"
+        "mail.gdvoisins.com"
+        "meet.gdvoisins.com"
+        "net.gdvoisins.com"
+        "pay.gdvoisins.com"
+        "photos.gdvoisins.com"
+        "secret.gdvoisins.com"
+        "sites.gdvoisins.com"
+        "sync.gdvoisins.com"
+        "task.gdvoisins.com"
+        "url.gdvoisins.com"
+        "videos.gdvoisins.com"
+        "webdav.gdvoisins.com"
+        "wiki.gdvoisins.com"
+        "app.gdvoisins.com"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/coopgv/";
+      locations."/" = {
+        proxyPass = "http://localhost:8904/";
+        extraConfig = nginxLocationWagtailExtraConfig + ''
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+            if ($host = 'app.lgv.info') {
+              return 302 $scheme://www.lgv.info$request_uri;
+            }
+            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
     "www.lgv.info" = {
       serverAliases = [
