@@ -126,6 +126,7 @@ in {
         "parisgv.com"
         "configmagic.com"
         "grandv.org"
+        "parisle.com"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -249,6 +250,11 @@ in {
         # Optionally disable ETag if you rely on versioned files
         etag off;
       '';
+      # locations."/fr/search" = {
+      #   extraConfig =  ''
+      #       return 302 $scheme://$host$request_uri;
+      #   '';
+      # };
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
