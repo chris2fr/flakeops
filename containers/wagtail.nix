@@ -302,7 +302,7 @@ in
         pipx
         gnumake
         poetry
-        nodejs_22
+        nodejs_24
         yarn
         jq
         gcc
