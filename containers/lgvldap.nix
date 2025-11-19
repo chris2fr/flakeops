@@ -70,6 +70,7 @@ in
         "f /var/lib/openldap/pmw/schema/pwm.ldif 0755 openldap openldap"
         "d /var/www/lesgrandsvoisins.com/ldap 0775 wwwrun wwwrun"
       ];
+      services.cron.systemCronJobs = [ "0 0 1 * *  root systemctl restart openldap"];
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
       services = {
