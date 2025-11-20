@@ -214,6 +214,8 @@ in {
         "meet.mann.faith"
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
+        "www.gdvoisins.com"
+        "www.gdvoisins.org"
         # "www.lgv.info"
       ];
       enableACME = true;

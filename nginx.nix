@@ -512,11 +512,11 @@ in {
           enableACME = true;
           root = "/var/www/gdv1/";
         };
-        "www.gdvoisins.com" = {
+        "dash.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
-          serverAliases =
-            ["www.gdvoisins.org" ];
+          # serverAliases =
+          #   ["www.gdvoisins.org" ];
           root = "/var/www/gdvoisins/";
           locations."/".extraConfig = ''
             # kill cache
