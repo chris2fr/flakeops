@@ -66,69 +66,69 @@ in
     "fileinto"
   ];
   services = {
-    postfix.virtual = ''
-      max@gdvoisins.com max@lesgrandsvoisins.com
-      chris@gdvoisins.com chris@lesgrandsvoisins.com
-      discourseadmin@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      sviatlana@lesgrandsvoisins.com sviatlana.viarbitskaya@gmail.com
-      sviatlana@lesgrandsvoisins.com sviatlana@lesgrandsvoisins.com
-      arezki@lesgrandsvoisins.com arezkisef@yahoo.fr
-      arezki@lesgrandsvoisins.com arezki@lesgrandsvoisins.com
-      caroline@lesgrandsvoisins.com clhomme@gmail.com
-      pauline@lesgrandsvoisins.com poteomiranda@gmail.com
-      pauline@lesgrandsvoisins.com pauline@lesgrandsvoisins.com
-      rayhane@lesgrandsvoisins.com rayhane.baghdadddi@gmail.com
-      rayhane@lesgrandsvoisins.com rayhane@lesgrandsvoisins.com
-      abel@lesgrandsvoisins.com abel@lesgrandsvoisins.com
-      abel@lesgrandsvoisins.com abelmavura@gmail.com
-      donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      contact@afriquepartenaires.org claudette@afriquepartenaires.org
-      contact@afriquepartenaires.org renel@afriquepartenaires.org
-      contact@afriquepartenaires.org afripartenairesasso@gmail.com
-      claudette@afriquepartenaires.org afripartenaires@gmail.com
-      renel@afriquepartenaires.org culture.coordination@gmail.com
-      felicite@yanlomsprod.org associationyanlomsprod@gmail.com
-      contact@yanlomsprod.org associationyanlomsprod@gmail.com
-      felicite@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
-      contact@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
-      yanlomsprod@lesgrandsvoisins.com associationyanlomsprod@gmail.com
-      yanlomsprod@lesgrandsvoisins.com yanlomsprod@lesgrandsvoisins.com
-      contact@resdigita.com sviatlana@resdigita.com
-      contact@resdigita.com chris@resdigita.com      
-      mael@maelanc.com maelnemacherif@yahoo.fr
-      mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
-      mael@lesgrandsvoisins.com mael@lesgrandsvoisins.com
-      chris@resdigita.com chris@mann.fr
-      sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com 
-      axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
-      alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
-      alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
-      axel.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
-      alex.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
-      axel.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
-      testalias@resdigita.com chris@lesgrandsvoisins.com
-      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
-      chris@fastoche.org chris@lesgrandsvoisins.com
-      lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      lex.larue.fcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-      lex.larue.zytho@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-      alex.larue.kcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-      blex.larue.rock@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-      lex.larue.gml@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-      lex.larue.fcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
-      lex.larue.zytho@resdigita.com axel.leroux@lesgrandsvoisins.com
-      alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
-      blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
-      lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
-      @discourse.paris14.cc admin@discourse.paris14.cc
-      @discourse.lgv.info discourse@lgv.info
-    '';
+    # postfix.virtual = ''
+    #   max@gdvoisins.com max@lesgrandsvoisins.com
+    #   chris@gdvoisins.com chris@lesgrandsvoisins.com
+    #   discourseadmin@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   sviatlana@lesgrandsvoisins.com sviatlana.viarbitskaya@gmail.com
+    #   sviatlana@lesgrandsvoisins.com sviatlana@lesgrandsvoisins.com
+    #   arezki@lesgrandsvoisins.com arezkisef@yahoo.fr
+    #   arezki@lesgrandsvoisins.com arezki@lesgrandsvoisins.com
+    #   caroline@lesgrandsvoisins.com clhomme@gmail.com
+    #   pauline@lesgrandsvoisins.com poteomiranda@gmail.com
+    #   pauline@lesgrandsvoisins.com pauline@lesgrandsvoisins.com
+    #   rayhane@lesgrandsvoisins.com rayhane.baghdadddi@gmail.com
+    #   rayhane@lesgrandsvoisins.com rayhane@lesgrandsvoisins.com
+    #   abel@lesgrandsvoisins.com abel@lesgrandsvoisins.com
+    #   abel@lesgrandsvoisins.com abelmavura@gmail.com
+    #   donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   contact@afriquepartenaires.org claudette@afriquepartenaires.org
+    #   contact@afriquepartenaires.org renel@afriquepartenaires.org
+    #   contact@afriquepartenaires.org afripartenairesasso@gmail.com
+    #   claudette@afriquepartenaires.org afripartenaires@gmail.com
+    #   renel@afriquepartenaires.org culture.coordination@gmail.com
+    #   felicite@yanlomsprod.org associationyanlomsprod@gmail.com
+    #   contact@yanlomsprod.org associationyanlomsprod@gmail.com
+    #   felicite@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
+    #   contact@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
+    #   yanlomsprod@lesgrandsvoisins.com associationyanlomsprod@gmail.com
+    #   yanlomsprod@lesgrandsvoisins.com yanlomsprod@lesgrandsvoisins.com
+    #   contact@resdigita.com sviatlana@resdigita.com
+    #   contact@resdigita.com chris@resdigita.com      
+    #   mael@maelanc.com maelnemacherif@yahoo.fr
+    #   mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
+    #   mael@lesgrandsvoisins.com mael@lesgrandsvoisins.com
+    #   chris@resdigita.com chris@mann.fr
+    #   sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com 
+    #   axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   axel.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   alex.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   axel.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   testalias@resdigita.com chris@lesgrandsvoisins.com
+    #   bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
+    #   chris@fastoche.org chris@lesgrandsvoisins.com
+    #   lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   lex.larue.fcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #   lex.larue.zytho@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #   alex.larue.kcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #   blex.larue.rock@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #   lex.larue.gml@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #   lex.larue.fcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   lex.larue.zytho@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #   @discourse.paris14.cc admin@discourse.paris14.cc
+    #   @discourse.lgv.info discourse@lgv.info
+    # '';
 
     memcached = {
       enable = true;
@@ -176,6 +176,70 @@ in
       # indexAttachments = false;
       enforced = "yes";
       memoryLimit = 2000;
+    };
+
+    forwards = {
+      "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
+      "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
+      "discourseadmin@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "sviatlana@lesgrandsvoisins.com" = "sviatlana.viarbitskaya@gmail.com";
+      # "sviatlana@lesgrandsvoisins.com" = "sviatlana@lesgrandsvoisins.com";
+      "arezki@lesgrandsvoisins.com" = "arezkisef@yahoo.fr";
+      # "arezki@lesgrandsvoisins.com" = "arezki@lesgrandsvoisins.com";
+      "caroline@lesgrandsvoisins.com" = "clhomme@gmail.com";
+      "pauline@lesgrandsvoisins.com" = "poteomiranda@gmail.com";
+      # "pauline@lesgrandsvoisins.com" = "pauline@lesgrandsvoisins.com";
+      "rayhane@lesgrandsvoisins.com" = "rayhane.baghdadddi@gmail.com";
+      # "rayhane@lesgrandsvoisins.com" = "rayhane@lesgrandsvoisins.com";
+      "abel@lesgrandsvoisins.com" = "abel@lesgrandsvoisins.com";
+      # "abel@lesgrandsvoisins.com" = "abelmavura@gmail.com";
+      "donation@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "contact@afriquepartenaires.org" = "claudette@afriquepartenaires.org";
+      # "contact@afriquepartenaires.org" = "renel@afriquepartenaires.org";
+      # "contact@afriquepartenaires.org" = "afripartenairesasso@gmail.com";
+      "claudette@afriquepartenaires.org" = "afripartenaires@gmail.com";
+      "renel@afriquepartenaires.org" = "culture.coordination@gmail.com";
+      "felicite@yanlomsprod.org" = "associationyanlomsprod@gmail.com";
+      "contact@yanlomsprod.org" = "associationyanlomsprod@gmail.com";
+      # "felicite@yanlomsprod.org" = "yanlomsprod@lesgrandsvoisins.com";
+      # "contact@yanlomsprod.org" = "yanlomsprod@lesgrandsvoisins.com";
+      "yanlomsprod@lesgrandsvoisins.com" = "associationyanlomsprod@gmail.com";
+      # "yanlomsprod@lesgrandsvoisins.com" = "yanlomsprod@lesgrandsvoisins.com";
+      "contact@resdigita.com" = "sviatlana@resdigita.com";
+      # "contact@resdigita.com" = "chris@resdigita.com      ";
+      "mael@maelanc.com" = "maelnemacherif@yahoo.fr";
+      "mael@lesgrandsvoisins.com" = "maelnemacherif@yahoo.fr";
+      # "mael@lesgrandsvoisins.com" = "mael@lesgrandsvoisins.com";
+      "chris@resdigita.com" = "chris@mann.fr";
+      "sviatlana@resdigita.com" = "sviatlana.viarbitskaya@gmail.com ";
+      "axel.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "alex.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "alex.quatorzien@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "axel.quatorzien@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "alex.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "axel.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "testalias@resdigita.com" = "chris@lesgrandsvoisins.com";
+      "bienvenue@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "chris@lesgrandsvoisins.fr" = "chris@lesgrandsvoisins.com";
+      "chris@fastoche.org" = "chris@lesgrandsvoisins.com";
+      "lesgdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "quiquoietc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "whowhatetc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "gdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "grandvoisinage@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "lesgrandsvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "lex.larue.fcbk@lesgrandsvoisins.com" = "axel.leroux@lesgrandsvoisins.com";
+      "lex.larue.zytho@lesgrandsvoisins.com" = "axel.leroux@lesgrandsvoisins.com";
+      "alex.larue.kcbk@lesgrandsvoisins.com" = "axel.leroux@lesgrandsvoisins.com";
+      "blex.larue.rock@lesgrandsvoisins.com" = "axel.leroux@lesgrandsvoisins.com";
+      "lex.larue.gml@lesgrandsvoisins.com" = "axel.leroux@lesgrandsvoisins.com";
+      "lex.larue.fcbk@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "lex.larue.zytho@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "alex.larue.kcbk@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "blex.larue.rock@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "lex.larue.gml@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
+      "@discourse.paris14.cc" = "admin@discourse.paris14.cc";
+      "@discourse.lgv.info" = "discourse@lgv.info";
     };
 
   };
