@@ -180,14 +180,14 @@ in
 
     forwards = {
       "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
-      "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
+      "chris@gdvoisins.com" = ["chris@lesgrandsvoisins.com" "chris@mann.fr"];
       "discourseadmin@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
       "sviatlana@lesgrandsvoisins.com" = "sviatlana.viarbitskaya@gmail.com";
       # "sviatlana@lesgrandsvoisins.com" = "sviatlana@lesgrandsvoisins.com";
       "arezki@lesgrandsvoisins.com" = "arezkisef@yahoo.fr";
       # "arezki@lesgrandsvoisins.com" = "arezki@lesgrandsvoisins.com";
       "caroline@lesgrandsvoisins.com" = "clhomme@gmail.com";
-      "pauline@lesgrandsvoisins.com" = "poteomiranda@gmail.com";
+      "pauline@lesgrandsvoisins.com" = ["pauline@lesgrandsvoisins.com" "poteomiranda@gmail.com"];
       # "pauline@lesgrandsvoisins.com" = "pauline@lesgrandsvoisins.com";
       "rayhane@lesgrandsvoisins.com" = "rayhane.baghdadddi@gmail.com";
       # "rayhane@lesgrandsvoisins.com" = "rayhane@lesgrandsvoisins.com";
