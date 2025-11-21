@@ -162,9 +162,9 @@ in
       searchScope = "sub";
       startTls = false;
       postfix = {
+        # filter = "(|(mail=%s)(mail=%s@lesgrandsvoisins.com))";
         mailAttribute = "mail";
         uidAttribute = "mail";
-
       };
     };
 

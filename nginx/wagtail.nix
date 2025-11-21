@@ -215,6 +215,8 @@ in {
         "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
         "www.gdvoisins.com"
+        "en.gdvoisins.com"
+        "fr.gdvoisins.com"
         "www.gdvoisins.org"
         # "www.lgv.info"
       ];
