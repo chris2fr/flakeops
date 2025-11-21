@@ -58,14 +58,44 @@ in
     };
 
   };
-  services.dovecot2.sieve.scripts = { };
-  services.dovecot2.sieve.extensions = [
-    "notify"
-    "imapflags"
-    "vnd.dovecot.filter"
-    "fileinto"
-  ];
   services = {
+    dovecot2 = {
+      # extraConfig = ''
+      #   auth_mechanisms = plain login oauth2
+      #   passdb {
+      #     driver = oauth2
+      #     mechanisms = xoauth2 oauthbearer
+      #     args = /etc/dovecot/dovecot-oauth2.conf.ext
+      #   }
+
+      #   # userdb {
+      #   #   driver = static
+      #   #   args = uid=vmail gid=vmail home=/var/vmail/%u
+      #   # }
+
+      #   # authentication debug logging
+      #   auth_debug = yes
+      #   auth_verbose = yes
+
+      #   # # provide SASL via unix socket to postfix
+      #   # service auth {
+      #   #   unix_listener /var/spool/postfix/private/auth {
+      #   #     mode = 0660
+      #   #     # Assuming the default Postfix user and group
+      #   #     user = postfix
+      #   #     group = postfix
+      #   #   }
+      #   # }
+      # '';
+      sieve.scripts = { };
+      sieve.extensions = [
+        "notify"
+        "imapflags"
+        "vnd.dovecot.filter"
+        "fileinto"
+      ];
+    };
+
     # postfix.virtual = ''
     #   max@gdvoisins.com max@lesgrandsvoisins.com
     #   chris@gdvoisins.com chris@lesgrandsvoisins.com
@@ -209,8 +239,8 @@ in
       "contact@afriquepartenaires.org" = ["claudette@afriquepartenaires.org" "renel@afriquepartenaires.org" "afripartenairesasso@gmail.com"];
       "claudette@afriquepartenaires.org" = "afripartenaires@gmail.com";
       "renel@afriquepartenaires.org" = "culture.coordination@gmail.com";
-      "felicite@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "yanlomsprod@lesgrandsvoisins.com" ];
-      "contact@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "yanlomsprod@lesgrandsvoisins.com"];
+      "felicite@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "felicite@yanlomsprod.org" ];
+      "contact@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "contact@yanlomsprod.org"];
       "yanlomsprod@lesgrandsvoisins.com" = ["yanlomsprod@lesgrandsvoisins.com" "associationyanlomsprod@gmail.com"];
       "contact@resdigita.com" = ["sviatlana@resdigita.com" "chris@resdigita.com"];
       "mael@maelanc.com" = "maelnemacherif@yahoo.fr";
