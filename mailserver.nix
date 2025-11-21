@@ -220,6 +220,9 @@ in
     # };
 
     forwards = {
+      "contact@gdvoisins.com" = "contact@lesgrandsvoisins.com";
+      "bienvenue@gdvoisins.com" = "bienvenue@lesgrandsvoisins.com";
+      "contact@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "contact@lesgrandsvoisins.com"];
       "pauline@gdvoisins.com" = "pauline@lesgrandsvoisins.com";
       "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
       "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
@@ -254,7 +257,7 @@ in
       "alex.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
       "axel.desmoulins@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
       "testalias@resdigita.com" = "chris@lesgrandsvoisins.com";
-      "bienvenue@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "bienvenue@lesgrandsvoisins.com" = ["contact@lesgrandsvoisins.com" "chris@lesgrandsvoisins.com"];
       "chris@lesgrandsvoisins.fr" = "chris@lesgrandsvoisins.com";
       "chris@fastoche.org" = "chris@lesgrandsvoisins.com";
       "lesgdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
