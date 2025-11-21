@@ -53,23 +53,23 @@ in {
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "old.lesgrandsvoisins.com" = {
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/lesgrandsvoisins/";
-      # root = "/var/www/coopgv/";
-      locations."/" = {
-        # return =  "302 https://blog.lesgrandsvoisins.com";
-        proxyPass = "http://localhost:8894/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };
+    # "old.lesgrandsvoisins.com" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/lesgrandsvoisins/";
+    #   # root = "/var/www/coopgv/";
+    #   locations."/" = {
+    #     # return =  "302 https://blog.lesgrandsvoisins.com";
+    #     proxyPass = "http://localhost:8894/";
+    #     extraConfig = nginxLocationWagtailExtraConfig + ''
+    #       # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+    #     '';
+    #   };
+    #   locations."/favicon.ico" = { proxyPass = null; };
+    #   locations."/static" = { proxyPass = null; };
+    #   locations."/medias" = { proxyPass = null; };
+    #   locations."/.well-known" = { proxyPass = null; };
+    # };
     "lgv.info" = {
       enableACME = true;
       forceSSL = true;
@@ -221,6 +221,7 @@ in {
         "archive.gdvoisins.com"
         "fr.gdvoisins.com"
         "www.gdvoisins.org"
+        "old.gdvoisins.org"
         # "www.lgv.info"
       ];
       enableACME = true;
