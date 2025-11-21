@@ -460,7 +460,7 @@ in {
         };
         "ld.gdvoisins.com" = {
           serverAliases =
-            [ "linkding.lesgrandsvoisins.com" "ld.l14s.com"];
+            [ "linkding.lesgrandsvoisins.com"];
           root = "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
