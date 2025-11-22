@@ -107,7 +107,8 @@ in
             # host = "2a01:4f8:241:4faa::10";
             # port = 5434;
             # host = "localhost";
-            host = "/run/postgresql";
+            # host = "/run/postgresql/.s.PGSQL.5434";
+            host = "/run/postgresql/";
             db = "wikijs";
             user = "wikijs";
           };
@@ -126,8 +127,10 @@ in
           enable = true;
           ensureUsers = [{name="wikijs";ensureDBOwnership=true;}];
           ensureDatabases = ["wikijs"];
-          enableTCPIP = true;
-          settings.port = 5434;
+          # enableTCPIP = true;
+          # settings.port = 5434;
+          # listen_addresses = "2a01:4f8:241:4faa::10";
+          enableTCPIP = false;
         };
       };
       systemd.services.wiki-js.serviceConfig.User = "wikijs";
