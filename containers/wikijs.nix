@@ -118,6 +118,7 @@ in
             key = "/var/lib/acme/www.configmagic.com/key.pem";
             cert = "/var/lib/acme/www.configmagic.com/fullchain.pem";
           };
+          settings.bindIP = "fc00::12:2";
         };
         postgresql = {
           enable = true;
