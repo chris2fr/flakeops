@@ -170,18 +170,18 @@ in {
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-      # defaultListenAddresses =
-        # [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
-      defaultListen = [
-        { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
-        # { addr = "116.202.236.241";  } 
-        # { addr = "127.0.0.1"; port = 80; } 
-        # { addr = "[::1]"; port = 80; } 
-        { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
-        # { addr = "[2a01:4f8:241:4faa::]";  } 
-        { addr = "0.0.0.0"; }
-        { addr = "[::0]"; }
-      ];
+      defaultListenAddresses =
+        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
+      # defaultListen = [
+      #   { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
+      #   # { addr = "116.202.236.241";  } 
+      #   # { addr = "127.0.0.1"; port = 80; } 
+      #   # { addr = "[::1]"; port = 80; } 
+      #   { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
+      #   # { addr = "[2a01:4f8:241:4faa::]";  } 
+      #   { addr = "0.0.0.0"; }
+      #   { addr = "[::0]"; }
+      # ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
@@ -1109,10 +1109,12 @@ in {
               # proxyPass = "http://192.168.112.11:3000";
               
               extraConfig = ''
-
+              proxy_protocol on
               proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Real-IP $proxy_protocol_addr;
+              # proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_protocol_addr;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host $host;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_redirect off;
