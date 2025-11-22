@@ -106,6 +106,7 @@ in
           settings.db = {
             # host = "localhost";
             host = "/run/postgresql";
+            port = 5434;
             db = "wikijs";
             user = "wikijs";
           };
@@ -125,6 +126,7 @@ in
           ensureUsers = [{name="wikijs";ensureDBOwnership=true;}];
           ensureDatabases = ["wikijs"];
           enableTCPIP = true;
+          settings.port = 5434;
         };
       };
       systemd.services.wiki-js.serviceConfig.User = "wikijs";
