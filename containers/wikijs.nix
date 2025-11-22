@@ -133,7 +133,7 @@ in
           settings = {
             # ssl = true;
             port = 5434;
-            listen_addresses = "2a01:4f8:241:4faa::10";
+            listen_addresses = lib.mkForce "2a01:4f8:241:4faa::10";
           };
         };
       };
