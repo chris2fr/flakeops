@@ -174,8 +174,8 @@ in {
         # [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
       defaultListen = [
         { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
-        { addr = "127.0.0.1"; port = 80; } 
-        { addr = "[::1]"; port = 80; } 
+        # { addr = "127.0.0.1"; port = 80; } 
+        # { addr = "[::1]"; port = 80; } 
         { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
       ];
       appendHttpConfig = ''
@@ -457,13 +457,13 @@ in {
             '';
           };
         };
-        "0.ipv6.lesgrandsvoisins.com" = {
-          listen = [{
-            addr = "[2a01:4f8:241:4faa::0]";
-            port = 80;
-          }];
-          root = "/var/www/html/";
-        };
+        # "0.ipv6.lesgrandsvoisins.com" = {
+        #   listen = [{
+        #     addr = "[2a01:4f8:241:4faa::0]";
+        #     port = 80;
+        #   }];
+        #   root = "/var/www/html/";
+        # };
         "ld.gdvoisins.com" = {
           serverAliases =
             [ "linkding.lesgrandsvoisins.com"];
