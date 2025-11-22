@@ -170,6 +170,7 @@ in
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
+        "d /run/postgresql/ 0755 postgres postgres"
         "L /run/postgresql/.s.PGSQL.5435 /run/postgresql/.s.PGSQL.5432"
       ];
       # security.acme.acceptTerms = true;
@@ -199,7 +200,7 @@ in
         # resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
         postgresql.settings.port = 5435;
-        # postgresql.enableTCPIP = true;
+        postgresql.enableTCPIP = true;
         keycloak = {
           enable = true;
           database = {
@@ -209,7 +210,9 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
+            host="::1";
             # host="2a01:4f8:241:4faa::";
+            # host = "/run/postgresql/";
             useSSL = true;
             port = 5435;
             caCert = "/etc/postgresql/root.crt";
