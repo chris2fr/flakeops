@@ -1114,7 +1114,7 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "https://www.configmagic.com:3443";
+              proxyPass = "https://[2a01:4f8:241:4faa::]:3443";
               # proxyPass = "https://[fc00::12:2]:3443";
               # proxyPass = "http://192.168.112.11:3000";
               
