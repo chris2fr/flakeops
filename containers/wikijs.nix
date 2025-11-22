@@ -101,7 +101,7 @@ in
             db = "wikijs";
             user = "wikijs";
           };
-          logLevel = "debug";
+          settings.logLevel = "debug";
         };
         postgresql = {
           enable = true;
