@@ -104,9 +104,10 @@ in
           enable = true;
           environmentFile = "/etc/wikijs/.env";
           settings.db = {
+            # host = "2a01:4f8:241:4faa::10";
+            # port = 5434;
             # host = "localhost";
             host = "/run/postgresql";
-            port = 5434;
             db = "wikijs";
             user = "wikijs";
           };
@@ -119,7 +120,7 @@ in
             key = "/var/lib/acme/www.configmagic.com/key.pem";
             cert = "/var/lib/acme/www.configmagic.com/fullchain.pem";
           };
-          settings.bindIP = "2a01:4f8:241:4faa::11";
+          settings.bindIP = "2a01:4f8:241:4faa::10";
         };
         postgresql = {
           enable = true;

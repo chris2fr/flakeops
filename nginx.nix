@@ -552,7 +552,7 @@ in {
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           locations."/" = {
-            # proxyPass = "https://[2a01:4f8:241:4faa::11]:443";
+            # proxyPass = "https://[2a01:4f8:241:4faa::10]:443";
             proxyPass = "https://192.168.105.11:14443";
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
@@ -1093,7 +1093,7 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "https://[2a01:4f8:241:4faa::11]:3443";
+              proxyPass = "https://[2a01:4f8:241:4faa::10]:3443";
               # proxyPass = "https://[fc00::12:2]:3443";
               # proxyPass = "http://192.168.112.11:3000";
               
