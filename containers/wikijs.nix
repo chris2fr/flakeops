@@ -16,11 +16,11 @@ in
     #   };
     # };
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.112.10";
-    localAddress = "192.168.112.11";
-    hostAddress6 = "fc00::12:1";
-    localAddress6 = "fc00::12:2";
+    privateNetwork = false;
+    # hostAddress = "192.168.112.10";
+    # localAddress = "192.168.112.11";
+    # hostAddress6 = "fc00::12:1";
+    # localAddress6 = "fc00::12:2";
     config = { config, pkgs, lib, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
@@ -49,10 +49,10 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
-          enable = false;
-          allowedTCPPorts = [ 80 443 587 3000 3443 ];
+          enable = true;
+          allowedTCPPorts = [ 3443 ];
         };
-        useHostResolvConf = lib.mkForce false;
+        # useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
         # "f /etc/.secret.keycloackparis14ccdata 0660 root root"
@@ -90,7 +90,7 @@ in
       };
       services.cron.systemCronJobs = [ "0 0 1 * *  root systemctl restart wiki-js"];
       services = {
-        resolved.enable = true;
+        # resolved.enable = true;
         # postgresql = {
         #   package = pkgs.postgresql_17;
         #   enable = true;
@@ -118,7 +118,7 @@ in
             key = "/var/lib/acme/www.configmagic.com/key.pem";
             cert = "/var/lib/acme/www.configmagic.com/fullchain.pem";
           };
-          settings.bindIP = "fc00::12:2";
+          settings.bindIP = "2a01:4f8:241:4faa::11";
         };
         postgresql = {
           enable = true;
