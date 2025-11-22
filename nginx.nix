@@ -174,11 +174,11 @@ in {
         # [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
       defaultListen = [
         { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
-        { addr = "116.202.236.241";  } 
+        # { addr = "116.202.236.241";  } 
         # { addr = "127.0.0.1"; port = 80; } 
         # { addr = "[::1]"; port = 80; } 
         { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
-        { addr = "[2a01:4f8:241:4faa::]";  } 
+        # { addr = "[2a01:4f8:241:4faa::]";  } 
       ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
@@ -1096,12 +1096,13 @@ in {
           locations."/".proxyPass = "http://127.0.0.1:9000";
         };
         "www.configmagic.com" = {
+          server
           enableACME = true;
           forceSSL = true;
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "https://[2a01:4f8:241:4faa::10]:3443";
+              proxyPass = "https://ipv6.configmagic.com:3443";
               # proxyPass = "https://[fc00::12:2]:3443";
               # proxyPass = "http://192.168.112.11:3000";
               
