@@ -50,7 +50,7 @@ in
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [25 587 3443 ];
+          allowedTCPPorts = [25 80 443 587 3443 ];
         };
         # useHostResolvConf = lib.mkForce false;
       };

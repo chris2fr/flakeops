@@ -209,10 +209,10 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            # host="2a01:4f8:241:4faa::10";
-            useSSL = false;
+            host="2a01:4f8:241:4faa::";
+            useSSL = true;
             port = 5435;
-            # caCert = "/etc/postgresql/root.crt";
+            caCert = "/etc/postgresql/root.crt";
           };
           settings = {
             https-port = 14443;
@@ -227,6 +227,7 @@ in
             # proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
+            jdbc-params = "sslmode=require&sslcert=/etc/postgresql/root.crt";
           };
           sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
