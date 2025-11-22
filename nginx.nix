@@ -1098,7 +1098,7 @@ in {
           locations."/".proxyPass = "http://127.0.0.1:9000";
         };
         "www.configmagic.com" = {
-          server
+          serverAliases = ["ipv6.configmagic.com"];
           enableACME = true;
           forceSSL = true;
           locations = {
