@@ -105,7 +105,7 @@ in
           environmentFile = "/etc/wikijs/.env";
           settings.db = {
             # host = "2a01:4f8:241:4faa::10";
-            # port = 5434;
+            port = 5434;
             # host = "localhost";
             host = "/run/postgresql/";
             # host = "/run/postgresql/";
@@ -135,7 +135,7 @@ in
             # ssl = true;
             # ssl_key_file = "/var/lib/acme/www.configmagic.com/key.pem";
             # ssl_cert_file = "/var/lib/acme/www.configmagic.com/fullchain.pem";
-            # port = 5434;
+            port = 5434;
             listen_addresses = lib.mkForce "2a01:4f8:241:4faa::10";
           };
         };
