@@ -107,7 +107,7 @@ in
             # host = "2a01:4f8:241:4faa::10";
             # port = 5434;
             # host = "localhost";
-            host = "/run/postgresql/.s.PGSQL.5434";
+            host = "/run/postgresql/";
             # host = "/run/postgresql/";
             db = "wikijs";
             user = "wikijs";
@@ -135,7 +135,7 @@ in
             # ssl = true;
             # ssl_key_file = "/var/lib/acme/www.configmagic.com/key.pem";
             # ssl_cert_file = "/var/lib/acme/www.configmagic.com/fullchain.pem";
-            port = 5434;
+            # port = 5434;
             listen_addresses = lib.mkForce "2a01:4f8:241:4faa::10";
           };
         };
