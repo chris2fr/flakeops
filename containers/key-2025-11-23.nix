@@ -103,16 +103,16 @@ in
       };
     };
     autoStart = true;
-    privateNetwork = true;
+    # privateNetwork = true;
     # # macvlans = [
     # #   "eno1"
     # # ];
     # # hostBridge = "brkey";
 
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     # hostAddress6 = "2a01:4f8:241:4faa::10";
     # localAddress6 = "2a01:4f8:241:4faa::11";
 
@@ -163,13 +163,15 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
-          enable = false;
-          allowedTCPPorts = [ 443 587 14443 ];
+          enable = true;
+          allowedTCPPorts = [ 25 80 443 467 587 5432 5435 14443 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
+        # "d /run/postgresql/ 0755 postgres postgres"
+        # "L /run/postgresql/.s.PGSQL.5435 /run/postgresql/.s.PGSQL.5432"
       ];
       # security.acme.acceptTerms = true;
       users = {
@@ -195,10 +197,11 @@ in
         };
       };
       services = {
-        resolved.enable = true;
+        # resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
-        # postgresql.settings.port = 5433;
+        postgresql.settings.port = 5435;
         # postgresql.enableTCPIP = true;
+        # postgresql.enable = true;
         keycloak = {
           enable = true;
           database = {
@@ -208,10 +211,12 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            # host="localhost";
-            # useSSL = false;
-            # port = 5433;
-            # caCert = "/etc/postgresql/root.crt";
+            # host="::1";
+            host="2a01:4f8:241:4faa::10";
+            # host = "/run/postgresql/";
+            useSSL = true;
+            # port = 5435;
+            caCert = "/etc/postgresql/root.crt";
           };
           settings = {
             https-port = 14443;
@@ -219,13 +224,15 @@ in
             # https-port = 443;
             # http-port = 80;
             # http-host = "192.168.105.11";
-            # http-host = "2a01:4f8:241:4faa::11";
-
+            http-host = "2a01:4f8:241:4faa::10";
+            proxy-protocol-enabled = true;
             # proxy = "passthrough";
             # proxy = "reencrypt";
-            proxy-headers = "xforwarded";
+            # proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
+            # jdbc-params = "sslmode=require&sslcert=/etc/postgresql/root.crt";
+            # db-url-properties = "?ssl=true&sslrootcert=/etc/postgresql/root.crt&sslmode=verify-ca";
           };
           sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";

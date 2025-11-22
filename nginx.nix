@@ -569,8 +569,8 @@ in {
           #  { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; } 
           # ];
           locations."/" = {
-            proxyPass = "https://[2a01:4f8:241:4faa::]:14443";
-            # proxyPass = "https://192.168.105.11:14443";
+            # proxyPass = "https://[2a01:4f8:241:4faa::]:14443";
+            proxyPass = "https://192.168.105.11:14443";
             # proxyPass = "https://10.ipv6.configmagic.com";
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
