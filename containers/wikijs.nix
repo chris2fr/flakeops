@@ -58,6 +58,7 @@ in
         # "f /etc/.secret.keycloackparis14ccdata 0660 root root"
         "d /etc/wikijs/ 0750 wikijs root"
         "f /etc/wikijs/.env 0660 wikijs root"
+        "d /var/lib/acme/www.configmagic.com/ 0750 acme wwwrun"
         # "d /var/lib/acme/keycloak.paris14.cc/ 0750 acme wwwrun"
         # "f /etc/.secret.keycloackparis14cc 0660 keycloak postgres"
       ];
