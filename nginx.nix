@@ -1090,8 +1090,8 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "http://[fc00::12:2]:3000";
-              # proxyPass = "http://192.168.112.11:3000";
+              # proxyPass = "http://[fc00::12:2]:3000";
+              proxyPass = "http://192.168.112.11:3000";
               
               extraConfig = ''
                 proxy_set_header X-Forwarded-Proto $scheme;
@@ -1107,7 +1107,7 @@ in {
                 proxy_http_version 1.1;
                 proxy_set_header  Upgrade $http_upgrade;
                 proxy_set_header  Connection "upgrade";
-                proxy_bind $remote_addr transparent;
+                # proxy_bind $remote_addr transparent;
 
                 # client_max_body_size 2500M;
 
