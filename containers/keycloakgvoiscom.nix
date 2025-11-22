@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 let
+  keyclaokgvoisPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/.secrets.keycloakgvois));
 in
 {
   containers.keycloakgvois = {
@@ -114,6 +115,7 @@ in
             proxy-headers = "xforwarded";
             hostname = "keycloak.gvois.com";
             # hostname-admin = "adminkeycloak.gvois.com";
+            initialAdminPassword = "${keyclaokgvoisPassword}";
           };
           sslCertificate = "/var/lib/acme/keycloak.gvois.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/keycloak.gvois.com/key.pem";

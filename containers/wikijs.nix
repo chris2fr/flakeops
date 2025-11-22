@@ -101,6 +101,7 @@ in
             db = "wikijs";
             user = "wikijs";
           };
+          logLevel = "debug";
         };
         postgresql = {
           enable = true;
