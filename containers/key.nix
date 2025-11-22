@@ -200,7 +200,8 @@ in
         # resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
         postgresql.settings.port = 5435;
-        postgresql.enableTCPIP = true;
+        # postgresql.enableTCPIP = true;
+        # postgresql.enable = true;
         keycloak = {
           enable = true;
           database = {
@@ -210,11 +211,11 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            host="::1";
-            # host="2a01:4f8:241:4faa::";
+            # host="::1";
+            host="2a01:4f8:241:4faa::10";
             # host = "/run/postgresql/";
             useSSL = true;
-            port = 5435;
+            # port = 5435;
             caCert = "/etc/postgresql/root.crt";
           };
           settings = {
@@ -223,7 +224,7 @@ in
             # https-port = 443;
             # http-port = 80;
             # http-host = "192.168.105.11";
-            http-host = "2a01:4f8:241:4faa::";
+            http-host = "2a01:4f8:241:4faa::10";
             proxy-protocol-enabled = true;
             # proxy = "passthrough";
             # proxy = "reencrypt";
