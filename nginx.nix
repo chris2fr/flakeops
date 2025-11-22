@@ -171,13 +171,14 @@ in {
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
       defaultListenAddresses =
-        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
+        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::10]" "[::1]" ];
       # defaultListen = [
-      #   { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
+      #   { addr = "116.202.236.241"; ssl = true;  } 
       #   # { addr = "116.202.236.241";  } 
       #   # { addr = "127.0.0.1"; port = 80; } 
       #   # { addr = "[::1]"; port = 80; } 
-      #   { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
+      #   { addr = "[2a01:4f8:241:4faa::]";  ssl = true;  } 
+      #   { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  } 
       #   # { addr = "[2a01:4f8:241:4faa::]";  } 
       #   { addr = "0.0.0.0"; }
       #   { addr = "[::0]"; }
@@ -206,6 +207,12 @@ in {
         "wagtailstatic".servers = { "10.245.101.15:8888" = { }; };
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
         # "keylesgrandsvoisinscom".servers = {""};
+        # "main-relay".servers = { "116.202.236.241:12443" = { }; };
+        # "noproxy-relay".servers = { "116.202.236.241:12444" = { }; };
+        # "proxy-relay".servers = { "116.202.236.241:12444" = { }; };
+        # "main-relay6".servers = { "[2a01:4f8:241:4faa::]:12443" = { }; };
+        # "noproxy-relay6".servers = { "[2a01:4f8:241:4faa::]:12444" = { }; };
+        # "proxy-relay6".servers = { "[2a01:4f8:241:4faa::]:12444" = { }; };
       };
       sso = {
         enable = true;
@@ -291,6 +298,7 @@ in {
           enableACME = true;
           root = "/var/www/html";
           extraConfig = ''
+            proxy_protocol off;
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             # Protect this server using the auth_request
@@ -299,6 +307,7 @@ in {
           locations = nginxSsoLocations;
         };
         "login.gdvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -333,6 +342,7 @@ in {
           forceSSL = true;
           enableACME = true;
           extraConfig = ''
+            proxy_protocol off;
             # Redirect the user to the login page when they are not logged in
             error_page 401 = @error401;
             ## Protect this server using the auth_request
@@ -429,6 +439,7 @@ in {
           };
         };
         "www.paris14.cc" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           serverAliases = [ "paris14.cc" ];
@@ -448,6 +459,7 @@ in {
           };
         };       
         "publii.paris14.cc" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           root = "/var/www/publiiparis14cc/";
@@ -509,21 +521,25 @@ in {
             [ "villagegv.com" "www.villagegv.org" "villagegv.org" ];
           root = "/var/www/village/";
           extraConfig = ''
+            proxy_protocol off;
             return 302 $scheme://www.village.ngo$request_uri;
           '';
         };
         "www.l14s.com" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           root = "/var/www/l14s/";
         };
         "www.gdv1.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = ["www.gdv1.org"];
           forceSSL = true;
           enableACME = true;
           root = "/var/www/gdv1/";
         };
         "dash.gdvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           # serverAliases =
@@ -539,6 +555,7 @@ in {
           '';
         };
         "keycloak.village.ngo" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloakvillagengo";
@@ -557,6 +574,7 @@ in {
           };
         };
         "key.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol on;";
           enableACME = true;
           forceSSL = true;
           serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
@@ -575,10 +593,10 @@ in {
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
               proxy_set_header Host $host;
-              # proxy_set_header X-Real-IP $proxy_protocol_addr;
-              # proxy_set_header X-Forwarded-For $proxy_protocol_addr;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Real-IP $proxy_protocol_addr;
+              proxy_set_header X-Forwarded-For $proxy_protocol_addr;
+              # proxy_set_header X-Real-IP $remote_addr;
+              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host $host;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_ssl_certificate     /var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem;
@@ -591,6 +609,7 @@ in {
           };
         };
         "key.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           serverAliases = [ "adminkey.resdigita.com" ];
@@ -613,6 +632,7 @@ in {
           };
         };
         "keycloak.paris14.cc" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.paris14.cc";
@@ -636,6 +656,7 @@ in {
           };
         };
         "keycloak.gdvox.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.gvois.com";
@@ -657,6 +678,7 @@ in {
           };
         };
         "keycloak.lesgv.org" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.gvois.com";
@@ -678,6 +700,7 @@ in {
           };
         };
         "keycloak.coolgv.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.gvois.com";
@@ -699,6 +722,7 @@ in {
           };
         };
         "keycloak.parisgv.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.parisgv.com";
@@ -726,6 +750,7 @@ in {
           };
         };
         "keycloak.gvois.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.gvois.com";
@@ -748,6 +773,7 @@ in {
           };
         };
         "keycloak.parisle.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.parisle.com";
@@ -770,6 +796,7 @@ in {
           };
         };
         "link.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "link.gv.coop" ];
           forceSSL = true;
           enableACME = true;
@@ -798,6 +825,7 @@ in {
         };
         # "ldap.gv.coop" = {
         "ldap.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           # serverAliases = ["lgvldap.lesgrandsvoisins.com"];
           forceSSL = true;
           enableACME = true;
@@ -831,6 +859,7 @@ in {
           # root = "/var/www/gv.coop/ldap";
         };
         "syncthing.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -851,18 +880,21 @@ in {
           };
         };
         "pocketbase.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "pocket.resdigita.com" ];
           forceSSL = true;
           enableACME = true;
           locations."/" = { proxyPass = "http://localhost:8090"; };
         };
         "wordpress.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           serverAliases = [ "ghh.resdigita.com" ];
           globalRedirect = "ghh.resdigita.com:11443";
         };
         "mail.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             # "mail.hopgv.org"
             # "mail.hopgv.com"
@@ -875,6 +907,7 @@ in {
           locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
         "publii.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/publii";
@@ -887,11 +920,13 @@ in {
           '';
         };
         "roundcube.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           root = "/var/www/roundcube";
         };
         "vw.gdvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "vw.lgv.info"
             "vw.l14s.com"
@@ -913,6 +948,7 @@ in {
           };
         };
         "uptime-kuma.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "uptime-kuma.lesgv.org"
             "uk.lesgv.org"
@@ -936,6 +972,7 @@ in {
           };
         };
         "xandikos.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "xandikos.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
@@ -951,6 +988,7 @@ in {
           };
         };
         "ethercalc.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases =
             [ "ethercalc.lesgv.org" "table.lesgrandsvoisins.com" ];
           enableACME = true;
@@ -966,6 +1004,7 @@ in {
           };
         };
         "radicale.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "radicale.lesgv.org"
             "radicale.lesgrandsvoisins.com"
@@ -983,11 +1022,13 @@ in {
           };
         };
         "keeweb.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           globalRedirect = "keepass.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "filebrowser.gv.coop"
             "filebrowser.lesgv.org"
@@ -1006,6 +1047,7 @@ in {
           };
         };
         "chris.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "chris.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
@@ -1019,6 +1061,7 @@ in {
           };
         };
         "axel.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "axel.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
@@ -1032,6 +1075,7 @@ in {
           };
         };
         "maruftuyel.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ "maruftuyel.lesgv.org" ];
           enableACME = true;
           forceSSL = true;
@@ -1045,6 +1089,7 @@ in {
           };
         };
         "homepage-dashboard.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "homepage-dashboard.gv.coop"
             "homepage-dashboard.lesgv.org"
@@ -1063,12 +1108,14 @@ in {
           # locations."/".proxyPass = "http://192.168.102.2:3000/";
           locations."/".proxyPass = "https://192.168.102.2:3443/";
           extraConfig = ''
+            proxy_protocol off;
             proxy_set_header X-Forwarded-Proto $scheme;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_redirect off;
           '';
         };
         "ete.village.ngo" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           serverAliases = [ "ete.lesgrandsvoisins.com" ];
@@ -1076,6 +1123,7 @@ in {
             "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "drive.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1103,11 +1151,13 @@ in {
           };
         };
         "minio.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://127.0.0.1:9000";
         };
         "www.configmagic.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = ["ipv6.configmagic.com"];
           enableACME = true;
           forceSSL = true;
@@ -1119,7 +1169,7 @@ in {
               # proxyPass = "http://192.168.112.11:3000";
               
               extraConfig = ''
-              # proxy_protocol on
+              # proxy_protocol off
               proxy_set_header Host $host;
               # proxy_set_header X-Real-IP $proxy_protocol_addr;
               proxy_set_header X-Real-IP $remote_addr;
@@ -1149,6 +1199,7 @@ in {
           };
         };
         "writefreely.lesgrandsvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           root = "/var/www/writefreely/static";
           enableACME = true;
           forceSSL = true;
@@ -1171,6 +1222,7 @@ in {
           };
         };
         "vk.gdvoisins.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "vk.l14s.com"
             "vikunja.gv.coop"
@@ -1202,6 +1254,7 @@ in {
           };
         };
         "vikunja.resdigita.com" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [ ];
           enableACME = true;
           forceSSL = true;
@@ -1219,6 +1272,7 @@ in {
           };
         };
         "discourse.village.ngo" = {
+          extraConfig = "proxy_protocol off;";
           serverAliases = [
             "disc.lesgrandsvoisins.com"
             "discourse.lesgrandsvoisins.com"
@@ -1243,6 +1297,7 @@ in {
           };
         };
         "discourse.paris14.cc" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           # root = "/var/www/discoursecc";
@@ -1265,6 +1320,7 @@ in {
           };
         };
         "mm.lgv.info" = {
+          extraConfig = "proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           # root = "/var/www/mmcc";
