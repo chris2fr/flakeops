@@ -220,7 +220,7 @@ in
             # http-port = 80;
             # http-host = "192.168.105.11";
             # http-host = "2a01:4f8:241:4faa::11";
-
+            proxy-protocol-enabled = true;
             # proxy = "passthrough";
             # proxy = "reencrypt";
             proxy-headers = "xforwarded";
