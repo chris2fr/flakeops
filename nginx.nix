@@ -562,14 +562,14 @@ in {
           serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
-          listen = [
-           { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; } 
-           { addr = "116.202.236.241"; ssl = false; port = 80; } 
-           { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; } 
-           { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; } 
-          ];
+          # listen = [
+          #  { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; } 
+          #  { addr = "116.202.236.241"; ssl = false; port = 80; } 
+          #  { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; } 
+          #  { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; } 
+          # ];
           locations."/" = {
-            proxyPass = "https://[2a01:4f8:241:4faa::10]:443";
+            proxyPass = "https://[2a01:4f8:241:4faa::10]";
             # proxyPass = "https://192.168.105.11:14443";
             # proxyPass = "https://10.ipv6.configmagic.com";
             extraConfig = ''
@@ -1114,7 +1114,7 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              proxyPass = "https://ipv6.configmagic.com:3443";
+              proxyPass = "https://www.configmagic.com:3443";
               # proxyPass = "https://[fc00::12:2]:3443";
               # proxyPass = "http://192.168.112.11:3000";
               
