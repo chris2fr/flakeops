@@ -1138,7 +1138,7 @@ in {
                 proxy_http_version 1.1;
                 proxy_set_header  Upgrade $http_upgrade;
                 proxy_set_header  Connection "upgrade";
-                proxy_bind $remote_addr transparent;
+                # proxy_bind $remote_addr transparent;
 
                 # client_max_body_size 2500M;
 
