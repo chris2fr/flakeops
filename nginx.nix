@@ -1040,7 +1040,8 @@ in {
           enableACME = true;
           forceSSL = true;
           #locations."/".proxyPass = "http://10.245.101.35:3000/";
-          locations."/".proxyPass = "http://192.168.102.2:3000/";
+          # locations."/".proxyPass = "http://192.168.102.2:3000/";
+          locations."/".proxyPass = "https://192.168.102.2:3443/";
           extraConfig = ''
             proxy_set_header X-Forwarded-Proto $scheme;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

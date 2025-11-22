@@ -3,6 +3,12 @@ let
 in
 {
   containers.wikijs = {
+    bindMounts = {
+      "/var/lib/acme/www.configmagic.com/" = {
+        hostPath = "/var/lib/acme/www.configmagic.com/";
+        isReadOnly = true;
+      };
+    };
     # bindMounts = {
     #   "/var/lib/acme/keycloak.paris14.cc/" = {
     #     hostPath = "/var/lib/acme/keycloak.paris14.cc/";
@@ -44,7 +50,7 @@ in
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 3000 ];
+          allowedTCPPorts = [ 80 443 587 3000 3443 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -81,6 +87,7 @@ in
           };
         };
       };
+      services.cron.systemCronJobs = [ "0 0 1 * *  root systemctl restart wiki-js"];
       services = {
         resolved.enable = true;
         # postgresql = {
@@ -102,6 +109,14 @@ in
             user = "wikijs";
           };
           settings.logLevel = "debug";
+          settings.ssl = {
+            enabled = true;
+            port = 3443;
+            provider = "custom";
+            format = "pem";
+            key = "/var/lib/acme/www.configmagic.com/key.pem";
+            cert = "/var/lib/acme/www.configmagic.com/fullchain.pem";
+          };
         };
         postgresql = {
           enable = true;
