@@ -205,6 +205,7 @@ in {
         };
         "wagtailstatic".servers = { "10.245.101.15:8888" = { }; };
         "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
+        # "keylesgrandsvoisinscom".servers = {""};
       };
       sso = {
         enable = true;
@@ -561,9 +562,16 @@ in {
           serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
+          listen = [
+           { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; } 
+           { addr = "116.202.236.241"; ssl = false; port = 80; } 
+           { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; } 
+           { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; } 
+          ];
           locations."/" = {
-            # proxyPass = "https://[2a01:4f8:241:4faa::10]:443";
-            proxyPass = "https://192.168.105.11:14443";
+            proxyPass = "https://[2a01:4f8:241:4faa::10]:443";
+            # proxyPass = "https://192.168.105.11:14443";
+            # proxyPass = "https://10.ipv6.configmagic.com";
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
               proxy_set_header Host $host;

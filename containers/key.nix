@@ -103,16 +103,16 @@ in
       };
     };
     autoStart = true;
-    privateNetwork = true;
+    # privateNetwork = true;
     # # macvlans = [
     # #   "eno1"
     # # ];
     # # hostBridge = "brkey";
 
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     # hostAddress6 = "2a01:4f8:241:4faa::10";
     # localAddress6 = "2a01:4f8:241:4faa::11";
 
@@ -163,8 +163,8 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
-          enable = false;
-          allowedTCPPorts = [ 443 587 14443 ];
+          enable = true;
+          allowedTCPPorts = [ 25 80 443 467 587 14443 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -195,9 +195,9 @@ in
         };
       };
       services = {
-        resolved.enable = true;
+        # resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
-        # postgresql.settings.port = 5433;
+        postgresql.settings.port = 5435;
         # postgresql.enableTCPIP = true;
         keycloak = {
           enable = true;
@@ -208,18 +208,18 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            # host="localhost";
+            host="2a01:4f8:241:4faa::10";
             # useSSL = false;
-            # port = 5433;
+            port = 5435;
             # caCert = "/etc/postgresql/root.crt";
           };
           settings = {
-            https-port = 14443;
-            http-port = 14080;            
-            # https-port = 443;
-            # http-port = 80;
+            # https-port = 14443;
+            # http-port = 14080;            
+            https-port = 443;
+            http-port = 80;
             # http-host = "192.168.105.11";
-            # http-host = "2a01:4f8:241:4faa::11";
+            http-host = "2a01:4f8:241:4faa::10";
             proxy-protocol-enabled = true;
             # proxy = "passthrough";
             # proxy = "reencrypt";
