@@ -208,8 +208,8 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            host="2a01:4f8:241:4faa::10";
-            # useSSL = false;
+            # host="2a01:4f8:241:4faa::10";
+            useSSL = false;
             port = 5435;
             # caCert = "/etc/postgresql/root.crt";
           };
