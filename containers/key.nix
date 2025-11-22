@@ -223,7 +223,7 @@ in
             proxy-protocol-enabled = true;
             # proxy = "passthrough";
             # proxy = "reencrypt";
-            proxy-headers = "xforwarded";
+            # proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
           };
