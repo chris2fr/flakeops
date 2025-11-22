@@ -164,14 +164,14 @@ in
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [ 25 80 443 467 587 14443 ];
+          allowedTCPPorts = [ 25 80 443 467 587 5432 5435 14443 ];
         };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
-        "d /run/postgresql/ 0755 postgres postgres"
-        "L /run/postgresql/.s.PGSQL.5435 /run/postgresql/.s.PGSQL.5432"
+        # "d /run/postgresql/ 0755 postgres postgres"
+        # "L /run/postgresql/.s.PGSQL.5435 /run/postgresql/.s.PGSQL.5432"
       ];
       # security.acme.acceptTerms = true;
       users = {
