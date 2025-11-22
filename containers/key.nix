@@ -228,6 +228,7 @@ in
             hostname = "key.lesgrandsvoisins.com";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
             jdbc-params = "sslmode=require&sslcert=/etc/postgresql/root.crt";
+            db-url-properties = "sslmode=require&sslcert=/etc/postgresql/root.crt";
           };
           sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
