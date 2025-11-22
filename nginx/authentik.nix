@@ -4,12 +4,14 @@ in
 {
   services.nginx.virtualHosts = {
     "auth.lesgrandsvoisins.com" = {
+        extraConfig = "proxy_protocol off;";
       # serverAliases = ["auth.desgrandsvoisins.org" "auth.desgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       globalRedirect = "authentik.resdigita.com";
     };
     "keycloak.resdigita.com" = {
+        extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -27,6 +29,7 @@ in
       };
     };
     "authentik.resdigita.com" = {
+        extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       default = true;

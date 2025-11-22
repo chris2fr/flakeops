@@ -29,6 +29,7 @@ in {
     #   '';
     # };
     "www.interet-public.org" = {
+      extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       root = "/var/www/interetpublic";
@@ -168,6 +169,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.grandsvoisins.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "www.grandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
@@ -234,6 +236,7 @@ in {
           '';
       };
       extraConfig = ''
+        proxy_protocol off;
         if ($host = 'meet.resdigita.com') {
           return 302 https://jitsi.grandzine.org/resdigita;
         }
@@ -332,6 +335,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.gvois.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "www.gvois.org"
         "bigbluebutton.gvois.com"
@@ -422,6 +426,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.lesgv.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "www.gvois.org"
         "bigbluebutton.lesgv.org"
@@ -512,6 +517,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.parisgv.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "www.parisgv.org"
         "bigbluebutton.parisgv.com"
@@ -602,6 +608,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.gdvox.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "admin.gdvox.com"
         "ai.gdvox.com"
@@ -661,6 +668,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };    
     "www.lesgv.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "admin.lesgv.com"
         "ai.lesgv.com"
@@ -725,6 +733,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };    
     "apps.gdvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "admin.gdvoisins.com"
         "ai.gdvoisins.com"
@@ -848,6 +857,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.parisle.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "www.parisle.org"
         "bigbluebutton.parisle.com"
@@ -952,6 +962,7 @@ in {
     #   locations."/.well-known" = { proxyPass = null; };
     # };
     "www.parislenuage.com" = {
+      extraConfig = "proxy_protocol off;";
       locations."/" = {
         extraConfig = ''
           return 302 $scheme://www.parisle.com$request_uri;
@@ -1039,6 +1050,7 @@ in {
       # locations."/.well-known" = { proxyPass = null; };
     };
     "cantine.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       root = "/var/www/cantine/";
@@ -1165,6 +1177,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.resdigita.org" = {
+      extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       serverAliases = [
@@ -1267,6 +1280,7 @@ in {
       # locations."/.well-known" = { proxyPass = null; };
     };
     "meet.lesgv.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "meet.village.ngo"
         "meet.village.ong"
@@ -1289,6 +1303,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8895.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8895.grandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
@@ -1309,6 +1324,7 @@ in {
     #   globalRedirect = "meet.resdigita.com";
     # };
     "gvoisin.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         # "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
@@ -1339,6 +1355,7 @@ in {
     };
 
     "wagtail.lesgv.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         "www.lesartsvoisins.com"
         "lesartsvoisins.com"
@@ -1381,6 +1398,7 @@ in {
     };
 
     "apostrophecms.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
       serverAliases = [
@@ -1438,6 +1456,7 @@ in {
     };
 
     "lesgv.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "2022.lesgrandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
@@ -1455,6 +1474,7 @@ in {
     };
 
     "www.coopgv.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [
         # "desgv.com" 
         "francemali.lesgrandsvoisins.com"
@@ -1543,6 +1563,7 @@ in {
     #   globalRedirect = "www.lesgrandsvoisins.com";
     # };
     "older.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       # serverAliases = ["lesgrandsvoisins.com"];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
@@ -1563,6 +1584,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.maelanc.com" = {
+      extraConfig = "proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -1625,6 +1647,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8008.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8008.grandsvoisins.com" ];
       enableACME = true;
       forceSSL = true;
@@ -1641,6 +1664,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8893.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8893.grandsvoisins.com" ];
       root = "/var/www/www-fastoche/";
       locations."/" = {
@@ -1655,6 +1679,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8892.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8892.grandsvoisins.com" ];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
@@ -1669,6 +1694,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8890.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8890.grandsvoisins.com" ];
       root = "/var/www/wagtail-fastoche/";
       locations."/" = {
@@ -1683,6 +1709,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8894.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8894.grandsvoisins.com" ];
       root = "/var/www/lesgrandsvoisins/";
       locations."/" = {
@@ -1697,6 +1724,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8904.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8904.grandsvoisins.com" ];
       root = "/var/www/coopgv/";
       locations."/" = {
@@ -1711,6 +1739,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8905.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8905.grandsvoisins.com" ];
       root = "/var/www/wagtailgvcoop/";
       locations."/" = {
@@ -1725,6 +1754,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8906.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8906.grandsvoisins.com" ];
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
       locations."/" = {
@@ -1739,6 +1769,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8888.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8888.grandsvoisins.com" ];
       root = "/var/www/francemali/";
       locations."/" = {
@@ -1753,6 +1784,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8896.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8896.grandsvoisins.com"];
       root = "/var/www/village/";
       locations."/" = {
@@ -1767,6 +1799,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8900.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8900.grandsvoisins.com" ];
       root = "/var/www/cantine/";
       locations."/" = {
@@ -1781,6 +1814,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8889.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8889.grandsvoisins.com" ];
       root = "/var/www/cfran/";
       locations."/" = {
@@ -1795,6 +1829,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8897.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8897.grandsvoisins.com" ];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
@@ -1809,6 +1844,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8899.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8899.grandsvoisins.com" ];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
@@ -1823,6 +1859,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "8891.lesgrandsvoisins.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "8891.grandsvoisins.com" ];
       root = "/var/www/django-village/";
       locations."/" = {
@@ -1837,6 +1874,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtailnews.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       root = "/var/www/wagtail.resdigita.com/";
       locations."/" = {
         proxyPass = "http://localhost:8902/";
@@ -1850,6 +1888,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ "www.resdigita.com" ];
       root = "/var/www/wagtail.resdigita.com.main/";
       locations."/" = {
@@ -1864,6 +1903,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "develop.resdigita.com" = {
+      extraConfig = "proxy_protocol off;";
       root = "/var/www/wagtail.resdigita.com.develop/";
       locations."/" = {
         proxyPass = "http://localhost:8910/";
@@ -1877,6 +1917,7 @@ in {
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.grandzine.org" = {
+      extraConfig = "proxy_protocol off;";
       serverAliases = [ 
        "8909.grandsvoisins.com"
        "www.grandv.org" 

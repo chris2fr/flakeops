@@ -20,6 +20,7 @@ in
       };
     };
     "blog.lesgrandsvoisins.com" = {
+        extraConfig = "proxy_protocol off;";
       root = "/var/www/ghostlesgrandsvoisinscom/";
       enableACME = true;
       forceSSL = true;
@@ -28,6 +29,7 @@ in
       };
     };
     "ghost.resdigita.com" = {
+        extraConfig = "proxy_protocol off;";
       serverAliases = [ "blog.resdigita.com" ];
       root = "/var/www/ghostresdigitacom/";
       enableACME = true;
