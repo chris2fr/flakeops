@@ -170,6 +170,7 @@ in
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
+        "L /run/postgresql/.s.PGSQL.5435 /run/postgresql/.s.PGSQL.5432"
       ];
       # security.acme.acceptTerms = true;
       users = {

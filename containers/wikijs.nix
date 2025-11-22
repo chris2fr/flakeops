@@ -59,6 +59,7 @@ in
         "d /etc/wikijs/ 0750 wikijs root"
         "f /etc/wikijs/.env 0660 wikijs root"
         "d /var/lib/acme/www.configmagic.com/ 0750 acme wwwrun"
+        "L /run/postgresql/.s.PGSQL.5434 /run/postgresql/.s.PGSQL.5432"
         # "d /var/lib/acme/keycloak.paris14.cc/ 0750 acme wwwrun"
         # "f /etc/.secret.keycloackparis14cc 0660 keycloak postgres"
       ];
@@ -122,7 +123,7 @@ in
             key = "/var/lib/acme/www.configmagic.com/key.pem";
             cert = "/var/lib/acme/www.configmagic.com/fullchain.pem";
           };
-          settings.bindIP = "2a01:4f8:241:4faa::10";
+          settings.bindIP = "2a01:4f8:241:4faa::";
         };
         postgresql = {
           enable = true;
@@ -136,7 +137,7 @@ in
             # ssl_key_file = "/var/lib/acme/www.configmagic.com/key.pem";
             # ssl_cert_file = "/var/lib/acme/www.configmagic.com/fullchain.pem";
             port = 5434;
-            listen_addresses = lib.mkForce "2a01:4f8:241:4faa::10";
+            listen_addresses = lib.mkForce "2a01:4f8:241:4faa::";
           };
         };
       };
