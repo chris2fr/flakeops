@@ -173,12 +173,10 @@ in {
       # defaultListenAddresses =
         # [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]" ];
       defaultListen = [
-        { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; } 
-        { addr = "116.202.236.241"; port = 80; } 
+        { addr = "116.202.236.241"; proxyProtocol = true; ssl = true;  } 
         { addr = "127.0.0.1"; port = 80; } 
         { addr = "[::1]"; port = 80; } 
-        { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; } 
-        { addr = "[2a01:4f8:241:4faa::]"; port = 80; } 
+        { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true;  } 
       ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
