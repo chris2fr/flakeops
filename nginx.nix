@@ -1093,8 +1093,8 @@ in {
           locations = {
             "/.well-known" = { proxyPass = null; };
             "/" = {
-              # proxyPass = "http://[fc00::12:2]:3000";
-              proxyPass = "http://192.168.112.11:3000";
+              proxyPass = "https://[fc00::12:2]:3443";
+              # proxyPass = "http://192.168.112.11:3000";
               
               extraConfig = ''
 
