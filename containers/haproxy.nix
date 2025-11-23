@@ -94,6 +94,23 @@ in
               errorfile 504 /var/log/haproxy/errors/504.http
 
 
+            frontend incoming
+              bind :4443 accept-proxy
+              acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
+              tcp-request connection expect-proxy layer4 if needs_pp
+              use_backend www_proxy_protocol if needs_pp
+              default_backend www
+              # acl requires_redirect req.hdr(Host) -i -M -f /redirects.map
+              # http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
+
+            backend www
+              mode http
+              server s1 2a01:4f8:241:4faa::
+
+            backend www_proxy_protocol
+              mode http
+              server s1 192.168.115.10
+
           '';
         };
       };
