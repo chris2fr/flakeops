@@ -17,11 +17,14 @@
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
   };
   outputs = { self, nixpkgs, home-manager, agenix, simple-nixos-mailserver, ... }@inputs: {
+    nixosModules.certwarden = import ./modules/services/certwarden.nix;
+
     # NOTE: 'nixos' is the default hostname set by the installer
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       # NOTE: Change this to aarch64-linux if you are on ARM
       system = "x86_64-linux";
       modules = [
+        # self.nixosModules.certwarden
         ./configuration.nix
         agenix.nixosModules.default
         simple-nixos-mailserver.nixosModule

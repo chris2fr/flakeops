@@ -30,7 +30,7 @@ in
     ./nginx.nix
     ./security.nix
     ./networking.nix
-    ./modules/services/certwarden.nix
+    # ./modules/services/certwarden.nix
     # ./home-manager.nix
     # (import "${home-manager}/nixos")
   ];
@@ -115,17 +115,17 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "sope-5.11.2"
   ];
-  services.certwarden = {
-    enable = true;
-    port = 4444;
-    logLevel = "debug";
+  # services.certwarden = {
+  #   enable = true;
+  #   port = 4444;
+  #   logLevel = "debug";
 
-    extraConfig = {
-      backup = {
-        enabled = true;
-        path = "/var/lib/certwarden/backups";
-      };
-    };
-  };
+  #   extraConfig = {
+  #     backup = {
+  #       enabled = true;
+  #       path = "/var/lib/certwarden/backups";
+  #     };
+  #   };
+  # };
 
 }
