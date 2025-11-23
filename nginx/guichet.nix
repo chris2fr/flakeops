@@ -4,14 +4,14 @@ in
 {
   services.nginx.virtualHosts = {
     "guichet.lesgrandsvoisins.com" = {
-    extraConfig = "proxy_protocol off;";
+    extraConfig = "# proxy_protocol off;";
       serverAliases = [ "app.lesgrandsvoisins.com" ];
       globalRedirect = "guichet.resdigita.com";
       enableACME = true;
       forceSSL = true;
     };
     "guichet.resdigita.com" = {
-    extraConfig = "proxy_protocol off;";
+    extraConfig = "# proxy_protocol off;";
       serverAliases = [ "guichet.gv.coop" "guichet.lesgv.org" ];
       enableACME = true;
       forceSSL = true;
@@ -32,7 +32,7 @@ in
     #   root = "/home/guichet/";
     # };
     "newguichet.resdigita.com" = {
-    extraConfig = "proxy_protocol off;";
+    extraConfig = "# proxy_protocol off;";
       serverAliases = [ "guichet.gv.coop" "guichet.lesgv.org" ];
       enableACME = true;
       forceSSL = true;

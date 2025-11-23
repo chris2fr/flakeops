@@ -4,7 +4,7 @@ in
 {
   services.nginx.virtualHosts = {
     "doc.lesgrandsvoisins.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       # serverAliases = ["resdigita.org" "www.resdigita.org" "doc.desgrandsvoisins.com"  "doc.lesgrandsvoisins.com" "doc.resdigita.com"];
       serverAliases = [ "doc.resdigita.com" ];
       globalRedirect = "quartz.resdigita.com";
@@ -13,7 +13,7 @@ in
       root = "/var/www/resdigitacom";
     };
     "quartz.resdigita.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = [
         "quartz.gv.coop"
         "quartz.lesgv.org"
@@ -25,7 +25,7 @@ in
       root = "/var/www/resdigitacom";
     };
     "static.grandzine.org" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       root = "/var/www/grandzine.org_static";
@@ -36,7 +36,7 @@ in
     #   root = "/var/www/grandzine/prototype";
     # };
     "www.grandzine.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = ["grandzine.com" "grandzine.org"];
       enableACME = true;
       forceSSL = true;

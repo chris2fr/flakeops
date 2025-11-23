@@ -4,7 +4,7 @@ in
 {
   services.nginx.virtualHosts = {
     "odoo1.resdigita.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = [
         "actentioncom.resdigita.com"
         "gvoisorg.resdigita.com"
@@ -28,7 +28,7 @@ in
       };
     };
     "odoo2.resdigita.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = [
         # "odoo2.desgv.com"
         #  "odoo2.lesgv.com"
@@ -47,7 +47,7 @@ in
       };
     };
     "odoo3.resdigita.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = [
         "lgvcoop.resdigita.com"
         # "odoo3.desgv.com"
@@ -71,7 +71,7 @@ in
       };
     };
     "odoo4.resdigita.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       #enableACME = true; 
       serverAliases = [
         # "voisandcom.resdigita.com"

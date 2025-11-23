@@ -4,7 +4,7 @@ in
 {
   services.nginx.virtualHosts = {
     "crabfit.resdigita.com" = {
-        extraConfig = "proxy_protocol off;";
+        extraConfig = "# proxy_protocol off;";
       serverAliases = [
         "crabfit.gv.coop"
         "crabfit.lesgv.org"
@@ -23,7 +23,7 @@ in
     #   # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
     # };
     "apicrabfit.resdigita.com" = {
-        extraConfig = "proxy_protocol off;";
+        extraConfig = "# proxy_protocol off;";
       serverAliases = [ "apicrabfit.lesgv.org" ];
       enableACME = true;
       forceSSL = true;

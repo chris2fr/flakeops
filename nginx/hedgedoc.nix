@@ -21,7 +21,7 @@ in
     #   globalRedirect = "hedgedoc.resdigita.com";
     # };
     "hd.gdvoisins.com" = {
-      extraConfig = "proxy_protocol off;";
+      extraConfig = "# proxy_protocol off;";
       serverAliases = [ "hedgedoc.lesgrandsvoisins.com"  "hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" "mark.resdigita.com" "hd.l14s.com"];
       enableACME = true;
       forceSSL = true;
