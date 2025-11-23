@@ -56,6 +56,7 @@ in
     ./containers/triliumnext.nix
     ./containers/wagtail.nix
     ./containers/wordpress.nix
+    ./containers/haproxy.nix
   ];
   # age.secrets = {
   #   "kopia.silverbullet" = { 

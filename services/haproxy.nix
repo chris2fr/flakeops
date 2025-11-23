@@ -41,8 +41,6 @@ in {
       #   mode http
       #   server s1 2a01:4f8:241:4faa::4
 
-
-
       listen http-in
         bind :9080
         default_backend homepage-dashboard.resdigita.com:9443

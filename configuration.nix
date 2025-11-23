@@ -30,6 +30,7 @@ in
     ./nginx.nix
     ./security.nix
     ./networking.nix
+    ./modules/services/certwarden.nix
     # ./home-manager.nix
     # (import "${home-manager}/nixos")
   ];
