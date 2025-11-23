@@ -3,6 +3,7 @@ let
   # httpsDomainName = "10.ipv6.configmagic.com";
   # lgvLdapBaseDN = import ../vars/lgv-ldap-base-dn.nix;
   # bindSlappasswd = import ../secrets/bind.slappasswd;
+  certwarden = import ../modules/services/certwarden.nix;
 in
 {
   containers.haproxy = {
@@ -17,6 +18,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "25.05";
       time.timeZone = "Europe/Paris";
+      
       environment.systemPackages = with pkgs; [
         lynx
         nettools
@@ -69,6 +71,18 @@ in
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
       services = {
+        certwarden = {
+          enable = true;
+          port = 4444;
+          logLevel = "debug";
+
+          extraConfig = {
+            backup = {
+              enabled = true;
+              path = "/var/lib/certwarden/backups";
+            };
+          };
+        };
         haproxy = {
           enable = true;
           config = ''
@@ -95,7 +109,7 @@ in
 
 
             frontend incoming
-              bind :4443 accept-proxy
+              bind 116.202.236.241:4443 accept-proxy
               # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
               tcp-request connection expect-proxy layer4 
               # if needs_pp
@@ -107,7 +121,7 @@ in
 
             backend www
               mode http
-              server s1 2a01:4f8:241:4faa::
+              server s1 116.202.236.241
 
             backend www_proxy_protocol
               mode http
