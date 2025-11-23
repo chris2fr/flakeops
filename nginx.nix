@@ -75,12 +75,30 @@ in
       # };
       virtualHosts = {
         # "vouch.roses.gdvoisins.com" = {
-        #   forceSSL = true;
+        #   forceSSL = false;
         #   root = "/var/www/default";
         #   enableACME = true;
         # };à
+        "_" {
+          listen = [
+            { addr = "0.0.0.0" ; port = 80 }
+            { addr = "[::]" ; port = 80 }
+            ];
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:4050";
+            # recommendedProxySettings = true;
+            extraConfig = ''
+              proxy_set_header    Host $host;
+              proxy_set_header    X-Real-IP $remote_addr;
+              proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header    X-Forwarded-Host $host;
+              proxy_set_header    X-Forwarded-Proto $scheme
+              rewrite ^/$  https://$host$request_uri;
+            '';
+
+        };
         "op.roses.gdvoisins.com" = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           root = "/var/www/default";
           extraConfig = ''
@@ -100,7 +118,7 @@ in
           };
         };
         "fs.roses.gdvoisins.com" = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           root = "/var/www/default";
           locations."/" = {
@@ -121,12 +139,12 @@ in
           };
         };
         "fontenay.gdvoisins.com" = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           root = "/var/www/default";
         };
         "static.roses.gdvoisins.com" = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           root = "/var/www/default";
           # extraConfig = ''
@@ -210,8 +228,14 @@ in
             # };
           };
         };
+        "cw.roses.gdvoisins.com"  = {
+          forceSSL = false;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://0.0.0.0:4050";
+        }
         "cp.roses.gdvoisins.com"  = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           # recommendedProxySettings = true;
           root = "/var/www/default";
@@ -244,7 +268,7 @@ in
           };
         };
         # "vouch.roses.gdvoisins.com" = {
-        #   forceSSL = true;
+        #   forceSSL = false;
         #   enableACME = true;
         #   root = "/var/www/default";
         #   locations."/" = {
@@ -263,7 +287,7 @@ in
         #   };
         # };
         # "roses.lgv.info" = {
-        #   forceSSL = true;
+        #   forceSSL = false;
         #   enableACME = true;
         #   root = "/var/www/default";
         #   # extraConfig = ''
