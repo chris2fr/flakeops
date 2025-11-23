@@ -115,6 +115,7 @@ in
             backend www_proxy_protocol
               mode http
               server s1 192.168.115.11:14446
+              local0.* /var/log/haproxy.log
 
           '';
         };
