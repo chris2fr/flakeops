@@ -198,7 +198,7 @@ in
         resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
         # postgresql.settings.port = 5433;
-        postgresql.enableTCPIP = false;
+        postgresql.enableTCPIP = true;
         keycloak = {
           enable = true;
           database = {
@@ -208,9 +208,9 @@ in
             passwordFile = "/etc/.secrets.key";
             # createLocally=false;
             # createLocally=true;
-            # host="localhost";
-            host="/run/postgresql";
-            useSSL = false;
+            host="localhost";
+            # host="/run/postgresql";
+            # useSSL = false;
             # useSSL = true;
             # port = 5433;
             # caCert = "/etc/postgresql/root.crt";

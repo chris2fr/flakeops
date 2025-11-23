@@ -34,8 +34,12 @@ in {
       #   http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
 
       # backend www
+      #   mode http
+      #   server s1 2a01:4f8:241:4faa::10
 
       # backend www_proxy_protocol
+      #   mode http
+      #   server s1 2a01:4f8:241:4faa::4
 
 
 
