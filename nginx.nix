@@ -74,7 +74,7 @@ in
       # };
       virtualHosts = {
         # "vouch.roses.gdvoisins.com" = {
-        #   forceSSL = false;
+        #   forceSSL = true;
         #   root = "/var/www/default";
         #   enableACME = true;
         # };à
@@ -97,7 +97,7 @@ in
 
         };
         "op.roses.gdvoisins.com" = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
           extraConfig = ''
@@ -117,7 +117,7 @@ in
           };
         };
         "fs.roses.gdvoisins.com" = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
           locations."/" = {
@@ -138,12 +138,12 @@ in
           };
         };
         "fontenay.gdvoisins.com" = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
         };
         "static.roses.gdvoisins.com" = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           root = "/var/www/default";
           # extraConfig = ''
@@ -228,13 +228,13 @@ in
           };
         };
         "cw.roses.gdvoisins.com"  = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           locations."/" = {
             proxyPass = "http://0.0.0.0:4050";
         }
         "cp.roses.gdvoisins.com"  = {
-          forceSSL = false;
+          forceSSL = true;
           enableACME = true;
           # recommendedProxySettings = true;
           root = "/var/www/default";
@@ -267,7 +267,7 @@ in
           };
         };
         # "vouch.roses.gdvoisins.com" = {
-        #   forceSSL = false;
+        #   forceSSL = true;
         #   enableACME = true;
         #   root = "/var/www/default";
         #   locations."/" = {
@@ -286,7 +286,7 @@ in
         #   };
         # };
         # "roses.lgv.info" = {
-        #   forceSSL = false;
+        #   forceSSL = true;
         #   enableACME = true;
         #   root = "/var/www/default";
         #   # extraConfig = ''
