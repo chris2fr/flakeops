@@ -121,11 +121,11 @@ in
 
             backend www_proxy_protocol
               server nginx1 192.168.115.11:14446 send-proxy-v2
-              local0.* /var/log/haproxy.log
+              # local0.* /var/log/haproxy.log
 
             backend www_proxy_protocol-ipv6
               server nginx1 [fc00::115:11]:14446 send-proxy-v2
-              local0.* /var/log/haproxy-ipv6.log
+              # local0.* /var/log/haproxy-ipv6.log
 
           '';
         };
