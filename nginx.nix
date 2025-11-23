@@ -180,8 +180,8 @@ in {
         { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true;  } 
         # { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  } 
         # { addr = "[2a01:4f8:241:4faa::]";  } 
-        { addr = "0.0.0.0"; proxyProtocol = true;  }
-        { addr = "[::0]"; proxyProtocol = true;  }
+        { addr = "0.0.0.0";  }
+        { addr = "[::0]";  }
       ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
