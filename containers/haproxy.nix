@@ -18,6 +18,8 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "25.05";
       time.timeZone = "Europe/Paris";
+
+
       
       environment.systemPackages = with pkgs; [
         lynx
@@ -44,6 +46,9 @@ in
         )
         # postgresql_14
         pwgen
+      ];
+      imports = [
+        (import "${certwarden}/nixos")
       ];
 
       users = {
