@@ -218,7 +218,7 @@ in
             http-port = 14080;            
             # https-port = 443;
             # http-port = 80;
-            # http-host = "192.168.105.11";
+            http-host = "192.168.105.11";
             # http-host = "2a01:4f8:241:4faa::11";
 
             # proxy = "passthrough";
@@ -226,6 +226,8 @@ in
             # proxy-protocol-enabled = "true";
             proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
+            https-certificate-file = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
+            https-certificate-key-file = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
           };
           sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
