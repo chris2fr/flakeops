@@ -8,7 +8,6 @@ in
   services.nginx = {
       enable = true;
       clientMaxBodySize = "10G";
-
             # appendConfig = ''
             #   location /validate {
             #     # forward the /validate request to Vouch Proxy
@@ -85,7 +84,7 @@ in
             { addr = "[::]" ; port = 80 }
             ];
           locations."/" = {
-            proxyPass = "http://127.0.0.1:4050";
+            proxyPass = "http://127.0.0.1:4060";
             # recommendedProxySettings = true;
             extraConfig = ''
               proxy_set_header    Host $host;
