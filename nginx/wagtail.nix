@@ -240,6 +240,9 @@ in {
         if ($host = 'meet.resdigita.com') {
           return 302 https://jitsi.grandzine.org/resdigita;
         }
+        if ($host = 'www.gdvoisins.org') {
+          return 302 https://www.gdvoisins.com$request_uri;
+        }
         # Static assets: cache for a year (with versioned filenames)
         location ~* \.(?:css|js|woff2?|ttf|eot|ico|gif|jpg|jpeg|png|webp|svg)$ {
             expires 1w;

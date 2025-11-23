@@ -85,21 +85,23 @@ in
               timeout connect 10s
               timeout client  60s
               timeout server  60s
-              errorfile 400 /var/log/haproxy/errors/400.http
-              errorfile 403 /var/log/haproxy/errors/403.http
-              errorfile 408 /var/log/haproxy/errors/408.http
-              errorfile 500 /var/log/haproxy/errors/500.http
-              errorfile 502 /var/log/haproxy/errors/502.http
-              errorfile 503 /var/log/haproxy/errors/503.http
-              errorfile 504 /var/log/haproxy/errors/504.http
+              # errorfile 400 /var/log/haproxy/errors/400.http
+              # errorfile 403 /var/log/haproxy/errors/403.http
+              # errorfile 408 /var/log/haproxy/errors/408.http
+              # errorfile 500 /var/log/haproxy/errors/500.http
+              # errorfile 502 /var/log/haproxy/errors/502.http
+              # errorfile 503 /var/log/haproxy/errors/503.http
+              # errorfile 504 /var/log/haproxy/errors/504.http
 
 
             frontend incoming
               bind :4443 accept-proxy
-              acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
-              tcp-request connection expect-proxy layer4 if needs_pp
-              use_backend www_proxy_protocol if needs_pp
-              default_backend www
+              # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
+              tcp-request connection expect-proxy layer4 
+              # if needs_pp
+              use_backend www_proxy_protocol 
+              # if needs_pp
+              # default_backend www
               # acl requires_redirect req.hdr(Host) -i -M -f /redirects.map
               # http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
 
