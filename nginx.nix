@@ -82,7 +82,7 @@ in
           root = "/var/www/default";
           listen = [
             { addr = "0.0.0.0" ; port = 80 }
-            { addr = "[::]" ; port = 80 }
+            { addr = "[2a01:e0a:f4e:5880::9316:9fe2]" ; port = 80 }
             ];
           locations."/" = {
             proxyPass = "http://0.0.0.0:4060";
