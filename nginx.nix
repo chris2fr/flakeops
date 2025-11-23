@@ -84,7 +84,7 @@ in
             { addr = "[::]" ; port = 80 }
             ];
           locations."/" = {
-            proxyPass = "http://0.0.0.0:4070";
+            proxyPass = "http://0.0.0.0:4050";
             # recommendedProxySettings = true;
             extraConfig = ''
               proxy_set_header    Host $host;
