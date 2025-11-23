@@ -112,13 +112,9 @@ in
               # acl requires_redirect req.hdr(Host) -i -M -f /redirects.map
               # http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
 
-            backend www
-              mode http
-              server s1 116.202.236.241
-
             backend www_proxy_protocol
               mode http
-              server s1 192.168.115.10
+              server s1 192.168.115.11:14446
 
           '';
         };
