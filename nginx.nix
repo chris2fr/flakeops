@@ -731,7 +731,7 @@ in {
             proxyPass = "https://192.168.116.11:14446";
             extraConfig = ''
               rewrite ^/$ https://keycloak.parisgv.com/realms/master/account/applications redirect;
-              proxy_set_header Host $host;One commonly used X-Forwarded header is X-Forwarded-For, which provides the client's IP address or a chain of proxy server IP addresses. This header helps identify the true client IP address when requests pass through multiple proxies. clientIP represents the IP address of the original client making the request.
+              proxy_set_header Host $host;
 
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
