@@ -78,7 +78,8 @@ in
         #   root = "/var/www/default";
         #   enableACME = true;
         # };à
-        "_" {
+        "fontenay.gdvoisins.com" {
+          root = "/var/www/default";
           listen = [
             { addr = "0.0.0.0" ; port = 80 }
             { addr = "[::]" ; port = 80 }
@@ -137,11 +138,11 @@ in
 
           };
         };
-        "fontenay.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
-          root = "/var/www/default";
-        };
+        # "fontenay.gdvoisins.com" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   root = "/var/www/default";
+        # };
         "static.roses.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;
