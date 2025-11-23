@@ -113,7 +113,7 @@ in
               # http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
 
             backend www_proxy_protocol
-              mode http
+              mode tcp
               server s1 192.168.115.11:14446
               local0.* /var/log/haproxy.log
 
