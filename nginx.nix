@@ -293,6 +293,22 @@ in {
 
         # };
 
+        # "keycloak.gdvox.com" = {
+        #   listen = [
+        #     {addr = "116.202.236.241"; port = 444 ; ssl = true; proxyProtocol = true; }
+        #     {addr = "[2a01:4f8:241:4faa::]"; port = 444 ; ssl = true; proxyProtocol = true; }
+        #     ];
+        #   sslCertificate = "/var/lib/acme/keycloak.gdvox.com/fullchain.pem";
+        #   sslCertificateKey = "/var/lib/acme/keycloak.gdvox.com/key.pem";
+        #   locations."/" = {
+        #     proxyPass = "";
+        #     extraConfig = ''
+        #       real_ip_header proxy_protocol;
+        #       set_real_ip_from 192.168.115.10/24;  # Where HAProxy lives
+        #     '';
+        #   };
+        # };
+
         "protection.gdvoisins.com" = {
           forceSSL = true;
           enableACME = true;

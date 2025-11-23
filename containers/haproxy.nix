@@ -101,21 +101,31 @@ in
               # errorfile 504 /var/log/haproxy/errors/504.http
 
 
-            frontend incoming
-              bind 116.202.236.241:4443 accept-proxy
-              # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
-              tcp-request connection expect-proxy layer4 
-              # if needs_pp
+            frontend incoming-proxy-protocol
+              bind 116.202.236.241:444 accept-proxy ssl proxy_protocol
               use_backend www_proxy_protocol 
+
+
+            frontend incoming-proxy-protocol-ipv6
+              bind [2a01:4f8:241:4faa::]:444 accept-proxy ssl proxy_protocol
+              use_backend www_proxy_protocol-ipv6
+
+              # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
+              # tcp-request connection expect-proxy layer4 
+              # if needs_pp
+              # use_backend www_proxy_protocol 
               # if needs_pp
               # default_backend www
               # acl requires_redirect req.hdr(Host) -i -M -f /redirects.map
               # http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
 
             backend www_proxy_protocol
-              mode tcp
-              server s1 192.168.115.11:14446
+              server nginx1 192.168.115.11:14446 send-proxy-v2
               local0.* /var/log/haproxy.log
+
+            backend www_proxy_protocol-ipv6
+              server nginx1 [fc00::115:11]:14446 send-proxy-v2
+              local0.* /var/log/haproxy-ipv6.log
 
           '';
         };
