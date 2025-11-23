@@ -123,7 +123,8 @@ in
             http-port = 14086;
             # proxy = "passthrough";
             # proxy = "reencrypt";
-            proxy-headers = "xforwarded";
+            # proxy-headers = "xforwarded";
+            proxy-protocol-enabled = true;
             hostname = "keycloak.gdvox.com";
             # hostname-admin = "adminkeycloak.gdvox.com";
           };
