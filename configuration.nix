@@ -80,6 +80,19 @@ in
       Group = "users";
     };
   };
+  # systemd.services.certwarden = {
+  #   enable = true;
+  #   wantedBy = ["default.target"];
+
+  #   script = "/home/mannchri/certwarden/scripts/";
+
+  #   description = "Certwarden";
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/mannchri/certwarden";
+  #     User = "mannchri";
+  #     Group = "users";
+  #   };
+  # };
   # nix-shell -p gcc    apacheHttpd    pkg-config    apr    aprutil    curlFull    lzlib libgnurl
   # export APR_CFLAGS="`apr-1-config --cflags`"
   # export APR_LIBS="`apr-1-config --libs`"

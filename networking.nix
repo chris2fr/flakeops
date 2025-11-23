@@ -16,9 +16,9 @@ in {
       enable = true;
       # trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0" "ve-filestash"];
       trustedInterfaces = ["lo" "eno1" "eno2" "enp3s0f0" ];
-      # interfaces."eno1" = {
-      #   allowedTCPPorts = [22 80 443];
-      # };
+      interfaces."eno1" = {
+        allowedTCPPorts = allowedTCPPorts;
+      };
     };
     hostName = "rosest330"; 
     enableIPv6 = true;
