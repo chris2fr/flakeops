@@ -226,8 +226,8 @@ in
             # proxy-protocol-enabled = "true";
             proxy-headers = "xforwarded";
             hostname = "key.lesgrandsvoisins.com";
-            https-certificate-file = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
-            https-certificate-key-file = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
+            https-certificate-file = lib.mkForce "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
+            https-certificate-key-file = lib.mkForce "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
             # hostname-admin = "adminkey.lesgrandsvoisins.com";
           };
           sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
