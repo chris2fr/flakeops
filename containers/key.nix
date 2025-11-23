@@ -180,7 +180,7 @@ in
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" ];
+            members = [ "acme" "wwwrun" "keycloak" ];
           };
         };
         users = {
