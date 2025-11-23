@@ -116,16 +116,16 @@ in
     "sope-5.11.2"
   ];
   services.certwarden = {
-          enable = true;
-          port = 4444;
-          logLevel = "debug";
+    enable = true;
+    port = 4444;
+    logLevel = "debug";
 
-          extraConfig = {
-            backup = {
-              enabled = true;
-              path = "/var/lib/certwarden/backups";
-            };
-          };
-        };
+    extraConfig = {
+      backup = {
+        enabled = true;
+        path = "/var/lib/certwarden/backups";
+      };
+    };
+  };
 
 }
