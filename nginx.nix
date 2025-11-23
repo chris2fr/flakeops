@@ -78,7 +78,7 @@ in
         #   root = "/var/www/default";
         #   enableACME = true;
         # };à
-        "fontenay.gdvoisins.com" {
+        "*" {
           root = "/var/www/default";
           listen = [
             { addr = "0.0.0.0" ; port = 80 }
