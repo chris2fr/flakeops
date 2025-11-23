@@ -10,7 +10,7 @@ in
 {
   services.nginx.virtualHosts = {
     "dav.lesgrandsvoisins.com" = {
-        extraConfig = "proxy_pass off;";
+        extraConfig = "# proxy_protocol off;";
       serverAliases = [ "webdav.lesgv.org" ];
       enableACME = true;
       forceSSL = true;
@@ -25,21 +25,21 @@ in
         extraConfig = extraProxyHeaders;
       };
       extraConfig = ''
-        proxy_pass off;
+        # proxy_protocol off;
         location = / {
             return 302 /redirect;
         }
       '';
     };
     "secret.lesgrandsvoisins.com" = {
-        extraConfig = "proxy_pass off;";
+        extraConfig = "# proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       serverAliases = [ "secret.resdigita.com" "keepass.lesgv.org" ];
       globalRedirect = "keepass.resdigita.com";
     };
     "keepass.resdigita.com" = {
-        extraConfig = "proxy_pass off;";
+        extraConfig = "# proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -54,7 +54,7 @@ in
     };
 
     "keeweb.resdigita.com" = {
-        extraConfig = "proxy_pass off;";
+        extraConfig = "# proxy_protocol off;";
       enableACME = true;
       forceSSL = true;
       locations."/" = {
