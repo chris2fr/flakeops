@@ -209,9 +209,9 @@ in
             # createLocally=false;
             # createLocally=true;
             # host="localhost";
-            # useSSL = false;
+            useSSL = true;
             # port = 5433;
-            # caCert = "/etc/postgresql/root.crt";
+            caCert = "/etc/postgresql/root.crt";
           };
           settings = {
             https-port = 14443;

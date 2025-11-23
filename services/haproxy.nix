@@ -25,6 +25,11 @@ in {
         errorfile 503 /var/log/haproxy/errors/503.http
         errorfile 504 /var/log/haproxy/errors/504.http
 
+      # frontend incoming
+      #   bind :443
+      #   acl needs_pp 
+
+
       listen http-in
         bind :9080
         default_backend homepage-dashboard.resdigita.com:9443
