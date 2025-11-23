@@ -606,7 +606,7 @@ in {
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
             '';
-          };
+          };lib.mkForce
         };
         "key.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
@@ -753,7 +753,7 @@ in {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
-          root = "/var/www/keycloak.gvois.com";proxy_add_x_forwarded_for
+          root = "/var/www/keycloak.gvois.com";
           serverAliases = ["adminkeycloak.gvois.com"];
           # globalRedirect = "keycloak.gvois.com:14443";
           locations."/" = {
