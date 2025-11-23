@@ -3,7 +3,7 @@ let
   # httpsDomainName = "10.ipv6.configmagic.com";
   # lgvLdapBaseDN = import ../vars/lgv-ldap-base-dn.nix;
   # bindSlappasswd = import ../secrets/bind.slappasswd;
-  certwarden = import ../modules/services/certwarden.nix;
+  # certwarden = import ../modules/services/certwarden.nix;
 in
 {
   containers.haproxy = {
@@ -47,9 +47,9 @@ in
         # postgresql_14
         pwgen
       ];
-      imports = [
-        (import "${certwarden}/nixos")
-      ];
+      # imports = [
+      #   (import "${certwarden}/nixos")
+      # ];
 
       users = {
         groups = {
@@ -76,18 +76,6 @@ in
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
       services = {
-        certwarden = {
-          enable = true;
-          port = 4444;
-          logLevel = "debug";
-
-          extraConfig = {
-            backup = {
-              enabled = true;
-              path = "/var/lib/certwarden/backups";
-            };
-          };
-        };
         haproxy = {
           enable = true;
           config = ''
