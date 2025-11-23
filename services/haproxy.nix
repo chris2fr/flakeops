@@ -27,7 +27,16 @@ in {
 
       # frontend incoming
       #   bind :443
-      #   acl needs_pp 
+      #   acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
+      #   use_backend www_proxy_protocol if needs_pp
+      #   default_backend www
+      #   acl requires_redirect req.hdr(Host) -i -M -f /redirects.map
+      #   http-request redirect prefix https://%[req.hdr(Host),lower,map(/redirects.map)] code 301 if requires_redirect
+
+      # backend www
+
+      # backend www_proxy_protocol
+
 
 
       listen http-in

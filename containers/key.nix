@@ -209,7 +209,7 @@ in
             # createLocally=false;
             # createLocally=true;
             # host="localhost";
-            host="/run/postgresql/";
+            host="/run/postgresql";
             useSSL = false;
             # useSSL = true;
             # port = 5433;
