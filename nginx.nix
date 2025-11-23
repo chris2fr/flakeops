@@ -170,19 +170,19 @@ in {
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-      defaultListenAddresses =
-        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::10]" "[::1]" ];
-      # defaultListen = [
-      #   { addr = "116.202.236.241"; ssl = true;  } 
-      #   # { addr = "116.202.236.241";  } 
-      #   # { addr = "127.0.0.1"; port = 80; } 
-      #   # { addr = "[::1]"; port = 80; } 
-      #   { addr = "[2a01:4f8:241:4faa::]";  ssl = true;  } 
-      #   { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  } 
-      #   # { addr = "[2a01:4f8:241:4faa::]";  } 
-      #   { addr = "0.0.0.0"; }
-      #   { addr = "[::0]"; }
-      # ];
+      # defaultListenAddresses =
+      #   [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::10]" "[::1]" ];
+      defaultListen = [
+        { addr = "116.202.236.241"; proxyProtocol = true;  } 
+        # { addr = "116.202.236.241";  } 
+        # { addr = "127.0.0.1"; port = 80; } 
+        # { addr = "[::1]"; port = 80; } 
+        { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true;  } 
+        # { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  } 
+        # { addr = "[2a01:4f8:241:4faa::]";  } 
+        { addr = "0.0.0.0"; proxyProtocol = true;  }
+        { addr = "[::0]"; proxyProtocol = true;  }
+      ];
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
