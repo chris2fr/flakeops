@@ -593,10 +593,10 @@ in {
             extraConfig = ''
               rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
               proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $proxy_protocol_addr;
-              proxy_set_header X-Forwarded-For $proxy_protocol_addr;
-              # proxy_set_header X-Real-IP $remote_addr;
-              # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              # proxy_set_header X-Real-IP $proxy_protocol_addr;
+              # proxy_set_header X-Forwarded-For $proxy_protocol_addr;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host $host;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_ssl_certificate     /var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem;
@@ -753,7 +753,7 @@ in {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
-          root = "/var/www/keycloak.gvois.com";
+          root = "/var/www/keycloak.gvois.com";proxy_add_x_forwarded_for
           serverAliases = ["adminkeycloak.gvois.com"];
           # globalRedirect = "keycloak.gvois.com:14443";
           locations."/" = {
