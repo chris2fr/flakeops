@@ -606,7 +606,7 @@ in {
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
             '';
-          };lib.mkForce
+          };
         };
         "key.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
@@ -717,7 +717,8 @@ in {
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
               proxy_ssl_certificate     /var/lib/acme/keycloak.coolgv.com/fullchain.pem;
-              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pem;
+              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pemOne commonly used X-Forwarded header is X-Forwarded-For, which provides the client's IP address or a chain of proxy server IP addresses. This header helps identify the true client IP address when requests pass through multiple proxies. clientIP represents the IP address of the original client making the request.
+;
             '';
           };
         };
@@ -731,7 +732,8 @@ in {
             proxyPass = "https://192.168.116.11:14446";
             extraConfig = ''
               rewrite ^/$ https://keycloak.parisgv.com/realms/master/account/applications redirect;
-              proxy_set_header Host $host;
+              proxy_set_header Host $host;One commonly used X-Forwarded header is X-Forwarded-For, which provides the client's IP address or a chain of proxy server IP addresses. This header helps identify the true client IP address when requests pass through multiple proxies. clientIP represents the IP address of the original client making the request.
+
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Host $host;
