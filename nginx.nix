@@ -717,8 +717,7 @@ in {
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
               proxy_ssl_certificate     /var/lib/acme/keycloak.coolgv.com/fullchain.pem;
-              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pemOne commonly used X-Forwarded header is X-Forwarded-For, which provides the client's IP address or a chain of proxy server IP addresses. This header helps identify the true client IP address when requests pass through multiple proxies. clientIP represents the IP address of the original client making the request.
-;
+              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pem;
             '';
           };
         };
