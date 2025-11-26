@@ -9,7 +9,8 @@ in
       enable = true;
       group = "wwwrun";
       additionalModules = [ pkgs.lua54Packages.lua-resty-openidc ];
-      package = pkgs.angie;
+      package = pkgs.openresty;
+      # package = pkgs.angie;
       clientMaxBodySize = "10G";
       appendConfig = ''
         lua_shared_dict jwt_verification 10m;
