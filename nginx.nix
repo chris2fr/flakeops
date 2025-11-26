@@ -8,7 +8,7 @@ in
   services.nginx = {
       enable = true;
       group = "wwwrun";
-      additionalModules = [ pkgs.luajitPackages.lua-resty-openidc ];
+      # additionalModules = [ pkgs.luajitPackages.lua-resty-openidc ];
       package = pkgs.openresty;
       clientMaxBodySize = "10G";
       appendConfig = ''

@@ -54,7 +54,7 @@ in
     uv
     # luajit
     # luajit_openresty
-    luajitPackages.lua-resty-openidc
+    # luajitPackages.lua-resty-openidc
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
