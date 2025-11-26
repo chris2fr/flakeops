@@ -15,7 +15,7 @@ in
     ./httpd.nix
     ./nfs.nix
     # ./vouch.nix
-    # ./nginx.nix
+    ./nginx.nix
     # ./seafile.nix
     # ./oauth2-proxy.nix
     # ./containers.nix

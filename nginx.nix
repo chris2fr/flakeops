@@ -1,4 +1,4 @@
-    { config, pkgs, lib, filestash, ... }:
+{ config, pkgs, lib, filestash, ... }:
 let 
   # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
     oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
@@ -7,10 +7,11 @@ in
 {
   services.nginx = {
       enable = true;
-      additionalModules = [ pkgs.nginxModules.luajit-resty-openidc ];
+      group = "wwwrun";
+      # additionalModules = [ pkgs.luajitPackages.lua-resty-openidc ];
       # package = pkgs.angie;
       clientMaxBodySize = "10G";
-      extraConfig = ''
+      appendConfig = ''
         lua_shared_dict jwt_verification 10m;
       '';
             # appendConfig = ''
@@ -77,17 +78,24 @@ in
       #     };
       #   };
       # };
+      defaultListen = [
+        { addr = "0.0.0.0" ; port = 444 ; ssl = true;  }
+        { addr = "[2a01:e0a:f4e:5880::9316:9fe2]" ; port = 444 ; ssl = true;  }
+        { addr = "0.0.0.0" ; port = 480; }
+        { addr = "[2a01:e0a:f4e:5880::9316:9fe2]" ; port = 480; }
+      ];
+
       virtualHosts = {
         # "vouch.roses.gdvoisins.com" = {
         #   forceSSL = true;
         #   root = "/var/www/default";
         #   enableACME = true;
         # };à
-        "*" {
+        "*" = {
           root = "/var/www/default";
           listen = [
-            { addr = "0.0.0.0" ; port = 80 }
-            { addr = "[2a01:e0a:f4e:5880::9316:9fe2]" ; port = 80 }
+            { addr = "0.0.0.0" ; port = 80 ;}
+            { addr = "[2a01:e0a:f4e:5880::9316:9fe2]" ; port = 80 ;}
             ];
           locations."/" = {
             proxyPass = "http://0.0.0.0:4060";
@@ -101,7 +109,7 @@ in
               proxy_set_header    X-Forwarded-Proto $scheme
               # rewrite ^/$  https://$host$request_uri;
             '';
-
+          };
         };
         "op.roses.gdvoisins.com" = {
           forceSSL = true;
@@ -175,7 +183,7 @@ in
                 
           #     '';
           #   };
-            "/" = {
+            # "/" = {
               # proxyPass = "http://127.0.0.1:9090";
               # extraConfig = ''
               #   auth_request /oauth2/auth;
@@ -196,7 +204,7 @@ in
               #       # proxy_set_header X-Vouch-IdP-AccessToken $auth_resp_x_vouch_idp_accesstoken;
               #       # proxy_set_header X-Vouch-IdP-IdToken $auth_resp_x_vouch_idp_idtoken;
               # '';
-            };
+            # };
             # "/validate" = {
             #   # proxyPass = "http://unix://run/vouch-proxy/socket";
             #   # proxyPass = "http://vouch-proxy/validate";
@@ -232,14 +240,15 @@ in
             #     # proxy_set_header Host $host;
             #   '';
             # };
-          };
+          # };
         };
         "cw.roses.gdvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
             proxyPass = "http://0.0.0.0:4050";
-        }
+          };
+        };
         "cp.roses.gdvoisins.com"  = {
           forceSSL = true;
           enableACME = true;
@@ -457,4 +466,4 @@ in
         # };
       };
     };
-  }
+}
