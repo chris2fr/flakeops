@@ -7,6 +7,7 @@ in
 {
   services.nginx = {
       enable = true;
+      package = pkgs.angie;
       clientMaxBodySize = "10G";
             # appendConfig = ''
             #   location /validate {
