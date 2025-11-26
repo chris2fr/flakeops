@@ -54,6 +54,7 @@ in
     uv
     # luajit
     # luajit_openresty
+    luajit_openresty
     luajitPackages.lua-resty-openidc
   ];
   virtualisation.docker.enable = true;

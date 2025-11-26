@@ -8,8 +8,8 @@ in
   services.nginx = {
       enable = true;
       group = "wwwrun";
-      # additionalModules = [ pkgs.luajitPackages.lua-resty-openidc ];
-      # package = pkgs.angie;
+      additionalModules = [ pkgs.luajitPackages.lua-resty-openidc ];
+      package = pkgs.openresty;
       clientMaxBodySize = "10G";
       appendConfig = ''
         lua_shared_dict jwt_verification 10m;
