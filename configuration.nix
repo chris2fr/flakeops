@@ -52,6 +52,9 @@ in
     ffmpeg
     python3
     uv
+    # luajit
+    # luajit_openresty
+    luajitPackages.lua-resty-openidc
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";

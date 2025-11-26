@@ -7,8 +7,12 @@ in
 {
   services.nginx = {
       enable = true;
-      package = pkgs.angie;
+      additionalModules = [ pkgs.nginxModules.luajit-resty-openidc ];
+      # package = pkgs.angie;
       clientMaxBodySize = "10G";
+      extraConfig = ''
+        lua_shared_dict jwt_verification 10m;
+      '';
             # appendConfig = ''
             #   location /validate {
             #     # forward the /validate request to Vouch Proxy
