@@ -14,7 +14,20 @@ in
   ];
   services = {
     httpd = {
-      extraModules = [ "remoteip" ];
+      extraModules = [ 
+        "remoteip"
+        "proxy" 
+        "proxy_http" 
+        # "dav" 
+        # "ldap" 
+        # "authnz_ldap" 
+        "alias" 
+        "ssl" 
+        "rewrite" 
+        # "proxy_fcgi" 
+        "http2" 
+        # "proxy_uwsgi"
+      ];
       enable = true;
       enableMellon = true;
       extraConfig = ''
