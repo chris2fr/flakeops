@@ -2,9 +2,14 @@
 let 
   # mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
   # oidcseafilesecret = import secrets/oidcseafile.nix;
+  listen = [
+            {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
+            {ip= "192.168.1.100"; port = 82 ; }
+            {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
+            {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
+          ];
 in
 { 
-
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
   systemd.tmpfiles.rules = [
     "d /var/lib/mellon/ 1770 wwwrun users"
@@ -58,22 +63,12 @@ in
             RemoteIPProxyProtocol On
           '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
           forceSSL = false;
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
           enableACME = false;
           extraConfig = ''
             RemoteIPProxyProtocol On
@@ -90,12 +85,7 @@ in
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
           forceSSL = false;
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
@@ -114,12 +104,7 @@ in
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
           forceSSL = false;
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
@@ -185,12 +170,7 @@ in
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = false;
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
@@ -203,12 +183,7 @@ in
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = false;
-          listen = [
-            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
-            {ip= "127.0.0.1"; port = 82 ; }
-            {ip= "[::1]"; port = 445 ; ssl = true ; }
-            {ip= "[::1]"; port = 82 ; }
-          ];
+          listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
