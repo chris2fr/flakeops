@@ -59,22 +59,20 @@ in
           '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
           listen = [
-            {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
-            {ip= "192.168.1.100"; port = 82 ; }
-            {ip= "[::]"; port = 445 ; ssl = true ; }
-            {ip= "[::]"; port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
           enableACME = false;
           extraConfig = ''
@@ -93,10 +91,10 @@ in
           # useACMEHost = "public.cp.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
@@ -117,10 +115,10 @@ in
           # useACMEHost = "cp.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
@@ -188,10 +186,10 @@ in
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = false;
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
@@ -206,10 +204,10 @@ in
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
-            # {ip = "[::]"; port = 445 ; ssl = true ; }
-            # {ip = "[::]"; port = 82 ; }
+            {ip= "127.0.0.1"; port = 445 ; ssl = true ; }
+            {ip= "127.0.0.1"; port = 82 ; }
+            {ip= "[::1]"; port = 445 ; ssl = true ; }
+            {ip= "[::1]"; port = 82 ; }
           ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
