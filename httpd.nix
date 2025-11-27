@@ -9,8 +9,8 @@ let
             # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
             {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
             {ip= "192.168.1.100"; port = 82 ; }
-            {ip= "[::]"; port = 445 ; ssl = true ; }
-            {ip= "[::]"; port = 82 ; }
+            {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
+            {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
           ];
 in
 { 

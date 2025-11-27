@@ -4,7 +4,7 @@ let
   allowedUDPPorts = [ 53 67 68 123 111 2049 4000 4001 4002 20048 ];
 in {
   services.bind = {
-    enable = true;
+    enable = false;
     zones = {
       "roses.gdvoisins.com" = {
         # master = true;
