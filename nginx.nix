@@ -153,8 +153,8 @@ in
           sslCertificateKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
-            ssl_certificate_key /var/lib/acme/fs.roses.gdvoisins.com/key.pem
-            ssl_certificate /var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem
+            ssl_certificate_key /var/lib/acme/fs.roses.gdvoisins.com/key.pem;
+            ssl_certificate /var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem;
           '';
           sslTrustedCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           root = "/var/www/default";
@@ -191,8 +191,8 @@ in
           sslCertificateKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
-            ssl_certificate_key /var/lib/acme/static.roses.gdvoisins.com/key.pem
-            ssl_certificate /var/lib/acme/static.roses.gdvoisins.com/fullchain.pem
+            ssl_certificate_key /var/lib/acme/static.roses.gdvoisins.com/key.pem;
+            ssl_certificate /var/lib/acme/static.roses.gdvoisins.com/fullchain.pem;
           '';
           sslTrustedCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           root = "/var/www/default";
@@ -303,8 +303,8 @@ in
           sslCertificateKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
-            ssl_certificate_key /var/lib/acme/cp.roses.gdvoisins.com/key.pem
-            ssl_certificate /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+            ssl_certificate_key /var/lib/acme/cp.roses.gdvoisins.com/key.pem;
+            ssl_certificate /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem;
           '';
           sslTrustedCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           # recommendedProxySettings = true;
