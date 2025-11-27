@@ -149,7 +149,7 @@ in
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
             extraConfig = ''
-              Require valid-user
+              # Require valid-user
               AuthType "Mellon"
               MellonEnable "auth"
               MellonSecureCookie On
@@ -161,9 +161,8 @@ in
               MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
               # MellonUser "username"
 
-
-              RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+              # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
               # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
               # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
