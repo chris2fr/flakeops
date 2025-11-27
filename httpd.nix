@@ -14,7 +14,7 @@ in
   ];
   services = {
     httpd = {
-      # extraModules = [ "proxy_protocol" ];
+      extraModules = [ "remoteip" ];
       enable = true;
       enableMellon = true;
       extraConfig = ''
@@ -47,7 +47,7 @@ in
           sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-            ProxyProtocol On
+            RemoteIPProxyProtocol On
           '';
         };
         "fs.roses.gdvoisins.com" = {
@@ -55,7 +55,7 @@ in
           forceSSL = false;
           enableACME = false;
           extraConfig = ''
-            ProxyProtocol On
+            RemoteIPProxyProtocol On
           '';
           sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
@@ -75,7 +75,7 @@ in
           sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              ProxyProtocol On
+              RemoteIPProxyProtocol On
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
@@ -93,7 +93,7 @@ in
           sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              ProxyProtocol On
+              RemoteIPProxyProtocol On
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
@@ -158,7 +158,7 @@ in
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
-              ProxyProtocol On
+              RemoteIPProxyProtocol On
             '';
         };
         "static.roses.gdvoisins.com" = {
@@ -170,7 +170,7 @@ in
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
-              ProxyProtocol On
+              RemoteIPProxyProtocol On
             '';
 
           # locations = {
