@@ -59,6 +59,9 @@ in
     # luajitPackages.lua-resty-openidc
     acme-sh
   ];
+    users.users.wwwrun.extraGroups = [ "acme" ];
+    users.users.nginx.extraGroups = [ "acme" ];
+
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   systemd.services.copyparty = {
