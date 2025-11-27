@@ -100,7 +100,11 @@ in
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
-              # SSLProxyCheckPeerName off
+              # Not happy about below chris2fr
+              SSLProxyVerify none 
+              SSLProxyCheckPeerCN off
+              SSLProxyCheckPeerName off
+              SSLProxyCheckPeerExpire off
           '';
           locations."/" = {
             proxyPass = "https://[::1]:3924/";
