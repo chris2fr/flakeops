@@ -14,7 +14,7 @@ in
   ];
   services = {
     httpd = {
-      extraModules = [ "proxy_protocol" ];
+      # extraModules = [ "proxy_protocol" ];
       enable = true;
       enableMellon = true;
       extraConfig = ''
