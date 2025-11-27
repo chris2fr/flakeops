@@ -16,12 +16,12 @@ defaults
 
 frontend http-front-4
   mode http
-  bind 0.0.0.0:80
+  bind 0.0.0.0:81
   default_backend http-back-4
 
 frontend http-front-6
   mode http
-  bind [::]:80
+  bind [::]:81
   default_backend http-back-6
 
 frontend https-in
