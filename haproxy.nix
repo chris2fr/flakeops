@@ -5,9 +5,9 @@ in
   services.haproxy = {
     enable = true;
     config = ''
-      global
         daemon
         maxconn 256
+        parse-resolv-conf
 
       defaults
         mode http
@@ -24,17 +24,28 @@ in
         mode tcp
         bind *:445
         bind [::]:445
+        
+
+        default_backend https
+        
+
+
+      backend http 
+        server server1 127.0.0.1:8083 maxconn 32
+
+
+      backend https
+        mode tcp
         acl tls req.ssl_hello_type 1
         tcp-request inspect-delay 5s
         tcp-request content accept if tls
-        
         use-server fs if req.ssl_sni -i fs.roses.gdvoisins.com
         use-server cp if req.ssl_sni -i cp.roses.gdvoisins.com
         use-server public.cp if req.ssl_sni -i public.cp.roses.gdvoisins.com
         use-server co if req.ssl_sni -i co.roses.gdvoisins.com
         use-server static if req.ssl_sni -i static.roses.gdvoisins.com
         use-server roses if req.ssl_sni -i roses.gdvoisins.com
-        use-backend https if req.ssl_sni -i fontenay.gdvoisins.com
+        use-server fontenay if req.ssl_sni -i fontenay.gdvoisins.com
 
         server fs fs.roses.gdvoisins.com:443
         server cp cp.roses.gdvoisins.com:443
@@ -43,16 +54,6 @@ in
         server static static.roses.gdvoisins.com:443
         server roses roses.gdvoisins.com:443
         server fontenay fontenay.gdvoisins.com:443
-
-      backend http 
-        server server1 127.0.0.1:8083 maxconn 32
-
-
-      backend https
-        mode tcp
-        option forwarded
-        server server2 fontenay.gdvoisins.com:443 maxconn 32
-
 
     '';
   };
