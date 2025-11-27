@@ -57,10 +57,12 @@ in
           extraConfig = ''
             RemoteIPProxyProtocol On
           '';
-          listenAddresses = [ "[::]" "0.0.0.0"];
+          # listenAddresses = [ "[::]" "192.168.1.100"];
           listen = [
-            { port = 445 ; ssl = true ; }
-            { port = 82 ; }
+            {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
+            {ip= "192.168.1.100"; port = 82 ; }
+            {ip= "[::]"; port = 445 ; ssl = true ; }
+            {ip= "[::]"; port = 82 ; }
             # {ip = "[::]"; port = 445 ; ssl = true ; }
             # {ip = "[::]"; port = 82 ; }
           ];

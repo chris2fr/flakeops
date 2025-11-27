@@ -20,7 +20,7 @@ in {
         allowedTCPPorts = allowedTCPPorts;
       };
     };
-    hostName = "rosest330"; 
+    hostName = "roses.gdvoisins.com"; 
     enableIPv6 = true;
     nat = {
       enable = true;
