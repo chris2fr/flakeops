@@ -17,8 +17,7 @@ defaults
   timeout server 50000ms
 
 resolvers mynameservers
-  nameserver ns1 192.168.2.10:53
-  nameserver ns2 192.168.3.10:53
+  nameserver ns1 192.168.1.100
 
 
 
@@ -64,11 +63,13 @@ backend https
 
 backend https-back-4
   mode tcp
-  server server1 127.0.0.1:445 maxconn 32
+  server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolver mynameservers
+  # server server1 127.0.0.1:445 maxconn 32
 
 backend https-back-6
   mode tcp
-  server server1 [::1]:445 maxconn 32
+  server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolver mynameservers
+  # server server1 [::1]:445 maxconn 32
 
 backend fs
   server fs fs.roses.gdvoisins.com:445

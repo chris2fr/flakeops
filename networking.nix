@@ -7,8 +7,8 @@ in {
     enable = true;
     zones = {
       "roses.gdvoisins.com" = {
-        master = true;
-        
+        # master = true;
+
         file = "/etc/haproxy_dns_gdvoisins";
       };
     };
