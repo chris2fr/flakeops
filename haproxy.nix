@@ -29,11 +29,10 @@ frontend http-front-6
 frontend https-front-4
   mode tcp
   bind *:443
-  bind [::]:443
-  acl tls req.ssl_hello_type 1
-  tcp-request inspect-delay 5s
-  tcp-request content accept if tls
-  use_backend %[req.ssl_sni,lower]
+  # acl tls req.ssl_hello_type 1
+  # tcp-request inspect-delay 5s
+  # tcp-request content accept if tls
+  # use_backend %[req.ssl_sni,lower]
   default_backend https-back-4
 
 frontend https-front-6
