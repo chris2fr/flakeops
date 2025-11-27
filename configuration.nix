@@ -20,7 +20,7 @@ in
     # ./oauth2-proxy.nix
     # ./containers.nix
     ./haproxy.nix
-    ./acme.nix
+    # ./acme.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
