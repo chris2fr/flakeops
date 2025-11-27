@@ -47,25 +47,25 @@ backend https
   server server1 fontenay.gdvoisins.com:443 maxconn 32
 
 backend fs
-  server fs fs.roses.gdvoisins.com:444
+  server fs fs.roses.gdvoisins.com:445
 
 backend cp
-  server cp cp.roses.gdvoisins.com:444
+  server cp cp.roses.gdvoisins.com:445
 
 backend public.cp
-  server public.cp public.cp.roses.gdvoisins.com:444
+  server public.cp public.cp.roses.gdvoisins.com:445
 
 backend co
-  server co co.roses.gdvoisins.com:444
+  server co co.roses.gdvoisins.com:445
 
 backend static
-  server static static.roses.gdvoisins.com:444
+  server static static.roses.gdvoisins.com:445
 
 backend roses
-  server roses roses.gdvoisins.com:444
+  server roses roses.gdvoisins.com:445
 
 backend fontenay
-  server fontenay fontenay.gdvoisins.com:444
+  server fontenay fontenay.gdvoisins.com:445
 
 
 
