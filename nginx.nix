@@ -12,9 +12,9 @@ in
       # package = pkgs.openresty;
       # package = pkgs.angie;
       clientMaxBodySize = "10G";
-      appendConfig = ''
-        lua_shared_dict jwt_verification 10m;
-      '';
+      # appendConfig = ''
+      #   # lua_shared_dict jwt_verification 10m;
+      # '';
             # appendConfig = ''
             #   location /validate {
             #     # forward the /validate request to Vouch Proxy
