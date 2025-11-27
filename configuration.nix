@@ -20,6 +20,7 @@ in
     # ./oauth2-proxy.nix
     # ./containers.nix
     ./haproxy.nix
+    ./acme.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
@@ -56,6 +57,7 @@ in
     # luajit
     # luajit_openresty
     # luajitPackages.lua-resty-openidc
+    acme-sh
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";

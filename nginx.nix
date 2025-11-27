@@ -119,9 +119,9 @@ in
         #   enableACME = false;
         #   listen = [
         #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
-        #     # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+        #     {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
         #   ];
-        #   useACMEHost = "op.roses.gdvoisins.com";
+        #   # useACMEHost = "op.roses.gdvoisins.com";
         #   sslCertificateKey = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
         #   sslCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
         #   sslTrustedCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
@@ -146,10 +146,11 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
+            # {port = 444; ssl = true; proxyProtocol = true;}
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
-            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+            {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
-          useACMEHost = "fs.roses.gdvoisins.com";
+          # useACMEHost = "fs.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
@@ -185,9 +186,9 @@ in
           enableACME = false;
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
-            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+            {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
-          useACMEHost = "static.roses.gdvoisins.com";
+          # useACMEHost = "static.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
@@ -282,9 +283,9 @@ in
         #   enableACME = false;
         #   listen = [
         #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
-        #     # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+        #     {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
         #   ];
-        #   useACMEHost = "cw.roses.gdvoisins.com";
+        #   # useACMEHost = "cw.roses.gdvoisins.com";
         #   sslCertificateKey = "/var/lib/acme/cw.roses.gdvoisins.com/key.pem";
         #   sslCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
         #   sslTrustedCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
@@ -297,9 +298,9 @@ in
           enableACME = false;
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
-            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+            {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
-          useACMEHost = "cp.roses.gdvoisins.com";
+          # useACMEHost = "cp.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''

@@ -14,6 +14,7 @@ in
   ];
   services = {
     httpd = {
+      extraModules = [ "mod_proxy_protocol" ];
       enable = true;
       enableMellon = true;
       extraConfig = ''
@@ -32,32 +33,49 @@ in
 
         # Listen 192.168.1.100:80
         # Listen 192.168.1.100:443
-        # Listen [::]:80
-        # Listen [::]:443
+        Listen 82
+        Listen 445
 
       '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "roses.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
+          extraConfig = ''
+            ProxyProtocol On
+          '';
         };
         "fs.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "fs.roses.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          extraConfig = ''
+            ProxyProtocol On
+          '';
+          sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           locations."/" = {
             # proxyPass = "http://127.0.0.1:8334/";
             proxyPass = "http://127.0.0.1:4180/";
-            extraConfig = ''
-            '';
           };
         };
         "public.cp.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "public.cp.roses.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
+              ProxyProtocol On
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
@@ -67,8 +85,12 @@ in
           };
         };
         "cp.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "cp.roses.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
@@ -86,6 +108,9 @@ in
           #       Allow from all
           #     '';
           # };
+          extraConfig = ''
+            ProxyProtocol On
+          '';
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
             extraConfig = ''
@@ -127,14 +152,28 @@ in
           };
         };
         "fontenay.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "fontenay.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
+            extraConfig = ''
+              ProxyProtocol On
+            '';
         };
         "static.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          # useACMEHost = "static.roses.gdvoisins.com";
+          forceSSL = false;
+          enableACME = false;
+          sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
+            extraConfig = ''
+              ProxyProtocol On
+            '';
 
           # locations = {
           #   "/" = {
