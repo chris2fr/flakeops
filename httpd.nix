@@ -167,7 +167,7 @@ in
               # MellonUser "username"
 
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
               # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
               # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
