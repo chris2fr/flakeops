@@ -48,27 +48,27 @@ backend https
   mode tcp
   server server1 fontenay.gdvoisins.com:443 maxconn 32
 
-backend fs.roses.gdvoisins.com
+backend fs
   server fs fs.roses.gdvoisins.com:445
 
-backend cp.roses.gdvoisins.com
+backend cp
   server cp cp.roses.gdvoisins.com:445
 
-backend public.cp.roses.gdvoisins.com
+backend public-cp
   server public.cp public.cp.roses.gdvoisins.com:445
 
-backend co.roses.gdvoisins.com
+backend co
   server co co.roses.gdvoisins.com:445
 
-backend static.roses.gdvoisins.com
+backend static
   server static static.roses.gdvoisins.com:445
 
-backend roses.gdvoisins.com
+backend roses
   server roses roses.gdvoisins.com:445
 
-backend fontenay.gdvoisins.com
+backend fontenay
   server fontenay fontenay.gdvoisins.com:445
-
+  
     '';
   };
 }
