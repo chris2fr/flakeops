@@ -189,8 +189,8 @@ in
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
             {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
-            {addr = "0.0.0.0"; port = 80; }
-            {addr = "[::]"; port = 80; }
+            {addr = "0.0.0.0"; port = 81; }
+            {addr = "[::]"; port = 81; }
           ];
           # useACMEHost = "static.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
@@ -303,8 +303,8 @@ in
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
             {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
-            {addr = "0.0.0.0"; port = 80; }
-            {addr = "[::]"; port = 80; }
+            {addr = "0.0.0.0"; port = 81; }
+            {addr = "[::]"; port = 81; }
           ];
           # useACMEHost = "cp.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
