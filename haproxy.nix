@@ -35,9 +35,11 @@ frontend https-in
   default_backend https
 
 backend http-back-4 
+  mode http
   server nginx-4 0.0.0.0:81 maxconn 32
 
 backend http-back-6 
+  mode http
   server nginx-4 [::]:81 maxconn 32
 
 backend https
