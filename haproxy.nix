@@ -63,7 +63,7 @@ backend co.roses.gdvoisins.com
 backend static.roses.gdvoisins.com
   server static static.roses.gdvoisins.com:445
 
-backend roses.roses.gdvoisins.com
+backend roses.gdvoisins.com
   server roses roses.gdvoisins.com:445
 
 backend fontenay.gdvoisins.com
