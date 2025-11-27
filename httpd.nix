@@ -62,10 +62,18 @@ in
           extraConfig = ''
             RemoteIPProxyProtocol On
           '';
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
           forceSSL = false;
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
           enableACME = false;
           extraConfig = ''
             RemoteIPProxyProtocol On
@@ -82,6 +90,10 @@ in
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
           forceSSL = false;
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
@@ -100,6 +112,10 @@ in
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
           forceSSL = false;
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
@@ -165,6 +181,10 @@ in
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = false;
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
@@ -177,6 +197,10 @@ in
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = false;
+          listen = [
+            {ip = "*"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 82 ; }
+          ];
           enableACME = false;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
