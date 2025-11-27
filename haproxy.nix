@@ -34,19 +34,19 @@ frontend http-front-6
 frontend https-front-4
   mode tcp
   bind *:443
-  # acl tls req.ssl_hello_type 1
-  # tcp-request inspect-delay 5s
-  # tcp-request content accept if tls
-  # use_backend %[req.ssl_sni,lower]
+  acl tls req.ssl_hello_type 1
+  tcp-request inspect-delay 5s
+  tcp-request content accept if tls
+  use_backend %[req.ssl_sni,lower,map(/etc/haproxy_domain_back.map)]
   default_backend https-back-4
 
 frontend https-front-6
   mode tcp
   bind [::]:443
-  # acl tls req.ssl_hello_type 1
-  # tcp-request inspect-delay 5s
-  # tcp-request content accept if tls
-  # use_backend %[req.ssl_sni,lower]
+  acl tls req.ssl_hello_type 1
+  tcp-request inspect-delay 5s
+  tcp-request content accept if tls
+  use_backend %[req.ssl_sni,lower,map(/etc/haproxy_domain_back.map)]
   default_backend https-back-6
 
 backend http-back-4 
@@ -69,8 +69,8 @@ backend https-back-4
 
 backend https-back-6
   mode tcp
-  # server server1 cp.roses.gdvoisins.com:445 maxconn 32 
-  server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
+  server server1 cp.roses.gdvoisins.com:445 maxconn 32 
+  # server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
   # server server1 [::1]:445 maxconn 32
 
 backend fs
