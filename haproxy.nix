@@ -17,7 +17,14 @@ in
 
       frontend http-in
           bind *:82
+          bind [::]:82
           default_backend server
+
+      frontend https-in
+        mode tcp
+        bind *:445
+        bind [::]:445
+        default_backend https
 
       # frontend https-in
       #     bind *:445 ssl
@@ -25,8 +32,15 @@ in
       #     http-request return status 200 content-type text/plain lf-string "%[path,field(-1,/)].%[path,field(-1,/),map(virt@acme)]\n" if { path_beg '/.well-known/acme-challenge/' }
       #     default_backend server
 
-      backend server
-          server server1 static.roses.gdvoisins.com:80 maxconn 32
+
+      backend http 
+        server server1 127.0.0.1:8083 maxconn 32
+
+
+      backend https
+        mode tcp
+        server server2 fontenay.gdvoisins.com:443 maxconn 32
+
 
     '';
   };
