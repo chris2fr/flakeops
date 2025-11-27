@@ -18,7 +18,7 @@ in
       frontend http-in
           bind *:82
           bind [::]:82
-          default_backend server
+          default_backend httpq
 
       frontend https-in
         mode tcp
