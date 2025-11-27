@@ -33,7 +33,7 @@ frontend https-in
   acl tls req.ssl_hello_type 1
   tcp-request inspect-delay 5s
   tcp-request content accept if tls
-  use_backend %[req.ssl_sni]
+  use_backend %[req.ssl_sni,lower]
   default_backend https
 
 backend http-back-4 
@@ -68,6 +68,7 @@ backend roses.gdvoisins.com
 
 backend fontenay.gdvoisins.com
   server fontenay fontenay.gdvoisins.com:445
+
     '';
   };
 }
