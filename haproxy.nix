@@ -26,7 +26,7 @@ frontend https-in
   acl tls req.ssl_hello_type 1
   tcp-request inspect-delay 5s
   tcp-request content accept if tls
-  use-backend %[req.ssl_sni,lower,map(/etc/haproxy_domain_back.map)]
+  use_backend %[req.ssl_sni,lower,map(/etc/haproxy_domain_back.map)]
   default_backend https
 
 backend http 

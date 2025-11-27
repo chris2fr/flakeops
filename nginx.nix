@@ -114,41 +114,45 @@ in
         #     '';
         #   };
         # };
-        "op.roses.gdvoisins.com"  = {
-          forceSSL = false;
-          enableACME = false;
-          listen = [
-            {addr = "0.0.0.0"; port = 444; ssl = true;}
-            {addr = "[::]"; port = 444; ssl = true;}
-          ];
-          sslCertificateKey = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
-          sslCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
-          root = "/var/www/default";
-          extraConfig = ''
-            add_header Strict-Transport-Security max-age=2592000;
-          '';
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:4180";
-            extraConfig = ''
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_connect_timeout 1;
-              proxy_send_timeout 30;
-              proxy_read_timeout 30;
-              proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto https;
-            '';
-          };
-        };
+        # "op.roses.gdvoisins.com"  = {
+        #   forceSSL = false;
+        #   enableACME = false;
+        #   listen = [
+        #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
+        #     # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+        #   ];
+        #   useACMEHost = "op.roses.gdvoisins.com";
+        #   sslCertificateKey = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
+        #   sslCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
+        #   sslTrustedCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
+        #   root = "/var/www/default";
+        #   extraConfig = ''
+        #     add_header Strict-Transport-Security max-age=2592000;
+        #   '';
+        #   locations."/" = {
+        #     proxyPass = "http://127.0.0.1:4180";
+        #     extraConfig = ''
+        #       proxy_set_header Host $host;
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_connect_timeout 1;
+        #       proxy_send_timeout 30;
+        #       proxy_read_timeout 30;
+        #       proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Proto https;
+        #     '';
+        #   };
+        # };
         "fs.roses.gdvoisins.com"  = {
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = 444; ssl = true;}
-            {addr = "[::]"; port = 444; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
+            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
+          useACMEHost = "fs.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          sslTrustedCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           root = "/var/www/default";
           locations."/" = {
             proxyPass = "http://127.0.0.1:8334";
@@ -176,11 +180,13 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = 444; ssl = true;}
-            {addr = "[::]"; port = 444; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
+            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
+          useACMEHost = "static.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          sslTrustedCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           root = "/var/www/default";
           # extraConfig = ''
           #       auth_request /validate;
@@ -263,28 +269,32 @@ in
             # };
           # };
         };
-        "cw.roses.gdvoisins.com"  = {
-          forceSSL = false;
-          enableACME = false;
-          listen = [
-            {addr = "0.0.0.0"; port = 444; ssl = true;}
-            {addr = "[::]"; port = 444; ssl = true;}
-          ];
-          sslCertificateKey = "/var/lib/acme/cw.roses.gdvoisins.com/key.pem";
-          sslCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
-          locations."/" = {
-            proxyPass = "http://0.0.0.0:4050";
-          };
-        };
+        # "cw.roses.gdvoisins.com"  = {
+        #   forceSSL = false;
+        #   enableACME = false;
+        #   listen = [
+        #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
+        #     # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
+        #   ];
+        #   useACMEHost = "cw.roses.gdvoisins.com";
+        #   sslCertificateKey = "/var/lib/acme/cw.roses.gdvoisins.com/key.pem";
+        #   sslCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
+        #   sslTrustedCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
+        #   locations."/" = {
+        #     proxyPass = "http://0.0.0.0:4050";
+        #   };
+        # };
         "cp.roses.gdvoisins.com"  = {
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = 444; ssl = true;}
-            {addr = "[::]"; port = 444; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
+            # {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
           ];
+          useACMEHost = "cp.roses.gdvoisins.com";
           sslCertificateKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          sslTrustedCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           # recommendedProxySettings = true;
           root = "/var/www/default";
           locations."/" = {
