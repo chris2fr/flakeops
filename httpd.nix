@@ -58,7 +58,7 @@ in
             RemoteIPProxyProtocol On
           '';
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
@@ -68,7 +68,7 @@ in
           # useACMEHost = "fs.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
@@ -90,7 +90,7 @@ in
           # useACMEHost = "public.cp.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
@@ -114,7 +114,7 @@ in
           # useACMEHost = "cp.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
@@ -185,7 +185,7 @@ in
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = false;
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
@@ -203,7 +203,7 @@ in
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = false;
           listen = [
-            {ip = "0.0.0.0"; port = 445 ; ssl = true ; }
+            {ip = "*"; port = 445 ; ssl = true ; }
             {ip = "*"; port = 82 ; }
             {ip = "[::]"; port = 445 ; ssl = true ; }
             {ip = "[::]"; port = 82 ; }
