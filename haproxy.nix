@@ -16,6 +16,12 @@ defaults
   timeout client 50000ms
   timeout server 50000ms
 
+resolvers mynameservers
+  nameserver ns1 192.168.2.10:53
+  nameserver ns2 192.168.3.10:53
+
+
+
 frontend http-front-4
   mode http
   bind 0.0.0.0:81

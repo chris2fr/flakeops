@@ -1,0 +1,25 @@
+$ORIGIN roses.gdvoisins.com.
+			@                    3600 SOA   roses.gdvoisins.com.  hostmaster.gdvoisins.com.(
+			# zone-admin.dyndns.com.     ; address of responsible party
+			2016072701                 ; serial number
+			3600                       ; refresh period
+			600                        ; retry period
+			604800                     ; expire time
+			1800                     ) ; minimum ttl
+			600 NS    roses.gdvoisins.com.
+			# 86400 NS    ns2.p68.dns.oraclecloud.net.
+			# 86400 NS    ns3.p68.dns.oraclecloud.net.
+			# 86400 NS    ns4.p68.dns.oraclecloud.net.
+			# 3600 MX    10 mail.roses.gdvoisins.com.
+			# 3600 MX    20 vpn.roses.gdvoisins.com.
+			# 3600 MX    30 mail.roses.gdvoisins.com.
+			60 A     127.0.0.1
+			60 AAAA     ::1
+		www                   43200 CNAME roses.gdvoisins.com.
+		cp                   43200 CNAME roses.gdvoisins.com.
+		fo                   43200 CNAME roses.gdvoisins.com.
+		cw                   43200 CNAME roses.gdvoisins.com.
+		public.cp                   43200 CNAME roses.gdvoisins.com.
+		fontenay                   43200 CNAME roses.gdvoisins.com.
+		static                   43200 CNAME roses.gdvoisins.com.
+    

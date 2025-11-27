@@ -3,6 +3,16 @@ let
   allowedTCPPorts = [ 22 80 81 82 443 444 445 636 53 111 2049 8088 41443 8334 30746];
   allowedUDPPorts = [ 53 67 68 123 111 2049 4000 4001 4002 20048 ];
 in {
+  services.bind = {
+    enable = true;
+    zones = {
+      "roses.gdvoisins.com" = {
+        master = true;
+        
+        file = "/etc/haproxy_dns_gdvoisins";
+      };
+    };
+  };
   networking = {
     nftables = {
       enable = true;
