@@ -93,6 +93,7 @@ in
           sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
+              ProxyProtocol On
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
@@ -108,9 +109,6 @@ in
           #       Allow from all
           #     '';
           # };
-          extraConfig = ''
-            ProxyProtocol On
-          '';
           locations."/" = {
             proxyPass = "https://[::1]:3923/";
             extraConfig = ''
