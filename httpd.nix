@@ -110,10 +110,12 @@ in
               SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
               SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
 
+              ProxyPass "/" "https://[::1]:3924/"
+
           '';
           locations."/" = {
             extraConfig = ''
-              ProxyPass "/" "https://[::1]:3924/"
+              
             ''; 
           };
         };
@@ -128,7 +130,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               RemoteIPProxyProtocol On
-              
+              ProxyPass "/" "https://[::1]:3923/"
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
@@ -151,7 +153,7 @@ in
           locations."/" = {
             # proxyPass = "https://[::1]:3923/";
             extraConfig = ''
-              ProxyPass "/" "https://[::1]:3923/"
+              
               Require valid-user
               AuthType "Mellon"
               MellonEnable "auth"
