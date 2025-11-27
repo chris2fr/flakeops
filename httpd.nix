@@ -105,6 +105,11 @@ in
               SSLProxyCheckPeerCN off
               SSLProxyCheckPeerName off
               SSLProxyCheckPeerExpire off
+              # Client Certificate
+              SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+              SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
+              SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+
           '';
           locations."/" = {
             proxyPass = "https://[::1]:3924/";
@@ -121,6 +126,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               RemoteIPProxyProtocol On
+              
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
               SSLProxyEngine on
@@ -129,6 +135,10 @@ in
               SSLProxyCheckPeerCN off
               SSLProxyCheckPeerName off
               SSLProxyCheckPeerExpire off
+              # Client Certificate
+              SSLCertificateFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+              SSLCertificateKeyFile /var/lib/acme/cp.roses.gdvoisins.com/key.pem
+              SSLCertificateChainFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
           '';
           # locations."/public/" = {
           #     extraConfig = ''
