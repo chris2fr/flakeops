@@ -34,7 +34,7 @@ in
         use-server co if req.ssl_sni -i co.roses.gdvoisins.com
         use-server static if req.ssl_sni -i static.roses.gdvoisins.com
         use-server roses if req.ssl_sni -i roses.gdvoisins.com
-        use-server fontenay if req.ssl_sni -i fontenay.gdvoisins.com
+        use-backend https if req.ssl_sni -i fontenay.gdvoisins.com
 
         server fs fs.roses.gdvoisins.com:443
         server cp cp.roses.gdvoisins.com:443
@@ -50,6 +50,7 @@ in
 
       backend https
         mode tcp
+        option forwarded
         server server2 fontenay.gdvoisins.com:443 maxconn 32
 
 
