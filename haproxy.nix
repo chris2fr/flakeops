@@ -63,15 +63,15 @@ backend https
 
 backend https-back-4
   mode tcp
-  server server1 cp.roses.gdvoisins.com:445 maxconn 32
-  # server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
-  # server server1 127.0.0.1:445 maxconn 32
+  server server4 pulic.cp.roses.gdvoisins.com:445 maxconn 32
+  # server server4 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
+  # server server4 127.0.0.1:445 maxconn 32
 
 backend https-back-6
   mode tcp
-  server server1 cp.roses.gdvoisins.com:445 maxconn 32 
-  # server server1 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
-  # server server1 [::1]:445 maxconn 32
+  server server6 public.cp.roses.gdvoisins.com:445 maxconn 32 
+  # server server6 cp.roses.gdvoisins.com:445 maxconn 32 check resolvers mynameservers
+  # server server6 [::1]:445 maxconn 32
 
 backend fs
   server fs fs.roses.gdvoisins.com:445
