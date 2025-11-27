@@ -31,9 +31,9 @@ in
         ProxyPreserveHost On
 
         # Listen 192.168.1.100:80
-        Listen 192.168.1.100:443
+        # Listen 192.168.1.100:443
         # Listen [::]:80
-        Listen [::]:443
+        # Listen [::]:443
 
       '';
       virtualHosts = {
