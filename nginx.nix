@@ -118,8 +118,8 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = "444"; ssl = true;}
-            {addr = "[::]"; port = "444"; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true;}
+            {addr = "[::]"; port = 444; ssl = true;}
           ];
           sslCertificateKey = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
@@ -144,8 +144,8 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = "444"; ssl = true;}
-            {addr = "[::]"; port = "444"; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true;}
+            {addr = "[::]"; port = 444; ssl = true;}
           ];
           sslCertificateKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
@@ -176,8 +176,8 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = "444"; ssl = true;}
-            {addr = "[::]"; port = "444"; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true;}
+            {addr = "[::]"; port = 444; ssl = true;}
           ];
           sslCertificateKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
@@ -267,8 +267,8 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = "444"; ssl = true;}
-            {addr = "[::]"; port = "444"; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true;}
+            {addr = "[::]"; port = 444; ssl = true;}
           ];
           sslCertificateKey = "/var/lib/acme/cw.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem";
@@ -280,8 +280,8 @@ in
           forceSSL = false;
           enableACME = false;
           listen = [
-            {addr = "0.0.0.0"; port = "444"; ssl = true;}
-            {addr = "[::]"; port = "444"; ssl = true;}
+            {addr = "0.0.0.0"; port = 444; ssl = true;}
+            {addr = "[::]"; port = 444; ssl = true;}
           ];
           sslCertificateKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslCertificate = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
