@@ -115,8 +115,8 @@ in
         #   };
         # };
         # "op.roses.gdvoisins.com"  = {
-        #   forceSSL = false;
-        #   enableACME = false;
+        #   forceSSL = true;
+        #   enableACME = true;
         #   listen = [
         #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
         #     {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
@@ -143,8 +143,8 @@ in
         #   };
         # };
         "fs.roses.gdvoisins.com"  = {
-          forceSSL = false;
-          enableACME = false;
+          forceSSL = true;
+          enableACME = true;
           listen = [
             # {port = 444; ssl = true; proxyProtocol = true;}
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
@@ -182,8 +182,8 @@ in
         #   root = "/var/www/default";
         # };
         "static.roses.gdvoisins.com"  = {
-          forceSSL = false;
-          enableACME = false;
+          forceSSL = true;
+          enableACME = true;
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
             {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
@@ -279,8 +279,8 @@ in
           # };
         };
         # "cw.roses.gdvoisins.com"  = {
-        #   forceSSL = false;
-        #   enableACME = false;
+        #   forceSSL = true;
+        #   enableACME = true;
         #   listen = [
         #     {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
         #     {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
@@ -294,8 +294,8 @@ in
         #   };
         # };
         "cp.roses.gdvoisins.com"  = {
-          forceSSL = false;
-          enableACME = false;
+          forceSSL = true;
+          enableACME = true;
           listen = [
             {addr = "0.0.0.0"; port = 444; ssl = true; proxyProtocol = true;}
             {addr = "[::]"; port = 444; ssl = true; proxyProtocol = true;}
