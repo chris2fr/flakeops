@@ -44,11 +44,6 @@ in
         RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
         ProxyPreserveHost On
 
-        # Listen 192.168.1.100:80
-        # Listen 192.168.1.100:443
-        Listen 82
-        Listen 445
-
       '';
       virtualHosts = {
         "roses.gdvoisins.com" = {
