@@ -26,7 +26,7 @@ frontend http-front-6
   bind [::]:81
   default_backend http-back-6
 
-frontend https-in
+frontend https-front-4
   mode tcp
   bind *:443
   bind [::]:443
@@ -34,19 +34,36 @@ frontend https-in
   tcp-request inspect-delay 5s
   tcp-request content accept if tls
   use_backend %[req.ssl_sni,lower]
-  default_backend https
+  default_backend https-back-4
+
+frontend https-front-6
+  mode tcp
+  bind [::]:443
+  # acl tls req.ssl_hello_type 1
+  # tcp-request inspect-delay 5s
+  # tcp-request content accept if tls
+  # use_backend %[req.ssl_sni,lower]
+  default_backend https-back-6
 
 backend http-back-4 
   mode http
-  server nginx-4 0.0.0.0:80 maxconn 32
+  server nginx-4 127.0.0.1:80 maxconn 32
 
 backend http-back-6 
   mode http
-  server nginx-4 [::]:80 maxconn 32
+  server nginx-4 [::1]:80 maxconn 32
 
 backend https
   mode tcp
-  server server1 fontenay.gdvoisins.com:443 maxconn 32
+  server server1 fontenay.gdvoisins.com:445 maxconn 32
+
+backend https-back-4
+  mode tcp
+  server server1 127.0.0.1:445 maxconn 32
+
+backend https-back-6
+  mode tcp
+  server server1 [::1]:445 maxconn 32
 
 backend fs
   server fs fs.roses.gdvoisins.com:445
