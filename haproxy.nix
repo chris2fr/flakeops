@@ -24,9 +24,18 @@ in
         mode tcp
         bind *:445
         bind [::]:445
+        acl tls req.ssl_hello_type 1
+        tcp-request inspect-delay 5s
+        tcp-request content accept if tls
         
 
         default_backend https
+
+
+      listen https-listen
+        mode tcp
+        bind :444
+        server dynamic %[req.ssl_sni,lower]:443
         
 
 
@@ -36,9 +45,6 @@ in
 
       backend https
         mode tcp
-        acl tls req.ssl_hello_type 1
-        tcp-request inspect-delay 5s
-        tcp-request content accept if tls
         use-server fs if req.ssl_sni -i fs.roses.gdvoisins.com
         use-server cp if req.ssl_sni -i cp.roses.gdvoisins.com
         use-server public.cp if req.ssl_sni -i public.cp.roses.gdvoisins.com
