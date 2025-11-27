@@ -19,6 +19,7 @@ in
     # ./seafile.nix
     # ./oauth2-proxy.nix
     # ./containers.nix
+    ./haproxy.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
@@ -52,9 +53,9 @@ in
     ffmpeg
     python3
     uv
-    luajit
-    luajit_openresty
-    luajitPackages.lua-resty-openidc
+    # luajit
+    # luajit_openresty
+    # luajitPackages.lua-resty-openidc
   ];
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";

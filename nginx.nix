@@ -8,8 +8,8 @@ in
   services.nginx = {
       enable = true;
       group = "wwwrun";
-      additionalModules = [ pkgs.lua54Packages.lua-resty-openidc ];
-      package = pkgs.openresty;
+      # additionalModules = [ pkgs.lua54Packages.lua-resty-openidc ];
+      # package = pkgs.openresty;
       # package = pkgs.angie;
       clientMaxBodySize = "10G";
       appendConfig = ''
