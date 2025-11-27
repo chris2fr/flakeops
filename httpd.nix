@@ -7,10 +7,10 @@ let
             # {ip= "192.168.1.100"; port = 82 ; }
             # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
             # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
-            {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
-            {ip= "192.168.1.100"; port = 82 ; }
-            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 445 ; ssl = true ; }
-            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 82 ; }
+            {ip= "192.168.1.100"; port = 443 ; ssl = true ; }
+            {ip= "192.168.1.100"; port = 80 ; }
+            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 443 ; ssl = true ; }
+            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 80 ; }
           ];
 in
 { 
@@ -64,7 +64,7 @@ in
           sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-            RemoteIPProxyProtocol On
+            RemoteIPProxyProtocol Off
           '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
           listen = listen;
@@ -75,7 +75,7 @@ in
           listen = listen;
           enableACME = false;
           extraConfig = ''
-            RemoteIPProxyProtocol On
+            RemoteIPProxyProtocol Off
           '';
           sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
@@ -96,7 +96,7 @@ in
           sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              RemoteIPProxyProtocol On
+              RemoteIPProxyProtocol Off
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
@@ -129,7 +129,7 @@ in
           sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              RemoteIPProxyProtocol On
+              RemoteIPProxyProtocol Off
               ProxyPass "/" "https://[::1]:3923/"
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
@@ -200,7 +200,7 @@ in
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
-              RemoteIPProxyProtocol On
+              RemoteIPProxyProtocol Off
             '';
         };
         "static.roses.gdvoisins.com" = {
@@ -213,7 +213,7 @@ in
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
-              RemoteIPProxyProtocol On
+              RemoteIPProxyProtocol Off
             '';
 
           # locations = {
