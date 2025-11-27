@@ -16,7 +16,7 @@ in
         timeout server 50000ms
 
       frontend http-in
-          bind *:81
+          bind *:82
           default_backend server
 
       frontend https-in
