@@ -69,7 +69,7 @@ in
       };
       "cw.roses.gdvoisins.com" = {
         extraConfig = ''
-          tls /var/lib/acme/fcws.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cw.roses.gdvoisins.com/key.pem
+          tls /var/lib/acme/cw.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cw.roses.gdvoisins.com/key.pem
           respond "cw.roses.gdvoisins.com"
         '';
         };
