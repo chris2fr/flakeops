@@ -19,8 +19,16 @@ in
         '';
       };
       "roses.gdvoisins.com" = {};
-      "cp.roses.gdvoisins.com" = {};
-      "public.cp.roses.gdvoisins.com" = {};
+      "cp.roses.gdvoisins.com" = {
+        extraConfig = ''
+          reverse_proxy https://[::1]:3923
+        '';
+      };
+      "public.cp.roses.gdvoisins.com" = {
+        extraConfig = ''
+          reverse_proxy https://[::1]:3924
+        '';
+      };
       "fs.roses.gdvoisins.com" = {};
       "cw.roses.gdvoisins.com" = {};
       "co.roses.gdvoisins.com" = {};
