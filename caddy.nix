@@ -19,7 +19,7 @@ in
     virtualHosts = {
       "fontenay.gdvoisins.com" = {
         extraConfig = ''
-          reverse_proxy https://fontenay.gdvoisins.com:446
+          reverse_proxy https://fontenay.gdvoisins.com:443
         '';
       };
       "roses.gdvoisins.com" = {
