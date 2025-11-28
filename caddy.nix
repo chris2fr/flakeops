@@ -73,10 +73,10 @@ in
           respond "cw.roses.gdvoisins.com"
         '';
         };
-      "co.roses.gdvoisins.com" = {
+      "op.roses.gdvoisins.com" = {
         extraConfig = ''
-          tls /var/lib/acme/co.roses.gdvoisins.com/fullchain.pem /var/lib/acme/co.roses.gdvoisins.com/key.pem
-          respond "co.roses.gdvoisins.com"
+          tls /var/lib/acme/op.roses.gdvoisins.com/fullchain.pem /var/lib/acme/op.roses.gdvoisins.com/key.pem
+          respond "op.roses.gdvoisins.com"
         '';
         };
     };
