@@ -54,7 +54,7 @@ in
               tls_insecure_skip_verify
             }
           }
-        '';extraConfig = ''
+        '';
         # {
         #     transport http {
         #       tls_client_auth /var/lib/copyparty/ssl-public/srv.pem /var/lib/copyparty/ssl-public/srv.key
