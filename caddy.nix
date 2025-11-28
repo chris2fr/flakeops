@@ -29,7 +29,7 @@ in
         extraConfig = ''
           reverse_proxy https://[::1]:3923 {
             transport http {
-              tls_client_auth /var/lib/copyparty/srv.pem /var/lib/copyparty/srv.key
+              tls_client_auth /var/lib/copyparty/ssl/srv.pem /var/lib/copyparty/ssl/srv.key
             }
           }
         '';
@@ -38,7 +38,7 @@ in
         extraConfig = ''
           reverse_proxy https://[::1]:3924 {
             transport http {
-              tls_client_auth /var/lib/copyparty-public/srv.pem /var/lib/copyparty-public/srv.key
+              tls_client_auth /var/lib/copyparty/ssl-public/srv.pem /var/lib/copyparty/ssl-public/srv.key
             }
           }
         '';
