@@ -5,7 +5,7 @@ in
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = ["greenpau/caddy-security@v1.1.31"];
+      plugins = ["github.com/greenpau/caddy-security@v1.1.31"];
       hash = "";
     };
     user = "wwwrun";
