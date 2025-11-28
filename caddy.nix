@@ -30,6 +30,7 @@ in
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
+              tls_insecure_skip_verify
             }
           }
         '';
@@ -42,6 +43,7 @@ in
           reverse_proxy https://[::1]:3924 {
             transport http {
               tls_server_name public.cp.roses.gdvoisins.com
+              tls_insecure_skip_verify
             }
           }
         '';
