@@ -12,6 +12,10 @@ in
     user = "wwwrun";
     group = "wwwrun";
     email = "hostmaster@lesgrandsvoisins.com";
+    extraConfig = ''
+      http_port 84
+      https_port 447
+    '';
     virtualHosts = {
       "fontenay.gdvoisins.com" = {
         extraConfig = ''
