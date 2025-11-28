@@ -13,7 +13,11 @@ in
     group = "wwwrun";
     email = "hostmaster@lesgrandsvoisins.com";
     virtualHosts = {
-      "fontenay.gdvoisins.com" = {};
+      "fontenay.gdvoisins.com" = {
+        extraConfig = ''
+          reverse_proxy https://fontenay.gdvoisins.com:446
+        '';
+      };
       "roses.gdvoisins.com" = {};
       "cp.roses.gdvoisins.com" = {};
       "public.cp.roses.gdvoisins.com" = {};
