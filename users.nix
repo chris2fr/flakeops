@@ -12,6 +12,13 @@ in {
       extraGroups = [ "wheel" "users" "docker" "wwwrun" "acme" ];
       # extraGroups = [ "wheel" "nginx" "users" "docker" ];
     };
+    copyparty = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = mannchriRsaPublic;
+      extraGroups = [ "wwwrun" "acme" ];
+      # extraGroups = [ "wheel" "nginx" "users" "docker" ];
+      home = "/var/lib/copyparty";
+    };
     admin = {
       isNormalUser = true;
       description = "admin";

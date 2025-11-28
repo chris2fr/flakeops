@@ -69,7 +69,7 @@ in
   systemd.services.copyparty = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty -c /home/mannchri/copyparty/copyparty.conf ";
+    script = "/var/lib/copyparty/.venv/bin/python -m copyparty -c /etc/copyparty.conf ";
     # script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty --xff-hdr x-forwarded-for --rproxy 1 --xff-src=lan -c /home/mannchri/copyparty/copyparty.conf ";
     description = "CopyParty";
     serviceConfig = {
@@ -82,7 +82,7 @@ in
     enable = true;
     wantedBy = ["default.target"];
     # script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty -c /home/mannchri/copyparty/copyparty.conf ";
-    script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty -c /home/mannchri/copyparty/copyparty-public.conf ";
+    script = "/var/lib/copyparty/.venv/bin/python -m copyparty -c /etc/copyparty-public.conf ";
     # script = "/home/mannchri/copyparty/.venv/bin/python -m copyparty --xff-hdr x-forwarded-for --rproxy 1 --xff-src=lan -c /home/mannchri/copyparty/copyparty.conf ";
     description = "CopyParty Public";
     serviceConfig = {
