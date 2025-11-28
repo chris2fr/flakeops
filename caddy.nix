@@ -19,11 +19,13 @@ in
     virtualHosts = {
       "fontenay.gdvoisins.com" = {
         extraConfig = ''
+          tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
           reverse_proxy https://fontenay.gdvoisins.com:443
         '';
       };
       "roses.gdvoisins.com" = {
         extraConfig = ''
+          tls /var/lib/acme/roses.gdvoisins.com/fullchain.pem /var/lib/acme/roses.gdvoisins.com/key.pem
           respond "Hello There Bonjour etc."
         '';
       };
@@ -31,6 +33,7 @@ in
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
+          tls /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cp.roses.gdvoisins.com/key.pem
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
@@ -44,22 +47,38 @@ in
       };
       "public.cp.roses.gdvoisins.com" = {
         extraConfig = ''
+          tls /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
           reverse_proxy https://[::1]:3924 {
             transport http {
               tls_server_name public.cp.roses.gdvoisins.com
               tls_insecure_skip_verify
             }
           }
-        '';
+        '';extraConfig = ''
         # {
         #     transport http {
         #       tls_client_auth /var/lib/copyparty/ssl-public/srv.pem /var/lib/copyparty/ssl-public/srv.key
         #     }
         #   }
       };
-      "fs.roses.gdvoisins.com" = {};
-      "cw.roses.gdvoisins.com" = {};
-      "co.roses.gdvoisins.com" = {};
+      "fs.roses.gdvoisins.com" = {
+        extraConfig = ''
+          tls /var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem /var/lib/acme/fs.roses.gdvoisins.com/key.pem
+          respond "fs.roses.gdvoisins.com"
+        '';
+      };
+      "cw.roses.gdvoisins.com" = {
+        extraConfig = ''
+          tls /var/lib/acme/fcws.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cw.roses.gdvoisins.com/key.pem
+          respond "cw.roses.gdvoisins.com"
+        '';
+        };
+      "co.roses.gdvoisins.com" = {
+        extraConfig = ''
+          tls /var/lib/acme/co.roses.gdvoisins.com/fullchain.pem /var/lib/acme/co.roses.gdvoisins.com/key.pem
+          respond "co.roses.gdvoisins.com"
+        '';
+        };
     };
   };
 }
