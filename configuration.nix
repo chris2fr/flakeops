@@ -21,6 +21,7 @@ in
     # ./containers.nix
     ./haproxy.nix
     # ./acme.nix
+    ./caddy.nix
   ];
   environment.systemPackages = with pkgs; [ 
     # agenix-cli 
@@ -58,6 +59,7 @@ in
     # luajit_openresty
     # luajitPackages.lua-resty-openidc
     acme-sh
+    caddy
   ];
     users.users.wwwrun.extraGroups = [ "acme" ];
     users.users.nginx.extraGroups = [ "acme" ];
