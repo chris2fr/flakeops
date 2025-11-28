@@ -28,6 +28,9 @@ in
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
           reverse_proxy https://[::1]:3923 {
+            transport http {
+              tls_server_name cp.roses.gdvoisins.com
+            }
           }
         '';
             # transport http {
@@ -36,7 +39,11 @@ in
       };
       "public.cp.roses.gdvoisins.com" = {
         extraConfig = ''
-          reverse_proxy https://[::1]:3924 
+          reverse_proxy https://[::1]:3924 {
+            transport http {
+              tls_server_name public.cp.roses.gdvoisins.com
+            }
+          }
         '';
         # {
         #     transport http {
