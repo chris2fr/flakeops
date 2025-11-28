@@ -74,8 +74,8 @@ in
     description = "CopyParty";
     serviceConfig = {
       WorkingDirectory = "/mnt/chrisdatalive/chris";
-      User = "mannchri";
-      Group = "users";
+      User = "copyparty";
+      Group = "wwwrun";
     };
   };
   systemd.services.copyparty-public = {
@@ -87,8 +87,8 @@ in
     description = "CopyParty Public";
     serviceConfig = {
       WorkingDirectory = "/mnt/chrisdatalive/chris";
-      User = "mannchri";
-      Group = "users";
+      User = "copyparty";
+      Group = "wwwrun";
     };
   };
   # systemd.services.certwarden = {

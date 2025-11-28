@@ -28,20 +28,21 @@ in
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
           reverse_proxy https://[::1]:3923 {
-            transport http {
-              tls_client_auth /var/lib/copyparty/ssl/srv.pem /var/lib/copyparty/ssl/srv.key
-            }
           }
         '';
+            # transport http {
+            #   tls_client_auth /var/lib/copyparty/ssl/srv.pem /var/lib/copyparty/ssl/srv.key
+            # }
       };
       "public.cp.roses.gdvoisins.com" = {
         extraConfig = ''
-          reverse_proxy https://[::1]:3924 {
-            transport http {
-              tls_client_auth /var/lib/copyparty/ssl-public/srv.pem /var/lib/copyparty/ssl-public/srv.key
-            }
-          }
+          reverse_proxy https://[::1]:3924 
         '';
+        # {
+        #     transport http {
+        #       tls_client_auth /var/lib/copyparty/ssl-public/srv.pem /var/lib/copyparty/ssl-public/srv.key
+        #     }
+        #   }
       };
       "fs.roses.gdvoisins.com" = {};
       "cw.roses.gdvoisins.com" = {};
