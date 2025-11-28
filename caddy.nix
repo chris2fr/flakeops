@@ -22,7 +22,11 @@ in
           reverse_proxy https://fontenay.gdvoisins.com:446
         '';
       };
-      "roses.gdvoisins.com" = {};
+      "roses.gdvoisins.com" = {
+        extraConfig = ''
+          respond "Hello There Bonjour etc."
+        '';
+      };
       "cp.roses.gdvoisins.com" = {
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
