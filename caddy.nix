@@ -12,7 +12,7 @@ in
     user = "wwwrun";
     group = "wwwrun";
     email = "hostmaster@lesgrandsvoisins.com";
-    extraConfig = ''
+    globalConfig = ''
       http_port 84
       https_port 447
     '';
@@ -24,13 +24,23 @@ in
       };
       "roses.gdvoisins.com" = {};
       "cp.roses.gdvoisins.com" = {
+        # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
+        # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
-          reverse_proxy https://[::1]:3923
+          reverse_proxy https://[::1]:3923 {
+            transport http {
+              tls_trust_pool /var/lib/copyparty/srv.pem
+            }
+          }
         '';
       };
       "public.cp.roses.gdvoisins.com" = {
         extraConfig = ''
-          reverse_proxy https://[::1]:3924
+          reverse_proxy https://[::1]:3924 {
+            transport http {
+              tls_trust_pool /var/lib/copyparty-public/srv.pem
+            }
+          }
         '';
       };
       "fs.roses.gdvoisins.com" = {};
