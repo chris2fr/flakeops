@@ -12,10 +12,11 @@ in
     environmentFile = "/var/lib/caddy/.env";
     # user = "wwwrun";
     # group = "wwwrun";
+      # http_port 84
+      # https_port 447
     email = "hostmaster@lesgrandsvoisins.com";
     globalConfig = ''
-      http_port 84
-      https_port 447
+
       order authenticate before respond
       order authorize before basicauth
 
