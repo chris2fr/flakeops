@@ -44,16 +44,6 @@ in
         # "proxy_uwsgi"
       ];
       enable = true;
-      virtualHosts = {
-        "auth.roses.gdvoisins.com" = {
-          forceSSL = true;
-          # listen = listen;
-          enableACME = true;
-          documentRoot = "/var/www/default";
-          # sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
-          # sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-          # sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        };
       enableMellon = true;
       extraConfig = ''
         MellonCacheSize 100
@@ -68,7 +58,6 @@ in
         RequestHeader set X-Real-IP $remote_addr
         RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
         ProxyPreserveHost On
-
       '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
