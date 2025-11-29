@@ -49,7 +49,6 @@ in
 
 		authorization policy identified {
 			set auth url https://cp.roses.gdvoisins.com:443/
-			allow roles authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 
@@ -67,7 +66,7 @@ in
       "auth.roses.gdvoisins.com" = {
           # tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
         extraConfig = ''
-          authorize with mypolicy
+          authorize with identified
           respond "auth is running"
         '';
       };
