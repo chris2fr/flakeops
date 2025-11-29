@@ -8,9 +8,15 @@ let
             # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
             # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
             {ip= "192.168.1.100"; port = 443 ; ssl = true ; }
-            # {ip= "192.168.1.100"; port = 80 ; }
+            {ip= "192.168.1.100"; port = 80 ; }
             {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 443 ; ssl = true ; }
-            # {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 80 ; }
+            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 80 ; }
+            {ip= "[::]"; port = 448 ; ssl = true ; }
+            {ip= "[::]"; port = 85 ; }
+            {ip= "*"; port = 449 ; ssl = true ; }
+            {ip= "*"; port = 86 ; }
+            {ip= "0.0.0.0"; port = 450 ; ssl = true ; }
+            {ip= "0.0.0.0"; port = 87 ; }
           ];
 in
 { 
@@ -57,10 +63,12 @@ in
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
           forceSSL = false;
+          listen = listen;
           enableACME = false;
         };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
+          listen = listen;
           forceSSL = false;
           enableACME = false;
           sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
