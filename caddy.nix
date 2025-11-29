@@ -40,6 +40,8 @@ in
         idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
         application_name "Key LesGrandsVoisins com"
         acs_url https://saml.roses.gdvoisins.com
+        application_id "samlcopyparty"
+        
       }
 
 		authentication portal samlportal {
