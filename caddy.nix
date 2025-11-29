@@ -38,7 +38,7 @@ in
 
     saml identity provider samlkey {
         driver generic
-        realm keycloak
+        realm samlkey
         application_name "Key LesGrandsVoisins com"
         acs_url https://saml.roses.gdvoisins.com
         acs_url https://cp.roses.gdvoisins.com
@@ -52,7 +52,7 @@ in
 		authentication portal samlportal {
 			crypto default token lifetime 3600
 			crypto key sign-verify {env.JWT_SHARED_KEY}
-			enable identity provider keycloak
+			enable identity provider samlkey
 			cookie domain gdvoisins.com
 			ui {
 				links {
