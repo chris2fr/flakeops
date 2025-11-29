@@ -60,7 +60,6 @@ in
             Require all granted
         </Directory>
 
-
         Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
         ProxyAddHeaders On
@@ -71,10 +70,10 @@ in
       '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
-          forceSSL = false;
+          forceSSL = true;
           documentRoot = "/var/lib/acme/acme-challenge/";
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
@@ -85,8 +84,8 @@ in
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
           # listen = listen;
-          forceSSL = false;
-          enableACME = false;
+          forceSSL = true;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
@@ -101,9 +100,9 @@ in
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           # extraConfig = ''
           #   RemoteIPProxyProtocol Off
           # '';
@@ -119,9 +118,9 @@ in
         };
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
@@ -152,9 +151,9 @@ in
         };
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
@@ -224,9 +223,9 @@ in
         };
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
@@ -238,9 +237,9 @@ in
         };
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
@@ -318,8 +317,8 @@ in
     #   ];
       # virtualHosts = {
       #   "roses.lgv.info" = {
-      #     forceSSL = false;
-      #     enableACME = false;
+      #     forceSSL = true;
+      #     enableACME = true;
       #     # listen = [{port = 443; ssl=true;}];
       #     # sslServerCert = "/var/lib/acme/roses.lgv.info/fullchain.pem";
       #     # sslServerChain = "/var/lib/acme/roses.lgv.info/fullchain.pem";
