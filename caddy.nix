@@ -42,7 +42,7 @@ in
 				}
 			}
 			transform user {
-				match origin master
+				match origin keycloak
 				action add role authp/user
 			}
 		}
