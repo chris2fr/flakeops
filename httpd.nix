@@ -45,10 +45,10 @@ in
       ];
       enable = true;
       enableMellon = true;
-      # extraConfig = ''
-      #   MellonCacheSize 100
-      #   MellonPostDirectory "/var/lib/mellon/cache"
-      #   MellonCacheEntrySize 196608
+      extraConfig = ''
+        MellonCacheSize 100
+        MellonPostDirectory "/var/lib/mellon/cache"
+        MellonCacheEntrySize 196608
       #   # MellonDiagnosticsFile logs/mellon_diagnostics
       #   # MellonDiagnosticsEnable Off
         
@@ -69,7 +69,7 @@ in
       #   RequestHeader set X-Real-IP $remote_addr
       #   RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
       #   ProxyPreserveHost On
-      # '';
+      '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
           onlySSL = true;
