@@ -17,7 +17,7 @@ in {
       openssh.authorizedKeys.keys = mannchriRsaPublic;
       extraGroups = [ "wwwrun" "acme" ];
       # extraGroups = [ "wheel" "nginx" "users" "docker" ];
-      home = "/var/lib/copyparty";
+      # home = "/var/lib/copyparty";
     };
     admin = {
       isNormalUser = true;
