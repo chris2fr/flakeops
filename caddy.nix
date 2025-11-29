@@ -9,14 +9,61 @@ in
       # plugins = ["github.com/greenpau/caddy-security@v1.1.31" "github.com/mholt/caddy-l4@v0.0.0-20251124224044-66170bec9f4d"];
       hash = "sha256-b+hW1MN84eW7OkBIwKHp4VrvHOVi8gsTnTrWAoxmbE0=";
     };
+    environmentFile = "/var/lib/copyparty/.env";
     user = "wwwrun";
     group = "wwwrun";
     email = "hostmaster@lesgrandsvoisins.com";
     globalConfig = ''
       http_port 84
       https_port 447
+      order authenticate before respond
+      order authorize before basicauth
+    '';
+    extraConfig = ''
+
+	security {
+		oauth identity provider keycloak {
+			driver generic
+			realm keycloak
+			client_id {env.KEYCLOAK_CLIENT_ID}
+			client_secret {env.KEYCLOAK_CLIENT_SECRET}
+			scopes openid email profile
+			metadata_url https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+		}
+
+		authentication portal myportal {
+			crypto default token lifetime 3600
+			crypto key sign-verify {env.JWT_SHARED_KEY}
+			enable identity provider keycloak
+			cookie domain cp.roses.gdvoisins.com
+			ui {
+				links {
+					"My Website" https://cp.roses.gdvoisins.com:447/ icon "las la-star"
+					"My Identity" "/whoami" icon "las la-user"
+				}
+			}
+			transform user {
+				match origin keycloak
+				action add role authp/user
+			}
+		}
+
+		authorization policy mypolicy {
+			set auth url https://cp.roses.gdvoisins.com:447/
+			allow roles authp/admin authp/user
+			crypto key verify {env.JWT_SHARED_KEY}
+		}
+	}
     '';
     virtualHosts = {
+      "auth.roses.gdvoisins.com" = {
+        extraConfig = ''
+          tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
+          import tls_config
+          authorize with mypolicy
+          respond "auth is running"
+        '';
+      }
       "fontenay.gdvoisins.com" = {
         extraConfig = ''
           tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
@@ -34,6 +81,7 @@ in
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
           tls /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cp.roses.gdvoisins.com/key.pem
+          authenticate with myportal
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
