@@ -61,14 +61,14 @@ in
 
       '';
       virtualHosts = {
-        "auth.roses.gdvoisins.com" = {
-          forceSSL = true;
-          # listen = listen;
-          enableACME = true;
-          sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        };
+        # "auth.roses.gdvoisins.com" = {
+        #   forceSSL = true;
+        #   # listen = listen;
+        #   enableACME = true;
+        #   sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
+        #   sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+        #   sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+        # };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
           # listen = listen;

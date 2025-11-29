@@ -3,7 +3,7 @@ let
 in
 { 
   services.caddy = {
-    enable = true;
+    enable = false;
     package = pkgs.caddy.withPlugins {
       plugins = ["github.com/greenpau/caddy-security@v1.1.31"];
       # plugins = ["github.com/greenpau/caddy-security@v1.1.31" "github.com/mholt/caddy-l4@v0.0.0-20251124224044-66170bec9f4d"];

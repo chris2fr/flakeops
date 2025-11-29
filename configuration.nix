@@ -67,8 +67,8 @@ in
     go
     xcaddy
   ];
-    users.users.wwwrun.extraGroups = [ "acme" ];
-    users.users.nginx.extraGroups = [ "acme" ];
+    users.users.wwwrun.extraGroups = [ "acme" "wwwrun" "copyparty"];
+    # users.users.nginx.extraGroups = [ "acme" "wwwrun" "copyparty" ];
 
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
