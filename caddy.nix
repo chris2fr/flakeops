@@ -15,6 +15,10 @@ in
       # http_port 84
       # https_port 443
     email = "hostmaster@lesgrandsvoisins.com";
+    	# 		transform user {
+			# 	match origin keycloak
+			# 	action add role authp/user
+			# }
     globalConfig = ''
 
     order authenticate before respond
@@ -41,10 +45,7 @@ in
 					"Moi" "/whoami" icon "las la-user"
 				}
 			}
-			transform user {
-				match origin keycloak
-				action add role authp/user
-			}
+
 		}
 
 		authorization policy identified {
