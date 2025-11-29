@@ -18,8 +18,7 @@ in
       https_port 447
       order authenticate before respond
       order authorize before basicauth
-    '';
-    extraConfig = ''
+
 
 	security {
 		oauth identity provider keycloak {
@@ -54,6 +53,9 @@ in
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 	}
+    '';
+    extraConfig = ''
+
     '';
     virtualHosts = {
       "auth.roses.gdvoisins.com" = {
