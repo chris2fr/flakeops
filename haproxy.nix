@@ -5,7 +5,7 @@ in
   #   # lower,map(/etc/haproxy_domain_back.map)]
 
   services.haproxy = {
-    enable = true;
+    enable = false;
     config = ''
   daemon
   maxconn 256
