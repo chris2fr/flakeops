@@ -68,7 +68,7 @@ in
           sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ !
+            ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
           '';
         };
         "roses.gdvoisins.com" = {
@@ -85,7 +85,7 @@ in
           # '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
           extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ !
+            ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
           '';
         };
         "fs.roses.gdvoisins.com" = {
@@ -100,7 +100,7 @@ in
           sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
           locations."/" = {
             # proxyPass = "http://127.0.0.1:8334/";
             proxyPass = "http://127.0.0.1:4180/";
@@ -129,7 +129,7 @@ in
               # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
               # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
               # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-              ProxyPass /.well-known/acme-challenge/ !
+              ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
               ProxyPass "/" "https://[::1]:3924/"
 
           '';
@@ -150,7 +150,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               # RemoteIPProxyProtocol Off
-              ProxyPass /.well-known/acme-challenge/ !
+              ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
               ProxyPass "/" "https://[::1]:3923/"
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
@@ -219,7 +219,7 @@ in
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
           documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
@@ -233,7 +233,7 @@ in
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
           documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
