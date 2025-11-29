@@ -67,7 +67,7 @@ in
     go
     xcaddy
   ];
-    users.users.wwwrun.extraGroups = [ "acme" "wwwrun" "copyparty"];
+    # users.users.wwwrun.extraGroups = [ "acme" "wwwrun" "copyparty"];
     # users.users.nginx.extraGroups = [ "acme" "wwwrun" "copyparty" ];
 
   virtualisation.docker.enable = true;
@@ -81,7 +81,7 @@ in
     serviceConfig = {
       WorkingDirectory = "/mnt/chrisdatalive/chris";
       User = "copyparty";
-      Group = "wwwrun";
+      # Group = "wwwrun";
     };
   };
   systemd.services.copyparty-public = {
@@ -94,7 +94,7 @@ in
     serviceConfig = {
       WorkingDirectory = "/mnt/chrisdatalive/chris";
       User = "copyparty";
-      Group = "wwwrun";
+      # Group = "wwwrun";
     };
   };
   # systemd.services.certwarden = {

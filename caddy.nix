@@ -10,8 +10,8 @@ in
       hash = "sha256-b+hW1MN84eW7OkBIwKHp4VrvHOVi8gsTnTrWAoxmbE0=";
     };
     environmentFile = "/var/lib/caddy/.env";
-    user = "wwwrun";
-    group = "wwwrun";
+    # user = "wwwrun";
+    # group = "wwwrun";
     email = "hostmaster@lesgrandsvoisins.com";
     globalConfig = ''
       http_port 84

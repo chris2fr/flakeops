@@ -7,7 +7,7 @@ in
 {
   services.nginx = {
       enable = false;
-      group = "wwwrun";
+      # group = "wwwrun";
       # additionalModules = [ pkgs.lua54Packages.lua-resty-openidc ];
       # package = pkgs.openresty;
       # package = pkgs.angie;
