@@ -52,15 +52,15 @@ in
         # MellonDiagnosticsFile logs/mellon_diagnostics
         # MellonDiagnosticsEnable Off
         
-        DocumentRoot /var/lib/acme/acme-challenge/
+        # DocumentRoot /var/lib/acme/acme-challenge/
 
-        <Directory "/var/lib/acme/acme-challenge/">
-            Options Indexes FollowSymLinks
-            AllowOverride None
-            Require all granted
-        </Directory>
+        # <Directory "/var/lib/acme/acme-challenge/">
+        #     Options Indexes FollowSymLinks
+        #     AllowOverride None
+        #     Require all granted
+        # </Directory>
 
-        Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
+        # Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
         ProxyAddHeaders On
         # RequestHeader set X-Forwarded-Host $host
@@ -71,15 +71,15 @@ in
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
           forceSSL = true;
-          documentRoot = "/var/lib/acme/acme-challenge/";
+          # documentRoot = "/var/lib/acme/acme-challenge/";
           # listen = listen;
           enableACME = true;
           sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-          extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ !
-          '';
+          # extraConfig = ''
+          #   ProxyPass /.well-known/acme-challenge/ !
+          # '';
         };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
@@ -94,9 +94,9 @@ in
           #   RemoteIPProxyProtocol Off
           # '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
-          extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ !
-          '';
+          # extraConfig = ''
+          #   ProxyPass /.well-known/acme-challenge/ !
+          # '';
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
@@ -229,7 +229,7 @@ in
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          # locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           # documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
@@ -238,12 +238,14 @@ in
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = true;
-          # listen = listen;
+          # listen = listen;          # extraConfig = ''
+          #   ProxyPass /.well-known/acme-challenge/ !
+          # '';
           enableACME = true;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          # locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           # documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
