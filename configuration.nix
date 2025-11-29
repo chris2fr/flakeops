@@ -20,7 +20,7 @@ in
     # ./oauth2-proxy.nix
     # ./containers.nix
     # ./haproxy.nix
-    ./acme.nix
+    # ./acme.nix
     ./caddy.nix
   ];
   environment.systemPackages = with pkgs; [ 
@@ -247,11 +247,6 @@ in
       "d /srv/data9 0755 nfsuser users"
     ];
   };
-
-  # security.acme = {
-  #   acceptTerms = true;
-  #   defaults.email = "chris@lesgrandsvoisins.com";
-  # };
 
   services = {
     openssh = {
