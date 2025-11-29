@@ -61,22 +61,22 @@ in
 
       '';
       virtualHosts = {
-        # "auth.roses.gdvoisins.com" = {
-        #   forceSSL = true;
-        #   # listen = listen;
-        #   enableACME = true;
-        #   sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
-        #   sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        #   sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        # };
+        "auth.roses.gdvoisins.com" = {
+          forceSSL = true;
+          # listen = listen;
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+        };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
           # listen = listen;
-          forceSSL = false;
-          enableACME = false;
-          sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+          forceSSL = true;
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
             RemoteIPProxyProtocol Off
@@ -85,15 +85,15 @@ in
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
+          enableACME = true;
           extraConfig = ''
             RemoteIPProxyProtocol Off
           '';
-          sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           locations."/" = {
             # proxyPass = "http://127.0.0.1:8334/";
@@ -102,12 +102,12 @@ in
         };
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
-          sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
               RemoteIPProxyProtocol Off
@@ -135,12 +135,12 @@ in
         };
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
-          sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
               RemoteIPProxyProtocol Off
@@ -206,12 +206,12 @@ in
         };
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
-          sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
               RemoteIPProxyProtocol Off
@@ -219,12 +219,12 @@ in
         };
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
-          forceSSL = false;
+          forceSSL = true;
           # listen = listen;
-          enableACME = false;
-          sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
             extraConfig = ''
               RemoteIPProxyProtocol Off
