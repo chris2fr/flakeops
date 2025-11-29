@@ -4,6 +4,7 @@ in
 {
   security.acme = {
     acceptTerms = true;
+    useRoot = false;
     defaults = {
       email = "chris@lesgrandsvoisins.com";
       webroot = null;
