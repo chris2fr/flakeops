@@ -35,16 +35,12 @@ in
 		}
 
     saml identity provider samlkey {
-        method saml
         driver generic
         realm keycloak
         idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
         application_name "Key LesGrandsVoisins com"
         acs_url https://saml.roses.gdvoisins.com
       }
-
-
-
 
 		authentication portal samlportal {
 			crypto default token lifetime 3600
