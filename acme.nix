@@ -9,6 +9,7 @@ in
     };
     certs = {
       "roses.gdvoisins.com" = {
+        listenHTTP = ":80";
         # webroot = "/var/lib/acme/acme-challenge/";
         # extraDomainNames = [ 
         #   "www.roses.gdvoisins.com"
@@ -21,13 +22,13 @@ in
         #   "fontenay.gdvoisins.com" 
         # ];
       };
-      "cp.roses.gdvoisins.com"  = {listenHTTP = "80";};
-      "co.roses.gdvoisins.com"   = {listenHTTP = "80";};
-      "cw.roses.gdvoisins.com"   = {listenHTTP = "80";};
-      "fs.roses.gdvoisins.com"   = {listenHTTP = "80";};
-      "public.cp.roses.gdvoisins.com"  = {listenHTTP = "80";}; 
-      "static.roses.gdvoisins.com"   = {listenHTTP = "80";};
-      "fontenay.gdvoisins.com"   = {listenHTTP = "80";};
+      "cp.roses.gdvoisins.com"  = {listenHTTP = ":80";};
+      "co.roses.gdvoisins.com"   = {listenHTTP = ":80";};
+      "cw.roses.gdvoisins.com"   = {listenHTTP = ":80";};
+      "fs.roses.gdvoisins.com"   = {listenHTTP = ":80";};
+      "public.cp.roses.gdvoisins.com"  = {listenHTTP = ":80";}; 
+      "static.roses.gdvoisins.com"   = {listenHTTP = ":80";};
+      "fontenay.gdvoisins.com"   = {listenHTTP = ":80";};
     };
   };
 }
