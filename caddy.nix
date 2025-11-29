@@ -3,7 +3,7 @@ let
 in
 { 
   services.caddy = {
-    enable = false;
+    enable = true;
     package = pkgs.caddy.withPlugins {
       plugins = ["github.com/greenpau/caddy-security@v1.1.31"];
       # plugins = ["github.com/greenpau/caddy-security@v1.1.31" "github.com/mholt/caddy-l4@v0.0.0-20251124224044-66170bec9f4d"];
@@ -18,7 +18,6 @@ in
       https_port 447
       order authenticate before respond
       order authorize before basicauth
-
 
 	security {
 		oauth identity provider keycloak {
