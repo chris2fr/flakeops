@@ -43,7 +43,7 @@ in
         "http2" 
         # "proxy_uwsgi"
       ];
-      enable = true;
+      enable = false;
       enableMellon = true;
       extraConfig = ''
         MellonCacheSize 100
