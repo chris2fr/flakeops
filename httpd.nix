@@ -46,11 +46,11 @@ in
       enable = true;
       enableMellon = true;
       extraConfig = ''
-        MellonCacheSize 100
-        MellonPostDirectory "/var/lib/mellon/cache"
-        MellonCacheEntrySize 196608
-        # MellonDiagnosticsFile logs/mellon_diagnostics
-        # MellonDiagnosticsEnable Off
+        # MellonCacheSize 100
+        # MellonPostDirectory "/var/lib/mellon/cache"
+        # MellonCacheEntrySize 196608
+        # # MellonDiagnosticsFile logs/mellon_diagnostics
+        # # MellonDiagnosticsEnable Off
         
 
         ProxyAddHeaders On
@@ -99,110 +99,110 @@ in
             proxyPass = "http://127.0.0.1:4180/";
           };
         };
-        "public.cp.roses.gdvoisins.com" = {
-          # useACMEHost = "public.cp.roses.gdvoisins.com";
-          forceSSL = true;
-          # listen = listen;
-          enableACME = true;
-          # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
-          # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-          # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
-          extraConfig = ''
-              # RemoteIPProxyProtocol Off
-              SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
-              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
-              SSLProxyEngine on
-              # Not happy about below chris2fr
-              SSLProxyVerify none 
-              SSLProxyCheckPeerCN off
-              SSLProxyCheckPeerName off
-              SSLProxyCheckPeerExpire off
-              # Client Certificate
-              # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-              # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
-              # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+        # "public.cp.roses.gdvoisins.com" = {
+        #   # useACMEHost = "public.cp.roses.gdvoisins.com";
+        #   forceSSL = true;
+        #   # listen = listen;
+        #   enableACME = true;
+        #   # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
+        #   # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+        #   # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+        #   documentRoot = "/var/www/default";
+        #   extraConfig = ''
+        #       # RemoteIPProxyProtocol Off
+        #       SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
+        #       SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
+        #       SSLProxyEngine on
+        #       # Not happy about below chris2fr
+        #       SSLProxyVerify none 
+        #       SSLProxyCheckPeerCN off
+        #       SSLProxyCheckPeerName off
+        #       SSLProxyCheckPeerExpire off
+        #       # Client Certificate
+        #       # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+        #       # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
+        #       # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
 
-              ProxyPass "/" "https://[::1]:3924/"
+        #       ProxyPass "/" "https://[::1]:3924/"
 
-          '';
-          locations."/" = {
-            extraConfig = ''
+        #   '';
+        #   locations."/" = {
+        #     extraConfig = ''
               
-            ''; 
-          };
-        };
-        "cp.roses.gdvoisins.com" = {
-          # useACMEHost = "cp.roses.gdvoisins.com";
-          forceSSL = true;
-          # listen = listen;
-          enableACME = true;
-          # sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
-          # sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
-          # sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
-          extraConfig = ''
-              # RemoteIPProxyProtocol Off
-              ProxyPass "/" "https://[::1]:3923/"
-              SSLProxyCACertificatePath /var/lib/copyparty/ssl/
-              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
-              SSLProxyEngine on
-              # Not happy about below chris2fr
-              SSLProxyVerify none 
-              SSLProxyCheckPeerCN off
-              SSLProxyCheckPeerName off
-              SSLProxyCheckPeerExpire off
-              # Client Certificate
-              # SSLCertificateFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
-              # SSLCertificateKeyFile /var/lib/acme/cp.roses.gdvoisins.com/key.pem
-              # SSLCertificateChainFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
-          '';
-          # locations."/public/" = {
-          #     extraConfig = ''
-          #       Satisfy Any
-          #       Allow from all
-          #     '';
-          # };
-          locations."/" = {
-            # proxyPass = "https://[::1]:3923/";
-            extraConfig = ''
+        #     ''; 
+        #   };
+        # };
+        # "cp.roses.gdvoisins.com" = {
+        #   # useACMEHost = "cp.roses.gdvoisins.com";
+        #   forceSSL = true;
+        #   # listen = listen;
+        #   enableACME = true;
+        #   # sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
+        #   # sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+        #   # sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+        #   documentRoot = "/var/www/default";
+        #   extraConfig = ''
+        #       # RemoteIPProxyProtocol Off
+        #       ProxyPass "/" "https://[::1]:3923/"
+        #       SSLProxyCACertificatePath /var/lib/copyparty/ssl/
+        #       SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
+        #       SSLProxyEngine on
+        #       # Not happy about below chris2fr
+        #       SSLProxyVerify none 
+        #       SSLProxyCheckPeerCN off
+        #       SSLProxyCheckPeerName off
+        #       SSLProxyCheckPeerExpire off
+        #       # Client Certificate
+        #       # SSLCertificateFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+        #       # SSLCertificateKeyFile /var/lib/acme/cp.roses.gdvoisins.com/key.pem
+        #       # SSLCertificateChainFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+        #   '';
+        #   # locations."/public/" = {
+        #   #     extraConfig = ''
+        #   #       Satisfy Any
+        #   #       Allow from all
+        #   #     '';
+        #   # };
+        #   locations."/" = {
+        #     # proxyPass = "https://[::1]:3923/";
+        #     extraConfig = ''
               
-              Require valid-user
-              AuthType "Mellon"
-              MellonEnable "auth"
-              MellonSecureCookie On
-              MellonCookieSameSite none
-              MellonEndpointPath "/mellon/"
-              MellonSPPrivateKeyFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.key"
-              MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
-              MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
-              MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
-              # MellonUser "username"
+        #       Require valid-user
+        #       AuthType "Mellon"
+        #       MellonEnable "auth"
+        #       MellonSecureCookie On
+        #       MellonCookieSameSite none
+        #       MellonEndpointPath "/mellon/"
+        #       MellonSPPrivateKeyFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.key"
+        #       MellonSPCertFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.cert"
+        #       MellonSPMetadataFile "/etc/mellon/https_cp.roses.gdvoisins.com_mellon_metadata.xml"
+        #       MellonIdPMetadataFile "/etc/mellon/keylesgrandsvoisinscom.xml"
+        #       # MellonUser "username"
 
-              RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+        #       RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+        #       # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
-              # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
-              # RequestHeader set X-REMOTE-USER expr=%{REMOTE_USER}s
+        #       # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+        #       # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+        #       # RequestHeader set X-REMOTE-USER expr=%{REMOTE_USER}s
 
-              # RequestHeader set REMOTE_USER "chris"
-              # RequestHeader set X-REMOTE-USER "pauline"
-
-
-              # RewriteEngine on
-              # RewriteCond %{REMOTE_USER} (.*)
-              # RewriteRule .* - [E=X_REMOTE_USER:%1]
-              # RequestHeader set X-REMOTE-USER %{X_REMOTE_USER}e
+        #       # RequestHeader set REMOTE_USER "chris"
+        #       # RequestHeader set X-REMOTE-USER "pauline"
 
 
-              # RewriteEngine On
-              # RewriteCond %{LA-U:REMOTE_USER} (.+)
-              # RewriteRule . - [E=RU:%1]
-              # RequestHeader set X-Remote-User "%{RU}e" env=RU
-            '';
-          };
-        };
+        #       # RewriteEngine on
+        #       # RewriteCond %{REMOTE_USER} (.*)
+        #       # RewriteRule .* - [E=X_REMOTE_USER:%1]
+        #       # RequestHeader set X-REMOTE-USER %{X_REMOTE_USER}e
+
+
+        #       # RewriteEngine On
+        #       # RewriteCond %{LA-U:REMOTE_USER} (.+)
+        #       # RewriteRule . - [E=RU:%1]
+        #       # RequestHeader set X-Remote-User "%{RU}e" env=RU
+        #     '';
+        #   };
+        # };
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = true;
