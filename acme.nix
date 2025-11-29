@@ -6,6 +6,7 @@ in
     acceptTerms = true;
     defaults = {
       email = "chris@lesgrandsvoisins.com";
+      webroot = null;
     };
     certs = {
       "roses.gdvoisins.com" = {
@@ -27,7 +28,7 @@ in
       "cw.roses.gdvoisins.com"   = {listenHTTP = ":80";};
       "fs.roses.gdvoisins.com"   = {listenHTTP = ":80";};
       "public.cp.roses.gdvoisins.com"  = {listenHTTP = ":80";}; 
-      "static.roses.gdvoisins.com"   = {listenHTTP = ":80";};
+      "static.roses.gdvoisins.com" = {listenHTTP = ":80";};
       "fontenay.gdvoisins.com"   = {listenHTTP = ":80";};
     };
   };
