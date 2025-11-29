@@ -44,7 +44,7 @@ in
         # "proxy_uwsgi"
       ];
       enable = true;
-      enableMellon = false;
+      enableMellon = true;
       # extraConfig = ''
       #   MellonCacheSize 100
       #   MellonPostDirectory "/var/lib/mellon/cache"
@@ -101,24 +101,25 @@ in
           #   ProxyPass /.well-known/acme-challenge/ !
           # '';
         };
-    #     "fs.roses.gdvoisins.com" = {
-    #       # useACMEHost = "fs.roses.gdvoisins.com";
-    #       onlySSL = true;
-    #       # listen = listen;
-    #       enableACME = true;
-    #       # extraConfig = ''
-    #       #   RemoteIPProxyProtocol Off
-    #       # '';
-    #       # sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
-    #       # sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
-    #       # sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
-    #       # documentRoot = "/var/www/default";
-    #       locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
-    #       locations."/" = {
-    #         # proxyPass = "http://127.0.0.1:8334/";
-    #         proxyPass = "http://127.0.0.1:4180/";
-    #       };
-    #     };
+        "fs.roses.gdvoisins.com" = {
+          # useACMEHost = "fs.roses.gdvoisins.com";
+          onlySSL = true;
+          documentRoot = "/var/www/";
+          # listen = listen;
+          enableACME = true;
+          # extraConfig = ''
+          #   RemoteIPProxyProtocol Off
+          # '';
+          # sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # documentRoot = "/var/www/default";
+          # locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          locations."/" = {
+            # proxyPass = "http://127.0.0.1:8334/";
+            proxyPass = "http://127.0.0.1:4180/";
+          };
+        };
     #     "public.cp.roses.gdvoisins.com" = {
     #       # useACMEHost = "public.cp.roses.gdvoisins.com";
     #       onlySSL = true;
