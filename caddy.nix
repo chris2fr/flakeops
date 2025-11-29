@@ -13,7 +13,7 @@ in
     # user = "wwwrun";
     # group = "wwwrun";
       # http_port 84
-      # https_port 447
+      # https_port 443
     email = "hostmaster@lesgrandsvoisins.com";
     globalConfig = ''
 
@@ -37,18 +37,24 @@ in
 			cookie domain cp.roses.gdvoisins.com
 			ui {
 				links {
-					"My Website" https://cp.roses.gdvoisins.com:447/ icon "las la-star"
+					"My Website" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
 					"My Identity" "/whoami" icon "las la-user"
 				}
 			}
 			transform user {
-				match origin keycloak
+				match origin master
 				action add role authp/user
 			}
 		}
 
+		authorization policy identified {
+			set auth url https://cp.roses.gdvoisins.com:443/
+			allow roles authp/admin authp/user
+			crypto key verify {env.JWT_SHARED_KEY}
+		}
+
 		authorization policy mypolicy {
-			set auth url https://cp.roses.gdvoisins.com:447/
+			set auth url https://cp.roses.gdvoisins.com:443/
 			allow roles authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
