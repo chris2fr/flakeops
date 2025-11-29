@@ -43,9 +43,9 @@ in
         acs_url https://saml.roses.gdvoisins.com
         acs_url https://cp.roses.gdvoisins.com
         application_id "samlcopyparty"
-        entity_id "urn:samlcopyparty"
+        entity_id "samlcopyparty"
         idp_sign_cert_location "/var/lib/caddy/samlcopyparty.pem"
-        idp_login_url https://key.lesgrandsvoisins.com/realms/master/protocol/saml/clients/samlcopyparty
+        idp_login_url https://key.lesgrandsvoisins.com/realms/master/protocol/saml
         idp_metadata_location "/var/lib/caddy/samlkeylesgrandsvoisinscom.xml"
       }
 
