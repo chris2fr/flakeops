@@ -4,10 +4,10 @@ in
 {
   security.acme = {
     acceptTerms = true;
-    useRoot = false;
+    # useRoot = false;
     defaults = {
       email = "chris@lesgrandsvoisins.com";
-      webroot = null;
+      # webroot = null;
     };
     # certs = {
     #   "roses.gdvoisins.com" = {
