@@ -77,9 +77,9 @@ in
           # sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           # sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
-          extraConfig = ''
-            RemoteIPProxyProtocol Off
-          '';
+          # extraConfig = ''
+          #   RemoteIPProxyProtocol Off
+          # '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
         };
         "fs.roses.gdvoisins.com" = {
@@ -87,9 +87,9 @@ in
           forceSSL = true;
           # listen = listen;
           enableACME = true;
-          extraConfig = ''
-            RemoteIPProxyProtocol Off
-          '';
+          # extraConfig = ''
+          #   RemoteIPProxyProtocol Off
+          # '';
           # sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           # sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           # sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
@@ -109,7 +109,7 @@ in
           # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              RemoteIPProxyProtocol Off
+              # RemoteIPProxyProtocol Off
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
@@ -119,9 +119,9 @@ in
               SSLProxyCheckPeerName off
               SSLProxyCheckPeerExpire off
               # Client Certificate
-              SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-              SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
-              SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+              # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+              # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
+              # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
 
               ProxyPass "/" "https://[::1]:3924/"
 
@@ -142,7 +142,7 @@ in
           # sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
           extraConfig = ''
-              RemoteIPProxyProtocol Off
+              # RemoteIPProxyProtocol Off
               ProxyPass "/" "https://[::1]:3923/"
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
@@ -153,9 +153,9 @@ in
               SSLProxyCheckPeerName off
               SSLProxyCheckPeerExpire off
               # Client Certificate
-              SSLCertificateFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
-              SSLCertificateKeyFile /var/lib/acme/cp.roses.gdvoisins.com/key.pem
-              SSLCertificateChainFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+              # SSLCertificateFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
+              # SSLCertificateKeyFile /var/lib/acme/cp.roses.gdvoisins.com/key.pem
+              # SSLCertificateChainFile /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem
           '';
           # locations."/public/" = {
           #     extraConfig = ''
@@ -180,7 +180,7 @@ in
               # MellonUser "username"
 
               RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-              RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
+              # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
 
               # RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
               # RequestHeader set X-REMOTE-USER %{REMOTE_USER}s
@@ -212,9 +212,9 @@ in
           # sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           # sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
-            extraConfig = ''
-              RemoteIPProxyProtocol Off
-            '';
+            # extraConfig = ''
+            #   RemoteIPProxyProtocol Off
+            # '';
         };
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
@@ -225,9 +225,9 @@ in
           # sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           # sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           documentRoot = "/var/www/default";
-            extraConfig = ''
-              RemoteIPProxyProtocol Off
-            '';
+            # extraConfig = ''
+            #   RemoteIPProxyProtocol Off
+            # '';
 
           # locations = {
           #   "/" = {
