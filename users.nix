@@ -31,5 +31,11 @@ in {
       extraGroups = [ "users" ];
       openssh.authorizedKeys.keys = mannchriRsaPublic;
     };
+    web = {
+      isNormalUser = true;
+      description = "User nor Web Applications";
+      extraGroups = [ "wwwrun" "acme"  ];
+      openssh.authorizedKeys.keys = mannchriRsaPublic;
+    };
   };
 }

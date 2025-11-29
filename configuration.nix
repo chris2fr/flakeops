@@ -12,7 +12,7 @@ in
     ./common.nix # Des configurations communes pratiques
     ./networking.nix
     ./users.nix
-    # ./httpd.nix
+    ./httpd.nix
     ./nfs.nix
     # ./vouch.nix
     ./nginx.nix
