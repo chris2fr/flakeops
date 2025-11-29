@@ -61,6 +61,7 @@ in
 				}    		
 			}
       transform user {
+        match origin samlportal
 				action add role authp/user
 			}
 
@@ -79,6 +80,7 @@ in
 			}
 
       transform user {
+        match origin keycloak
 				action add role authp/user
 			}
 		}
