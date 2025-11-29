@@ -62,7 +62,7 @@ in
 
         # Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
-        DocumentRoot /var/www/n
+        DocumentRoot /var/www/
 
         ProxyAddHeaders On
         # RequestHeader set X-Forwarded-Host $host
