@@ -2,22 +2,22 @@
 let 
   # mod_auth_openidc = pkgs.callPackage ./derivations/mod_auth_openidc-binary.nix {};
   # oidcseafilesecret = import secrets/oidcseafile.nix;
-  listen = [
-            # {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
-            # {ip= "192.168.1.100"; port = 82 ; }
-            # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
-            # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
-            # {ip= "[::]"; port = 448 ; ssl = true ; }
-            # {ip= "[::]"; port = 85 ; }
-            # {ip= "*"; port = 449 ; ssl = true ; }
-            # {ip= "*"; port = 86 ; }
-            # {ip= "0.0.0.0"; port = 450 ; ssl = true ; }
-            # {ip= "0.0.0.0"; port = 87 ; }
-            {ip= "192.168.1.100"; port = 443 ; ssl = true ; }
-            {ip= "192.168.1.100"; port = 80 ; }
-            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 443 ; ssl = true ; }
-            {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 80 ; }
-          ];
+  # listen = [
+  #           # {ip= "192.168.1.100"; port = 445 ; ssl = true ; }
+  #           # {ip= "192.168.1.100"; port = 82 ; }
+  #           # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 445 ; ssl = true ; }
+  #           # {ip= "[2a01:e0a:f4e:5880::9316:9fe2]"; port = 82 ; }
+  #           # {ip= "[::]"; port = 448 ; ssl = true ; }
+  #           # {ip= "[::]"; port = 85 ; }
+  #           # {ip= "*"; port = 449 ; ssl = true ; }
+  #           # {ip= "*"; port = 86 ; }
+  #           # {ip= "0.0.0.0"; port = 450 ; ssl = true ; }
+  #           # {ip= "0.0.0.0"; port = 87 ; }
+  #           {ip= "192.168.1.100"; port = 443 ; ssl = true ; }
+  #           {ip= "192.168.1.100"; port = 80 ; }
+  #           {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 443 ; ssl = true ; }
+  #           {ip= "[2a01:e0a:f4e:5880:0000:0000:9316:9fe2]"; port = 80 ; }
+  #         ];
 in
 { 
   environment.systemPackages = with pkgs; [ curl cjose apr aprutil ];
@@ -72,7 +72,7 @@ in
       '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
-          forceSSL = false;
+          onlySSL = true;
           # documentRoot = "/var/lib/acme/acme-challenge/";
           # listen = listen;
           enableACME = true;
@@ -86,7 +86,7 @@ in
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
           # listen = listen;
-          forceSSL = false;
+          onlySSL = true;
           enableACME = true;
           # sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
           # sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
@@ -102,7 +102,7 @@ in
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
-          forceSSL = false;
+          onlySSL = true;
           # listen = listen;
           enableACME = true;
           # extraConfig = ''
@@ -120,7 +120,7 @@ in
         };
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
-          forceSSL = false;
+          onlySSL = true;
           # listen = listen;
           enableACME = true;
           # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
@@ -153,7 +153,7 @@ in
         };
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
-          forceSSL = false;
+          onlySSL = true;
           # listen = listen;
           enableACME = true;
           # sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
@@ -225,7 +225,7 @@ in
         };
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
-          forceSSL = false;
+          onlySSL = true;
           # listen = listen;
           enableACME = true;
           # sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
@@ -239,7 +239,7 @@ in
         };
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
-          forceSSL = false;
+          onlySSL = true;
           # listen = listen;          # extraConfig = ''
           #   ProxyPass /.well-known/acme-challenge/ !
           # '';
@@ -321,7 +321,7 @@ in
     #   ];
       # virtualHosts = {
       #   "roses.lgv.info" = {
-      #     forceSSL = false;
+      #     onlySSL = true;
       #     enableACME = true;
       #     # listen = [{port = 443; ssl=true;}];
       #     # sslServerCert = "/var/lib/acme/roses.lgv.info/fullchain.pem";
