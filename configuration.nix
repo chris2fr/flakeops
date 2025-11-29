@@ -19,7 +19,7 @@ in
     # ./seafile.nix
     # ./oauth2-proxy.nix
     # ./containers.nix
-    ./haproxy.nix
+    # ./haproxy.nix
     # ./acme.nix
     ./caddy.nix
   ];
