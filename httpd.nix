@@ -110,7 +110,7 @@ in
           documentRoot = "/var/www/default";
           extraConfig = ''
               RemoteIPProxyProtocol Off
-              SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/n
+              SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
               SSLProxyEngine on
               # Not happy about below chris2fr
