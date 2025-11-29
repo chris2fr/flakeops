@@ -49,6 +49,7 @@ in
 
 		authorization policy identified {
 			set auth url https://cp.roses.gdvoisins.com:443/
+			allow field sub exists
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 
@@ -89,7 +90,7 @@ in
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
-          authenticate with myportal
+          authenticate with identified
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
