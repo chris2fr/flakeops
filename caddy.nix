@@ -48,7 +48,7 @@ in
 		}
 
 		authorization policy identified {
-			set auth url https://cp.roses.gdvoisins.com:443/
+			set auth url https://auth.roses.gdvoisins.com:443/
 			allow roles anonymous guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
