@@ -63,7 +63,7 @@ in
           authorize with mypolicy
           respond "auth is running"
         '';
-      }
+      };
       "fontenay.gdvoisins.com" = {
         extraConfig = ''
           tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
