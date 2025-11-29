@@ -68,7 +68,7 @@ in
           # tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
         extraConfig = ''
           authenticate with myportal
-          respond "auth is running"
+          respond "auth.roses.gdvoisins.com is running"
         '';
       };
       "fontenay.gdvoisins.com" = {
@@ -90,7 +90,7 @@ in
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
-          authorize with mypolicy
+          authorize with identified
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
