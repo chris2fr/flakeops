@@ -24,7 +24,7 @@ in
 	security {
 		oauth identity provider keycloak {
 			driver generic
-			realm keycloak
+			realm master
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
 			scopes openid email profile

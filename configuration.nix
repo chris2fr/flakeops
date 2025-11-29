@@ -64,6 +64,8 @@ in
     #   # plugins = ["github.com/greenpau/caddy-security@v1.1.31" "github.com/mholt/caddy-l4@v0.0.0-20251124224044-66170bec9f4d"];
     #   hash = "sha256-b+hW1MN84eW7OkBIwKHp4VrvHOVi8gsTnTrWAoxmbE0=";
     # }
+    go
+    xcaddy
   ];
     users.users.wwwrun.extraGroups = [ "acme" ];
     users.users.nginx.extraGroups = [ "acme" ];
