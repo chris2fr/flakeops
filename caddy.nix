@@ -59,7 +59,6 @@ in
       "auth.roses.gdvoisins.com" = {
         extraConfig = ''
           tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
-          import tls_config
           authorize with mypolicy
           respond "auth is running"
         '';
