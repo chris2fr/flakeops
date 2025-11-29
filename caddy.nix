@@ -19,6 +19,8 @@ in
 			# 	match origin keycloak
 			# 	action add role authp/user
 			# }
+      #         idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
+
     globalConfig = ''
 
     order authenticate before respond
@@ -37,13 +39,14 @@ in
     saml identity provider samlkey {
         driver generic
         realm keycloak
-        idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
         application_name "Key LesGrandsVoisins com"
         acs_url https://saml.roses.gdvoisins.com
         acs_url https://cp.roses.gdvoisins.com
         application_id "samlcopyparty"
         entity_id "urn:samlcopyparty"
+        idp_sign_cert_location "/var/lib/copyparty/samlcopyparty.pem"
         idp_login_url https://key.lesgrandsvoisins.com/realms/master/protocol/saml/clients/samlcopyparty
+        idp_metadata_location "/var/lib/copyparty/samlkeylesgrandsvoisinscom.xml"
       }
 
 		authentication portal samlportal {
