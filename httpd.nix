@@ -64,11 +64,11 @@ in
 
       #   DocumentRoot /var/www/
 
-      #   ProxyAddHeaders On
-      #   # RequestHeader set X-Forwarded-Host $host
-      #   RequestHeader set X-Real-IP $remote_addr
-      #   RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
-      #   ProxyPreserveHost On
+        ProxyAddHeaders On
+        # RequestHeader set X-Forwarded-Host $host
+        RequestHeader set X-Real-IP $remote_addr
+        RequestHeader set X-Forwarded-For $proxy_add_x_forwarded_for
+        ProxyPreserveHost On
       '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
