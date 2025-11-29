@@ -67,16 +67,15 @@ in
       "auth.roses.gdvoisins.com" = {
           # tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
         extraConfig = ''
-          authorize with identified
           respond "auth is running"
         '';
       };
       "fontenay.gdvoisins.com" = {
           # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
         extraConfig = ''
+          authenticate with myportal
           # reverse_proxy https://fontenay.gdvoisins.com:443
           respond "fontenay.gdvoisins.com is running"
-
         '';
       };
       "roses.gdvoisins.com" = {
@@ -90,7 +89,7 @@ in
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
         # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
-          authenticate with identified
+          authorize with identified
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
