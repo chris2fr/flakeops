@@ -37,8 +37,8 @@ in
 			cookie domain cp.roses.gdvoisins.com
 			ui {
 				links {
-					"My Website" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
-					"My Identity" "/whoami" icon "las la-user"
+					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
+					"Moi" "/whoami" icon "las la-user"
 				}
 			}
 			transform user {
