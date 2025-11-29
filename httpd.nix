@@ -46,12 +46,15 @@ in
       enable = true;
       enableMellon = true;
       extraConfig = ''
-        # MellonCacheSize 100
-        # MellonPostDirectory "/var/lib/mellon/cache"
-        # MellonCacheEntrySize 196608
-        # # MellonDiagnosticsFile logs/mellon_diagnostics
-        # # MellonDiagnosticsEnable Off
+        MellonCacheSize 100
+        MellonPostDirectory "/var/lib/mellon/cache"
+        MellonCacheEntrySize 196608
+        # MellonDiagnosticsFile logs/mellon_diagnostics
+        # MellonDiagnosticsEnable Off
         
+        DocumentRoot = /var/lib/acme/acme-challenge/
+
+        Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
         ProxyAddHeaders On
         # RequestHeader set X-Forwarded-Host $host
@@ -62,13 +65,14 @@ in
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
           forceSSL = false;
+          documentRoot = "/var/lib/acme/acme-challenge/";
           # listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
+            ProxyPass /.well-known/acme-challenge/ !
           '';
         };
         "roses.gdvoisins.com" = {
@@ -79,13 +83,13 @@ in
           sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
+          # documentRoot = "/var/www/default";
           # extraConfig = ''
           #   RemoteIPProxyProtocol Off
           # '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
           extraConfig = ''
-            ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
+            ProxyPass /.well-known/acme-challenge/ !
           '';
         };
         "fs.roses.gdvoisins.com" = {
@@ -99,8 +103,8 @@ in
           sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
+          # documentRoot = "/var/www/default";
+          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           locations."/" = {
             # proxyPass = "http://127.0.0.1:8334/";
             proxyPass = "http://127.0.0.1:4180/";
@@ -114,7 +118,7 @@ in
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
+          # documentRoot = "/var/www/default";
           extraConfig = ''
               # RemoteIPProxyProtocol Off
               SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
@@ -129,7 +133,7 @@ in
               # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
               # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
               # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-              ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
+              ProxyPass /.well-known/acme-challenge/ !
               ProxyPass "/" "https://[::1]:3924/"
 
           '';
@@ -147,10 +151,10 @@ in
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
-          documentRoot = "/var/www/default";
+          # documentRoot = "/var/www/default";
           extraConfig = ''
               # RemoteIPProxyProtocol Off
-              ProxyPass /.well-known/acme-challenge/ 127.0.0.1:1331
+              ProxyPass /.well-known/acme-challenge/ !
               ProxyPass "/" "https://[::1]:3923/"
               SSLProxyCACertificatePath /var/lib/copyparty/ssl/
               SSLProxyMachineCertificatePath /var/lib/copyparty/ssl/
@@ -219,8 +223,8 @@ in
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
-          documentRoot = "/var/www/default";
+          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          # documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
             # '';
@@ -233,8 +237,8 @@ in
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
-          locations."/.well-known/acme-challenge/" = {proxyPass = "127.0.0.1:1331";};
-          documentRoot = "/var/www/default";
+          locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
+          # documentRoot = "/var/www/default";
             # extraConfig = ''
             #   RemoteIPProxyProtocol Off
             # '';
@@ -313,7 +317,7 @@ in
       #     # sslServerCert = "/var/lib/acme/roses.lgv.info/fullchain.pem";
       #     # sslServerChain = "/var/lib/acme/roses.lgv.info/fullchain.pem";
       #     # sslServerKey = "/var/lib/acme/roses.lgv.info/key.pem";
-      #     documentRoot = "/var/www/default";
+      #     # documentRoot = "/var/www/default";
       #     extraConfig = ''
       #       OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
       #       OIDCClientID seafile
