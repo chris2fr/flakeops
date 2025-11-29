@@ -11,8 +11,8 @@ in
     };
     certs = {
       "roses.gdvoisins.com" = {
-        listenHTTP = "127.0.0.1:1331";
         # webroot = "/var/lib/acme/acme-challenge/";
+        webroot = "/var/lib/acme/acme-challenge/";
         # extraDomainNames = [ 
         #   "www.roses.gdvoisins.com"
         #   "cp.roses.gdvoisins.com" 
@@ -24,13 +24,13 @@ in
         #   "fontenay.gdvoisins.com" 
         # ];
       };
-      "cp.roses.gdvoisins.com"  = {listenHTTP = "127.0.0.1:1331";};
-      "co.roses.gdvoisins.com"   = {listenHTTP = "127.0.0.1:1331";};
-      "cw.roses.gdvoisins.com"   = {listenHTTP = "127.0.0.1:1331";};
-      "fs.roses.gdvoisins.com"   = {listenHTTP = "127.0.0.1:1331";};
-      "public.cp.roses.gdvoisins.com"  = {listenHTTP = "127.0.0.1:1331";}; 
-      "static.roses.gdvoisins.com" = {listenHTTP = "127.0.0.1:1331";};
-      "fontenay.gdvoisins.com"   = {listenHTTP = "127.0.0.1:1331";};
+      "cp.roses.gdvoisins.com"  = {webroot = "/var/lib/acme/acme-challenge/";};
+      "co.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
+      "cw.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
+      "fs.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
+      "public.cp.roses.gdvoisins.com"  = {webroot = "/var/lib/acme/acme-challenge/";}; 
+      "static.roses.gdvoisins.com" = {webroot = "/var/lib/acme/acme-challenge/";};
+      "fontenay.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
     };
   };
 }
