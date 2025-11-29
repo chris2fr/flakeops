@@ -72,10 +72,10 @@ in
       # '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
-          # onlySSL = true;
+          onlySSL = true;
           documentRoot = "/var/www/";
           # listen = listen;
-          # enableACME = true;
+          enableACME = true;
           # sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
           # sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           # sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
