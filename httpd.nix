@@ -56,8 +56,8 @@ in
       '';
       virtualHosts = {
         "auth.roses.gdvoisins.com" = {
-          forceSSL = true;
-          enableACME = true;
+          forceSSL = false;
+          enableACME = false;
         };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
