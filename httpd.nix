@@ -120,39 +120,33 @@ in
             proxyPass = "http://127.0.0.1:4180/";
           };
         };
-    #     "public.cp.roses.gdvoisins.com" = {
-    #       # useACMEHost = "public.cp.roses.gdvoisins.com";
-    #       onlySSL = true;
-    #       # listen = listen;
-    #       enableACME = true;
-    #       # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
-    #       # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-    #       # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-    #       # documentRoot = "/var/www/default";
-    #       extraConfig = ''
-    #           # RemoteIPProxyProtocol Off
-    #           SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
-    #           SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
-    #           SSLProxyEngine on
-    #           # Not happy about below chris2fr
-    #           SSLProxyVerify none 
-    #           SSLProxyCheckPeerCN off
-    #           SSLProxyCheckPeerName off
-    #           SSLProxyCheckPeerExpire off
-    #           # Client Certificate
-    #           # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-    #           # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
-    #           # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
-    #           ProxyPass /.well-known/acme-challenge/ !
-    #           ProxyPass "/" "https://[::1]:3924/"
-
-    #       '';
-    #       locations."/" = {
-    #         extraConfig = ''
-              
-    #         ''; 
-    #       };
-    #     };
+        "public.cp.roses.gdvoisins.com" = {
+          # useACMEHost = "public.cp.roses.gdvoisins.com";
+          onlySSL = true;
+          # listen = listen;
+          enableACME = true;
+          # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          # documentRoot = "/var/www/default";
+          extraConfig = ''
+              # RemoteIPProxyProtocol Off
+              SSLProxyCACertificatePath /var/lib/copyparty/ssl-public/
+              SSLProxyMachineCertificatePath /var/lib/copyparty/ssl-public/
+              SSLProxyEngine on
+              # Not happy about below chris2fr
+              SSLProxyVerify none 
+              SSLProxyCheckPeerCN off
+              SSLProxyCheckPeerName off
+              SSLProxyCheckPeerExpire off
+              # Client Certificate
+              # SSLCertificateFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+              # SSLCertificateKeyFile /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
+              # SSLCertificateChainFile /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem
+              ProxyPass /.well-known/acme-challenge/ !
+              ProxyPass "/" "https://[::1]:3924/"
+          '';
+        };
     #     "cp.roses.gdvoisins.com" = {
     #       # useACMEHost = "cp.roses.gdvoisins.com";
     #       onlySSL = true;
