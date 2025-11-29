@@ -67,7 +67,9 @@ in
       "fontenay.gdvoisins.com" = {
           # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
         extraConfig = ''
-          reverse_proxy https://fontenay.gdvoisins.com:443
+          # reverse_proxy https://fontenay.gdvoisins.com:443
+          respond "fontenay.gdvoisins.com is running"
+
         '';
       };
       "roses.gdvoisins.com" = {
