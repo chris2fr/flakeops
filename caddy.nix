@@ -27,11 +27,40 @@ in
 	security {
 		oauth identity provider keycloak {
 			driver generic
-			realm master
+      realm keycloak
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
 			scopes openid email profile
 			metadata_url https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+		}
+
+    saml identity provider samlkey {
+        method saml
+        driver generic
+        realm keycloak
+        idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
+        application_name "Key LesGrandsVoisins com"
+        acs_url https://saml.roses.gdvoisins.com
+      }
+
+
+
+
+		authentication portal samlportal {
+			crypto default token lifetime 3600
+			crypto key sign-verify {env.JWT_SHARED_KEY}
+			enable identity provider keycloak
+			cookie domain gdvoisins.com
+			ui {
+				links {
+					"Copyparty" https://not.roses.gdvoisins.com:443/ icon "las la-star"
+					"Moi" "/whoami" icon "las la-user"
+				}    		
+			}
+      transform user {
+				action add role authp/user
+			}
+
 		}
 
 		authentication portal myportal {
@@ -46,7 +75,17 @@ in
 				}
 			}
 
+      transform user {
+				action add role authp/user
+			}
 		}
+
+		authorization policy samlidentified {
+			set auth url https://saml.roses.gdvoisins.com:443/
+			allow roles guest authp/admin authp/user
+			crypto key verify {env.JWT_SHARED_KEY}
+		}
+
 
 		authorization policy identified {
 			set auth url https://auth.roses.gdvoisins.com:443/
@@ -72,10 +111,16 @@ in
           respond "auth.roses.gdvoisins.com is running"
         '';
       };
+      "saml.roses.gdvoisins.com" = {
+        extraConfig = ''
+          authenticate with samlportal
+          respond "saml.roses.gdvoisins.com is running"
+        '';
+      };
       "fontenay.gdvoisins.com" = {
           # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
         extraConfig = ''
-          # authenticate with myportal
+          authorize with samlidentified
           # reverse_proxy https://fontenay.gdvoisins.com:443
           respond "fontenay.gdvoisins.com is running"
         '';
