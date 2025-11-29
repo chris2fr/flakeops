@@ -61,17 +61,17 @@ in
 
       '';
       virtualHosts = {
-        # "auth.roses.gdvoisins.com" = {
-        #   forceSSL = false;
-        #   listen = listen;
-        #   enableACME = false;
-        #   sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
-        #   sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        #   sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-        # };
+        "auth.roses.gdvoisins.com" = {
+          forceSSL = true;
+          # listen = listen;
+          enableACME = true;
+          sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+        };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
-          listen = listen;
+          # listen = listen;
           forceSSL = false;
           enableACME = false;
           sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
@@ -86,7 +86,7 @@ in
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
           forceSSL = false;
-          listen = listen;
+          # listen = listen;
           enableACME = false;
           extraConfig = ''
             RemoteIPProxyProtocol Off
@@ -103,7 +103,7 @@ in
         "public.cp.roses.gdvoisins.com" = {
           # useACMEHost = "public.cp.roses.gdvoisins.com";
           forceSSL = false;
-          listen = listen;
+          # listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
@@ -136,7 +136,7 @@ in
         "cp.roses.gdvoisins.com" = {
           # useACMEHost = "cp.roses.gdvoisins.com";
           forceSSL = false;
-          listen = listen;
+          # listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
@@ -207,7 +207,7 @@ in
         "fontenay.gdvoisins.com" = {
           # useACMEHost = "fontenay.gdvoisins.com";
           forceSSL = false;
-          listen = listen;
+          # listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
@@ -220,7 +220,7 @@ in
         "static.roses.gdvoisins.com" = {
           # useACMEHost = "static.roses.gdvoisins.com";
           forceSSL = false;
-          listen = listen;
+          # listen = listen;
           enableACME = false;
           sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
           sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
