@@ -65,6 +65,9 @@ in
           forceSSL = false;
           listen = listen;
           enableACME = false;
+          sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
+          sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+          sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
         };
         "roses.gdvoisins.com" = {
           # useACMEHost = "roses.gdvoisins.com";
