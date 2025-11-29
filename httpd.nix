@@ -52,7 +52,7 @@ in
         # MellonDiagnosticsFile logs/mellon_diagnostics
         # MellonDiagnosticsEnable Off
         
-        DocumentRoot = /var/lib/acme/acme-challenge/
+        DocumentRoot /var/lib/acme/acme-challenge/
 
         Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
