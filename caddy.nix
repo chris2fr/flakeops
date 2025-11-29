@@ -17,8 +17,8 @@ in
     email = "hostmaster@lesgrandsvoisins.com";
     globalConfig = ''
 
-      order authenticate before respond
-      order authorize before basicauth
+    order authenticate before respond
+    order authorize before basicauth
 
 	security {
 		oauth identity provider keycloak {
@@ -37,7 +37,7 @@ in
 			cookie domain gdvoisins.com
 			ui {
 				links {
-					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
+					"Copyparty" https://not.roses.gdvoisins.com:443/ icon "las la-star"
 					"Moi" "/whoami" icon "las la-user"
 				}
 			}
@@ -67,15 +67,16 @@ in
       "auth.roses.gdvoisins.com" = {
           # tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
         extraConfig = ''
+          authenticate with myportal
           respond "auth is running"
         '';
       };
       "fontenay.gdvoisins.com" = {
           # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
         extraConfig = ''
-          authenticate with myportal
+          # authenticate with myportal
           # reverse_proxy https://fontenay.gdvoisins.com:443
-          # respond "fontenay.gdvoisins.com is running"
+          respond "fontenay.gdvoisins.com is running"
         '';
       };
       "roses.gdvoisins.com" = {
