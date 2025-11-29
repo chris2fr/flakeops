@@ -79,7 +79,6 @@ in
             RemoteIPProxyProtocol Off
           '';
           # listenAddresses = [ "[::]" "192.168.1.100"];
-          listen = listen;
         };
         "fs.roses.gdvoisins.com" = {
           # useACMEHost = "fs.roses.gdvoisins.com";
