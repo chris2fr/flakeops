@@ -16,7 +16,6 @@ in
     #     # extraDomainNames = [ 
     #     #   "www.roses.gdvoisins.com"
     #     #   "cp.roses.gdvoisins.com" 
-    #     #   "co.roses.gdvoisins.com" 
     #     #   "cw.roses.gdvoisins.com" 
     #     #   "fs.roses.gdvoisins.com" 
     #     #   "public.cp.roses.gdvoisins.com" 
@@ -25,7 +24,6 @@ in
     #     # ];
     #   };
     #   "cp.roses.gdvoisins.com"  = {webroot = "/var/lib/acme/acme-challenge/";};
-    #   "co.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
     #   "cw.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
     #   "fs.roses.gdvoisins.com"   = {webroot = "/var/lib/acme/acme-challenge/";};
     #   "public.cp.roses.gdvoisins.com"  = {webroot = "/var/lib/acme/acme-challenge/";}; 

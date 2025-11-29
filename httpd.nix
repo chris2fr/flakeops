@@ -62,6 +62,8 @@ in
 
         # Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
+        DocumentRoot /var/www/
+
         ProxyAddHeaders On
         # RequestHeader set X-Forwarded-Host $host
         RequestHeader set X-Real-IP $remote_addr
