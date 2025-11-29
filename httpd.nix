@@ -54,6 +54,13 @@ in
         
         DocumentRoot /var/lib/acme/acme-challenge/
 
+        <Directory "/var/lib/acme/acme-challenge/">
+            Options Indexes FollowSymLinks
+            AllowOverride None
+            Require all granted
+        </Directory>
+
+
         Alias "/.well-known/acme-challenge/" "/var/lib/acme/acme-challenge/.well-known/acme-challenge/"
 
         ProxyAddHeaders On
