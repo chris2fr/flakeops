@@ -74,9 +74,9 @@ in
           # documentRoot = "/var/lib/acme/acme-challenge/";
           # listen = listen;
           enableACME = true;
-          sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/auth.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem";
           # extraConfig = ''
           #   ProxyPass /.well-known/acme-challenge/ !
           # '';
@@ -86,9 +86,9 @@ in
           # listen = listen;
           forceSSL = true;
           enableACME = true;
-          sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
           # documentRoot = "/var/www/default";
           # extraConfig = ''
           #   RemoteIPProxyProtocol Off
@@ -106,9 +106,9 @@ in
           # extraConfig = ''
           #   RemoteIPProxyProtocol Off
           # '';
-          sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/fs.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/fs.roses.gdvoisins.com/fullchain.pem";
           # documentRoot = "/var/www/default";
           locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           locations."/" = {
@@ -121,9 +121,9 @@ in
           forceSSL = true;
           # listen = listen;
           enableACME = true;
-          sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/public.cp.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem";
           # documentRoot = "/var/www/default";
           extraConfig = ''
               # RemoteIPProxyProtocol Off
@@ -154,9 +154,9 @@ in
           forceSSL = true;
           # listen = listen;
           enableACME = true;
-          sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/cp.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem";
           # documentRoot = "/var/www/default";
           extraConfig = ''
               # RemoteIPProxyProtocol Off
@@ -226,9 +226,9 @@ in
           forceSSL = true;
           # listen = listen;
           enableACME = true;
-          sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/fontenay.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/fontenay.gdvoisins.com/fullchain.pem";
           # locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           # documentRoot = "/var/www/default";
             # extraConfig = ''
@@ -242,9 +242,9 @@ in
           #   ProxyPass /.well-known/acme-challenge/ !
           # '';
           enableACME = true;
-          sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
-          sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
-          sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          # sslServerKey = "/var/lib/acme/static.roses.gdvoisins.com/key.pem";
+          # sslServerChain = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
+          # sslServerCert = "/var/lib/acme/static.roses.gdvoisins.com/fullchain.pem";
           # locations."/.well-known/acme-challenge/" = {proxyPass = "!";};
           # documentRoot = "/var/www/default";
             # extraConfig = ''
