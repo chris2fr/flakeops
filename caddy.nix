@@ -34,7 +34,7 @@ in
 			crypto default token lifetime 3600
 			crypto key sign-verify {env.JWT_SHARED_KEY}
 			enable identity provider keycloak
-			cookie domain cp.roses.gdvoisins.com
+			cookie domain gdvoisins.com
 			ui {
 				links {
 					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
@@ -49,7 +49,7 @@ in
 
 		authorization policy identified {
 			set auth url https://auth.roses.gdvoisins.com:443/
-			allow roles anonymous guest authp/admin authp/user
+			allow roles guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 
@@ -75,7 +75,7 @@ in
         extraConfig = ''
           authenticate with myportal
           # reverse_proxy https://fontenay.gdvoisins.com:443
-          respond "fontenay.gdvoisins.com is running"
+          # respond "fontenay.gdvoisins.com is running"
         '';
       };
       "roses.gdvoisins.com" = {
