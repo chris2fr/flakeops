@@ -36,7 +36,7 @@ in
         key = "/var/lib/acme.bak/op.roses.gdvoisins.com/key.pem";
         httpsAddress = "op.roses.gdvoisins.com:41443";
       };
-      redirectURL = "https://op.roses.gdvoisins.com/oauth2/callback";
+      redirectURL = "https://op.roses.gdvoisins.com:41443/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
       # validateURL = "";
