@@ -27,13 +27,13 @@ in
       # # Additional settingsenvironment.systemPackages = with pkgs; [
       # # upstream = "http://localhost:1234"; # your backend service
       httpAddress = "0.0.0.0:1234"; # where oauth2-proxy listens
-      reverseProxy = true;
+      reverseProxy = false;
       # upstream = "http://127.0.0.1:4180";
       upstream = "file:///var/www/default";
       tls = {
         enable = true;
-        certificate = "/var/lib/acme.bak2/op.roses.gdvoisins.com/fullchain.pem";
-        key = "/var/lib/acme.bak2/op.roses.gdvoisins.com/key.pem";
+        certificate = "/var/lib/acme.bak/op.roses.gdvoisins.com/fullchain.pem";
+        key = "/var/lib/acme.bak/op.roses.gdvoisins.com/key.pem";
         httpsAddress = "op.roses.gdvoisins.com:41443";
       };
       redirectURL = "https://op.roses.gdvoisins.com/oauth2/callback";
