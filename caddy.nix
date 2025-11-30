@@ -136,11 +136,6 @@ in
           respond "Hello There Bonjour etc."
         '';
       };
-      "op.roses.gdvoisins.com" = {
-        extraConfig = ''
-          respond "Hello There Bonjour etc."
-        '';
-      };
       "cp.roses.gdvoisins.com" = {
           # tls /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cp.roses.gdvoisins.com/key.pem
         # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
@@ -189,7 +184,7 @@ in
           # tls /var/lib/acme/op.roses.gdvoisins.com/fullchain.pem /var/lib/acme/op.roses.gdvoisins.com/key.pem
       "op.roses.gdvoisins.com" = {
         extraConfig = ''
-          respond "op.roses.gdvoisins.com"
+          respond "op.roses.gdvoisins.com fonctionne bien."
         '';
         };
     };
