@@ -590,7 +590,7 @@ in {
           };
         };
         "key.lesgrandsvoisins.com" = {
-          extraConfig = "# proxy_protocol on;";
+          extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
           serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
@@ -715,7 +715,7 @@ in {
             '';
           };
         };
-        "keycloak.coolgv.com" = {
+        "keycloak.gdvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
@@ -724,7 +724,7 @@ in {
           locations."/" = {
             proxyPass = "https://192.168.117.11:14446";
             extraConfig = ''
-              rewrite ^/$ https://keycloak.coolgv.com/realms/master/account/applications redirect;
+              rewrite ^/$ https://keycloak.gdvoisins.com/realms/master/account/applications redirect;
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -732,8 +732,8 @@ in {
               proxy_set_header X-Forwarded-Proto $scheme;
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
-              proxy_ssl_certificate     /var/lib/acme/keycloak.coolgv.com/fullchain.pem;
-              proxy_ssl_certificate_key /var/lib/acme/keycloak.coolgv.com/key.pem;
+              proxy_ssl_certificate     /var/lib/acme/keycloak.gdvoisins.com/fullchain.pem;
+              proxy_ssl_certificate_key /var/lib/acme/keycloak.gdvoisins.com/key.pem;
             '';
           };
         };
