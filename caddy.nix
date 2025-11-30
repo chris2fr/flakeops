@@ -181,10 +181,11 @@ in
           respond "cw.roses.gdvoisins.com"
         '';
         };
+          # respond "op.roses.gdvoisins.com fonctionne bien."
           # tls /var/lib/acme/op.roses.gdvoisins.com/fullchain.pem /var/lib/acme/op.roses.gdvoisins.com/key.pem
       "op.roses.gdvoisins.com" = {
         extraConfig = ''
-          respond "op.roses.gdvoisins.com fonctionne bien."
+          reverse_proxy 0.0.0.0:1234
         '';
         };
     };
