@@ -26,16 +26,16 @@ in
       
       # # Additional settingsenvironment.systemPackages = with pkgs; [
       # # upstream = "http://localhost:1234"; # your backend service
-      httpAddress = "0.0.0.0:1234"; # where oauth2-proxy listens
-      reverseProxy = true;
+      # httpAddress = "0.0.0.0:1234"; # where oauth2-proxy listens
+      reverseProxy = false;
       # upstream = "http://127.0.0.1:4180";
       upstream = "file:///var/www/default";
-      # tls = {
-      #   enable = true;
-      #   certificate = "/var/lib/acme/roses.gdvoisins.com/fullchain.pem";
-      #   key = "/var/lib/acme/roses.gdvoisins.com/key.pem";
-      #   httpsAddress = "roses.gdvoisins.com:41443";
-      # };
+      tls = {
+        enable = true;
+        certificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
+        key = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
+        httpsAddress = "op.roses.gdvoisins.com:41443";
+      };
       redirectURL = "https://op.roses.gdvoisins.com/oauth2/callback";
       oidcIssuerUrl = "https://key.lesgrandsvoisins.com/realms/master";
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
