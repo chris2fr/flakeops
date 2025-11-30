@@ -8,6 +8,10 @@ in
         hostPath = "/var/lib/acme/keycloak.coolgv.com/";
         isReadOnly = true;
       };
+      "/var/lib/acme/keycloak.gdvoisins.com/" = {
+        hostPath = "/var/lib/acme/keycloak.gdvoisins.com/";
+        isReadOnly = true;
+      };
     };
     autoStart = true;
     privateNetwork = true;
