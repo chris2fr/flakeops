@@ -13,6 +13,13 @@ in {
     };
   };
   networking = {
+    hosts = {
+      "127.0.0.1" = ["localhost"];
+      "::1" = ["localhost"];
+      "127.0.0.2" = ["rosest330"];
+      "192.168.1.100" = ["op.roses.gdvoisins.com"];
+      "2a01:e0a:f4e:5880::9316:9fe2" = ["op.roses.gdvoisins.com"];
+    };
     nftables = {
       enable = true;
     };

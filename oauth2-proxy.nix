@@ -26,7 +26,7 @@ in
       
       # # Additional settingsenvironment.systemPackages = with pkgs; [
       # # upstream = "http://localhost:1234"; # your backend service
-      httpAddress = "0.0.0.0:1234"; # where oauth2-proxy listens
+      httpAddress = "op.roses.gdvoisins.com:1234"; # where oauth2-proxy listens
       reverseProxy = false;
       # upstream = "http://127.0.0.1:4180";
       upstream = "file:///var/www/default";
