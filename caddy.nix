@@ -185,7 +185,7 @@ in
           # tls /var/lib/acme/op.roses.gdvoisins.com/fullchain.pem /var/lib/acme/op.roses.gdvoisins.com/key.pem
       "op.roses.gdvoisins.com" = {
         extraConfig = ''
-          reverse_proxy https://op.roses.gdvoisins.com:41443/
+          reverse_proxy 0.0.0.0:1234
         '';
         };
     };
