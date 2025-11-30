@@ -45,7 +45,7 @@ in
       #   approval-prompt="force";
       #   client-id="seafile";
       #   client-secret-file="/etc/.secrets/.seafile_oauthproxy_keyfile";
-      #   code-challenge-method="S256";
+        code-challenge-method="S256";
       #   cookie-csrf-expire="5m";
       #   cookie-csrf-per-request="true";
       #   cookie-domain="roses.gdvoisins.com";
