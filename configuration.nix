@@ -17,7 +17,7 @@ in
     # ./vouch.nix
     ./nginx.nix
     # ./seafile.nix
-    # ./oauth2-proxy.nix
+    ./oauth2-proxy.nix
     # ./containers.nix
     # ./haproxy.nix
     # ./acme.nix
