@@ -21,7 +21,7 @@ in
       
       # # Cookie settings
       cookie.secret = "xyT0uniw4ybkjUEHx8yDh_FxwK98jIhg7OS1AXxJaew="; # generate with: openssl rand -base64 32 | head -c 32 | base64
-      cookie.httpOnly = false;
+      cookie.httpOnly = true;
       cookie.secure = true;
       
       # # Additional settingsenvironment.systemPackages = with pkgs; [
@@ -54,14 +54,14 @@ in
       #   cookie-name="_oauth2_proxy_roses";
       #   cookie-refresh="5m";
       #   cookie-samesite="none";
-      #   cookie-secret="NgbKPVOqtJn5bipSRGuR22BwasVS1J5u";
+       cookie-secret="NgbKPVOqtJn5bipSRGuR22BwasVS1J5u";
       #   cookie-secure="false";
       #   email-domain="*" ;
       #   http-address=":4180";
       #   https-address=":41443";
       #   insecure-oidc-allow-unverified-email="true" ;
       #   oidc-issuer-url="https://key.lesgrandsvoisins.com/realms/master";
-      #   pass-access-token="true";
+      pass-access-token="true";
       #   pass-authorization-header="true";
       #   pass-host-header="true" ;
       #   provider="keycloak-oidc";
