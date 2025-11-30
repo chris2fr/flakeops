@@ -19,7 +19,7 @@ in
 			# 	match origin keycloak
 			# 	action add role authp/user
 			# }
-      #         idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
+      #         idp_metadata_location https://key.lesgrandsvoisins.com:14443/realms/master/protocol/saml/descriptor
 
     globalConfig = ''
 
@@ -33,7 +33,7 @@ in
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
 			scopes openid email profile
-			metadata_url https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+			metadata_url https://key.lesgrandsvoisins.com:14443/realms/master/.well-known/openid-configuration
 		}
 
     saml identity provider samlkey {
@@ -45,7 +45,7 @@ in
         application_id "samlcopyparty"
         entity_id "samlcopyparty"
         idp_sign_cert_location "/var/lib/caddy/samlcopyparty.pem"
-        idp_login_url https://key.lesgrandsvoisins.com/realms/master/protocol/saml
+        idp_login_url https://key.lesgrandsvoisins.com:14443/realms/master/protocol/saml
         idp_metadata_location "/var/lib/caddy/samlkeylesgrandsvoisinscom.xml"
       }
 
