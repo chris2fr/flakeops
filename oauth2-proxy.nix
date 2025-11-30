@@ -32,8 +32,8 @@ in
       upstream = "file:///var/www/default";
       tls = {
         enable = true;
-        certificate = "/var/lib/acme/op.roses.gdvoisins.com/fullchain.pem";
-        key = "/var/lib/acme/op.roses.gdvoisins.com/key.pem";
+        certificate = "/var/lib/acme.bak2/op.roses.gdvoisins.com/fullchain.pem";
+        key = "/var/lib/acme.bak2/op.roses.gdvoisins.com/key.pem";
         httpsAddress = "op.roses.gdvoisins.com:41443";
       };
       redirectURL = "https://op.roses.gdvoisins.com/oauth2/callback";
