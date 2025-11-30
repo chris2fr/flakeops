@@ -655,7 +655,7 @@ in {
           serverAliases = ["adminkeycloak.paris14.cc"];
           # globalRedirect = "keycloak.paris14.cc:14443";
           locations."/" = {
-            basicAuth = { cc14 = "cc14"; };
+            # basicAuth = { cc14 = "cc14"; };
             proxyPass = "https://192.168.110.11:14445";
             extraConfig = ''
               rewrite ^/$ https://keycloak.paris14.cc/realms/master/account/applications redirect;
