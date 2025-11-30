@@ -41,7 +41,7 @@ in
       loginURL = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth";
       # validateURL = "";
       extraConfig = {
-        codeChallengeMethod = "S256";
+        # codeChallengeMethod = "S256";
       #   approval-prompt="force";
       #   client-id="seafile";
       #   client-secret-file="/etc/.secrets/.seafile_oauthproxy_keyfile";
