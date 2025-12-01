@@ -133,14 +133,14 @@ in
           respond "roses.gdvoisins.com fonctionne."
         '';
       };
+            #       request_header  X-REMOTE-USER {rp.header.X-Token-Subject}
+            # request_header  X-REMOTE-EMAIL {rp.header.X-User-Email}
+            # request_header  X-REMOTE-USERNAME {rp.header.X-User-Name}
+            # request_header  X-REMOTE-GROUPS {rp.header.X-User-Roles}
       "cp.roses.gdvoisins.com" = {
         extraConfig = ''
           authorize with identifiedpolicy
           reverse_proxy https://[::1]:3923 {
-            request_header  X-REMOTE-USER {rp.header.X-Token-Subject}
-            request_header  X-REMOTE-EMAIL {rp.header.X-User-Email}
-            request_header  X-REMOTE-USERNAME {rp.header.X-User-Name}
-            request_header  X-REMOTE-GROUPS {rp.header.X-User-Roles}
             transport http {
               tls_server_name cp.roses.gdvoisins.com
               tls_insecure_skip_verify
