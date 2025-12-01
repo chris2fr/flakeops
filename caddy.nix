@@ -101,12 +101,15 @@ in
 			set auth url https://auth.roses.gdvoisins.com
 			allow roles guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
+      inject headers with claims
+
 		}
 
 		authorization policy userpolicy {
 			set auth url https://auth.roses.gdvoisins.com
 			allow roles authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
+      inject headers with claims
 		}
 	}
     '';
