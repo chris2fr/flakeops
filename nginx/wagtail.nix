@@ -1595,7 +1595,7 @@ in {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig + ''
-          return 302 https://maelnemacherif.wixsite.com/anc1;
+          # return 302 https://maelnemacherif.wixsite.com/anc1;
           if ($host = 'maelanc.com') {
             return 302 https://maelnemacherif.wixsite.com/anc1;
           #     return 301 $scheme://www.$host$request_uri;
