@@ -101,6 +101,7 @@ in
 			set auth url https://auth.roses.gdvoisins.com
 			allow roles guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
+      set user identity subject
       inject headers with claims
       inject header "X-Caddy-User" from "preferred_username"
       inject header "X-User-Lastname" from "family_name"
