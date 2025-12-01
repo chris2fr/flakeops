@@ -91,7 +91,7 @@ in
 				}
 			}
 
-      transform user {q
+      transform user {
         match origin keycloak
 				action add role authp/user
 			}
