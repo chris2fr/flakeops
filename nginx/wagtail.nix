@@ -1588,6 +1588,7 @@ in {
     };
     "www.maelanc.com" = {
       extraConfig = "# proxy_protocol off;";
+      serverAliases = ["irivi.maelanc.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
