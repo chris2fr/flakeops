@@ -75,7 +75,7 @@ in
       realm keycloak
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
-			scopes openid email profile
+			scopes profile openid email 
 			metadata_url https://keycloak.gdvoisins.com/realms/master/.well-known/openid-configuration
 		}
 
