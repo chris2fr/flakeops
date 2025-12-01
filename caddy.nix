@@ -86,25 +86,25 @@ in
 			cookie domain gdvoisins.com
 			ui {
 				links {
-					"Copyparty" https://not.roses.gdvoisins.com:443/ icon "las la-star"
+					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
 					"Moi" "/whoami" icon "las la-user"
 				}
 			}
 
-      transform user {
+      transform user {q
         match origin keycloak
 				action add role authp/user
 			}
 		}
 
 		authorization policy identifiedpolicy {
-			set auth url https://auth.roses.gdvoisins.com:443/
+			set auth url https://auth.roses.gdvoisins.com
 			allow roles guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 
 		authorization policy userpolicy {
-			set auth url https://auth.roses.gdvoisins.com:443/
+			set auth url https://auth.roses.gdvoisins.com
 			allow roles authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
@@ -134,6 +134,8 @@ in
         extraConfig = ''
           authorize with identifiedpolicy
           reverse_proxy https://[::1]:3923 {
+            request_header  X-REMOTE-USER {rp.header.Remote-User}
+            request_header  X-REMOTE-EMAIL {rp.header.Remote-Email}
             transport http {
               tls_server_name cp.roses.gdvoisins.com
               tls_insecure_skip_verify
