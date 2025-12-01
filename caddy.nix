@@ -19,7 +19,50 @@ in
 			# 	match origin keycloak
 			# 	action add role authp/user
 			# }
-      #         idp_metadata_location https://key.lesgrandsvoisins.com/realms/master/protocol/saml/descriptor
+      #         idp_metadata_location https://keycloak.gdvoisins.com/realms/master/protocol/saml/descriptor
+
+    # saml identity provider samlkey {
+    #     driver generic
+    #     realm samlkey
+    #     application_name "Key LesGrandsVoisins com"
+    #     acs_url https://saml.roses.gdvoisins.com
+    #     acs_url https://cp.roses.gdvoisins.com
+    #     application_id "samlcopyparty"
+    #     entity_id "samlcopyparty"
+    #     idp_sign_cert_location "/var/lib/caddy/samlcopyparty.pem"
+    #     idp_login_url https://keycloak.gdvoisins.com/realms/master/protocol/saml
+    #     idp_metadata_location "/var/lib/caddy/samlkeylesgrandsvoisinscom.xml"
+    #   }
+
+		# authentication portal samlportal {
+		# 	crypto default token lifetime 3600
+		# 	crypto key sign-verify {env.JWT_SHARED_KEY}
+		# 	enable identity provider samlkey
+		# 	cookie domain gdvoisins.com
+		# 	ui {
+		# 		links {
+		# 			"Copyparty" https://not.roses.gdvoisins.com:443/ icon "las la-star"
+		# 			"Moi" "/whoami" icon "las la-user"
+		# 		}    		
+		# 	}
+    #   transform user {
+    #     match origin samlportal
+		# 		action add role authp/user
+		# 	}
+
+		# }
+		# authorization policy samlidentified {
+		# 	set auth url https://saml.roses.gdvoisins.com:443/
+		# 	allow roles guest authp/admin authp/user
+		# 	crypto key verify {env.JWT_SHARED_KEY}
+		# }
+
+      # "saml.roses.gdvoisins.com" = {
+      #   extraConfig = ''
+      #     authenticate with samlportal
+      #     respond "saml.roses.gdvoisins.com is running"
+      #   '';
+      # };
 
     globalConfig = ''
 
@@ -33,41 +76,10 @@ in
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
 			scopes openid email profile
-			metadata_url https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+			metadata_url https://keycloak.gdvoisins.com/realms/master/.well-known/openid-configuration
 		}
 
-    saml identity provider samlkey {
-        driver generic
-        realm samlkey
-        application_name "Key LesGrandsVoisins com"
-        acs_url https://saml.roses.gdvoisins.com
-        acs_url https://cp.roses.gdvoisins.com
-        application_id "samlcopyparty"
-        entity_id "samlcopyparty"
-        idp_sign_cert_location "/var/lib/caddy/samlcopyparty.pem"
-        idp_login_url https://key.lesgrandsvoisins.com/realms/master/protocol/saml
-        idp_metadata_location "/var/lib/caddy/samlkeylesgrandsvoisinscom.xml"
-      }
-
-		authentication portal samlportal {
-			crypto default token lifetime 3600
-			crypto key sign-verify {env.JWT_SHARED_KEY}
-			enable identity provider samlkey
-			cookie domain gdvoisins.com
-			ui {
-				links {
-					"Copyparty" https://not.roses.gdvoisins.com:443/ icon "las la-star"
-					"Moi" "/whoami" icon "las la-user"
-				}    		
-			}
-      transform user {
-        match origin samlportal
-				action add role authp/user
-			}
-
-		}
-
-		authentication portal myportal {
+		authentication portal keygdvoisinscom {
 			crypto default token lifetime 3600
 			crypto key sign-verify {env.JWT_SHARED_KEY}
 			enable identity provider keycloak
@@ -85,63 +97,42 @@ in
 			}
 		}
 
-		authorization policy samlidentified {
-			set auth url https://saml.roses.gdvoisins.com:443/
-			allow roles guest authp/admin authp/user
-			crypto key verify {env.JWT_SHARED_KEY}
-		}
-
-
-		authorization policy identified {
+		authorization policy identifiedpolicy {
 			set auth url https://auth.roses.gdvoisins.com:443/
 			allow roles guest authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 
-		authorization policy mypolicy {
+		authorization policy userpolicy {
 			set auth url https://auth.roses.gdvoisins.com:443/
 			allow roles authp/admin authp/user
 			crypto key verify {env.JWT_SHARED_KEY}
 		}
 	}
     '';
-    # extraConfig = ''
 
-    # '';
     virtualHosts = {
       "auth.roses.gdvoisins.com" = {
-          # tls /var/lib/acme/auth.roses.gdvoisins.com/fullchain.pem /var/lib/acme/auth.roses.gdvoisins.com/key.pem
         extraConfig = ''
-          authenticate with myportal
+          authenticate with keygdvoisinscom
           respond "auth.roses.gdvoisins.com is running"
         '';
       };
-      "saml.roses.gdvoisins.com" = {
-        extraConfig = ''
-          authenticate with samlportal
-          respond "saml.roses.gdvoisins.com is running"
-        '';
-      };
+
       "fontenay.gdvoisins.com" = {
           # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
         extraConfig = ''
-          authorize with samlidentified
-          # reverse_proxy https://fontenay.gdvoisins.com:443
           respond "fontenay.gdvoisins.com is running"
         '';
       };
       "roses.gdvoisins.com" = {
-          # tls /var/lib/acme/roses.gdvoisins.com/fullchain.pem /var/lib/acme/roses.gdvoisins.com/key.pem
         extraConfig = ''
-          respond "Hello There Bonjour etc."
+          respond "roses.gdvoisins.com fonctionne."
         '';
       };
       "cp.roses.gdvoisins.com" = {
-          # tls /var/lib/acme/cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/cp.roses.gdvoisins.com/key.pem
-        # [mannchri@rosest330:~]$ ls /var/lib/copyparty/ssl-public/
-        # ca.key  ca.pem  cfssl.json  srv.key  srv.pem
         extraConfig = ''
-          authorize with identified
+          authorize with identifiedpolicy
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
@@ -153,7 +144,6 @@ in
             #   tls_client_auth /var/lib/copyparty/ssl/srv.pem /var/lib/copyparty/ssl/srv.key
             # }
       };
-          # tls /var/lib/acme/public.cp.roses.gdvoisins.com/fullchain.pem /var/lib/acme/public.cp.roses.gdvoisins.com/key.pem
       "public.cp.roses.gdvoisins.com" = {
         extraConfig = ''
           reverse_proxy https://[::1]:3924 {
