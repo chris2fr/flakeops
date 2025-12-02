@@ -39,6 +39,7 @@ in
     pwgen
     openldap
     mysql80
+    sqlite-interactive
     #    wkhtmltopdf
     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
             pillow

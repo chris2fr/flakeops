@@ -48,6 +48,7 @@ in {
     };
     vaultwarden = {
       enable = true;
+      environmentalFile = "/etc/vaultwarden.env";
     };
     uptime-kuma = {
       enable = true;
