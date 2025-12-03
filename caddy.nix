@@ -87,6 +87,8 @@ in
 			enable identity provider keycloak
 			cookie domain gdvoisins.com
 			ui {
+        logo_url "https://www.lesgrandsvoisins.com/medias/img/lesgv/logo-gdvoisins-800-400.png"
+        logo_description "Les Grands Voisins"
 				links {
 					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
 					"Moi" "/whoami" icon "las la-user"
