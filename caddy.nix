@@ -65,6 +65,8 @@ in
       #   '';
       # };
 
+    # UI https://github.com/greenpau/caddy-security/blob/83609dec14a46dfd5749dea0b08a03c283bd1114/caddyfile_authn.go#L46
+
     globalConfig = ''
 
     order authenticate before respond
