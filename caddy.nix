@@ -77,6 +77,7 @@ in
 			client_id {env.KEYCLOAK_CLIENT_ID}
 			client_secret {env.KEYCLOAK_CLIENT_SECRET}
 			scopes profile openid email 
+      extract all from userinfo
 			metadata_url https://keycloak.gdvoisins.com/realms/master/.well-known/openid-configuration
 		}
 
@@ -104,10 +105,7 @@ in
 			crypto key verify {env.JWT_SHARED_KEY}
       set user identity subject
       inject headers with claims
-      inject header "X-Caddy-User" from "preferred_username"
-      inject header "X-User-Lastname" from "family_name"
-
-
+      inject header "X-Username" from "userinfo|preferred_username"
 		}
 
 		authorization policy userpolicy {
