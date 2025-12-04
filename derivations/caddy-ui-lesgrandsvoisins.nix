@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     ''
     mkdir -p $out/assets/portal/templates/lesgrandsvoisins
     mkdir -p $out/assets/images
-    $install_commands
+    echo "${install_commands}" > $out/debug
     ''
     # (lib.strings.concatMapStrings (x: "install -Dm644 ${src}/${x} \$out/${x}\n") [
     # "assets/portal/templates/lesgrandsvoisins/login.template"
