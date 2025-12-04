@@ -3,7 +3,8 @@ let
   # nix-flake-caddy-lesgrandsvoisins.url = "github.com:lesgrandsvoisins/nix-flake-caddy-lesgrandsvoisins";
   # nix-flake-caddy-lesgrandsvoisins.inputs.nixpkgs.follows = "nixpkgs";
   # caddy-ui-lesgv = callPackage ./flakes/caddy-ui {}
-  caddy-ui-pkg = caddy-ui-lesgv.outputs;
+  # caddy-ui-pkg = caddy-ui-lesgv.outputs;
+  caddy-ui-lesgrandsvoisins = pkgs.callPackage ./derivations/caddy-ui-lesgrandsvoisins.nix {};
 in
 { 
 
