@@ -36,7 +36,7 @@
 
         # Example: build Caddy with plugins
         xcaddy build \
-          --with greenpau/caddy-security
+          --with github.com/greenpau/caddy-security
       '';
 
       installPhase = ''
