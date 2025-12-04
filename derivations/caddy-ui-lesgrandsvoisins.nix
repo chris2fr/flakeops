@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "caddy-ui-lesgrandsvoisins";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = ./caddy-ui-lesgrandsvoisins;
   installPhase = lib.strings.concatStrings [
