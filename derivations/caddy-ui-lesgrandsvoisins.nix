@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "caddy-ui-lesgrandsvoisins";
-  version = "1.0.2";
+  version = "1.0.3";
 
   src = ./caddy-ui-lesgrandsvoisins/.;
 
