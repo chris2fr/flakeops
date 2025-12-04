@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, caddy-ui-lesgv, ... }:
 let 
   # nix-flake-caddy-lesgrandsvoisins.url = "github.com:lesgrandsvoisins/nix-flake-caddy-lesgrandsvoisins";
   # nix-flake-caddy-lesgrandsvoisins.inputs.nixpkgs.follows = "nixpkgs";
   # caddy-ui-lesgv = callPackage ./flakes/caddy-ui {}
+  caddy-ui-pkg = caddy-ui-lesgv.outputs;
 in
 { 
+
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
