@@ -4,7 +4,7 @@ stdenv.mkDerivation rec {
   pname = "caddy-ui-lesgrandsvoisins";
   version = "1.0.0";
 
-  src = ./caddy-ui-lesgrandsvoisins/.;
+  src = ./caddy-ui-lesgrandsvoisins;
   installPhase = lib.strings.concatStrings [
     ''
     mkdir -p $out/assets/portal/templates/lesgrandsvoisins
