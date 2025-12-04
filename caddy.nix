@@ -133,6 +133,10 @@ in
 			crypto key verify {env.JWT_SHARED_KEY}
       inject headers with claims
 		}
+
+    # user registration lgvur {
+    #  title "Bienvenue !"
+    # }
 	}
     '';
 
