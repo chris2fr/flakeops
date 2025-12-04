@@ -43,7 +43,7 @@
             agenix.nixosModules.default
             filestash.nixosModules.default
           ];
-          specialArgs = { inherit filestash; };
+          specialArgs = { inherit filestash caddy-ui-lesgv; };
         };
       };
       # homeConfigurations = {

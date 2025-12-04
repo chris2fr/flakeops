@@ -107,7 +107,6 @@ in
         # static_asset "assets/css/lesgrandsvoisins.css" "text/css" "./assets/css/lesgrandsvoisins.css"
         # static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
         # static_asset "assets/images/favicon.png" "image/png" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
-      }
 			}
 
       transform user {
