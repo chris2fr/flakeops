@@ -1,0 +1,32 @@
+{
+  debug
+
+  security {
+
+    local identity store localdb {
+      realm local
+      path ./assest/users.json
+    }
+
+    authentication portal lesgvportal {
+      enable identity store localdb
+      ui {
+        custom html header path "./assets/html/header-lesgrandsvoisins.html"
+        # template generic "./assets/portal/templates/lesgrandsvoisins/generic.template"
+        template login "./assets/portal/templates/lesgrandsvoisins/login.template"
+        logo url "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        logo description "Les Grands Voisins"
+        static_asset "assets/css/lesgrandsvoisins.css" "text/css" "./assets/css/lesgrandsvoisins.css"
+        static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        static_asset "assets/images/favicon.png" "image/png" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
+      }
+    }
+  }
+}
+
+chris.roses.gdvoisins.com {
+  route {
+    authenticate with lesgvportal
+  }
+  respond "All is quiet on the western front"
+}
