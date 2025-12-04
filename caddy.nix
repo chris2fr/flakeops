@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 let 
+  # nix-flake-caddy-lesgrandsvoisins.url = "github.com:lesgrandsvoisins/nix-flake-caddy-lesgrandsvoisins";
+  # nix-flake-caddy-lesgrandsvoisins.inputs.nixpkgs.follows = "nixpkgs";
+  # caddy-ui-lesgv = callPackage ./flakes/caddy-ui {}
 in
 { 
   services.caddy = {
@@ -96,6 +99,15 @@ in
 					"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
 					"Moi" "/whoami" icon "las la-user"
 				}
+        # custom html header path "./assets/html/header-lesgrandsvoisins.html"
+        # template generic "./assets/portal/templates/lesgrandsvoisins/generic.template"
+        # template login "./assets/portal/templates/lesgrandsvoisins/login.template"
+        # logo url "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        # logo description "Les Grands Voisins"
+        # static_asset "assets/css/lesgrandsvoisins.css" "text/css" "./assets/css/lesgrandsvoisins.css"
+        # static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        # static_asset "assets/images/favicon.png" "image/png" "./assets/images/logo-lesgrandsvoisins-800-400-white.png"
+      }
 			}
 
       transform user {

@@ -10,7 +10,7 @@
     pkgs = import nixpkgs { inherit system; };
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
-      pname = "static-image";
+      pname = "caddy-ui-lesgv";
       version = "1.0.0";
 
       # The file you want to copy

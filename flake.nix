@@ -6,6 +6,8 @@
     # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     filestash.url = "github:dermetfan/filestash.nix";
+    caddy-ui-lesgv.url = "path:./flakes/caddy-ui";
+  # caddy-ui-lesgv.inputs.nixpkgs.follows = "nixpkgs";
     # copyparty.url = "github:9001/copyparty";
   #    home-manager = {
   #      url = "github:nix-community/home-manager";
@@ -14,7 +16,7 @@
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, flake-utils, filestash, agenix, ... }@inputs: 
+  outputs = { self, nixpkgs, flake-utils, filestash, agenix, caddy-ui-lesgv, ... }@inputs: 
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
