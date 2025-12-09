@@ -223,6 +223,7 @@ in
       "contact@gdvoisins.com" = "contact@lesgrandsvoisins.com";
       "bienvenue@gdvoisins.com" = "bienvenue@lesgrandsvoisins.com";
       "contact@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "contact@lesgrandsvoisins.com"];
+      "admin@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "admin@lesgrandsvoisins.com"];
       "pauline@gdvoisins.com" = "pauline@lesgrandsvoisins.com";
       "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
       "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
