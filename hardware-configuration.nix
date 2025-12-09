@@ -23,6 +23,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/backup" =
+    { device = "/dev/disk/by-uuid/ef48508f-476c-4f9d-9841-ff9205e24e57";
+      fsType = "ext4";
+    };
+
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/C805-573F";
       fsType = "vfat";
