@@ -237,6 +237,7 @@ in
       "arezki@lesgrandsvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezkisef@yahoo.fr"];
       "caroline@lesgrandsvoisins.com" = "clhomme@gmail.com";
       "pauline@lesgrandsvoisins.com" = ["pauline@lesgrandsvoisins.com" "poteomiranda@gmail.com"];
+      "julio@lesgrandsvoisins.com" = ["julio@lesgrandsvoisins.com" "donjulioromero.rodriguez@gmail.com"];
       "rayhane@lesgrandsvoisins.com" = ["rayhane@lesgrandsvoisins.com" "rayhane.baghdadddi@gmail.com"];
       "abel@lesgrandsvoisins.com" = ["abel@lesgrandsvoisins.com" "abelmavura@gmail.com"];
       "donation@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
