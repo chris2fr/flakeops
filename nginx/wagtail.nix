@@ -118,7 +118,6 @@ in {
         "l14s.com"
         "gdv1.com"
         "gdv1.org"
-        "afriquepartenaires.org"
         "yanlomsprod.org"
         "gdvoisins.org"
         "gvois.org"
@@ -212,9 +211,7 @@ in {
         "yanlomsprod.parisle.org"
         # "excellenxport.hopgv.com"
         # "old.lesgrandsvoisins.com"
-        "www.afriquepartenaires.org"
         "meet.mann.faith"
-        "afriquepartenaires.grandsvoisins.org"
         "www.yanlomsprod.org"
         "www.gdvoisins.com"
         "en.gdvoisins.com"
@@ -319,9 +316,6 @@ in {
           # if ($host = 'parisle.org') {
           #   return 301 $scheme://www.parisle.org$request_uri;
           # }
-          if ($host = 'afriquepartenaires.grandsvoisins.org') {
-            return 301 $scheme://www.afriquepartenaires.org$request_uri;
-          }
           rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
         '';
       };
