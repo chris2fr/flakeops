@@ -17,7 +17,6 @@ let
     "parisle.org"
     "paris14.cc"
     "discourse.paris14.cc"
-    "afriquepartenaires.org"
     "yanlomsprod.org"
     "lgv.info"
     "discourse.lgv.info"
@@ -112,11 +111,6 @@ in
     #   abel@lesgrandsvoisins.com abel@lesgrandsvoisins.com
     #   abel@lesgrandsvoisins.com abelmavura@gmail.com
     #   donation@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-    #   contact@afriquepartenaires.org claudette@afriquepartenaires.org
-    #   contact@afriquepartenaires.org renel@afriquepartenaires.org
-    #   contact@afriquepartenaires.org afripartenairesasso@gmail.com
-    #   claudette@afriquepartenaires.org afripartenaires@gmail.com
-    #   renel@afriquepartenaires.org culture.coordination@gmail.com
     #   felicite@yanlomsprod.org associationyanlomsprod@gmail.com
     #   contact@yanlomsprod.org associationyanlomsprod@gmail.com
     #   felicite@yanlomsprod.org yanlomsprod@lesgrandsvoisins.com
@@ -241,9 +235,6 @@ in
       "rayhane@lesgrandsvoisins.com" = ["rayhane@lesgrandsvoisins.com" "rayhane.baghdadddi@gmail.com"];
       "abel@lesgrandsvoisins.com" = ["abel@lesgrandsvoisins.com" "abelmavura@gmail.com"];
       "donation@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-      "contact@afriquepartenaires.org" = ["claudette@afriquepartenaires.org" "renel@afriquepartenaires.org" "afripartenairesasso@gmail.com"];
-      "claudette@afriquepartenaires.org" = "afripartenaires@gmail.com";
-      "renel@afriquepartenaires.org" = "culture.coordination@gmail.com";
       "felicite@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "felicite@yanlomsprod.org" ];
       "contact@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "contact@yanlomsprod.org"];
       "yanlomsprod@lesgrandsvoisins.com" = ["yanlomsprod@lesgrandsvoisins.com" "associationyanlomsprod@gmail.com"];
