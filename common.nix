@@ -99,6 +99,7 @@ in
     #    python311Packages.pyproject-hooks
     busybox
     gnumake
+    oauth2-proxy
     #  nftables
   ];
 
