@@ -328,7 +328,8 @@ in {
           enableACME = true;
           locations."/" = {
             # proxyPass = "http://[::1]:8082";
-            proxyPass = "http://127.0.0.1:8082";
+            # proxyPass = "http://127.0.0.1:8082";
+            proxyPass = "https://login.gdvoisins.com:41443";
             extraConfig = ''
               proxy_set_header X-Origin-URI $request_uri;
               proxy_set_header X-Host $host;
