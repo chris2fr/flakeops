@@ -338,6 +338,10 @@ in {
 
               auth_request_set $cookie $upstream_http_set_cookie;
               add_header Set-Cookie $cookie;
+
+              add_header Cache-Control 'no-cache';
+              proxy_no_cache 1;
+              proxy_cache_bypass 1;
               '';
             # extraConfig = nginxSsoProxExtraConfig;
           };
