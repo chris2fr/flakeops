@@ -327,7 +327,8 @@ in {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://[::1]:8082";
+            # proxyPass = "http://[::1]:8082";
+            proxyPass = "http://127.0.0.1:8082";
             extraConfig = ''
               proxy_set_header X-Origin-URI $request_uri;
               proxy_set_header X-Host $host;
