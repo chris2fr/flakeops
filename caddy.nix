@@ -102,17 +102,21 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-      				"Copyparty" https://cp.roses.gdvoisins.com:443/ icon "las la-star"
-      				"Moi" "/whoami" icon "las la-user"
-      			}
-             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
-             # template generic "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/generic.template"
-             template login "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/login.template"
-             logo url "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
-             logo description "Les Grands Voisins"
-             # static_asset "${caddy-ui-lesgrandsvoisins}/assets/css/lesgrandsvoisins.css" "text/css" "assets/css/lesgrandsvoisins.css"
-            #  static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            #  static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.png" "image/png" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+            links {
+              "Dashy" https://max.gdvoisins.com:443/ icon "las la-star"
+              "Moi" "/whoami" icon "las la-user"
+            }
+            # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
+            # template generic "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/generic.template"
+            template login "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/login.template"
+            logo url "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+            logo description "Les Grands Voisins"
+            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/css/lesgrandsvoisins.css" "text/css" "assets/css/lesgrandsvoisins.css"
+            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.png" "image/png" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+            static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+            static_asset "assets/images/favicon.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.png"
+            static_asset "assets/images/favicon.ico" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.ico"
       		}
 
            transform user {

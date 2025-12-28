@@ -6,3 +6,4 @@ switch-flake:
 
 flake-check:
 	nix flake check
+	
