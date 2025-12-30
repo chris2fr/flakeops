@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   nginxLocationWagtailExtraConfig = ''
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_redirect off;
@@ -33,8 +37,7 @@ in {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/interetpublic";
-      serverAliases =
-        [ "www.interetpublic.org" ];
+      serverAliases = ["www.interetpublic.org"];
       locations."/".extraConfig = ''
         if ($host != "www.interet-public.org") {
           return 301 $scheme://www.interet-public.org$request_uri;
@@ -49,10 +52,10 @@ in {
         proxyPass = "http://localhost:8893/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     # "old.lesgrandsvoisins.com" = {
     #   enableACME = true;
@@ -63,7 +66,7 @@ in {
     #     # return =  "302 https://blog.lesgrandsvoisins.com";
     #     proxyPass = "http://localhost:8894/";
     #     extraConfig = nginxLocationWagtailExtraConfig + ''
-    #       # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+    #       # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
     #     '';
     #   };
     #   locations."/favicon.ico" = { proxyPass = null; };
@@ -75,20 +78,20 @@ in {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/html/";
-      serverAliases = [ 
+      serverAliases = [
         # "hopgv.org"
         "lesgv.com"
         "coopgv.com"
         "coopgv.org"
-        "grandsvoisins.com" 
+        "grandsvoisins.com"
         "grandsvoisins.org"
-        # "gv.coop" 
-        "libregood.com" 
+        # "gv.coop"
+        "libregood.com"
         "gvcoop.com"
         "gvcoop.org"
-        "interet-public.org" 
-        "interetpublic.org" 
-        "lesgrandsvoisins.com" 
+        "interet-public.org"
+        "interetpublic.org"
+        "lesgrandsvoisins.com"
         "lesgrandsvoisins.fr"
         "lesgv.org"
         # "ngovillage.org"
@@ -100,7 +103,7 @@ in {
         # "parisle.com"
         # "gdvox.com"
         # "parisle.org"
-        # "parislenuage.com" 
+        # "parislenuage.com"
         "resdigita.com"
         "resdigita.org"
         "shitmuststop.com"
@@ -147,14 +150,16 @@ in {
       root = "/var/www/wagtailgvcoop/";
       locations."/" = {
         proxyPass = "http://localhost:8905/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-        return 302 $scheme://www.lesgrandsvoisins.com$request_uri;
-        # return 302 $scheme://www.grandsvoisins.com$request_uri;
-          if ($host = 'gv.coop') {
-            return 301 $scheme://www.gv.coop$request_uri;
-          }
-          # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect; 
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            return 302 $scheme://www.lesgrandsvoisins.com$request_uri;
+            # return 302 $scheme://www.grandsvoisins.com$request_uri;
+              if ($host = 'gv.coop') {
+                return 301 $scheme://www.gv.coop$request_uri;
+              }
+              # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -162,26 +167,28 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.grandsvoisins.org" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "www.grandsvoisins.com" ];
+      serverAliases = ["www.grandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
       locations."/" = {
         proxyPass = "http://localhost:8906/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
-          # if ($host != 'www.grandsvoisins.com') {
-          #   return 301 $scheme://www.grandsvoisins.com$request_uri;
-          # }
-          # rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+            # if ($host != 'www.grandsvoisins.com') {
+            #   return 301 $scheme://www.grandsvoisins.com$request_uri;
+            # }
+            # rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -189,10 +196,10 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
@@ -225,12 +232,12 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/lesgrandsvoisins/";
       root = "/var/www/coopgv/";
       locations."/index.php" = {
-          extraConfig =  ''
-            return 404;
-          '';
+        extraConfig = ''
+          return 404;
+        '';
       };
       extraConfig = ''
         # proxy_protocol off;
@@ -239,6 +246,9 @@ in {
         }
         if ($host = 'www.gdvoisins.org') {
           return 302 https://www.gdvoisins.com$request_uri;
+        }
+        if ($host = 'www.lesgrandsvoisins.fr') {
+          return 302 https://www.lesgrandsvoisins.com$request_uri;
         }
         # Static assets: cache for a year (with versioned filenames)
         location ~* \.(?:css|js|woff2?|ttf|eot|ico|gif|jpg|jpeg|png|webp|svg)$ {
@@ -271,7 +281,7 @@ in {
         proxyPass = "http://localhost:8904/";
         # proxyPass = "http://localhost:8894/";
         # extraConfig = nginxLocationWagtailExtraConfig + ''
-        extraConfig =  ''
+        extraConfig = ''
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_redirect off;
           proxy_http_version 1.1;
@@ -316,7 +326,7 @@ in {
           # if ($host = 'parisle.org') {
           #   return 301 $scheme://www.parisle.org$request_uri;
           # }
-          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -325,11 +335,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.gvois.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -397,18 +407,20 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/lesgrandsvoisins/";
       root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.gvois.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -416,11 +428,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.lesgv.org" = {
       extraConfig = "# proxy_protocol off;";
@@ -488,18 +500,20 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/lesgrandsvoisins/";
       root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.lesgv.org$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -507,11 +521,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.parisgv.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -579,18 +593,20 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/lesgrandsvoisins/";
       root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.parisgv.org') {
               return 301 $scheme://www.parisgv.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -598,11 +614,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.gdvox.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -644,14 +660,16 @@ in {
       root = "/var/www/gdvox/";
       locations."/" = {
         proxyPass = "http://localhost:8907/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             # if ($host = 'www.parisgv.org') {
             #   return 301 $scheme://www.parisgv.com$request_uri;
             # }
-            rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -659,11 +677,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };    
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
+    };
     "www.lesgv.com" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
@@ -708,14 +726,16 @@ in {
       root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'app.lesgv.com') {
               return 302 $scheme://www.lesgv.com$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -723,12 +743,12 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };    
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
+    };
     "apps.gdvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
@@ -770,14 +790,16 @@ in {
       root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'app.lgv.info') {
               return 302 $scheme://www.lgv.info$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -785,11 +807,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.lgv.info" = {
       serverAliases = [
@@ -832,14 +854,16 @@ in {
       root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'app.lgv.info') {
               return 302 $scheme://www.lgv.info$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -847,11 +871,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.parisle.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -919,18 +943,20 @@ in {
       ];
       enableACME = true;
       forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";      
+      # root = "/var/www/lesgrandsvoisins/";
       root = "/var/www/coopgv/";
       locations."/" = {
         # return =  "302 https://blog.lesgrandsvoisins.com";
         proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
             # return 302 $scheme://www.grandsvoisins.com$request_uri;
             if ($host = 'www.parisle.org') {
               return 301 $scheme://www.parisle.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect; 
-        '';
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
         return 302 /;
@@ -938,11 +964,11 @@ in {
       locations."/en/accounts/profile/".extraConfig = ''
         return 302 /;
       '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     # "resdigita.village.ngo" = {
     #   serverAliases = [ "resdigita.fastoche.org" ];
@@ -1000,10 +1026,10 @@ in {
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         # "/en/".return =  "301 http://www.village.ngo$request_uri";
-        "/favicon.ico" = { proxyPass = null; };
-        "/static" = { proxyPass = null; };
-        "/medias" = { proxyPass = null; };
-        "/.well-known" = { proxyPass = null; };
+        "/favicon.ico" = {proxyPass = null;};
+        "/static" = {proxyPass = null;};
+        "/medias" = {proxyPass = null;};
+        "/.well-known" = {proxyPass = null;};
       };
     };
     "www.village.ong" = {
@@ -1021,10 +1047,10 @@ in {
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         "/en/".return = "301 http://www.village.ngo$request_uri";
-        "/favicon.ico" = { proxyPass = null; };
-        "/static" = { proxyPass = null; };
-        "/medias" = { proxyPass = null; };
-        "/.well-known" = { proxyPass = null; };
+        "/favicon.ico" = {proxyPass = null;};
+        "/static" = {proxyPass = null;};
+        "/medias" = {proxyPass = null;};
+        "/.well-known" = {proxyPass = null;};
       };
       # if ($host != 'www.village.ong') {
       #   return 301 $scheme://www.village.ong$request_uri;
@@ -1057,10 +1083,10 @@ in {
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         # "/fr/".return =  "301 http://www.village.ong$request_uri";
-        "/favicon.ico" = { proxyPass = null; };
-        "/static" = { proxyPass = null; };
-        "/medias" = { proxyPass = null; };
-        "/.well-known" = { proxyPass = null; };
+        "/favicon.ico" = {proxyPass = null;};
+        "/static" = {proxyPass = null;};
+        "/medias" = {proxyPass = null;};
+        "/.well-known" = {proxyPass = null;};
       };
     };
     "www.village.ngo" = {
@@ -1092,20 +1118,22 @@ in {
       locations = {
         "/" = {
           proxyPass = "http://localhost:8896/";
-          extraConfig = nginxLocationWagtailExtraConfig + ''
-            # location ~ /fr/(.*)$ {
-            #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
-            # }
-            if ($host != 'www.village.ngo') {
-              return 301 $scheme://www.village.ngo$request_uri;
-            }
-          '';
+          extraConfig =
+            nginxLocationWagtailExtraConfig
+            + ''
+              # location ~ /fr/(.*)$ {
+              #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+              # }
+              if ($host != 'www.village.ngo') {
+                return 301 $scheme://www.village.ngo$request_uri;
+              }
+            '';
         };
         "/fr/".return = "301 http://www.village.ong$request_uri";
-        "/favicon.ico" = { proxyPass = null; };
-        "/static" = { proxyPass = null; };
-        "/medias" = { proxyPass = null; };
-        "/.well-known" = { proxyPass = null; };
+        "/favicon.ico" = {proxyPass = null;};
+        "/static" = {proxyPass = null;};
+        "/medias" = {proxyPass = null;};
+        "/.well-known" = {proxyPass = null;};
       };
     };
     # "www.village.ong" = {
@@ -1157,7 +1185,7 @@ in {
     "wagtail.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "wagtail.villagengo.org" "wagtail.villagengo.com" ];
+      serverAliases = ["wagtail.villagengo.org" "wagtail.villagengo.com"];
       root = "/var/www/wagtail-village/";
       locations."/" = {
         proxyPass = "http://localhost:8897/";
@@ -1168,10 +1196,10 @@ in {
       #     return 301 $scheme://wagtail.cfran.org$request_uri;
       #   }
       # '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.resdigita.org" = {
       extraConfig = "# proxy_protocol off;";
@@ -1186,20 +1214,21 @@ in {
       root = "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://localhost:8899/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host = 'resdigita.com') {
-            return 301 $scheme://www.resdigita.com$request_uri;
-          }
-          if ($host = 'resdigita.org') {
-            return 301 $scheme://www.resdigita.org$request_uri;
-          }
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            if ($host = 'resdigita.com') {
+              return 301 $scheme://www.resdigita.com$request_uri;
+            }
+            if ($host = 'resdigita.org') {
+              return 301 $scheme://www.resdigita.org$request_uri;
+            }
+          '';
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "wagtail.village.ong" = {
       # serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" ];
@@ -1208,21 +1237,23 @@ in {
       root = "/var/www/wagtail-village/";
       locations."/" = {
         proxyPass = "http://localhost:8897/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host != 'wagtail.village.ong') {
-            return 301 $scheme://wagtail.cfran.org$request_uri;
-          }
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            if ($host != 'wagtail.village.ong') {
+              return 301 $scheme://wagtail.cfran.org$request_uri;
+            }
+          '';
       };
       # extraConfig = ''
       #   if ($host != 'wagtail.village.ong') {
       #     return 301 $scheme://wagtail.cfran.org$request_uri;
       #   }
       # '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "django.village.ngo" = {
       enableACME = true;
@@ -1244,10 +1275,10 @@ in {
         proxyPass = "http://localhost:8891/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "fabrique.village.ngo" = {
       enableACME = true;
@@ -1293,15 +1324,15 @@ in {
         # proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8895.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8895.grandsvoisins.com" ];
+      serverAliases = ["8895.grandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/villagengo/";
@@ -1309,11 +1340,11 @@ in {
         proxyPass = "http://localhost:8895/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     # "meet.desgv.com"  = {
     #   enableACME = true;
@@ -1344,11 +1375,11 @@ in {
         # proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
 
     "wagtail.lesgv.org" = {
@@ -1365,7 +1396,7 @@ in {
         "www.coopgv.org"
         "www.gvcoop.com"
         # "gv.coop"
-        # "www.gv.coop"  
+        # "www.gv.coop"
         # "wagtail.gv.coop"
         # "wagtail.lesgv.org"
       ];
@@ -1374,19 +1405,21 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host = 'gv.coop') {
-              return 301 $scheme://www.$host$request_uri;
-          }
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            if ($host = 'gv.coop') {
+                return 301 $scheme://www.$host$request_uri;
+            }
+          '';
       };
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
       # extraConfig = ''
       #   if ($host = 'gv.coop') {
       #       return 301 $scheme://www.$host$request_uri;
@@ -1407,7 +1440,7 @@ in {
         "popuposcom.resdigita.com"
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
-        # "discoursewww.lesgv.com" 
+        # "discoursewww.lesgv.com"
         # "discourse.lesgv.com"
         "discourse.resdigita.com"
         "lesgvcom.resdigita.com"
@@ -1448,13 +1481,13 @@ in {
       locations."/favicon.ico" = {
         proxyPass = "http://10.245.101.15:8898/favicon.ico";
       };
-      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
-      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
+      locations."/static/" = {proxyPass = "http://wagtailstatic/";};
+      locations."/media/" = {proxyPass = "http://wagtailmedia/";};
     };
 
     "lesgv.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "2022.lesgrandsvoisins.com" ];
+      serverAliases = ["2022.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -1462,10 +1495,10 @@ in {
         # proxyPass = "http://localhost:8904/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
     };
@@ -1473,7 +1506,7 @@ in {
     "www.coopgv.org" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
-        # "desgv.com" 
+        # "desgv.com"
         "francemali.lesgrandsvoisins.com"
         "www.shitmuststop.com"
         "www.coopgv.com"
@@ -1488,51 +1521,53 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          if ($host = 'desgv.com') {
-              return 301 $scheme://www.$host$request_uri;
-          }
-          if ($host = 'maelanc.com') {
-              return 301 $scheme://www.$host$request_uri;
-          }
-          if ($host = 'francemali.com') {
-              return 301 $scheme://www.$host$request_uri;
-          }
-          # if ($host  ~  /lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org/ ) {
-          #     # return 301 $scheme://les.$host$request_uri;
-          #     return 301 
-          # if ($host = 'lesgv.org') {
-          #     return 301 $scheme://les.gv.coop$request_uri;
-          # }
-          # if ($host = 'www.lesgv.org') {
-          #     return 301 $scheme://les.gv.coop$request_uri;
-          # }
-          # if ($host = 'lesgv.com') {
-          #     return 301 $scheme://les.gv.coop$request_uri;
-          # }
-          # if ($host = 'www.lesgv.com') {
-          #     return 301 $scheme://les.gv.coop$request_uri;
-          # }
-          # if ($host = 'gv.coop') {
-          #     return 301 $scheme://www.gv.coop$request_uri;
-          # }
-          # if ($host = 'www.gv.coop') {
-          #     return 301 $scheme://les.gv.coop$request_uri;
-          # }
-          if ($host = 'lesgrandsvoisins.fr') {
-              # return 301 $scheme://www.lesgrandsvoisins.com;
-              return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
-          }
-          # if ($host = 'www.lesgrandsvoisins.fr') {
-          #     return 301 $scheme://www.lesgrandsvoisins.com;
-          #     # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
-          # }
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            if ($host = 'desgv.com') {
+                return 301 $scheme://www.$host$request_uri;
+            }
+            if ($host = 'maelanc.com') {
+                return 301 $scheme://www.$host$request_uri;
+            }
+            if ($host = 'francemali.com') {
+                return 301 $scheme://www.$host$request_uri;
+            }
+            # if ($host  ~  /lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org/ ) {
+            #     # return 301 $scheme://les.$host$request_uri;
+            #     return 301
+            # if ($host = 'lesgv.org') {
+            #     return 301 $scheme://les.gv.coop$request_uri;
+            # }
+            # if ($host = 'www.lesgv.org') {
+            #     return 301 $scheme://les.gv.coop$request_uri;
+            # }
+            # if ($host = 'lesgv.com') {
+            #     return 301 $scheme://les.gv.coop$request_uri;
+            # }
+            # if ($host = 'www.lesgv.com') {
+            #     return 301 $scheme://les.gv.coop$request_uri;
+            # }
+            # if ($host = 'gv.coop') {
+            #     return 301 $scheme://www.gv.coop$request_uri;
+            # }
+            # if ($host = 'www.gv.coop') {
+            #     return 301 $scheme://les.gv.coop$request_uri;
+            # }
+            if ($host = 'lesgrandsvoisins.fr') {
+                # return 301 $scheme://www.lesgrandsvoisins.com;
+                return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
+            }
+            # if ($host = 'www.lesgrandsvoisins.fr') {
+            #     return 301 $scheme://www.lesgrandsvoisins.com;
+            #     # return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+            # }
+          '';
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
     };
@@ -1542,8 +1577,8 @@ in {
     #    enableACME = true;
     #    forceSSL = true;
     # };
-    "www.l-g-v.com"  = {
-      serverAliases = [   "www.l-g-v.org" ];
+    "www.l-g-v.com" = {
+      serverAliases = ["www.l-g-v.org"];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
@@ -1574,11 +1609,11 @@ in {
       };
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.maelanc.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -1588,25 +1623,27 @@ in {
       locations."/" = {
         proxyPass = "http://localhost:8008/";
         # proxyPass = "http://localhost:8904/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          # return 302 https://maelnemacherif.wixsite.com/anc1;
-          if ($host = 'maelanc.com') {
-            return 302 https://maelnemacherif.wixsite.com/anc1;
-          #     return 301 $scheme://www.$host$request_uri;
-          }
-          if ($host = 'www.maelanc.com') {
-            return 302 https://maelnemacherif.wixsite.com/anc1;
-          #     return 301 $scheme://www.$host$request_uri;
-          }
-        '';
+        extraConfig =
+          nginxLocationWagtailExtraConfig
+          + ''
+            # return 302 https://maelnemacherif.wixsite.com/anc1;
+            if ($host = 'maelanc.com') {
+              return 302 https://maelnemacherif.wixsite.com/anc1;
+            #     return 301 $scheme://www.$host$request_uri;
+            }
+            if ($host = 'www.maelanc.com') {
+              return 302 https://maelnemacherif.wixsite.com/anc1;
+            #     return 301 $scheme://www.$host$request_uri;
+            }
+          '';
       };
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "mann.fr" = {
       enableACME = true;
@@ -1624,11 +1661,11 @@ in {
       };
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "paris14.village.ngo" = {
       enableACME = true;
@@ -1643,15 +1680,15 @@ in {
       #     return 301 $scheme://wagtail.cfran.org$request_uri;
       #   }
       # '';
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8008.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8008.grandsvoisins.com" ];
+      serverAliases = ["8008.grandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -1660,15 +1697,15 @@ in {
       };
       root = "/var/www/wagtail/";
       # root = "/var/www/coopgv/";
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8893.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8893.grandsvoisins.com" ];
+      serverAliases = ["8893.grandsvoisins.com"];
       root = "/var/www/www-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8893/";
@@ -1676,14 +1713,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8892.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8892.grandsvoisins.com" ];
+      serverAliases = ["8892.grandsvoisins.com"];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8892/";
@@ -1691,14 +1728,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8890.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8890.grandsvoisins.com" ];
+      serverAliases = ["8890.grandsvoisins.com"];
       root = "/var/www/wagtail-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8890/";
@@ -1706,14 +1743,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8894.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8894.grandsvoisins.com" ];
+      serverAliases = ["8894.grandsvoisins.com"];
       root = "/var/www/lesgrandsvoisins/";
       locations."/" = {
         proxyPass = "http://localhost:8894/";
@@ -1721,14 +1758,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8904.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8904.grandsvoisins.com" ];
+      serverAliases = ["8904.grandsvoisins.com"];
       root = "/var/www/coopgv/";
       locations."/" = {
         proxyPass = "http://localhost:8904/";
@@ -1736,14 +1773,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8905.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8905.grandsvoisins.com" ];
+      serverAliases = ["8905.grandsvoisins.com"];
       root = "/var/www/wagtailgvcoop/";
       locations."/" = {
         proxyPass = "http://localhost:8905/";
@@ -1751,14 +1788,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8906.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8906.grandsvoisins.com" ];
+      serverAliases = ["8906.grandsvoisins.com"];
       root = "/var/www/wagtail-lesgrandsvoisinscom/";
       locations."/" = {
         proxyPass = "http://localhost:8906/";
@@ -1766,14 +1803,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8888.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8888.grandsvoisins.com" ];
+      serverAliases = ["8888.grandsvoisins.com"];
       root = "/var/www/francemali/";
       locations."/" = {
         proxyPass = "http://localhost:8888/";
@@ -1781,14 +1818,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8896.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8896.grandsvoisins.com"];
+      serverAliases = ["8896.grandsvoisins.com"];
       root = "/var/www/village/";
       locations."/" = {
         proxyPass = "http://localhost:8896/";
@@ -1796,14 +1833,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8900.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8900.grandsvoisins.com" ];
+      serverAliases = ["8900.grandsvoisins.com"];
       root = "/var/www/cantine/";
       locations."/" = {
         proxyPass = "http://localhost:8900/";
@@ -1811,14 +1848,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8889.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8889.grandsvoisins.com" ];
+      serverAliases = ["8889.grandsvoisins.com"];
       root = "/var/www/cfran/";
       locations."/" = {
         proxyPass = "http://localhost:8889/";
@@ -1826,14 +1863,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8897.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8897.grandsvoisins.com" ];
+      serverAliases = ["8897.grandsvoisins.com"];
       root = "/var/www/resdigita-fastoche/";
       locations."/" = {
         proxyPass = "http://localhost:8897/";
@@ -1841,14 +1878,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8899.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8899.grandsvoisins.com" ];
+      serverAliases = ["8899.grandsvoisins.com"];
       root = "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://localhost:8899/";
@@ -1856,14 +1893,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "8891.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "8891.grandsvoisins.com" ];
+      serverAliases = ["8891.grandsvoisins.com"];
       root = "/var/www/django-village/";
       locations."/" = {
         proxyPass = "http://localhost:8891/";
@@ -1871,10 +1908,10 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "wagtailnews.resdigita.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -1885,14 +1922,14 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "wagtail.resdigita.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "www.resdigita.com" ];
+      serverAliases = ["www.resdigita.com"];
       root = "/var/www/wagtail.resdigita.com.main/";
       locations."/" = {
         proxyPass = "http://localhost:8903/";
@@ -1900,10 +1937,10 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "develop.resdigita.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -1914,16 +1951,16 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
     "www.grandzine.org" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ 
-       "8909.grandsvoisins.com"
-       "www.grandv.org" 
+      serverAliases = [
+        "8909.grandsvoisins.com"
+        "www.grandv.org"
       ];
       root = "/var/www/grandv/";
       locations."/" = {
@@ -1932,10 +1969,10 @@ in {
       };
       enableACME = true;
       forceSSL = true;
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
     };
   };
 }
