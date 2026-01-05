@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  home-manager = import ../vars/home-manager.nix;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  home-manager = import ../vars/home-manager.nix;
+in {
   containers.silverbullet = {
     autoStart = true;
     privateNetwork = true;
@@ -20,30 +23,36 @@ in
       # "/var/lib/burp/etc/silverbullet.resdigita.com" = {
       #   hostPath = "/var/lib/acme/silverbullet.resdigita.com";
       #   isReadOnly = true;
-      # }; 
+      # };
     };
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "25.05";
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim_configurable.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         python311
         busybox
@@ -61,10 +70,11 @@ in
         # backintime
         # deno
         kopia
+        silverbullet
         # (import "${home-manager}/nixos")
       ];
       networking = {
-        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        firewall.allowedTCPPorts = [3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
         # nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
@@ -83,7 +93,7 @@ in
       #    (import "${home-manager}/nixos")
       # ];
       # home-manager.users.silverbullet = {pkgs, ...}: {
-      #   home.packages = with pkgs; [ 
+      #   home.packages = with pkgs; [
       #     deno
       #   ];
       #   home.stateVersion = "25.05";
@@ -109,13 +119,13 @@ in
             OnUnitActiveSec = "1h";
             OnBootSec = "15min";
           };
-          wantedBy = [ "timers.target" ];
+          wantedBy = ["timers.target"];
         };
         services = {
           kopia = {
             description = "Kopia Snapshot of Silverbullet";
-            after = [ "network.target" ];
-            wantedBy = [ "multi-user.target" ];
+            after = ["network.target"];
+            wantedBy = ["multi-user.target"];
             serviceConfig = {
               WorkingDirectory = "/home/silverbullet/quartz/";
               Environment = "PATH=/run/wrappers/bin:/home/silverbullet/.nix-profile/bin:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
@@ -131,12 +141,14 @@ in
           };
           silverbullet = {
             description = "SilverBullet.Resdigita.com";
-            after = [ "network.target" ];
-            wantedBy = [ "multi-user.target" ];
+            after = ["network.target"];
+            wantedBy = ["multi-user.target"];
             serviceConfig = {
-              WorkingDirectory = "/home/silverbullet/.nix-profile/bin/";
-              Environment = "PATH=/home/silverbullet/.deno/bin:/run/wrappers/bin:/home/silverbullet/.nix-profile/bin:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
-              ExecStart = ''/home/silverbullet/.deno/bin/silverbullet -L 192.168.102.2 /home/silverbullet/quartz/'';
+              WorkingDirectory = "/home/silverbullet/";
+              # WorkingDirectory = "/home/silverbullet/.nix-profile/bin/";
+              Environment = "PATH=/home/silverbullet/.deno/bin:/run/wrappers/bin:/home/silverbullet:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
+              ExecStart = ''/run/current-system/sw/bin -L 192.168.102.2 /home/silverbullet/quartz/'';
+              # ExecStart = ''/home/silverbullet/.deno/bin/silverbullet -L 192.168.102.2 /home/silverbullet/quartz/'';
               Restart = "always";
               RestartSec = "10s";
               User = "silverbullet";
