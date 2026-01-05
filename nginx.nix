@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   nginxLocationWagtailExtraConfig = ''
     proxy_redirect off;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -11,68 +15,68 @@ let
   '';
   nginxSsoProxExtraConfig = ''
 
-        proxy_set_header X-Origin-URI $request_uri;
-        proxy_set_header X-Host $host;
-        # proxy_set_header X-Real-IP $remote_addr;
-        # proxy_set_header REMOTE_ADDR $remote_addr;
-        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_redirect off;
-        # proxy_redirect default;
-        proxy_http_version 1.1;
-        proxy_set_header   Upgrade $http_upgrade;
-        proxy_set_header   Connection "upgrade";
-        proxy_read_timeout 90;
-
-        proxy_set_header  X-Url-Scheme $scheme;
-
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Server $host;
-
-
-      # # Set custom information for ACL matching: Each one is available as
-      # # a field for matching: X-Host = x-host, ...
-      # proxy_set_header X-Origin-URI $request_uri;
-      # proxy_set_header X-Host $host;
+      proxy_set_header X-Origin-URI $request_uri;
+      proxy_set_header X-Host $host;
       # proxy_set_header X-Real-IP $remote_addr;
-      # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      # proxy_set_header X-Forwarded-For $remote_addr;
-      # proxy_set_header X-Forwarded-Proto $scheme;
-      # # # Extra
-      # # proxy_set_header X-Application "nsso";
-      # # proxy_redirect    off;
-      # # proxy_max_temp_file_size 0;
-      # # proxy_set_header  X-Url-Scheme $scheme;
+      # proxy_set_header REMOTE_ADDR $remote_addr;
+      # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_redirect off;
+      # proxy_redirect default;
+      proxy_http_version 1.1;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection "upgrade";
+      proxy_read_timeout 90;
+
+      proxy_set_header  X-Url-Scheme $scheme;
+
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Server $host;
+
+
+    # # Set custom information for ACL matching: Each one is available as
+    # # a field for matching: X-Host = x-host, ...
+    # proxy_set_header X-Origin-URI $request_uri;
+    # proxy_set_header X-Host $host;
+    # proxy_set_header X-Real-IP $remote_addr;
+    # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # proxy_set_header X-Forwarded-For $remote_addr;
+    # proxy_set_header X-Forwarded-Proto $scheme;
+    # # # Extra
+    # # proxy_set_header X-Application "nsso";
+    # # proxy_redirect    off;
+    # # proxy_max_temp_file_size 0;
+    # # proxy_set_header  X-Url-Scheme $scheme;
+  '';
+  nginxSsoLocations = {
+    "/".extraConfig = ''
+      #   # Protect this location using the auth_request
+        auth_request /sso-auth;
+
+        ## Optionally set a header to pass through the username
+        auth_request_set $username $upstream_http_x_username;
+        proxy_set_header X-User $username;
+
+        # Automatically renew SSO cookie on request
+        auth_request_set $cookie $upstream_http_set_cookie;
+        add_header Set-Cookie $cookie;
+
+          proxy_set_header X-Origin-URI $request_uri;
+          proxy_set_header X-Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          # proxy_set_header X-Forwarded-For $remote_addr;
+          proxy_set_header X-Forwarded-Proto $scheme;
     '';
-    nginxSsoLocations =  {
-      "/".extraConfig = ''
-        #   # Protect this location using the auth_request
-          auth_request /sso-auth;
-
-          ## Optionally set a header to pass through the username
-          auth_request_set $username $upstream_http_x_username;
-          proxy_set_header X-User $username;
-
-          # Automatically renew SSO cookie on request
-          auth_request_set $cookie $upstream_http_set_cookie;
-          add_header Set-Cookie $cookie;
-
-            proxy_set_header X-Origin-URI $request_uri;
-            proxy_set_header X-Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            # proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header X-Forwarded-Proto $scheme;
-        '';
-      "/logout".extraConfig = ''
-        # Another server{} directive also proxying to http://[::1]:8082
-        return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
-      '';
-      "/sso-auth" = {
-        proxyPass = "https://login.gdvoisins.com/auth";
-        # proxyPass = "http://[::1]:8082/auth";
-        # proxyPass = "http://[::1]:8082/auth";
-        extraConfig = ''
+    "/logout".extraConfig = ''
+      # Another server{} directive also proxying to http://[::1]:8082
+      return 302 https://login.gdvoisins.com/logout?go=$scheme://$host/;
+    '';
+    "/sso-auth" = {
+      proxyPass = "https://login.gdvoisins.com/auth";
+      # proxyPass = "http://[::1]:8082/auth";
+      # proxyPass = "http://[::1]:8082/auth";
+      extraConfig = ''
         # Do not allow requests from outside
         # internal;
         # # Access /auth endpoint to query login state
@@ -119,36 +123,36 @@ let
         # proxy_redirect    off;
         # proxy_max_temp_file_size 0;
         # proxy_set_header  X-Url-Scheme $scheme;
-            
-      '';
-      };
-      # "/login" = {
-      #   proxyPass = "http://[::1]:8082/login";
-      #   extraConfig = ''  
-      #     proxy_set_header X-Origin-URI $request_uri;
-      #     proxy_set_header X-Host $host;
-      #     # proxy_set_header X-Real-IP $remote_addr;
-      #     # proxy_set_header REMOTE_ADDR $remote_addr;
-      #     # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      #     proxy_set_header X-Forwarded-Proto $scheme;
-      #     proxy_redirect off;
-      #     # proxy_redirect default;
-      #     proxy_http_version 1.1;
-      #     proxy_set_header   Upgrade $http_upgrade;
-      #     proxy_set_header   Connection "upgrade";
-      #     proxy_read_timeout 90;
 
-      #     proxy_set_header  X-Url-Scheme $scheme;
-
-      #     proxy_set_header X-Forwarded-Host $host;
-      #     proxy_set_header X-Forwarded-Server $host;
-      #   '';
-      # };
-      "@error401".extraConfig = ''
-        # Another server{} directive also proxying to http://[::1]:8082
-        return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
       '';
     };
+    # "/login" = {
+    #   proxyPass = "http://[::1]:8082/login";
+    #   extraConfig = ''
+    #     proxy_set_header X-Origin-URI $request_uri;
+    #     proxy_set_header X-Host $host;
+    #     # proxy_set_header X-Real-IP $remote_addr;
+    #     # proxy_set_header REMOTE_ADDR $remote_addr;
+    #     # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #     proxy_set_header X-Forwarded-Proto $scheme;
+    #     proxy_redirect off;
+    #     # proxy_redirect default;
+    #     proxy_http_version 1.1;
+    #     proxy_set_header   Upgrade $http_upgrade;
+    #     proxy_set_header   Connection "upgrade";
+    #     proxy_read_timeout 90;
+
+    #     proxy_set_header  X-Url-Scheme $scheme;
+
+    #     proxy_set_header X-Forwarded-Host $host;
+    #     proxy_set_header X-Forwarded-Server $host;
+    #   '';
+    # };
+    "@error401".extraConfig = ''
+      # Another server{} directive also proxying to http://[::1]:8082
+      return 302 https://login.gdvoisins.com/login?go=$scheme://$host$request_uri;
+    '';
+  };
 in {
   imports = [
     ./nginx/authentik.nix
@@ -170,16 +174,15 @@ in {
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-      defaultListenAddresses =
-        [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::10]" "[::1]" ];
+      defaultListenAddresses = ["127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::10]" "[::1]"];
       # defaultListen = [
-      #   { addr = "116.202.236.241"; proxyProtocol = true;  } 
-      #   # { addr = "116.202.236.241";  } 
-      #   # { addr = "127.0.0.1"; port = 80; } 
-      #   # { addr = "[::1]"; port = 80; } 
-      #   { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true;  } 
-      #   # { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  } 
-      #   # { addr = "[2a01:4f8:241:4faa::]";  } 
+      #   { addr = "116.202.236.241"; proxyProtocol = true;  }
+      #   # { addr = "116.202.236.241";  }
+      #   # { addr = "127.0.0.1"; port = 80; }
+      #   # { addr = "[::1]"; port = 80; }
+      #   { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true;  }
+      #   # { addr = "[2a01:4f8:241:4faa::10]"; proxyProtocol = true; ssl = true;  }
+      #   # { addr = "[2a01:4f8:241:4faa::]";  }
       #   { addr = "0.0.0.0";  }
       #   { addr = "[::0]";  }
       # ];
@@ -201,11 +204,11 @@ in {
           extraConfig = ''
             server 10.245.101.35:9000;
             # Improve performance by keeping some connections alive.
-            keepalive 10;   
+            keepalive 10;
           '';
         };
-        "wagtailstatic".servers = { "10.245.101.15:8888" = { }; };
-        "wagtailmedia".servers = { "10.245.101.15:8889" = { }; };
+        "wagtailstatic".servers = {"10.245.101.15:8888" = {};};
+        "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
         # "keylesgrandsvoisinscom".servers = {""};
         # "main-relay".servers = { "116.202.236.241:12443" = { }; };
         # "noproxy-relay".servers = { "116.202.236.241:12444" = { }; };
@@ -342,7 +345,7 @@ in {
               add_header Cache-Control 'no-cache';
               proxy_no_cache 1;
               proxy_cache_bypass 1;
-              '';
+            '';
             # extraConfig = nginxSsoProxExtraConfig;
           };
           # locations = {
@@ -375,7 +378,7 @@ in {
         };
         "triliumnext.lesgv.com" = {
           serverAliases = [
-            "notes.lesgv.com" 
+            "notes.lesgv.com"
             "note.lesgv.com"
           ];
           forceSSL = true;
@@ -464,10 +467,10 @@ in {
           extraConfig = "# proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
-          serverAliases = [ "paris14.cc" ];
+          serverAliases = ["paris14.cc"];
           root = "/var/www/paris14cc/";
           locations = {
-            "/media/cr".basicAuth = { cc14 = "cc14"; };
+            "/media/cr".basicAuth = {cc14 = "cc14";};
             "/".extraConfig = ''
               if ($host = 'paris14.cc') {
                 return 301 $scheme://www.paris14.cc$request_uri;
@@ -479,14 +482,14 @@ in {
               etag off;
             '';
           };
-        };       
+        };
         "publii.paris14.cc" = {
           extraConfig = "# proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
           root = "/var/www/publiiparis14cc/";
           locations."/" = {
-            basicAuth = { cc14 = "cc14"; };
+            basicAuth = {cc14 = "cc14";};
             extraConfig = ''
               add_header Last-Modified $date_gmt;
               add_header Cache-Control 'no-store, no-cache';
@@ -504,12 +507,11 @@ in {
         #   root = "/var/www/html/";
         # };
         "ld.gdvoisins.com" = {
-          serverAliases =
-            [ "linkding.lesgrandsvoisins.com"];
+          serverAliases = ["linkding.lesgrandsvoisins.com"];
           root = "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
-          locations."/static/" = { proxyPass = null; };
+          locations."/static/" = {proxyPass = null;};
           locations."^/login/$" = {
             extraConfig = ''
               return 302 $scheme://linkding.lesgrandsvoisins.com/oidc/authenticate/;
@@ -539,8 +541,7 @@ in {
         "www.villagegv.com" = {
           forceSSL = true;
           enableACME = true;
-          serverAliases =
-            [ "villagegv.com" "www.villagegv.org" "villagegv.org" ];
+          serverAliases = ["villagegv.com" "www.villagegv.org" "villagegv.org"];
           root = "/var/www/village/";
           extraConfig = ''
             # proxy_protocol off;
@@ -599,14 +600,14 @@ in {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
-          serverAliases = [ "adminkey.lesgrandsvoisins.com" ];
+          serverAliases = ["adminkey.lesgrandsvoisins.com"];
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           # listen = [
-          #  { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; } 
-          #  { addr = "116.202.236.241"; ssl = false; port = 80; } 
-          #  { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; } 
-          #  { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; } 
+          #  { addr = "116.202.236.241"; proxyProtocol = true; ssl = true; port = 443; }
+          #  { addr = "116.202.236.241"; ssl = false; port = 80; }
+          #  { addr = "[2a01:4f8:241:4faa::]"; proxyProtocol = true; ssl = true; port = 443; }
+          #  { addr = "[2a01:4f8:241:4faa::]"; ssl = false; port = 80; }
           # ];
           locations."/" = {
             # proxyPass = "https://[2a01:4f8:241:4faa::]:14443";
@@ -634,7 +635,7 @@ in {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
-          serverAliases = [ "adminkey.resdigita.com" ];
+          serverAliases = ["adminkey.resdigita.com"];
           root = "/var/www/key.resdigita.com";
           # globalRedirect = "key.resdigita.com:14443";
           locations."/" = {
@@ -748,7 +749,7 @@ in {
           enableACME = true;
           forceSSL = true;
           root = "/var/www/keycloak.parisgv.com";
-          serverAliases = [ "adminkeycloak.parisgv.com" "keycloak.parisgv.org"  "adminkeycloak.parisgv.org" ];
+          serverAliases = ["adminkeycloak.parisgv.com" "keycloak.parisgv.org" "adminkeycloak.parisgv.org"];
           locations."/" = {
             proxyPass = "https://192.168.116.11:14446";
             extraConfig = ''
@@ -820,10 +821,10 @@ in {
         };
         "link.lesgrandsvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "link.gv.coop" ];
+          serverAliases = ["link.gv.coop"];
           forceSSL = true;
           enableACME = true;
-          locations."/.well-known" = { proxyPass = null; };
+          locations."/.well-known" = {proxyPass = null;};
           locations."/" = {
             extraConfig = ''
               if ($host != "link.lesgrandsvoisins.com") {
@@ -852,7 +853,7 @@ in {
           # serverAliases = ["lgvldap.lesgrandsvoisins.com"];
           forceSSL = true;
           enableACME = true;
-          locations."/.well-known" = { proxyPass = null; };
+          locations."/.well-known" = {proxyPass = null;};
           # locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
           # locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
           # locations."/pwm/public/logout".return = "302 /pwm/";
@@ -904,16 +905,16 @@ in {
         };
         "pocketbase.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "pocket.resdigita.com" ];
+          serverAliases = ["pocket.resdigita.com"];
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://localhost:8090"; };
+          locations."/" = {proxyPass = "http://localhost:8090";};
         };
         "wordpress.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
           forceSSL = true;
           enableACME = true;
-          serverAliases = [ "ghh.resdigita.com" ];
+          serverAliases = ["ghh.resdigita.com"];
           globalRedirect = "ghh.resdigita.com:11443";
         };
         "mail.resdigita.com" = {
@@ -996,7 +997,7 @@ in {
         };
         "xandikos.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "xandikos.lesgv.org" ];
+          serverAliases = ["xandikos.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1012,8 +1013,7 @@ in {
         };
         "ethercalc.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases =
-            [ "ethercalc.lesgv.org" "table.lesgrandsvoisins.com" ];
+          serverAliases = ["ethercalc.lesgv.org" "table.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1066,12 +1066,11 @@ in {
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             '';
-
           };
         };
         "chris.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "chris.lesgv.org" ];
+          serverAliases = ["chris.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1085,7 +1084,7 @@ in {
         };
         "axel.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "axel.lesgv.org" ];
+          serverAliases = ["axel.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1099,7 +1098,7 @@ in {
         };
         "maruftuyel.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ "maruftuyel.lesgv.org" ];
+          serverAliases = ["maruftuyel.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1124,12 +1123,12 @@ in {
           locations."/".proxyPass = "http://localhost:8882/";
         };
         "silverbullet.village.ngo" = {
-          serverAliases = [ "silverbullet.resdigita.com" ];
+          serverAliases = ["silverbullet.resdigita.com"];
           enableACME = true;
           forceSSL = true;
           #locations."/".proxyPass = "http://10.245.101.35:3000/";
-          # locations."/".proxyPass = "http://192.168.102.2:3000/";
-          locations."/".proxyPass = "https://192.168.102.2:3443/";
+          locations."/".proxyPass = "http://192.168.102.2:3000/";
+          # locations."/".proxyPass = "https://192.168.102.2:3443/";
           extraConfig = ''
             # proxy_protocol off;
             proxy_set_header X-Forwarded-Proto $scheme;
@@ -1141,9 +1140,8 @@ in {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
           forceSSL = true;
-          serverAliases = [ "ete.lesgrandsvoisins.com" ];
-          locations."/".proxyPass =
-            "http://unix:/var/lib/etebase-server/etebase-server.sock";
+          serverAliases = ["ete.lesgrandsvoisins.com"];
+          locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "drive.lesgrandsvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
@@ -1165,7 +1163,7 @@ in {
               proxy_set_header  Connection "upgrade";
               # proxy_bind $remote_addr transparent;
               # proxy_set_header Connection $connection_upgrade;
-              proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
+              proxy_pass https://sftpgo.lesgrandsvoisins.com:10443;
               client_max_body_size 2500M;
               # proxy_redirect https://sftpgo.lesgrandsvoisins.com:10443 https://sftpgo.lesgrandsvoisins.com;
               # proxy_ssl_verify  off;
@@ -1185,37 +1183,37 @@ in {
           enableACME = true;
           forceSSL = true;
           locations = {
-            "/.well-known" = { proxyPass = null; };
+            "/.well-known" = {proxyPass = null;};
             "/" = {
               proxyPass = "https://[2a01:4f8:241:4faa::]:3443";
               # proxyPass = "https://[fc00::12:2]:3443";
               # proxyPass = "http://192.168.112.11:3000";
-              
+
               extraConfig = ''
-              # # proxy_protocol off
-              proxy_set_header Host $host;
-              # proxy_set_header X-Real-IP $proxy_protocol_addr;
-              proxy_set_header X-Real-IP $remote_addr;
-              # proxy_set_header X-Forwarded-For $proxy_protocol_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Host $host;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_redirect off;
+                # # proxy_protocol off
+                proxy_set_header Host $host;
+                # proxy_set_header X-Real-IP $proxy_protocol_addr;
+                proxy_set_header X-Real-IP $remote_addr;
+                # proxy_set_header X-Forwarded-For $proxy_protocol_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_redirect off;
 
-                # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                # proxy_redirect off;
-                # proxy_set_header Host $host;
-                # proxy_set_header X-Real-IP $remote_addr;
-                # # proxy_set_header X-Forwarded-Host $host:$server_port;
-                # proxy_set_header X-Forwarded-Host $server_name;
-                proxy_http_version 1.1;
-                proxy_set_header  Upgrade $http_upgrade;
-                proxy_set_header  Connection "upgrade";
-                # proxy_bind $remote_addr transparent;
+                  # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  # proxy_redirect off;
+                  # proxy_set_header Host $host;
+                  # proxy_set_header X-Real-IP $remote_addr;
+                  # # proxy_set_header X-Forwarded-Host $host:$server_port;
+                  # proxy_set_header X-Forwarded-Host $server_name;
+                  proxy_http_version 1.1;
+                  proxy_set_header  Upgrade $http_upgrade;
+                  proxy_set_header  Connection "upgrade";
+                  # proxy_bind $remote_addr transparent;
 
-                # client_max_body_size 2500M;
+                  # client_max_body_size 2500M;
 
-                # proxy_ssl_trusted_certificate /var/lib/acme/www.configmagic.com/fullchain.pem;
+                  # proxy_ssl_trusted_certificate /var/lib/acme/www.configmagic.com/fullchain.pem;
               '';
               recommendedProxySettings = true;
             };
@@ -1227,12 +1225,12 @@ in {
           enableACME = true;
           forceSSL = true;
           locations = {
-            "/favicon.ico" = { proxyPass = null; };
-            "/js/" = { proxyPass = null; };
-            "/fonts/" = { proxyPass = null; };
-            "/img/" = { proxyPass = null; };
-            "/css/" = { proxyPass = null; };
-            "/.well-known" = { proxyPass = null; };
+            "/favicon.ico" = {proxyPass = null;};
+            "/js/" = {proxyPass = null;};
+            "/fonts/" = {proxyPass = null;};
+            "/img/" = {proxyPass = null;};
+            "/css/" = {proxyPass = null;};
+            "/.well-known" = {proxyPass = null;};
             "/" = {
               proxyPass = "http://127.0.0.1:9090";
               extraConfig = ''
@@ -1278,7 +1276,7 @@ in {
         };
         "vikunja.resdigita.com" = {
           extraConfig = "# proxy_protocol off;";
-          serverAliases = [ ];
+          serverAliases = [];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -1326,7 +1324,7 @@ in {
           # root = "/var/www/discoursecc";
           # locations."/images" = { proxyPass = null; };
           locations."/" = {
-            basicAuth = { cc14 = "cc14"; };
+            basicAuth = {cc14 = "cc14";};
             extraConfig = ''
               proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
