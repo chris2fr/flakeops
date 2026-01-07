@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.discoursecc = {
     bindMounts = {
       "/var/lib/acme/discourse.paris14.cc/" = {
@@ -16,25 +19,31 @@ in
     localAddress = "192.168.111.11";
     hostAddress6 = "fe11::1";
     localAddress6 = "fe11::2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         # postgresql_17
         git
@@ -44,7 +53,7 @@ in
         "discourse-3.2.5"
       ];
       virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
@@ -65,11 +74,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "nginx" "discourse" "wwwrun" ];
+            members = ["nginx" "discourse" "wwwrun"];
           };
           # "discourse" = {
           #     members = [ "nginx" "discourse" "wwwrun" ];
@@ -117,8 +126,10 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
+          package = pkgs.discourseAllPlugins;
+
           plugins = [
-            config.services.discourse.package.plugins.discourse-openid-connect
+            # config.services.discourse.package.plugins.discourse-openid-connect
             # config.services.discourse.package.plugins.discourse-oauth2-basic
             # config.services.discourse.package.plugins.discourse-saml
           ];

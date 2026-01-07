@@ -33,10 +33,10 @@ in {
     }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       environment.systemPackages = with pkgs; [
         (
-          (vim_configurable.override {}).customize {
+          (vim-full.override {}).customize {
             name = "vim";
             vimrcConfig.customRC = ''
               " your custom vimrc
@@ -99,7 +99,7 @@ in {
       #   home.packages = with pkgs; [
       #     deno
       #   ];
-      #   home.stateVersion = "25.05";
+      #   home.stateVersion = "25.11";
       #   programs.home-manager.enable = true;
       # };
       services = {

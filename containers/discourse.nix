@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.discourse = {
     bindMounts = {
       "/var/lib/acme/discourse.village.ngo/" = {
@@ -16,25 +19,31 @@ in
     localAddress = "192.168.104.11";
     hostAddress6 = "fe00::1";
     localAddress6 = "fe00::2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         # postgresql_13
         git
@@ -46,7 +55,7 @@ in
         "discourse-3.2.5"
       ];
       virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
@@ -67,11 +76,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "nginx" "discourse" ];
+            members = ["nginx" "discourse"];
           };
         };
         users = {
@@ -106,6 +115,7 @@ in
         discourse = {
           enable = true;
           hostname = "discourse.village.ngo";
+          package = pkgs.discourseAllPlugins;
           sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
           sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
           siteSettings = {
@@ -113,7 +123,7 @@ in
           };
           enableACME = false;
           plugins = [
-            config.services.discourse.package.plugins.discourse-openid-connect
+            # config.services.discourse.package.plugins.discourse-openid-connect
             # config.services.discourse.package.plugins.discourse-oauth2-basic
             # config.services.discourse.package.plugins.discourse-saml
           ];

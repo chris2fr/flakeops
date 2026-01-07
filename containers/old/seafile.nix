@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.seafile = {
   #   autoStart = true;container@freeipa.service
   #   privateNetwork = true;
@@ -11,7 +14,7 @@ in
   #   localAddress6 = "fd00::2";
   #   config = { config, pkgs, lib, ...  }: {
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -30,10 +33,10 @@ in
   #         }
   #       )
   #       (python311.withPackages my-python-packages)
-  #       # python311Packages.bleach 
+  #       # python311Packages.bleach
   #       # python311Packages.captcha domainName
-  #       # python311Packages.cffi 
-  #       # python311Packages.chardet 
+  #       # python311Packages.cffi
+  #       # python311Packages.chardet
   #       # python311Packages.devtools
   #       # python311Packages.django
   #       # python311Packages.django_4
@@ -46,24 +49,24 @@ in
   #       # python311Packages.future
   #       # python311Packages.gunicorn
   #       # python311Packages.ldap3
-  #       # python311Packages.markdown 
+  #       # python311Packages.markdown
   #       # python311Packages.mysqlclient
   #       # python311Packages.mysqlclient
-  #       # python311Packages.openpyxl 
-  #       # python311Packages.pillow 
+  #       # python311Packages.openpyxl
+  #       # python311Packages.pillow
   #       # python311Packages.pip
   #       # python311Packages.pycryptodome
   #       # python311Packages.pyjwt
   #       # python311Packages.pysaml2
   #       # python311Packages.python-dateutil
   #       # python311Packages.python-ldap
-  #       # python311Packages.qrcode 
+  #       # python311Packages.qrcode
   #       # python311Packages.requests
   #       # python311Packages.requests-oauthlib
   #       #python311
-  #       #python311Full
+  #       #python311
   #       autoconf
-  #       automake 
+  #       automake
   #       busybox
   #       ceph-client
   #       cmake
@@ -71,7 +74,7 @@ in
   #       cyrus_sasl
   #       docker
   #       docker-compose
-  #       flex 
+  #       flex
   #       fuse
   #       gcc
   #       git
@@ -115,7 +118,7 @@ in
   #       libjwt
   #     ];
   #     virtualisation.docker.enable = true;
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall.enable = false;
@@ -134,7 +137,7 @@ in
   #   localAddress6 = "fa01::2";
   #   config = { config, pkgs, lib, ...  }: {
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -154,7 +157,7 @@ in
   #       )
   #       freeipa
   #     ];
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -183,6 +186,5 @@ in
   #       };
   #     };
   #   };
-  # };    
-
+  # };
 }

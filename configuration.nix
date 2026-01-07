@@ -1,11 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
-{ config, pkgs, lib, ... }:
-let
-  # home-manager = import vars/home-manager.nix;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  # home-manager = import vars/home-manager.nix;
+in {
   nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.config.allowUnfree = true;
   boot.kernel.sysctl = {
@@ -76,14 +79,24 @@ in
     # postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
-    (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { })
+    (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix {})
   ];
   age.secrets = {
-    "keylesgrandsvoisins.vikunja" = { file = ./secrets/keylesgrandsvoisins.vikunja.age; owner = "vikunja"; };
-    "key.sftpgo" = { file = ./secrets/key.sftpgo.age; owner = "sftpgo"; };
-    "keycloak.vikunja" = { file = ./secrets/keycloak.vikunja.age; };
+    "keylesgrandsvoisins.vikunja" = {
+      file = ./secrets/keylesgrandsvoisins.vikunja.age;
+      owner = "vikunja";
+    };
+    "key.sftpgo" = {
+      file = ./secrets/key.sftpgo.age;
+      owner = "sftpgo";
+    };
+    "keycloak.vikunja" = {file = ./secrets/keycloak.vikunja.age;};
     # "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age; };
-    "email.list" = { file = ./secrets/email.list.age; group = "wwwrun"; mode = "664"; };
+    "email.list" = {
+      file = ./secrets/email.list.age;
+      group = "wwwrun";
+      mode = "664";
+    };
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
     "vikunja.env" = {
       file = ./secrets/vikunja.env.age;
@@ -104,7 +117,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
   # system.switch.enableNg = false; # https://github.com/NixOS/nixpkgs/issues/347315
   environment.sessionVariables = rec {
     EDITOR = "vim";
@@ -127,5 +140,4 @@ in
   #     };
   #   };
   # };
-
 }

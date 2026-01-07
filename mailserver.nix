@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [
@@ -23,8 +26,7 @@ let
     "mm.lgv.info"
     "gdvoisins.com"
   ];
-in
-{
+in {
   imports = [
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
@@ -49,13 +51,12 @@ in
       mode = "770";
     };
   };
-  users.users.nginx.extraGroups = [ "wwwrun" ];
+  users.users.nginx.extraGroups = ["wwwrun"];
   services.phpfpm.pools."roundcube" = {
     settings = {
       "listen.owner" = lib.mkForce "wwwrun";
       "listen.group" = lib.mkForce "wwwrun";
     };
-
   };
   services = {
     dovecot2 = {
@@ -86,7 +87,7 @@ in
       #   #   }
       #   # }
       # '';
-      sieve.scripts = { };
+      sieve.scripts = {};
       sieve.extensions = [
         "notify"
         "imapflags"
@@ -118,12 +119,12 @@ in
     #   yanlomsprod@lesgrandsvoisins.com associationyanlomsprod@gmail.com
     #   yanlomsprod@lesgrandsvoisins.com yanlomsprod@lesgrandsvoisins.com
     #   contact@resdigita.com sviatlana@resdigita.com
-    #   contact@resdigita.com chris@resdigita.com      
+    #   contact@resdigita.com chris@resdigita.com
     #   mael@maelanc.com maelnemacherif@yahoo.fr
     #   mael@lesgrandsvoisins.com maelnemacherif@yahoo.fr
     #   mael@lesgrandsvoisins.com mael@lesgrandsvoisins.com
     #   chris@resdigita.com chris@mann.fr
-    #   sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com 
+    #   sviatlana@resdigita.com sviatlana.viarbitskaya@gmail.com
     #   axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
     #   alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
     #   alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
@@ -156,13 +157,12 @@ in
 
     memcached = {
       enable = true;
-
     };
   };
 
-
   ###################################################################################################################################
   mailserver = {
+    stateVersion = 3;
     enablePop3Ssl = true;
     enable = true;
     fqdn = domainName;
@@ -235,7 +235,7 @@ in
       "rayhane@lesgrandsvoisins.com" = ["rayhane@lesgrandsvoisins.com" "rayhane.baghdadddi@gmail.com"];
       "abel@lesgrandsvoisins.com" = ["abel@lesgrandsvoisins.com" "abelmavura@gmail.com"];
       "donation@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-      "felicite@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "felicite@yanlomsprod.org" ];
+      "felicite@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "felicite@yanlomsprod.org"];
       "contact@yanlomsprod.org" = ["associationyanlomsprod@gmail.com" "contact@yanlomsprod.org"];
       "yanlomsprod@lesgrandsvoisins.com" = ["yanlomsprod@lesgrandsvoisins.com" "associationyanlomsprod@gmail.com"];
       "contact@resdigita.com" = ["sviatlana@resdigita.com" "chris@resdigita.com"];
@@ -273,12 +273,11 @@ in
       "@discourse.paris14.cc" = "admin@discourse.paris14.cc";
       "@discourse.lgv.info" = "discourse@lgv.info";
     };
-
   };
   #############################################
-  services.postfix.config.maillog_file = "/var/log/postfix.log";
+  services.postfix.settings.main.maillog_file = "/var/log/postfix.log";
   # /run/current-system/sw/bin/postlog
-  services.postfix.masterConfig.postlog = {
+  services.postfix.settings.master.postlog = {
     command = "postlogd";
     type = "unix-dgram";
     privileged = true;
@@ -316,9 +315,10 @@ in
   #   trustedInterfaces = [ "lo" ];
   # };
 
-  systemd.extraConfig = ''
-    DefaultTimeoutStartSec=600s
-  '';
+  # systemd.extraConfig = ''
+  #   DefaultTimeoutStartSec=600s
+  # '';
+  systemd.settings.Manager.DefaultTimeoutStartSec = "300s";
 
   services.roundcube = {
     enable = true;
@@ -350,11 +350,8 @@ in
       $config['session_domain'] = 'mail.lesgrandsvoisins.com';
       $config['login_password_maxlen'] = 4096;
     '';
-    dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
+    dicts = [pkgs.aspellDicts.fr pkgs.aspellDicts.en];
     maxAttachmentSize = 75;
   };
-  users.users.dovecot2.extraGroups = [ "wwwrun" ];
-
+  users.users.dovecot2.extraGroups = ["wwwrun"];
 }
-
-

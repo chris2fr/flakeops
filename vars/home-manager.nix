@@ -1,4 +1,4 @@
-builtins.fetchTarball { 
-    url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
-    sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
+builtins.fetchTarball {
+  url = "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+  sha256 = "sha256:1fxgnwm6v22ygsfwynp3lszrgwqx10g1a6w3ypfk7ir0nfqfc9p5";
 }

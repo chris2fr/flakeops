@@ -4,9 +4,9 @@
     # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
     # configuration.nix. You can also use latter versions if you wish to
     # upgrade.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -14,9 +14,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
   };
-  outputs = { self, nixpkgs, home-manager, agenix, simple-nixos-mailserver, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    agenix,
+    simple-nixos-mailserver,
+    ...
+  } @ inputs: {
     nixosModules.certwarden = import ./modules/services/certwarden.nix;
 
     # NOTE: 'nixos' is the default hostname set by the installer

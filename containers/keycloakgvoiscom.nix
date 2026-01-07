@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.keycloakgvois = {
     bindMounts = {
       "/var/lib/acme/keycloak.gvois.com/" = {
@@ -15,25 +18,31 @@ in
     localAddress = "192.168.113.11";
     hostAddress6 = "fc00::13:1";
     localAddress6 = "fc00::13:2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -41,12 +50,12 @@ in
         postgresql_17
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14446 ];
+          allowedTCPPorts = [443 587 14446];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -60,11 +69,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" ];
+            members = ["acme" "wwwrun"];
           };
           "keycloak" = {};
         };
@@ -88,10 +97,12 @@ in
         postgresql = {
           package = pkgs.postgresql_17;
           enable = true;
-          ensureUsers = [{
-            name = "keycloakgvois";
-            ensureDBOwnership = true;
-          }];
+          ensureUsers = [
+            {
+              name = "keycloakgvois";
+              ensureDBOwnership = true;
+            }
+          ];
           ensureDatabases = ["keycloakgvois"];
         };
         keycloak = {
@@ -99,10 +110,10 @@ in
           database = {
             username = "keycloakgvois";
             # name = "keycloakgvois";
-            name="keycloakgvois"; # I think the database is keycloak and not key
+            name = "keycloakgvois"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakgvois";
-            createLocally=false;
+            createLocally = false;
             # host="localhost";
             # useSSL = false;
           };

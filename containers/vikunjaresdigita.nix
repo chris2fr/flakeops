@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
 in {
   # systemd.tmpfiles.rules = [ "d /var/local/vikunjaresdigitacom 0755 vikunjaresdigitacom users" ];
   users.users.vikunjaresdigitacom = {
@@ -26,10 +30,14 @@ in {
     #     isReadOnly = false;
     #   };
     # };
-    config = { config, pkgs, ... }: {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       networking = {
         hostName = "vikunjaresdigitacom";
         firewall.enable = false;
@@ -41,26 +49,25 @@ in {
         useHostResolvConf = lib.mkForce false;
       };
       security.acme.acceptTerms = true;
-      environment.systemPackages = with pkgs;
-        [
-          ((vim_configurable.override { }).customize {
-            name = "vim";
-            vimrcConfig.customRC = ''
-              " your custom vimrc
-              set mouse=a
-              set nocompatible
-              colo torte
-              syntax on
-              set tabstop     =2
-              set softtabstop =2
-              set shiftwidth  =2
-              set expandtab
-              set autoindent
-              set smartindent
-              " ...
-            '';
-          })
-        ];
+      environment.systemPackages = with pkgs; [
+        ((vim-full.override {}).customize {
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+        })
+      ];
       systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
       systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
       users.users.vikunja = {
@@ -96,20 +103,18 @@ in {
             discoverable_by_email = true;
             discoverable_by_name = true;
           };
-          service = { timezone = "Europe/Paris"; };
+          service = {timezone = "Europe/Paris";};
           auth = {
             local.enabled = false;
             openid.enabled = true;
             # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
             # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
-            openid.redirecturl =
-              "https://vikunja.resdigita.com/auth/openid/";
+            openid.redirecturl = "https://vikunja.resdigita.com/auth/openid/";
             openid.providers = [
               {
                 name = "keyResdigitaCom";
                 authurl = "https://key.resdigita.com/realms/master";
-                logouturl =
-                  "https://key.resdigita.com/realms/master/protocol/openid-connect/logout";
+                logouturl = "https://key.resdigita.com/realms/master/protocol/openid-connect/logout";
                 clientid = "vikunja-resdigita-com";
                 clientsecret = import ../secrets/keyresdigita.vikunja.nix;
                 # clientsecret = config.age.secrets."keyresdigita.vikunja".path;

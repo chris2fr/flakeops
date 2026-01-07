@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   systemd.tmpfiles.rules = [
     "d /var/local/cherryldap 0755 cherryldap users"
   ];
@@ -22,28 +25,33 @@ in
         isReadOnly = false;
       };
     };
-    config = { config, pkgs, ... }: {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         # python311Packages.cherrypy-cors
         # python311Packages.pillow
@@ -58,7 +66,7 @@ in
         wget
         lynx
         libclang
-        # dig    
+        # dig
         # python311Packages.pylibjpeg-libjpeg
         git
         # tmux
@@ -129,7 +137,7 @@ in
       ];
       networking = {
         hostName = "cherryldap";
-        firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
+        firewall.allowedTCPPorts = [22 25 53 80 443 143 587 993 995 636];
         useHostResolvConf = lib.mkForce false;
       };
       services.resolved.enable = true;

@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.crabfit = {
   #   autoStart = true;
   #   privateNetwork = true;
@@ -22,13 +25,13 @@ in
   #     networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
   #     nix.settings.experimental-features = "nix-command flakes";
   #     time.timeZone = "Europe/Amsterdam";
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     environment.sessionVariables = rec {
   #       NEXT_PUBLIC_API_URL = "apicrabfit.resdigita.com";
   #       FRONTEND_URL =	"https: //crabfit.resdigita.com";
   #     };
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -49,7 +52,7 @@ in
   #       curl
   #       wget
   #       lynx
-  #       dig    
+  #       dig
   #       tmux
   #       bat
   #       cowsay

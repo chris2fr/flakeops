@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.keycloakparisle = {
     bindMounts = {
       "/var/lib/acme/keycloak.parisle.com/" = {
@@ -15,25 +18,31 @@ in
     localAddress = "192.168.114.11";
     hostAddress6 = "fc00::114:1";
     localAddress6 = "fc00::114:2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -41,12 +50,12 @@ in
         postgresql_17
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14447 ];
+          allowedTCPPorts = [443 587 14447];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -60,11 +69,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" ];
+            members = ["acme" "wwwrun"];
           };
           # "keycloak" = {};
         };
@@ -89,10 +98,12 @@ in
           package = pkgs.postgresql_17;
           enable = true;
           # enableTCPIP = true;
-          ensureUsers = [{
-            name = "keycloakparisle";
-            ensureDBOwnership = true;
-          }];
+          ensureUsers = [
+            {
+              name = "keycloakparisle";
+              ensureDBOwnership = true;
+            }
+          ];
           # authentication = pkgs.lib.mkOverride 10 ''
           #   #type database  DBuser  auth-method
           #   local all       all     password
@@ -104,7 +115,7 @@ in
           database = {
             # username = "keycloak";
             username = "keycloakparisle";
-            name="keycloakparisle"; # I think the database is keycloak and not key
+            name = "keycloakparisle"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisle";
             createLocally = false;

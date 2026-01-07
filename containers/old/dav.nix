@@ -1,11 +1,12 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
-
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.dav = {
   #     # autoStart = true;
-
 
   #     #hostBridge = "mv-eno1-host";
   #     # privateNetwork = true;
@@ -29,11 +30,10 @@ in
   #       "/usr/local/lib" = {hostPath="/usr/local/lib";};
   #     };
 
-
   #     config = { config, pkgs, ... }: {
   #       # nix.settings.experimental-features = "nix-command flakes";
   #       time.timeZone = "Europe/Amsterdam";
-  #       system.stateVersion = "25.05";
+  #       system.stateVersion = "25.11";
   #       imports = [
   #         ./common.nix
   #       ];
@@ -80,18 +80,17 @@ in
 
   #             Dav On
 
-
   #             # AuthName DAV
   #             # AuthType oauth2
   #             # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
 
   #             # Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
-  #             # require valid-user 
+  #             # require valid-user
 
   #             # AuthType Basic
-  #             # 
+  #             #
   #             # AuthUserFile /var/www/.htpasswd
-  #             # require valid-user 
+  #             # require valid-user
 
   #             # <LimitExcept GET HEAD OPTIONS>
   #             #   require user admin

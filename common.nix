@@ -1,25 +1,29 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   environment.systemPackages = with pkgs; [
-    ((vim_configurable.override { }).customize {
-      name = "vim";
-      vimrcConfig.customRC = ''
-        " your custom vimrc
-        set mouse=a
-        set nocompatible
-        colo torte
-        syntax on
-        set tabstop     =2
-        set softtabstop =2
-        set shiftwidth  =2
-        set expandtab
-        set autoindent
-        set smartindent
-        " ...
-      '';
-    }
+    (
+      (vim-full.override {}).customize {
+        name = "vim";
+        vimrcConfig.customRC = ''
+          " your custom vimrc
+          set mouse=a
+          set nocompatible
+          colo torte
+          syntax on
+          set tabstop     =2
+          set softtabstop =2
+          set shiftwidth  =2
+          set expandtab
+          set autoindent
+          set smartindent
+          " ...
+        '';
+      }
     )
     #vim
     #django-redis
@@ -41,35 +45,36 @@ in
     mysql80
     sqlite-interactive
     #    wkhtmltopdf
-    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-            pillow
-            gunicorn
-            pip
-            libsass
-            python-ldap
-            pyscss
-            django-libsass
-            pylibjpeg-libjpeg
-            pypdf2
-            #venvShellHook
-            pq
-            aiosasl
-            psycopg2
-            django
-            wagtail
-            python-dotenv
-            dj-database-url
-            # psycopg2-binary
-            django-taggit
-            #wagtail-modeladmin
-            ## wagtailmenus
-            ## Public facing server, I think
-            python-keycloak
-            ## Dev
-            ## djlint
-            django-debug-toolbar
-        ]))
-    python311Full
+    (pkgs.python3.withPackages (python-pkgs:
+      with python-pkgs; [
+        pillow
+        gunicorn
+        pip
+        libsass
+        python-ldap
+        pyscss
+        django-libsass
+        pylibjpeg-libjpeg
+        pypdf2
+        #venvShellHook
+        pq
+        aiosasl
+        psycopg2
+        django
+        wagtail
+        python-dotenv
+        dj-database-url
+        # psycopg2-binary
+        django-taggit
+        #wagtail-modeladmin
+        ## wagtailmenus
+        ## Public facing server, I think
+        python-keycloak
+        ## Dev
+        ## djlint
+        django-debug-toolbar
+      ]))
+    python311
     python311Packages.pip
     python311Packages.pypdf2
     python311Packages.python-ldap
@@ -106,5 +111,4 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4"
   ];
-
 }

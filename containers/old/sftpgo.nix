@@ -23,7 +23,7 @@
   #     nix.settings.experimental-features = "nix-command flakes";
   #     # imports = [ (import "${home-manager}/nixos") ];
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -70,7 +70,7 @@
   #     };
   #     system = {
   #       # copySystemConfiguration = true;
-  #       stateVersion = "25.05";
+  #       stateVersion = "25.11";
   #     };
   #     time.timeZone = "Europe/Paris";
   #     i18n.defaultLocale = "fr_FR.UTF-8";  

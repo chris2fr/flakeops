@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.wikijs = {
     bindMounts = {
       "/var/lib/acme/www.configmagic.com/" = {
@@ -21,36 +24,42 @@ in
     # localAddress = "192.168.112.11";
     # hostAddress6 = "fc00::12:1";
     # localAddress6 = "fc00::12:2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [25 80 443 587 3443 ];
+          allowedTCPPorts = [25 80 443 587 3443];
         };
         # useHostResolvConf = lib.mkForce false;
       };
@@ -68,11 +77,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" "wikijs" "postgres"];
+            members = ["acme" "wwwrun" "wikijs" "postgres"];
           };
         };
         users = {
@@ -89,7 +98,7 @@ in
           };
         };
       };
-      services.cron.systemCronJobs = [ "0 0 1 * *  root systemctl restart wiki-js"];
+      services.cron.systemCronJobs = ["0 0 1 * *  root systemctl restart wiki-js"];
       services = {
         # resolved.enable = true;
         # postgresql = {
@@ -127,7 +136,12 @@ in
         };
         postgresql = {
           enable = true;
-          ensureUsers = [{name="wikijs";ensureDBOwnership=true;}];
+          ensureUsers = [
+            {
+              name = "wikijs";
+              ensureDBOwnership = true;
+            }
+          ];
           ensureDatabases = ["wikijs"];
           # enableTCPIP = true;
           # listen_addresses = "2a01:4f8:241:4faa::10";

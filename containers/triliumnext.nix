@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.triliumnext = {
     bindMounts = {
       "/var/lib/acme/triliumnext.lesgv.com/" = {
@@ -23,25 +26,31 @@ in
     localAddress = "192.168.118.11";
     hostAddress6 = "fc00::118:10";
     localAddress6 = "fc00::118:11";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -71,12 +80,12 @@ in
         inetutils
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14446 ];
+          allowedTCPPorts = [443 587 14446];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -93,14 +102,14 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" "triliumnext"];
+            members = ["acme" "wwwrun" "triliumnext"];
           };
           "triliumnext" = {
-            members = [ "triliumnext" ];
+            members = ["triliumnext"];
           };
         };
         users = {
@@ -122,8 +131,8 @@ in
 
       systemd.services.trilium-next-server-lgv = {
         description = "Trilium Next Notes LGV";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
+        after = ["network.target"];
+        wantedBy = ["multi-user.target"];
         environment = {
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-lgv/";
         };
@@ -143,8 +152,8 @@ in
 
       systemd.services.trilium-next-server-mann = {
         description = "Trilium Next Notes triliumnext.MANN.fr";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
+        after = ["network.target"];
+        wantedBy = ["multi-user.target"];
         environment = {
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-mann/";
         };
@@ -164,8 +173,8 @@ in
       };
       systemd.services.trilium-next-server-resdigita = {
         description = "Trilium Next Notes treliumnext.resdigita.com";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
+        after = ["network.target"];
+        wantedBy = ["multi-user.target"];
         environment = {
           TRILIUM_DATA_DIR = "/home/triliumnext/trilium-data-resdigita/";
         };

@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.keyresdigita = {
     bindMounts = {
       "/var/lib/acme/key.resdigita.com/" = {
@@ -15,25 +18,31 @@ in
     localAddress = "192.168.106.11";
     hostAddress6 = "fa02::1";
     localAddress6 = "fa02::2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -41,12 +50,12 @@ in
         postgresql_17
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14444 ];
+          allowedTCPPorts = [443 587 14444];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -60,11 +69,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" ];
+            members = ["acme" "wwwrun"];
           };
           "keycloak" = {};
         };
@@ -88,10 +97,12 @@ in
         postgresql = {
           package = pkgs.postgresql_17;
           enable = true;
-          ensureUsers = [{
-            name = "keyresdigita";
-            ensureDBOwnership = true;
-          }];
+          ensureUsers = [
+            {
+              name = "keyresdigita";
+              ensureDBOwnership = true;
+            }
+          ];
           ensureDatabases = ["keyresdigita"];
         };
         keycloak = {

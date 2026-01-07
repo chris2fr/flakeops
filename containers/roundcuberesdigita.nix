@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
 in {
   # systemd.tmpfiles.rules = [ "d /var/local/roundcuberesdigitacom 0755 roundcuberesdigitacom users" ];
   users.users.roundcuberesdigitacom = {
@@ -19,10 +23,14 @@ in {
     #     isReadOnly = false;
     #   };
     # };
-    config = { config, pkgs, ... }: {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       networking = {
         firewall.enable = false;
         # firewall = {
@@ -41,26 +49,25 @@ in {
       users.groups.dovecot2 = {
         gid = 46;
       };
-      environment.systemPackages = with pkgs;
-        [
-          ((vim_configurable.override { }).customize {
-            name = "vim";
-            vimrcConfig.customRC = ''
-              " your custom vimrc
-              set mouse=a
-              set nocompatible
-              colo torte
-              syntax on
-              set tabstop     =2
-              set softtabstop =2
-              set shiftwidth  =2
-              set expandtab
-              set autoindent
-              set smartindent
-              " ...
-            '';
-          })
-        ];
+      environment.systemPackages = with pkgs; [
+        ((vim-full.override {}).customize {
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+        })
+      ];
       services.roundcube = {
         enable = true;
         configureNginx = false;
@@ -92,10 +99,10 @@ in {
           $config['session_domain'] = 'roundcube.resdigita.com';
           $config['login_password_maxlen'] = 4096;
         '';
-        dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
+        dicts = [pkgs.aspellDicts.fr pkgs.aspellDicts.en];
         maxAttachmentSize = 200;
       };
-      users.users.dovecot2.extraGroups = [ "wwwrun" ];
+      users.users.dovecot2.extraGroups = ["wwwrun"];
     };
   };
 }

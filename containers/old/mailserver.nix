@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.mailserver = {
   #   autoStart = true;
   #   # localAddress6 = "2a01:4f8:241:4faa::1";
@@ -10,22 +13,22 @@ in
   #   localAddress = "192.168.107.11";
   #   hostAddress6 = "fa01::1";
   #   localAddress6 = "fa01::2";
-  #   # bindMounts = { 
-  #   #   "/var/lib/acme/${domainName}" = { 
+  #   # bindMounts = {
+  #   #   "/var/lib/acme/${domainName}" = {
   #   #     hostPath = "/var/lib/acme/${domainName}";
-  #   #     isReadOnly = false; 
-  #   #   }; 
+  #   #     isReadOnly = false;
+  #   #   };
   #   # };
   #   config = { config, pkgs, lib, ...  }: {
   #     imports = [
   #       (builtins.fetchTarball {
-  #         url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.11.tar.gz";
-  #         # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.11/nixos-mailserver-nixos-24.11.tar.gz";
+  #         url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-25.11.tar.gz";
+  #         # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-25.11/nixos-mailserver-nixos-25.11.tar.gz";
   #         sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
   #       })
   #     ];
   #     nix.settings.experimental-features = "nix-command flakes";
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     networking = {
   #       firewall.allowedTCPPorts = [ 22 80 443 1360 11211 25 ];
   #       # trustedInterfaces = ["eno1" "lo"];
@@ -57,7 +60,7 @@ in
   #       nettools
   #       wget
   #       dig
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -110,7 +113,7 @@ in
   #       certificateScheme = "acme";
   #       certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
   #       certificateDirectory = "/var/lib/acme/${domainName}/";
-  #       keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+  #       keyFile =  "/var/lib/acme/${domainName}/key.pem";
   #       messageSizeLimit = 209715200;
   #       # indexDir = "/var/lib/dovecot/indices";
   #       ldap = {

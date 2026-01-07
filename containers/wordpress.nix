@@ -1,13 +1,16 @@
-{ config, pkgs, lib, ... }:
-let
-  # home-manager = builtins.fetchTarball { 
-  #   url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
-  #   sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  # home-manager = builtins.fetchTarball {
+  #   url="https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+  #   sha256="sha256:1fxgnwm6v22ygsfwynp3lszrgwqx10g1a6w3ypfk7ir0nfqfc9p5";
   # };
   # home-manager = import ../vars/home-manager.nix;
   mannchriRsaPublic = import ../vars/mannchri-rsa-public.nix;
-in
-{
+in {
   containers.wordpress = {
     autoStart = true;
     privateNetwork = true;
@@ -21,26 +24,32 @@ in
         isReadOnly = true;
       };
     };
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       # imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         cowsay
         # home-manager
@@ -66,9 +75,14 @@ in
         python311Packages.psycopg2
         mariadb
         (pkgs.php82.buildEnv {
-          extensions = ({ enabled, all }: enabled ++ (with all; [
-            imagick
-          ]));
+          extensions = {
+            enabled,
+            all,
+          }:
+            enabled
+            ++ (with all; [
+              imagick
+            ]);
           extraConfig = ''
           '';
         })
@@ -76,12 +90,12 @@ in
       ];
       networking = {
         hostName = "wordpress";
-        firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
+        firewall.allowedTCPPorts = [22 25 80 443 143 587 993 995 636];
         useHostResolvConf = lib.mkForce false;
       };
       system = {
         # copySystemConfiguration = true;
-        stateVersion = "25.05";
+        stateVersion = "25.11";
       };
       environment.sessionVariables = rec {
         EDITOR = "vim";
@@ -102,12 +116,12 @@ in
       i18n.defaultLocale = "fr_FR.UTF-8";
       users.users.mannchri = {
         isNormalUser = true;
-        openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-        extraGroups = [ "wheel" ];
+        openssh.authorizedKeys.keys = [mannchriRsaPublic];
+        extraGroups = ["wheel"];
       };
       # home-manager.users.mannchri = {pkgs, ...}: {
       #   home.packages = [ pkgs.atool pkgs.httpie ];
-      #   home.stateVersion = "25.05";
+      #   home.stateVersion = "25.11";
       #   programs.home-manager.enable = true;
       #   programs.vim = {
       #     enable = true;
@@ -137,9 +151,14 @@ in
           enable = true;
           enablePHP = true;
           phpPackage = pkgs.php.buildEnv {
-            extensions = ({ enabled, all }: enabled ++ (with all; [
-              imagick
-            ]));
+            extensions = {
+              enabled,
+              all,
+            }:
+              enabled
+              ++ (with all; [
+                imagick
+              ]);
             extraConfig = ''
             '';
           };
@@ -153,7 +172,12 @@ in
               "ghh.resdigita.com"
               "*"
             ];
-            listen = [{ port = 443; ssl = true; }];
+            listen = [
+              {
+                port = 443;
+                ssl = true;
+              }
+            ];
             sslServerCert = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
             sslServerChain = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
             sslServerKey = "/var/lib/acme/wordpress.resdigita.com/key.pem";

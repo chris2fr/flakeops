@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.keycloakparisgv = {
     bindMounts = {
       "/var/lib/acme/keycloak.parisgv.com/" = {
@@ -15,25 +18,31 @@ in
     localAddress = "192.168.116.11";
     hostAddress6 = "fc00::116:10";
     localAddress6 = "fc00::116:11";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -42,12 +51,12 @@ in
         openssl
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 443 587 14446 ];
+          allowedTCPPorts = [443 587 14446];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -62,14 +71,14 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" "keycloak"];
+            members = ["acme" "wwwrun" "keycloak"];
           };
           "keycloak" = {
-            members = [ "keycloak" ];
+            members = ["keycloak"];
           };
         };
         users = {
@@ -99,10 +108,12 @@ in
             ssl = true;
             ssl_cert_file = "/etc/postgres/server.crt";
           };
-          ensureUsers = [{
-            name = "keycloakparisgv";
-            ensureDBOwnership = true;
-          }];
+          ensureUsers = [
+            {
+              name = "keycloakparisgv";
+              ensureDBOwnership = true;
+            }
+          ];
           ensureDatabases = ["keycloakparisgv"];
         };
         keycloak = {
@@ -110,11 +121,11 @@ in
           database = {
             username = "keycloakparisgv";
             # name = "keycloakparisgv";
-            name="keycloakparisgv"; # I think the database is keycloak and not key
+            name = "keycloakparisgv"; # I think the database is keycloak and not key
             # passwordFile="/etc/.secrets.key";
             passwordFile = "/etc/.secret.keycloakparisgv";
-            createLocally=false;
-            host="localhost";
+            createLocally = false;
+            host = "localhost";
             # useSSL = false;
             caCert = "/etc/postgresql/server.crt";
           };

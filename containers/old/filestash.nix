@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.filestash = {
   #   autoStart = true;
   #   privateNetwork = true;
@@ -11,7 +14,7 @@ in
   #   localAddress6 = "fd00::2";
   #   config = { config, pkgs, lib, ...  }: {
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc  # containers.freeipa = {
@@ -24,7 +27,7 @@ in
   #   localAddress6 = "fa01::2";
   #   config = { config, pkgs, lib, ...  }: {
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -44,7 +47,7 @@ in
   #       )
   #       freeipa
   #     ];
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -82,7 +85,7 @@ in
   #       vips
   #       util-linux
   #     ];
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall = {
@@ -101,7 +104,6 @@ in
   #     };
   #   };
   # };
-
 
   # networking.nat = {
   #   enable = true;
@@ -145,17 +147,16 @@ in
   #         prefixLength = 96;
   #       }
   #     ];
-  #   };  
+  #   };
   # };
 
-    # networking.firewall.trustedInterfaces = [
-    #   "br0"
-    # ];
+  # networking.firewall.trustedInterfaces = [
+  #   "br0"
+  # ];
 
-    # networking.bridges = { br0 = { interfaces = [ "enp0s31f6" "ve-dav" ]; }; };
-    # networking.interfaces.br0 = {
-    #   ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
-    #   ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
-    # };
-
+  # networking.bridges = { br0 = { interfaces = [ "enp0s31f6" "ve-dav" ]; }; };
+  # networking.interfaces.br0 = {
+  #   ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+  #   ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+  # };
 }

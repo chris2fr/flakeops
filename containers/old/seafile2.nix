@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.seafile = {
   #   autoStart = true;
   #   privateNetwork = true;
@@ -11,7 +14,7 @@ in
   #   localAddress6 = "fc00::2";
   #   config = { config, pkgs, ... }: {
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override {  }).customize{
+  #       ((vim-full.override {  }).customize{
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -41,7 +44,7 @@ in
   #       python311Packages.seaserv
   #       seahub
   #       ];
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall = {

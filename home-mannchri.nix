@@ -1,20 +1,26 @@
-{ config, pkgs, lib, ... }:
-let
-in 
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   home.username = "mannchri";
   home.homeDirectory = "/home/mannchri";
-  home.packages = [ 
-    pkgs.atool 
-    pkgs.httpie 
+  home.packages = [
+    pkgs.atool
+    pkgs.httpie
     pkgs.nodejs_20
   ];
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   programs.home-manager.enable = true;
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline ];
-    settings = { ignorecase = true; tabstop = 2; };
+    plugins = with pkgs.vimPlugins; [vim-airline];
+    settings = {
+      ignorecase = true;
+      tabstop = 2;
+    };
     extraConfig = ''
       set mouse=a
       set nocompatible

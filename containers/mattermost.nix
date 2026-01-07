@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.mm = {
     bindMounts = {
       "/var/lib/acme/mm.lgv.info/" = {
@@ -16,25 +19,31 @@ in
     localAddress = "192.168.119.11";
     hostAddress6 = "fe19::1";
     localAddress6 = "fe19::2";
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         # postgresql_17
         git
@@ -47,7 +56,7 @@ in
       #   "discourse-3.5.0"
       # ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
@@ -68,14 +77,14 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "nginx" "mattermost" "wwwrun" ];
+            members = ["nginx" "mattermost" "wwwrun"];
           };
           "mattermost" = {
-              members = [ "nginx" "wwwrun" "mattermost"];
+            members = ["nginx" "wwwrun" "mattermost"];
           };
           # "discourse" = {
           #     members = [ "nginx" "discourse" "wwwrun" ];

@@ -1,11 +1,14 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   # httpsDomainName = "10.ipv6.configmagic.com";
   # lgvLdapBaseDN = import ../vars/lgv-ldap-base-dn.nix;
   # bindSlappasswd = import ../secrets/bind.slappasswd;
   # certwarden = import ../modules/services/certwarden.nix;
-in
-{
+in {
   containers.haproxy = {
     autoStart = true;
     # bindMounts = {
@@ -13,36 +16,40 @@ in
     #     hostPath = "/var/lib/acme/${httpsDomainName}";
     #     isReadOnly = false;
     #   };
-    # };  
-    config = { config, pkgs, lib, ... }: {
+    # };
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       time.timeZone = "Europe/Paris";
 
-
-      
       environment.systemPackages = with pkgs; [
         lynx
         nettools
         wget
         dig
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         # postgresql_14
         pwgen
@@ -103,7 +110,7 @@ in
 
             frontend incoming-proxy-protocol
               bind 116.202.236.241:444 accept-proxy ssl proxy_protocol
-              use_backend www_proxy_protocol 
+              use_backend www_proxy_protocol
 
 
             frontend incoming-proxy-protocol-ipv6
@@ -111,9 +118,9 @@ in
               use_backend www_proxy_protocol-ipv6
 
               # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com
-              # tcp-request connection expect-proxy layer4 
+              # tcp-request connection expect-proxy layer4
               # if needs_pp
-              # use_backend www_proxy_protocol 
+              # use_backend www_proxy_protocol
               # if needs_pp
               # default_backend www
               # acl requires_redirect req.hdr(Host) -i -M -f /redirects.map

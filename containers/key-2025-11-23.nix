@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # containers.key-postgres = {
   #   autoStart = true;
   #   privateNetwork = true;
@@ -21,7 +24,7 @@ in
   #       '';
 
   #     environment.systemPackages = with pkgs; [
-  #       ((vim_configurable.override { }).customize {
+  #       ((vim-full.override { }).customize {
   #         name = "vim";
   #         vimrcConfig.customRC = ''
   #           " your custom vimrc
@@ -43,9 +46,9 @@ in
   #       lynx
   #       openldap
   #       postgresql_15
-  #     ];  
+  #     ];
   #     # virtualisation.docker.enable = true;
-  #     system.stateVersion = "25.05";
+  #     system.stateVersion = "25.11";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       # firewall = {
@@ -78,7 +81,7 @@ in
   #           group = "wwwrun";
   #         };
   #       };
-  #     };      
+  #     };
   #     services = {
   #       resolved.enable = true;
   #       postgresql = {
@@ -128,29 +131,35 @@ in
     #     protocol = "tcp";
     #   }
     # ];
-    config = { config, pkgs, lib, ... }: {
+    config = {
+      config,
+      pkgs,
+      lib,
+      ...
+    }: {
       # networking.extraHosts =
       #   ''
       #     192.168.105.11 key-postgres
       #   '';
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-        }
+        (
+          (vim-full.override {}).customize {
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+          }
         )
         git
         lynx
@@ -159,12 +168,12 @@ in
         # inetutils
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [ 25 80 443 467 587 5432 5435 14443 ];
+          allowedTCPPorts = [25 80 443 467 587 5432 5435 14443];
         };
         useHostResolvConf = lib.mkForce false;
       };
@@ -178,11 +187,11 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members = [ "acme" ];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
-            members = [ "acme" "wwwrun" ];
+            members = ["acme" "wwwrun"];
           };
         };
         users = {
@@ -212,7 +221,7 @@ in
             # createLocally=false;
             # createLocally=true;
             # host="::1";
-            host="2a01:4f8:241:4faa::10";
+            host = "2a01:4f8:241:4faa::10";
             # host = "/run/postgresql/";
             useSSL = true;
             # port = 5435;
@@ -220,7 +229,7 @@ in
           };
           settings = {
             https-port = 14443;
-            http-port = 14080;            
+            http-port = 14080;
             # https-port = 443;
             # http-port = 80;
             # http-host = "192.168.105.11";

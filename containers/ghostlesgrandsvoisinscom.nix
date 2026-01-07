@@ -28,9 +28,9 @@
 #     };
 #     nix.settings.experimental-features = "nix-command flakes";
 #     time.timeZone = "Europe/Paris";
-#     system.stateVersion = "25.05";
+#     system.stateVersion = "25.11";
 #     environment.systemPackages = with pkgs; [
-#       ((vim_configurable.override { }).customize {
+#       ((vim-full.override { }).customize {
 #         name = "vim";
 #         vimrcConfig.customRC = ''
 #           " your custom vimrc

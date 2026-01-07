@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
@@ -125,23 +128,26 @@ in
     #      GRANT ALL PRIVILEGES ON DATABASE wagtail TO wagtail;
     #    '';
   };
-  containers.postgresql =
-    {
-      privateNetwork = true;
-      hostAddress = "192.168.100.10";
-      localAddress = "192.168.100.11";
-      config = { config, pkgs, ... }: {
-        #      nix.settings.experimental-features = "nix-command flakes";
-        #      imports = [
-        #        ./vpsadminos.nix
-        #      ];
-        #      environment.systemPackages = with pkgs; [
-        #        vim
-        #      ];
-        services.postgresql.enable = true;
-        services.postgresql.package = pkgs.postgresql_14;
-        time.timeZone = "Europe/Amsterdam";
-        system.stateVersion = "25.05";
-      };
+  containers.postgresql = {
+    privateNetwork = true;
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.11";
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
+      #      nix.settings.experimental-features = "nix-command flakes";
+      #      imports = [
+      #        ./vpsadminos.nix
+      #      ];
+      #      environment.systemPackages = with pkgs; [
+      #        vim
+      #      ];
+      services.postgresql.enable = true;
+      services.postgresql.package = pkgs.postgresql_14;
+      time.timeZone = "Europe/Amsterdam";
+      system.stateVersion = "25.11";
     };
+  };
 }

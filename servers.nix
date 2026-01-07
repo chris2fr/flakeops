@@ -1,21 +1,23 @@
-{ config, pkgs, lib, ... }:
-
-let
-  mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile mailserver/vars/cert-public.nix));
-  # home-manager = builtins.fetchTarball { 
-  #   url="https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"; 
-  #   sha256="sha256:00wp0s9b5nm5rsbwpc1wzfrkyxxmqjwsc1kcibjdbfkh69arcpsn"; 
-  # };
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  mannchriRsaPublic = lib.removeSuffix "\n" (builtins.readFile mailserver/vars/cert-public.nix);
+  # home-manager = builtins.fetchTarball {
+  #   url="https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+  #   sha256="sha256:1fxgnwm6v22ygsfwynp3lszrgwqx10g1a6w3ypfk7ir0nfqfc9p5";
+  # };
+in {
   # imports = [
   #   (import "${home-manager}/nixos")
   # ];
   ## Apostrophe CMS
   users.users.aaa = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    packages = with pkgs; [ nodejs_20 ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
+    packages = with pkgs; [nodejs_20];
   };
   #   home-manager.users.aaa = {pkgs, ...}: {
   #     # I'll use Mongo in a Docker Container
@@ -25,9 +27,9 @@ in
   # #        allowUnfreePredicate = (_: true);
   # #      };
   # #    };
-  #     home.stateVersion = "25.05";
+  #     home.stateVersion = "25.11";
   #     programs.home-manager.enable = true;
-  #     home.packages = with pkgs; [ 
+  #     home.packages = with pkgs; [
   #       nodejs_20
   # #      mongodb
   #     ];
@@ -35,28 +37,28 @@ in
   ## GHOSTIO
   users.users.ghostio = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = [ "wwwrun" ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
+    extraGroups = ["wwwrun"];
   };
   ## ODOO FOR
   users.users.odoofor = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
   };
   ## ODOO THREE
   users.users.odoothree = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
   };
   ## ODOO TOO
   users.users.odootoo = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
   };
   ## ODOO
   users.users.odoo = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
   };
   # Docker
   virtualisation.docker = {
@@ -66,7 +68,7 @@ in
       setSocketVariable = true;
     };
   };
-  users.extraGroups.docker.members = [ "mannchri" ];
+  users.extraGroups.docker.members = ["mannchri"];
   services.mysql.enable = true;
   services.mysql.package = pkgs.mysql80;
 
@@ -76,7 +78,7 @@ in
     environment = {
       NODE_ENV = "production";
     };
-    documentation = [ "https://ghost.org/docs/" ];
+    documentation = ["https://ghost.org/docs/"];
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/var/www/ghost";
@@ -84,7 +86,7 @@ in
       ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
   systemd.services.ghostlesgrandsvoisinscom = {
     enable = true;
@@ -92,7 +94,7 @@ in
     environment = {
       NODE_ENV = "production";
     };
-    documentation = [ "https://ghost.org/docs/" ];
+    documentation = ["https://ghost.org/docs/"];
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/var/www/ghostlesgrandsvoisinscom";
@@ -100,7 +102,7 @@ in
       ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
   systemd.services.ghostresdigitacom = {
     enable = true;
@@ -108,7 +110,7 @@ in
     environment = {
       NODE_ENV = "production";
     };
-    documentation = [ "https://ghost.org/docs/" ];
+    documentation = ["https://ghost.org/docs/"];
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/var/www/ghostresdigitacom";
@@ -116,12 +118,12 @@ in
       ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
   users.users.ghost = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = [ "wwwrun" ];
+    openssh.authorizedKeys.keys = [mannchriRsaPublic];
+    extraGroups = ["wwwrun"];
     packages = with pkgs; [
       nodejs_20
       # nodejs_18
@@ -159,9 +161,9 @@ in
     ];
   };
   # home-manager.users.ghost = {pkgs, ...}: {
-  #   home.stateVersion = "25.05";
+  #   home.stateVersion = "25.11";
   #   programs.home-manager.enable = true;
-  #   home.packages = with pkgs; [ 
+  #   home.packages = with pkgs; [
   #     nodejs_18
   #   ];
   # };
