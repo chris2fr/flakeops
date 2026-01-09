@@ -6,43 +6,43 @@
 }: let
 in {
   # Networking
-  services.resolved = {
-    domains = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com"];
-    fallbackDns = ["9.9.9.9" "149.112.112.112"];
-  };
+  # services.resolved = {
+  #   domains = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com"];
+  #   fallbackDns = ["9.9.9.9" "149.112.112.112"];
+  # };
 
   systemd.network = {
     enable = true;
-    netdevs = {
-      "20-br0" = {
-        netdevConfig = {
-          Kind = "bridge";
-          Name = "br0";
-        };
-      };
-    };
-    networks = {
-      "10-uplink" = {
-        matchConfig.Name = lib.mkDefault "enp1s0";
-        networkConfig = {
-          DHCP = "ipv4";
-          # IPv6AcceptRA = true;
-          Bridge = "br0";
-        };
-        dhcpV4Config = {UseDNS = false;};
-        linkConfig.RequiredForOnline = "routable";
-      };
-      "20-br0" = {
-        matchConfig.Name = "br0";
-        networkConfig = {DHCPServer = true;};
-        dhcpServerConfig = {ServerAddress = "192.168.105.10/18";};
-        linkConfig = {RequiredForOnline = "routable";};
-      };
-      "40-vb" = {
-        matchConfig.Name = "vb-*";
-        networkConfig = {DHCP = "ipv4";};
-      };
-    };
+    # netdevs = {
+    #   "20-br0" = {
+    #     netdevConfig = {
+    #       Kind = "bridge";
+    #       Name = "br0";
+    #     };
+    #   };
+    # };
+    # networks = {
+    #   "10-uplink" = {
+    #     matchConfig.Name = lib.mkDefault "enp1s0";
+    #     networkConfig = {
+    #       DHCP = "ipv4";
+    #       # IPv6AcceptRA = true;
+    #       Bridge = "br0";
+    #     };
+    #     dhcpV4Config = {UseDNS = false;};
+    #     linkConfig.RequiredForOnline = "routable";
+    #   };
+    #   "20-br0" = {
+    #     matchConfig.Name = "br0";
+    #     networkConfig = {DHCPServer = true;};
+    #     dhcpServerConfig = {ServerAddress = "192.168.105.10/18";};
+    #     linkConfig = {RequiredForOnline = "routable";};
+    #   };
+    #   "40-vb" = {
+    #     matchConfig.Name = "vb-*";
+    #     networkConfig = {DHCP = "ipv4";};
+    #   };
+    # };
   };
   networking = {
     useNetworkd = true;
