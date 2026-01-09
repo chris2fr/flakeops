@@ -168,10 +168,11 @@ in {
     fqdn = domainName;
     domains = mailServerDomainAliases;
     certificateScheme = "acme";
-    certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
-    certificateDirectory = "/var/lib/acme/${domainName}/";
-    keyFile = "/var/lib/acme/${domainName}/key.pem";
-    messageSizeLimit = 209715200;
+    # certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+    # certificateDirectory = "/var/lib/acme/${domainName}/";
+    # keyFile = "/var/lib/acme/${domainName}/key.pem";
+    messageSizeLimit = 987654321;
+    # messageSizeLimit = 209715200;
     indexDir = "/var/lib/dovecot/indices";
     ldap = {
       enable = true;
@@ -275,16 +276,16 @@ in {
     };
   };
   #############################################
-  services.postfix.settings.main.maillog_file = "/var/log/postfix.log";
+  # services.postfix.settings.main.maillog_file = "/var/log/postfix.log";
   # /run/current-system/sw/bin/postlog
-  services.postfix.settings.master.postlog = {
-    command = "postlogd";
-    type = "unix-dgram";
-    privileged = true;
-    private = false;
-    chroot = false;
-    maxproc = 1;
-  };
+  # services.postfix.settings.master.postlog = {
+  #   command = "postlogd";
+  #   type = "unix-dgram";
+  #   privileged = true;
+  #   private = false;
+  #   chroot = false;
+  #   maxproc = 1;
+  # };
   ###################################################################################################################################
   # Chris chris2f mannchri 2025-08-24
   # services.postgresql = {
