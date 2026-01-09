@@ -111,18 +111,18 @@ in {
     };
     autoStart = true;
     privateNetwork = true;
-    hostBridge = "br0";
+    # hostBridge = "br0";
     # # macvlans = [
     # #   "eno1"
     # # ];
     # # hostBridge = "brkey";
 
-    # hostAddress = "192.168.105.10";
-    # localAddress = "192.168.105.11";
+    hostAddress = "192.168.105.10";
+    localAddress = "192.168.105.11";
     # hostAddress6 = "fa01::1";
     # localAddress6 = "fa01::2";
-    # hostAddress6 = "2a01:4f8:241:4faa::10";
-    # localAddress6 = "2a01:4f8:241:4faa::11";
+    hostAddress6 = "2a01:4f8:241:4faa::10";
+    localAddress6 = "2a01:4f8:241:4faa::11";
 
     # forwardPorts = [
     #   {
