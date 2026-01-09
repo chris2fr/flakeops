@@ -93,22 +93,22 @@ in {
             prefixLength = 120;
           }
         ];
-        routes = [
-          {
-            address = "2a01:4f8:241:4faa::11";
-            prefixLength = 125;
-            via = "2a01:4f8:241:4faa::10";
-            type = "unicast";
-          }
-        ];
-        routes = [
-          {
-            address = "2a01:4f8:241:4faa::11";
-            prefixLength = 125;
-            via = "fc00::12:2";
-            type = "unicast";
-          }
-        ];
+        # routes = [
+        #   {
+        #     address = "2a01:4f8:241:4faa::11";
+        #     prefixLength = 125;
+        #     via = "2a01:4f8:241:4faa::10";
+        #     type = "unicast";
+        #   }
+        # ];
+        # routes = [
+        #   {
+        #     address = "2a01:4f8:241:4faa::11";
+        #     prefixLength = 125;
+        #     via = "fc00::12:2";
+        #     type = "unicast";
+        #   }
+        # ];
       };
     };
 
