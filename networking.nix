@@ -8,6 +8,7 @@ in {
   # Networking
   systemd.network.enable = true;
   networking = {
+    useNetworkd = true;
     hostName = "hetzner005"; # Define your hostname
     # useDHCP = true;
     enableIPv6 = true;
