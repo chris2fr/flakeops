@@ -89,6 +89,7 @@ in {
         php82Extensions.imagick
       ];
       networking = {
+        interfaces."eth0".useDHCP = true;
         hostName = "wordpress";
         firewall.allowedTCPPorts = [22 25 80 443 143 587 993 995 636];
         useHostResolvConf = lib.mkForce false;
