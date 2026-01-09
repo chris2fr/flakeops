@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   # bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   # alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   # bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
@@ -8,23 +11,24 @@ let
   bindSlappasswd = import ../secrets/bind.slappasswd;
   domainName = import vars/domain-name-mail.nix;
   ldapBaseDCDN = import vars/ldap-base-dc-dn.nix;
-in
-{
+in {
   # age.secrets = {
   #   "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
   # };
   services.openldap = {
     enable = true;
-    urlList = [ "ldap:/// ldaps:/// ldapi:///" ];
+    urlList = ["ldap:/// ldaps:/// ldapi:///"];
     settings = {
       attrs = {
         # olcTLSReqCert = "allow" ;
         # TLS_CACERTDIR /home/myuser/cacertss
         # LDAPTLS_CACERT /home/myuser/cacertss
         olcLogLevel = "conns config";
-        /* settings for acme ssl */
-        olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
-        olcTLSCertificateFile = "/var/lib/acme/${domainName}/full.pem";
+        /*
+        settings for acme ssl
+        */
+        olcTLSCACertificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+        olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
         # olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
         olcTLSCertificateKeyFile = "/var/lib/acme/${domainName}/key.pem";
         olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
@@ -41,7 +45,7 @@ in
           "${pkgs.openldap}/etc/schema/nis.ldif"
         ];
         "olcDatabase={1}mdb".attrs = {
-          objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
+          objectClass = ["olcDatabaseConfig" "olcMdbConfig"];
           olcDbIndex = [
             "displayName,description eq,sub"
             "uid,ou,c eq"
@@ -51,46 +55,54 @@ in
           olcDatabase = "{1}mdb";
           olcDbDirectory = "/var/lib/openldap/data";
           olcSuffix = "${ldapBaseDCDN}";
-          /* your admin account, do not use writeText on a production system */
+          /*
+          your admin account, do not use writeText on a production system
+          */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
           olcRootPW = "${bindSlappasswd}";
           olcAccess = [
-            /* custom access rules for userPassword attributes */
-            /* allow read on anything else */
-            ''{0}to dn.subtree="ou=newusers,${ldapBaseDCDN}"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
-                by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
-                by self write
-                by anonymous auth
-                by * read''
-            ''{1}to dn.subtree="ou=invitations,${ldapBaseDCDN}"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
-                by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
-                by self write
-                by anonymous auth
-                by * read''
-            ''{2}to dn.subtree="ou=users,${ldapBaseDCDN}"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
-                by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
-                by self write
-                by anonymous auth
-                by * read''
-            ''{3}to attrs=userPassword
-                by self write
-                by anonymous auth
-                by * none''
-            ''{4}to *
-                by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDCDN}" manage
-                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDCDN}" manage
-                by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDCDN}" manage
-                by self write
-                by anonymous auth''
-            /* custom access rules for userPassword attributes */
-            ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
-                by self write
-                by * read''
-            ''{6}to *
-                by * read''
+            /*
+            custom access rules for userPassword attributes
+            */
+            /*
+            allow read on anything else
+            */
+            ''              {0}to dn.subtree="ou=newusers,${ldapBaseDCDN}"
+                              by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
+                              by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
+                              by self write
+                              by anonymous auth
+                              by * read''
+            ''              {1}to dn.subtree="ou=invitations,${ldapBaseDCDN}"
+                              by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
+                              by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
+                              by self write
+                              by anonymous auth
+                              by * read''
+            ''              {2}to dn.subtree="ou=users,${ldapBaseDCDN}"
+                              by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDCDN}" write
+                              by group.exact="cn=administration,ou=groups,${ldapBaseDCDN}" write
+                              by self write
+                              by anonymous auth
+                              by * read''
+            ''              {3}to attrs=userPassword
+                              by self write
+                              by anonymous auth
+                              by * none''
+            ''              {4}to *
+                              by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDCDN}" manage
+                              by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDCDN}" manage
+                              by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDCDN}" manage
+                              by self write
+                              by anonymous auth''
+            /*
+            custom access rules for userPassword attributes
+            */
+            ''              {5}to attrs=cn,sn,givenName,displayName,member,memberof
+                              by self write
+                              by * read''
+            ''              {6}to *
+                              by * read''
           ];
         };
       };
@@ -110,11 +122,11 @@ in
   #  };
   #############################
   systemd.services.openldap = {
-    wants = [ "acme-${domainName}.service" ];
-    after = [ "acme-${domainName}.service" ];
+    wants = ["acme-${domainName}.service"];
+    after = ["acme-${domainName}.service"];
     serviceConfig = {
       RemainAfterExit = false;
     };
   };
-  users.groups.wwwrun.members = [ "openldap" ];
+  users.groups.wwwrun.members = ["openldap"];
 }

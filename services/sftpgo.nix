@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
 in {
   services.sftpgo = {
     enable = false;
@@ -40,7 +44,7 @@ in {
         {
           port = 443;
           address = "[2a01:4f8:241:4faa::9]";
-          certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/full.pem";
+          certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/fullchain.pem";
           certificate_key_file = "/var/lib/acme/9.lesgrandsvoisins.com/key.pem";
           enable_https = true;
         }
@@ -137,17 +141,19 @@ in {
         # password = $passwordDBSFTPGO;
         # pre_login_hook = "/run/addsftpgouser.sh";
       };
-      plugins = [{
-        type = "auth";
-        cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
-        args = [
-          "serve"
-          "--config-file"
-          "/var/run/sftpgo/sftpgo-plugin-auth.json"
-        ];
-        auth_options.scope = 5;
-        auto_mtls = true;
-      }];
+      plugins = [
+        {
+          type = "auth";
+          cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
+          args = [
+            "serve"
+            "--config-file"
+            "/var/run/sftpgo/sftpgo-plugin-auth.json"
+          ];
+          auth_options.scope = 5;
+          auto_mtls = true;
+        }
+      ];
     };
   };
 }

@@ -214,8 +214,8 @@ in {
               /*
               settings for acme ssl
               */
-              olcTLSCACertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
-              olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
+              olcTLSCACertificateFile = "/var/lib/acme/${ldapDomainName}/fullchain.pem";
+              olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
               # olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
               olcTLSCertificateKeyFile = "/var/lib/acme/${ldapDomainName}/key.pem";
               olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
