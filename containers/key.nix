@@ -141,6 +141,9 @@ in {
       #   ''
       #     192.168.105.11 key-postgres
       #   '';
+      imports = [
+        ../common.nix
+      ];
       environment.systemPackages = with pkgs; [
         (
           (vim-full.override {}).customize {
@@ -175,7 +178,7 @@ in {
           enable = false;
           allowedTCPPorts = [443 587 14443];
         };
-        useHostResolvConf = lib.mkForce false;
+        # useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
@@ -204,7 +207,7 @@ in {
         };
       };
       services = {
-        resolved.enable = true;
+        # resolved.enable = true;
         postgresql.package = pkgs.postgresql_15;
         # postgresql.settings.port = 5433;
         postgresql.enableTCPIP = true;
