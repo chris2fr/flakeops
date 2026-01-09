@@ -190,8 +190,8 @@ in {
         passwordFile = config.age.secrets.bind.path;
       };
       uris = [
-        "ldaps://ldap.lesgrandsvoisins.com:14636/"
-        # "ldap://ldap.lesgrandsvoisins.com:14389/"
+        # "ldaps://ldap.lesgrandsvoisins.com:14636/"
+        "ldap://ldap.lesgrandsvoisins.com:14389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
@@ -205,7 +205,7 @@ in {
       };
       dovecot = {
         userFilter = "mail=%{user}";
-        userAttrs = "mail cn displayName givenName";
+        # userAttrs = "mail cn displayName givenName";
         passFilter = "mail=%{user}";
         passAttrs = "userPassword=password";
       };
