@@ -162,7 +162,7 @@ in {
 
   ###################################################################################################################################
   mailserver = {
-    stateVersion = 1;
+    stateVersion = 3;
     enablePop3Ssl = true;
     enable = true;
     fqdn = domainName;
