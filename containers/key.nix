@@ -104,6 +104,10 @@ in {
         hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
         isReadOnly = true;
       };
+      "/etc/resolv.conf" = {
+        hostPath = "/etc/resolv.conf";
+        isReadOnly = true;
+      };
     };
     autoStart = true;
     privateNetwork = true;
@@ -174,11 +178,13 @@ in {
       system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
+        useNetworkd = true;
         firewall = {
           enable = false;
           allowedTCPPorts = [443 587 14443];
         };
-        # useHostResolvConf = lib.mkForce false;
+        useHostResolvConf = lib.mkForce false;
+        nameservers = ["192.168.105.10"];
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"

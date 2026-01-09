@@ -35,6 +35,15 @@ in {
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
+    # bridges.br0.interfaces = [ "eno1" ];
+    # useDHCP = false;
+    # interfaces."br0".useDHCP = true;
+    # interfaces."br0".ipv4.addresses = [{
+    # address = "192.168.100.3";
+    #   prefixLength = 24;
+    # }];
+    # defaultGateway = "192.168.100.1";
+    # nameservers = [ "192.168.100.1" ];
   };
   imports = [
     ./containers/cherryldap.nix
