@@ -628,6 +628,8 @@ in {
               # Config Magic
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
+              server_names_hash_max_size: 8192;
+              server_names_hash_bucket_size: 64;
             '';
           };
         };
