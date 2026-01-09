@@ -214,13 +214,13 @@ in {
         };
       };
       services = {
-        resolved = {
-          enable = true;
-          # extraConfig = ''
-          #   nameserver 192.168.105.10
-          #   nameserver 1.1.1.1
-          # '';
-        };
+        # resolved = {
+        #   enable = true;
+        #   # extraConfig = ''
+        #   #   nameserver 192.168.105.10
+        #   #   nameserver 1.1.1.1
+        #   # '';
+        # };
 
         postgresql.package = pkgs.postgresql_15;
         # postgresql.settings.port = 5433;
