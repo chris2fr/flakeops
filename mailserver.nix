@@ -190,13 +190,14 @@ in {
         passwordFile = config.age.secrets.bind.path;
       };
       uris = [
-        "ldap://ldap.lesgrandsvoisins.com:14389/"
+        "ldaps://ldap.lesgrandsvoisins.com:14636/"
+        # "ldap://ldap.lesgrandsvoisins.com:14389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      startTls = true;
-      tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
-      # startTls = false;
+      startTls = false;
+      # startTls = true;
+      # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       postfix = {
         # filter = "(|(mail=%s)(mail=%s@lesgrandsvoisins.com))";
         mailAttribute = "mail";
