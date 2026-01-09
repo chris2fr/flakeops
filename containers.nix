@@ -27,20 +27,20 @@
   whitelistSubnets = import vars/whitelist-subnets.nix;
   mailServerDomainAliases = import vars/mailserver-domain-aliases.nix;
 in {
-  networking = {
-    # networkmanager.unmanaged = ["interface-name:ve-*"];
+  # networking = {
+  # networkmanager.unmanaged = ["interface-name:ve-*"];
 
-    # bridges.br0.interfaces = ["eno1" "ve-key@if2"];
-    # Name in key ve-key@if2
-    useDHCP = false;
-    # interfaces."br0".useDHCP = true;
-    # interfaces."br0".ipv4.addresses = [{
-    # address = "192.168.100.3";
-    #   prefixLength = 24;
-    # }];
-    # defaultGateway = "192.168.100.1";
-    # nameservers = [ "192.168.100.1" ];
-  };
+  # bridges.br0.interfaces = ["eno1" "ve-key@if2"];
+  # Name in key ve-key@if2
+  # useDHCP = false;
+  # interfaces."br0".useDHCP = true;
+  # interfaces."br0".ipv4.addresses = [{
+  # address = "192.168.100.3";
+  #   prefixLength = 24;
+  # }];
+  # defaultGateway = "192.168.100.1";
+  # nameservers = [ "192.168.100.1" ];
+  # };
   imports = [
     ./containers/cherryldap.nix
     ./containers/wikijs.nix
