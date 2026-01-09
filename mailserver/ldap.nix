@@ -17,8 +17,8 @@ in {
   # };
   services.openldap = {
     enable = true;
-    # urlList = ["ldap:/// ldaps:/// ldapi:///"];
-    urlList = ["ldap://ldap.lesgrandsvoisins.com:14389/"];
+    urlList = ["ldap:/// ldaps:/// ldapi:///"];
+    # urlList = ["ldap://ldap.lesgrandsvoisins.com:14389/"];
     settings = {
       attrs = {
         # olcTLSReqCert = "allow" ;
