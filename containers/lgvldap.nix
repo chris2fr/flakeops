@@ -52,6 +52,9 @@ in {
         # postgresql_14
         pwgen
       ];
+      imports = [
+        ../common.nix
+      ];
       # imports = [
       #   (builtins.fetchTarball {
       #     url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-25.11/nixos-mailserver-nixos-25.11.tar.gz";
@@ -93,8 +96,8 @@ in {
               /*
               settings for acme ssl
               */
-              olcTLSCACertificateFile = "/var/lib/acme/${lgvLdapDomainName}/full.pem";
-              olcTLSCertificateFile = "/var/lib/acme/${lgvLdapDomainName}/full.pem";
+              olcTLSCACertificateFile = "/var/lib/acme/${lgvLdapDomainName}/fullchain.pem";
+              olcTLSCertificateFile = "/var/lib/acme/${lgvLdapDomainName}/cert.pem";
               olcTLSCertificateKeyFile = "/var/lib/acme/${lgvLdapDomainName}/key.pem";
               olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
               olcTLSCRLCheck = "none";
