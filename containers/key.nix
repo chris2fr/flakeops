@@ -183,7 +183,7 @@ in {
           enable = true;
           allowedTCPPorts = [80 443 587 14443];
         };
-        # useHostResolvConf = lib.mkForce false;
+        useHostResolvConf = lib.mkForce false;
         # nameservers = ["192.168.105.10"];
         # interfaces."eth0@if82".ipv4.routes
       };
