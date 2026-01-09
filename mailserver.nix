@@ -162,9 +162,18 @@ in {
 
   ###################################################################################################################################
   mailserver = {
-    stateVersion = 3;
-    enablePop3Ssl = true;
     enable = true;
+    enablePop3Ssl = true;
+    enableImap = true;
+    enableImapSsl = true;
+
+    stateVersion = 3;
+    acmeCertificateName = config.mailserver.fqdn;
+    debug = {
+      all = false;
+      dovecot = true;
+      rspamd = false;
+    };
     fqdn = domainName;
     domains = mailServerDomainAliases;
     certificateScheme = "acme";
