@@ -189,7 +189,7 @@ in {
       appendHttpConfig = ''
         proxy_headers_hash_max_size 8192;
         server_names_hash_max_size 8192;
-        # server_names_hash_bucket_size: 64;
+        server_names_hash_bucket_size: 128;
         proxy_headers_hash_bucket_size 512;
         proxy_buffer_size   256k;
         proxy_buffers   4 256k;
@@ -628,8 +628,6 @@ in {
               # Config Magic
               add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
               add_header Access-Control-Allow-Credentials true;
-              server_names_hash_max_size: 8192;
-              server_names_hash_bucket_size: 64;
             '';
           };
         };
