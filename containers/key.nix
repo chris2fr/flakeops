@@ -104,10 +104,10 @@ in {
         hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";
         isReadOnly = true;
       };
-      "/etc/resolv.conf" = {
-        hostPath = "/etc/resolv.conf";
-        isReadOnly = true;
-      };
+      # "/etc/resolv.conf" = {
+      #   hostPath = "/etc/resolv.conf";
+      #   isReadOnly = true;
+      # };
     };
     autoStart = true;
     privateNetwork = true;
