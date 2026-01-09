@@ -111,13 +111,14 @@ in {
     };
     autoStart = true;
     privateNetwork = true;
+    hostBridge = "br0";
     # # macvlans = [
     # #   "eno1"
     # # ];
     # # hostBridge = "brkey";
 
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
     # hostAddress6 = "fa01::1";
     # localAddress6 = "fa01::2";
     # hostAddress6 = "2a01:4f8:241:4faa::10";
@@ -178,12 +179,15 @@ in {
       system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-        useNetworkd = true;
+        interfaces."eth0".useDHCP = true;
+
+        # useNetworkd = true;
         firewall = {
           enable = true;
-          allowedTCPPorts = [80 443 587 14443];
+          allowedTCPPorts = [80 443 587 5432 14443];
         };
-        useHostResolvConf = lib.mkForce false;
+        useHostResolvConf = false;
+        # useHostResolvConf = lib.mkForce false;
         # nameservers = ["192.168.105.10"];
         # interfaces."eth0@if82".ipv4.routes
       };
@@ -214,13 +218,13 @@ in {
         };
       };
       services = {
-        # resolved = {
-        #   enable = true;
-        #   # extraConfig = ''
-        #   #   nameserver 192.168.105.10
-        #   #   nameserver 1.1.1.1
-        #   # '';
-        # };
+        resolved = {
+          enable = true;
+          #   # extraConfig = ''
+          #   #   nameserver 192.168.105.10
+          #   #   nameserver 1.1.1.1
+          #   # '';
+        };
 
         postgresql.package = pkgs.postgresql_15;
         # postgresql.settings.port = 5433;

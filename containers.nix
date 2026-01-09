@@ -29,13 +29,7 @@
 in {
   networking = {
     # networkmanager.unmanaged = ["interface-name:ve-*"];
-    nat = {
-      enable = true;
-      internalInterfaces = ["ve-+"];
-      externalInterface = "eno1";
-      # Lazy IPv6 connectivity for the container
-      enableIPv6 = true;
-    };
+
     # bridges.br0.interfaces = ["eno1" "ve-key@if2"];
     # Name in key ve-key@if2
     useDHCP = false;
