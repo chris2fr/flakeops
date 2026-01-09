@@ -36,8 +36,9 @@ in {
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
-    # bridges.br0.interfaces = [ "eno1" ];
-    # useDHCP = false;
+    bridges.br0.interfaces = ["eno1" "ve-key@if2"];
+    # Name in key ve-key@if2
+    useDHCP = false;
     # interfaces."br0".useDHCP = true;
     # interfaces."br0".ipv4.addresses = [{
     # address = "192.168.100.3";
