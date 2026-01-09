@@ -28,6 +28,7 @@
   mailServerDomainAliases = import vars/mailserver-domain-aliases.nix;
 in {
   networking = {
+    networkmanager.unmanaged = ["interface-name:ve-*"];
     nat = {
       enable = true;
       internalInterfaces = ["ve-+"];
