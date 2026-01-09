@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -45,6 +49,16 @@ in {
     openssh = {
       enable = true;
       settings.PermitRootLogin = "prohibit-password";
+      listenAddresses = [
+        {
+          addr = "0.0.0.0";
+          port = 22;
+        }
+        {
+          addr = "2a01:4f8:241:4faa::";
+          port = 22;
+        }
+      ];
     };
     vaultwarden = {
       enable = true;
