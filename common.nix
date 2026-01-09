@@ -106,6 +106,12 @@ in {
     gnumake
     oauth2-proxy
     #  nftables
+    htop
+    inetutils
+    dnsutils
+    host
+    dnslookup
+    dig
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
