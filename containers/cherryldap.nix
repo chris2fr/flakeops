@@ -136,6 +136,7 @@ in {
         php
       ];
       networking = {
+        interfaces."eth0".useDHCP = true;
         hostName = "cherryldap";
         firewall.allowedTCPPorts = [22 25 53 80 443 143 587 993 995 636];
         useHostResolvConf = lib.mkForce false;

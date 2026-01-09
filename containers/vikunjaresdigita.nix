@@ -39,6 +39,7 @@ in {
       time.timeZone = "Europe/Paris";
       system.stateVersion = "25.11";
       networking = {
+        interfaces."eth0".useDHCP = true;
         hostName = "vikunjaresdigitacom";
         firewall.enable = false;
         # firewall = {

@@ -56,6 +56,7 @@ in {
       system.stateVersion = "25.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
+        interfaces."eth0".useDHCP = true;
         firewall.enable = false;
         # firewall = {
         #   enable = true;

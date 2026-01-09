@@ -77,6 +77,7 @@ in {
         # (import "${home-manager}/nixos")
       ];
       networking = {
+        interfaces."eth0".useDHCP = true;
         firewall.allowedTCPPorts = [3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
