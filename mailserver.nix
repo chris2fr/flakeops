@@ -185,7 +185,8 @@ in {
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      startTls = false;
+      startTls = true;
+      # startTls = false;
       postfix = {
         # filter = "(|(mail=%s)(mail=%s@lesgrandsvoisins.com))";
         mailAttribute = "mail";
