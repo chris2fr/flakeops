@@ -180,11 +180,12 @@ in {
       networking = {
         useNetworkd = true;
         firewall = {
-          enable = false;
-          allowedTCPPorts = [443 587 14443];
+          enable = true;
+          allowedTCPPorts = [80 443 587 14443];
         };
-        useHostResolvConf = lib.mkForce false;
-        nameservers = ["192.168.105.10"];
+        # useHostResolvConf = lib.mkForce false;
+        # nameservers = ["192.168.105.10"];
+        # interfaces."eth0@if82".ipv4.routes
       };
       systemd.tmpfiles.rules = [
         "f /etc/.secret.keydata 0660 root root"
@@ -215,10 +216,10 @@ in {
       services = {
         resolved = {
           enable = true;
-          extraConfig = ''
-            nameserver 192.168.105.10
-            nameserver 1.1.1.1
-          '';
+          # extraConfig = ''
+          #   nameserver 192.168.105.10
+          #   nameserver 1.1.1.1
+          # '';
         };
 
         postgresql.package = pkgs.postgresql_15;
