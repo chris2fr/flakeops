@@ -7,7 +7,7 @@
 in {
   # Networking
   services.resolved = {
-    domains = ["vpn.sustainablemotion.io" "sustainablemotion.io"];
+    domains = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com"];
     fallbackDns = ["9.9.9.9" "149.112.112.112"];
   };
 
