@@ -59,42 +59,42 @@ in {
     };
   };
   services = {
-    dovecot2 = {
-      # extraConfig = ''
-      #   auth_mechanisms = plain login oauth2
-      #   passdb {
-      #     driver = oauth2
-      #     mechanisms = xoauth2 oauthbearer
-      #     args = /etc/dovecot/dovecot-oauth2.conf.ext
-      #   }
+    # dovecot2 = {
+    #   # extraConfig = ''
+    #   #   auth_mechanisms = plain login oauth2
+    #   #   passdb {
+    #   #     driver = oauth2
+    #   #     mechanisms = xoauth2 oauthbearer
+    #   #     args = /etc/dovecot/dovecot-oauth2.conf.ext
+    #   #   }
 
-      #   # userdb {
-      #   #   driver = static
-      #   #   args = uid=vmail gid=vmail home=/var/vmail/%u
-      #   # }
+    #   #   # userdb {
+    #   #   #   driver = static
+    #   #   #   args = uid=vmail gid=vmail home=/var/vmail/%u
+    #   #   # }
 
-      #   # authentication debug logging
-      #   auth_debug = yes
-      #   auth_verbose = yes
+    #   #   # authentication debug logging
+    #   #   auth_debug = yes
+    #   #   auth_verbose = yes
 
-      #   # # provide SASL via unix socket to postfix
-      #   # service auth {
-      #   #   unix_listener /var/spool/postfix/private/auth {
-      #   #     mode = 0660
-      #   #     # Assuming the default Postfix user and group
-      #   #     user = postfix
-      #   #     group = postfix
-      #   #   }
-      #   # }
-      # '';
-      sieve.scripts = {};
-      sieve.extensions = [
-        "notify"
-        "imapflags"
-        "vnd.dovecot.filter"
-        "fileinto"
-      ];
-    };
+    #   #   # # provide SASL via unix socket to postfix
+    #   #   # service auth {
+    #   #   #   unix_listener /var/spool/postfix/private/auth {
+    #   #   #     mode = 0660
+    #   #   #     # Assuming the default Postfix user and group
+    #   #   #     user = postfix
+    #   #   #     group = postfix
+    #   #   #   }
+    #   #   # }
+    #   # '';
+    #   sieve.scripts = {};
+    #   sieve.extensions = [
+    #     "notify"
+    #     "imapflags"
+    #     "vnd.dovecot.filter"
+    #     "fileinto"
+    #   ];
+    # };
 
     # postfix.virtual = ''
     #   max@gdvoisins.com max@lesgrandsvoisins.com
@@ -354,4 +354,5 @@ in {
     maxAttachmentSize = 75;
   };
   users.users.dovecot2.extraGroups = ["wwwrun"];
+  # users.users.dovecot.extraGroups = ["wwwrun"];
 }

@@ -72,8 +72,12 @@
   systemd.services."restart-email" = {
     script = ''
       set -eu
-      ${pkgs.systemd}/bin/systemctl restart guichet openldap postfix dovecot2
+      ${pkgs.systemd}/bin/systemctl restart guichet openldap postfix dovecot
     '';
+    # script = ''
+    #   set -eu
+    #   ${pkgs.systemd}/bin/systemctl restart guichet openldap postfix dovecot2
+    # '';
     serviceConfig = {
       User = "root";
     };
