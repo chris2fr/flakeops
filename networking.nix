@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   # Networking
   networking = {
     hostName = "hetzner005"; # Define your hostname
@@ -21,31 +24,46 @@ in
     #     prefixLength = 120;
     #   };
     # };
-    interfaces.eno1.ipv6 = {
-      addresses = [
-        { address = "2a01:4f8:241:4faa::0"; prefixLength = 126; }
-        { address = "2a01:4f8:241:4faa::4"; prefixLength = 126; }
-        { address = "2a01:4f8:241:4faa::10"; prefixLength = 125; }
-        { address = "2a01:4f8:241:4faa::443"; prefixLength = 120; }
-      ];
-      # routes = [
-      #   {
-      #     address = "2a01:4f8:241:4faa::11";
-      #     prefixLength = 125;
-      #     via = "2a01:4f8:241:4faa::10";
-      #     type = "unicast";
-      #   }
-      # ];
-      # routes = [
-      #   {
-      #     address = "2a01:4f8:241:4faa::11";
-      #     prefixLength = 125;
-      #     via = "fc00::12:2";
-      #     type = "unicast";
-      #   }
-      # ];
+    interfaces.eno1 = {
+      useDHCP = true;
+      ipv6 = {
+        addresses = [
+          {
+            address = "2a01:4f8:241:4faa::0";
+            prefixLength = 126;
+          }
+          {
+            address = "2a01:4f8:241:4faa::4";
+            prefixLength = 126;
+          }
+          {
+            address = "2a01:4f8:241:4faa::10";
+            prefixLength = 125;
+          }
+          {
+            address = "2a01:4f8:241:4faa::443";
+            prefixLength = 120;
+          }
+        ];
+        # routes = [
+        #   {
+        #     address = "2a01:4f8:241:4faa::11";
+        #     prefixLength = 125;
+        #     via = "2a01:4f8:241:4faa::10";
+        #     type = "unicast";
+        #   }
+        # ];
+        # routes = [
+        #   {
+        #     address = "2a01:4f8:241:4faa::11";
+        #     prefixLength = 125;
+        #     via = "fc00::12:2";
+        #     type = "unicast";
+        #   }
+        # ];
+      };
     };
-    
+
     nat = {
       forwardPorts = [
         {
@@ -68,7 +86,7 @@ in
       '';
       enable = true;
       package = pkgs.nftables;
-      trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "ve-key" "lo"];
+      trustedInterfaces = ["docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap" "ve-key" "lo"];
       interfaces."ve-key-postgres".allowedTCPPorts = [5432];
 
       # source: https://docs.syncthing.net/users/firewall.html
