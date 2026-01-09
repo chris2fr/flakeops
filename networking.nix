@@ -9,7 +9,7 @@ in {
   systemd.network.enable = true;
   networking = {
     hostName = "hetzner005"; # Define your hostname
-    useDHCP = true;
+    # useDHCP = true;
     enableIPv6 = true;
     # bridges = {
     #   brkey = {
