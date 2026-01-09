@@ -6,6 +6,7 @@
 }: let
 in {
   # Networking
+  systemd.network.enable = true;
   networking = {
     hostName = "hetzner005"; # Define your hostname
     useDHCP = true;
