@@ -186,11 +186,18 @@ in {
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       startTls = true;
+      tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       # startTls = false;
       postfix = {
         # filter = "(|(mail=%s)(mail=%s@lesgrandsvoisins.com))";
         mailAttribute = "mail";
         uidAttribute = "mail";
+      };
+      dovecot = {
+        userFilter = "mail=%{user}";
+        userAttrs = "mail cn displayName givenName";
+        passFilter = "mail=%{user}";
+        passAttrs = "userPassword=password";
       };
     };
 
