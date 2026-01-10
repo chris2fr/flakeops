@@ -114,8 +114,8 @@ in {
 
 
             frontend incoming-proxy-protocol-ipv6
-              bind [::]:444 accept-proxy ssl proxy_protocol
-              # bind [2a01:4f8:241:4faa::]:444 accept-proxy ssl proxy_protocol
+              # bind [::]:444 accept-proxy ssl proxy_protocol
+              bind [2a01:4f8:241:4faa::]:444 accept-proxy ssl proxy_protocol
               use_backend www_proxy_protocol-ipv6
 
               # acl needs_pp req.hdr(Host) -i key.lesgrandsvoisins.com

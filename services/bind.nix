@@ -26,9 +26,9 @@ in {
     # listenOnIpv6 = [
     #   "::1"
     # ];
-    # listenOnIpv6 = [
-    #   "2a01:4f8:241:4faa::0"
-    # ];
+    listenOnIpv6 = [
+      "2a01:4f8:241:4faa::0"
+    ];
     # cacheNetworks = [
     #   "116.202.236.241"
     #   "2a01:4f8:241:4faa::/96"
