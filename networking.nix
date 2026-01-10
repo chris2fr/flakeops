@@ -72,6 +72,10 @@ in {
     #     prefixLength = 120;
     #   };
     # };
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "eno1";
+    };
     interfaces.eno1 = {
       useDHCP = true;
       ipv6 = {
