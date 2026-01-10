@@ -59,7 +59,23 @@ in {
         addresses = [
           {
             address = "2a01:4f8:241:4faa::";
-            prefixLength = 96;
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::1:1:1";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::2:2:2";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::3:3:3";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::4:4:4";
+            prefixLength = 64;
           }
         ];
       };
