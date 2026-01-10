@@ -53,7 +53,6 @@ in {
       address = "fe80::1";
       interface = "eno1";
     };
-    networkmanager.appendNameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "8.8.8.8" "1.1.1.1"];
     interfaces.eno1 = {
       useDHCP = true;
       ipv6 = {
@@ -65,6 +64,7 @@ in {
         ];
       };
     };
+    # appendNameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "8.8.8.8" "1.1.1.1"];
     nat = {
       enable = true;
       internalInterfaces = ["ve-*"];
