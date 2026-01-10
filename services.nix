@@ -55,9 +55,13 @@ in {
           port = 22;
         }
         {
-          addr = "[2a01:4f8:241:4faa::]";
+          addr = "[::]";
           port = 22;
         }
+        # {
+        #   addr = "[2a01:4f8:241:4faa::]";
+        #   port = 22;
+        # }
       ];
     };
     vaultwarden = {

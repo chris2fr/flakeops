@@ -42,8 +42,9 @@ in {
         #   enable_https = true;
         # }
         {
-          port = 443;
-          address = "[2a01:4f8:241:4faa::9]";
+          port = 6444;
+          address = "[::1]";
+          # address = "[2a01:4f8:241:4faa::9]";
           certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/fullchain.pem";
           certificate_key_file = "/var/lib/acme/9.lesgrandsvoisins.com/key.pem";
           enable_https = true;
@@ -56,7 +57,8 @@ in {
         # }
         {
           port = 2022;
-          address = "[2a01:4f8:241:4faa::8]";
+          address = "[::1]";
+          # address = "[2a01:4f8:241:4faa::8]";
         }
       ];
       httpd = {
@@ -96,8 +98,9 @@ in {
           #   };
           # }
           {
-            port = 443;
-            address = "[2a01:4f8:241:4faa::8]";
+            port = 6443;
+            address = "[::1]";
+            # address = "[2a01:4f8:241:4faa::8]";
             certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;

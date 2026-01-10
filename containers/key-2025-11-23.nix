@@ -221,7 +221,8 @@ in {
             # createLocally=false;
             # createLocally=true;
             # host="::1";
-            host = "2a01:4f8:241:4faa::10";
+            host = "::1";
+            # host = "2a01:4f8:241:4faa::10";
             # host = "/run/postgresql/";
             useSSL = true;
             # port = 5435;

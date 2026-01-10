@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   dnsslaves = [
     # ns{1,2,3,4,5}.linode.com
     "96.126.114.97"
@@ -13,16 +17,18 @@ let
     "216.218.133.2"
     "2001:470:600::2"
   ];
-in
-{
+in {
   services.bind = {
     enable = true;
     listenOn = [
       "116.202.236.241"
     ];
-    listenOnIpv6 = [
-      "2a01:4f8:241:4faa::0"
-    ];
+    # listenOnIpv6 = [
+    #   "::1"
+    # ];
+    # listenOnIpv6 = [
+    #   "2a01:4f8:241:4faa::0"
+    # ];
     # cacheNetworks = [
     #   "116.202.236.241"
     #   "2a01:4f8:241:4faa::/96"
@@ -31,13 +37,13 @@ in
       "lesgrandsvoisins.com" = {
         file = ../etc/bind/zone_lesgrandsvoisins_com.txt;
         # master = true;
-        allowQuery = [ "any" ];
+        allowQuery = ["any"];
         # slaves = dnsslaves;
       };
       "resdigita.com" = {
         file = ../etc/bind/zone_resdigita_com.txt;
         # master = true;
-        allowQuery = [ "any" ];
+        allowQuery = ["any"];
         # slaves = dnsslaves;
       };
       # "241.236.202.in-addr.arpa"= {
