@@ -46,36 +46,14 @@ in {
   };
   networking = {
     useNetworkd = true;
-    domain = "lesgrandsvoisins.com";
-    hostName = "hetzner005"; # Define your hostname
-    nat = {
-      enable = true;
-      internalInterfaces = ["ve-*"];
-      externalInterface = "eno1";
-      # externalInterface = "br0";
-      # Lazy IPv6 connectivity for the container
-      enableIPv6 = true;
-    };
-    # useDHCP = true;
     enableIPv6 = true;
-    # bridges = {
-    #   brkey = {
-    #     interfaces = [
-    #       "eno1"
-    #     ];
-    #   };
-    # };
-    # interfaces.brkey = {
-    #   useDHCP = false;
-    #   ipv6.addresses = {
-    #     address = "2a01:4f8:241:4faa::443";
-    #     prefixLength = 120;
-    #   };
-    # };
+    domain = "lesgrandsvoisins.com";
+    hostName = "hetzner005";
     defaultGateway6 = {
       address = "fe80::1";
       interface = "eno1";
     };
+    networkmanager.appendNameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "8.8.8.8" "1.1.1.1"];
     interfaces.eno1 = {
       useDHCP = true;
       ipv6 = {
@@ -84,39 +62,14 @@ in {
             address = "2a01:4f8:241:4faa::";
             prefixLength = 96;
           }
-          #   {
-          #     address = "2a01:4f8:241:4faa::4";
-          #     prefixLength = 126;
-          #   }
-          #   {
-          #     address = "2a01:4f8:241:4faa::10";
-          #     prefixLength = 125;
-          #   }
-          #   {
-          #     address = "2a01:4f8:241:4faa::443";
-          #     prefixLength = 120;
-          #   }
-          # ];
-          # routes = [
-          #   {
-          #     address = "2a01:4f8:241:4faa::11";
-          #     prefixLength = 125;
-          #     via = "2a01:4f8:241:4faa::10";
-          #     type = "unicast";
-          #   }
-          # ];
-          # routes = [
-          #   {
-          #     address = "2a01:4f8:241:4faa::11";
-          #     prefixLength = 125;
-          #     via = "fc00::12:2";
-          #     type = "unicast";
-          #   }
         ];
       };
     };
-
     nat = {
+      enable = true;
+      internalInterfaces = ["ve-*"];
+      externalInterface = "eno1";
+      enableIPv6 = true;
       forwardPorts = [
         {
           destination = "192.168.103.2:443";
