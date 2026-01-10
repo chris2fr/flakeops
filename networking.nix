@@ -62,6 +62,162 @@ in {
             prefixLength = 64;
           }
           {
+            address = "2a01:4f8:241:4faa::1";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::2";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::3";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::4";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::5";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::6";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::7";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::8";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::9";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::10";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::11";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::12";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::13";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::14";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::15";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::16";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::17";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::18";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::19";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::20";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::21";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::22";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::23";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::24";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::25";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::26";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::27";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::28";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::29";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::30";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::31";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::32";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::33";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::34";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::35";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::36";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::37";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::38";
+            prefixLength = 64;
+          }
+          {
+            address = "2a01:4f8:241:4faa::39";
+            prefixLength = 64;
+          }
+          {
             address = "2a01:4f8:241:4faa::1:1:1";
             prefixLength = 64;
           }
