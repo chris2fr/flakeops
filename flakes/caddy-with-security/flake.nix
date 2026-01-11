@@ -12,7 +12,7 @@
     stdenv.hostPlatform.system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
-    packages.${system}.default = pkgs.stdenv.mkDerivation {
+    packages.${stdenv.hostPlatform.system}.default = pkgs.stdenv.mkDerivation {
       pname = "custom-caddy";
       version = "1.0.0";
 
@@ -59,7 +59,7 @@
 
         mkdir -p $out/share/assets/portal/templates/lesgrandsvoisins
         mkdir -p $out/share/assets/images
-        cp -r ${self.packages.${system}.default.staticFiles}/* $out/share/
+        cp -r ${self.packages.${stdenv.hostPlatform.system}.default.staticFiles}/* $out/share/
       '';
 
       # (Optional) Expose assets as separate output paths

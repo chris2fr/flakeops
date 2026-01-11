@@ -12,7 +12,7 @@
     stdenv.hostPlatform.system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
-    packages.${system}.default = pkgs.stdenv.mkDerivation {
+    packages.${stdenv.hostPlatform.system}.default = pkgs.stdenv.mkDerivation {
       pname = "caddy-ui-lesgv";
       version = "1.0.0";
 
