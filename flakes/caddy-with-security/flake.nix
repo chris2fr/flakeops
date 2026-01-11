@@ -9,7 +9,7 @@
     self,
     nixpkgs,
   }: let
-    system = "x86_64-linux";
+    # system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
     packages.${stdenv.hostPlatform.system}.default = pkgs.stdenv.mkDerivation {

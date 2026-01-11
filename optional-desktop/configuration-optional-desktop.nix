@@ -100,4 +100,4 @@
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   
-  system.copySystemConfiguration = true; # stdenv.hostPlatform.system ?
+  stdenv.hostPlatform.system.copySystemConfiguration = true; # stdenv.hostPlatform.system ?
