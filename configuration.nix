@@ -1,12 +1,16 @@
-{ config, pkgs, lib, filestash, ... }:
-let 
-  # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
-    oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
-    jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
-in
 {
+  config,
+  pkgs,
+  lib,
+  filestash,
+  ...
+}: let
+  # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
+  oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
+  jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
+in {
   nix.settings.experimental-features = "nix-command flakes";
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
   imports = [
     ./hardware-configuration.nix
     ./common.nix # Des configurations communes pratiques
@@ -23,8 +27,8 @@ in
     # ./acme.nix
     ./caddy.nix
   ];
-  environment.systemPackages = with pkgs; [ 
-    # agenix-cli 
+  environment.systemPackages = with pkgs; [
+    # agenix-cli
     # gcc
     # apacheHttpd
     # pkg-config
@@ -67,8 +71,8 @@ in
     go
     xcaddy
   ];
-    # users.users.wwwrun.extraGroups = [ "acme" "wwwrun" "copyparty"];
-    # users.users.nginx.extraGroups = [ "acme" "wwwrun" "copyparty" ];
+  # users.users.wwwrun.extraGroups = [ "acme" "wwwrun" "copyparty"];
+  # users.users.nginx.extraGroups = [ "acme" "wwwrun" "copyparty" ];
 
   virtualisation.docker.enable = true;
   systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
@@ -115,10 +119,10 @@ in
   # export APR_LIBS="`apr-1-config --libs`"
   # export LIBCURL_CFLAGS="`gnurl-config --cflags`"
 
-  age.identityPaths = [ "/etc/.secrets/.age.key" ];
+  age.identityPaths = ["/etc/.secrets/.age.key"];
   # age.secrets = {
   #   # "filebrowser" = { file = ./secrets/filebrowser.age; owner="wwwrun";};
-  #   "openidc.seafile" = { file = ./secrets/openidc.seafile.age; 
+  #   "openidc.seafile" = { file = ./secrets/openidc.seafile.age;
   #   owner = "oauth2-proxy";
   #   group = "oauth2-proxy";};
   #   # "httpd.filebrowser.conf" = { file = ./secrets/httpd.filebrowser.conf.age; owner="wwwrun";};
@@ -133,7 +137,7 @@ in
   time.timeZone = "Europe/Paris";
 
   environment.sessionVariables = {
-    EDITOR="vim";
+    EDITOR = "vim";
   };
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #   "sftpgo"
@@ -145,8 +149,8 @@ in
 
   # console.keyMap = "fr";
   # Select internationalisation properties.
-  i18n.defaultLocale = "fr_FR.UTF-8"; 
-  console = { 
+  i18n.defaultLocale = "fr_FR.UTF-8";
+  console = {
     font = "Lat2-Terminus16";
     # keyMap = "fr";
     useXkbConfig = true; # use xkb.options in tty.
@@ -171,9 +175,8 @@ in
 
   services = {
     syncthing = {
-      enable=true;
-      openDefaultPorts=true;
-      
+      enable = true;
+      openDefaultPorts = true;
     };
     filestash = {
       enable = true;
@@ -190,11 +193,10 @@ in
       # };
     };
 
-
     xserver = {
       xkb.layout = "fr";
       enable = true;
-      
+
       desktopManager = {
         xterm.enable = false;
         xfce.enable = true;
@@ -218,10 +220,9 @@ in
     #   # };
     # };
   };
-  
 
   systemd = {
-    extraConfig = ''
+    settings.Manager = ''
       DefaultTimeoutStartSec=600s
     '';
     tmpfiles.rules = [
@@ -255,11 +256,11 @@ in
         {
           addr = "0.0.0.0";
           port = 22;
-        } 
+        }
         {
           addr = "[::]";
           port = 22;
-        } 
+        }
       ];
       settings.PermitRootLogin = "no";
     };

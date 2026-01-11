@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-let
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   containers.filestash = {
     autoStart = true;
     privateNetwork = true;
@@ -20,10 +23,14 @@ in
     localAddress6 = "fb80::2";
     # interfaces = ["tuncontain"];
     # bindMounts = {};
-    config = { config, pkgs, ... }: {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
-      system.stateVersion = "25.05";
+      system.stateVersion = "25.11";
       networking = {
         firewall.enable = false;
         # firewall = {
@@ -36,8 +43,8 @@ in
         # defaultGateway6 = "fb00::1";
       };
       environment.systemPackages = with pkgs; [
-        ((vim_configurable.override { }).customize {
-          name = "vim"; 
+        ((vim-full.override {}).customize {
+          name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
             set mouse=a
@@ -72,7 +79,6 @@ in
         glibc
         perl
         jansson
-
       ];
       # systemd.tmpfiles.rules = [];
       # virtualisation.docker = {
