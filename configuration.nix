@@ -222,9 +222,7 @@ in {
   };
 
   systemd = {
-    settings.Manager = ''
-      DefaultTimeoutStartSec=600s
-    '';
+    settings.Manager.DefaultTimeoutStartSec = "600s";
     tmpfiles.rules = [
       "d /export 0755 nfsuser users"
       "d /export/data1 0755 nfsuser users"
