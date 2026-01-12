@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  filestash,
   ...
 }: let
   # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
@@ -40,7 +39,6 @@ in {
     # jansson
     # vouch-proxy
     nodenv
-    filestash
     vips
     # vouch-proxy
     # oauth2-proxy
@@ -75,7 +73,6 @@ in {
   # users.users.nginx.extraGroups = [ "acme" "wwwrun" "copyparty" ];
 
   virtualisation.docker.enable = true;
-  systemd.services.filestash.environment."FILESTASH_PATH" = "/var/lib/filestash";
   systemd.services.copyparty = {
     enable = true;
     wantedBy = ["default.target"];
@@ -156,41 +153,10 @@ in {
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # systemd.services.vouch-proxy = {
-  #   description = "Vouch-Proxy OpenIDC server for Nginx";
-  #   after = [ "network.target" ];
-  #   wantedBy = [ "multi-user.target" ];
-  #   serviceConfig = {
-  #     WorkingDirectory = "/home/mannchri/vouch-proxy/";
-  #     ExecStart = "/run/current-system/sw/bin/vouch-proxy -config /home/mannchri/vouch-proxy/config.yml";
-  #     Restart = "always";
-  #     RestartSec = "10s";
-  #     User = "mannchri";
-  #     Group = "users";
-  #   };
-  #   unitConfig = {
-  #     StartLimitInterval = "1min";
-  #   };
-  # };
-
   services = {
     syncthing = {
       enable = true;
       openDefaultPorts = true;
-    };
-    filestash = {
-      enable = true;
-      paths = {
-        config = "/etc/filestash/config.json";
-        # tmp = "/tmp/filestash";
-        # log = "/var/log/filestash";
-      };
-      # # optionally customize configuration
-      # settings = {
-      #   public_url = "https://roses.lgv.info";
-      #   data_dir = "/var/lib/filestash";
-      #   port = 8334;
-      # };
     };
 
     xserver = {
