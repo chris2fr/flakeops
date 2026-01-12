@@ -13,18 +13,25 @@
     agenix,
     caddy-ui-lesgv,
     ...
-  } @ inputs: {
-    # NOTE: 'nixos' is the default hostname set by the installer
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        # NOTE: Change this to aarch64-linux if you are on ARM
-        # system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          agenix.nixosModules.default
-        ];
-        specialArgs = {inherit caddy-ui-lesgv;};
+  } @ inputs:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in {
+      }
+    )
+    // {
+      # NOTE: 'nixos' is the default hostname set by the installer
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          # NOTE: Change this to aarch64-linux if you are on ARM
+          # system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            agenix.nixosModules.default
+          ];
+          specialArgs = {inherit caddy-ui-lesgv;};
+        };
       };
     };
-  };
 }
