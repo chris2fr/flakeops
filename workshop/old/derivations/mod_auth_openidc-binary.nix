@@ -1,5 +1,13 @@
-{ lib, stdenv, fetchurl, apacheHttpd, autoPatchelfHook, gzip, gnutar }:
-
+workshop
+{
+  lib,
+  stdenv,
+  fetchurl,
+  apacheHttpd,
+  autoPatchelfHook,
+  gzip,
+  gnutar,
+}:
 stdenv.mkDerivation rec {
   pname = "mod_auth_openidc";
   version = "2.4.15"; # Update to the latest version
@@ -10,7 +18,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    autoPatchelfHook  # Automatically fix binary dependencies
+    autoPatchelfHook # Automatically fix binary dependencies
     gzip
     gnutar
   ];
@@ -24,14 +32,14 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    
+
     # Extract the .so file from the tarball
     tar -xzf $src
     mkdir -p $out/modules
-    
+
     # The compiled .so is typically in the .libs directory
     cp mod_auth_openidc-${version}/.libs/mod_auth_openidc.so $out/modules/
-    
+
     runHook postInstall
   '';
 
@@ -39,7 +47,7 @@ stdenv.mkDerivation rec {
     description = "OpenID Connect Relying Party implementation for Apache HTTP Server 2.x";
     homepage = "https://github.com/OpenIDC/mod_auth_openidc";
     license = licenses.asl20;
-    platforms = [ "x86_64-linux" ];
-    maintainers = [ "Chris Mann" ];
+    platforms = ["x86_64-linux"];
+    maintainers = ["Chris Mann"];
   };
 }
