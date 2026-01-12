@@ -102,7 +102,6 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-            links {
               "Dashy" https://max.gdvoisins.com:443/ icon "las la-star"
               "Moi" "/whoami" icon "las la-user"
             }
