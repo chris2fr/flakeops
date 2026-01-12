@@ -348,7 +348,7 @@ in {
     extraConfig = ''
       # starttls needed for authentication, so the fqdn required to match
       # the certificate
-      $config['smtp_server'] = "tls://mail.lesgrandsvoisins.com";
+      $config['smtp_server'] = "ssl://mail.lesgrandsvoisins.com";
       $config['smtp_user'] = "%u";
       $config['smtp_pass'] = "%p";
       # $config['oauth_provider'] = 'generic';
