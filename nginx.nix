@@ -955,9 +955,7 @@ in {
         "vw.gdvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           serverAliases = [
-            "vw.lgv.info"
             "vw.l14s.com"
-            "vaultwarden.lgv.info"
             "vaultwarden.resdigita.com"
             "vaultwarden.gv.coop"
             "bitwarden.gv.coop"
@@ -966,6 +964,18 @@ in {
             "vault.lesgrandsvoisins.com"
             "vaultwarden.lesgrandsvoisins.com"
             # "pass.lesgrandsvoisins.com"
+          ];
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8222";
+            proxyWebsockets = true;
+          };
+        };
+        "vw.lgv.info" = {
+          extraConfig = "# proxy_protocol off;";
+          serverAliases = [
+            "vaultwarden.lgv.info"
           ];
           enableACME = true;
           forceSSL = true;
