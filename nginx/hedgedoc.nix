@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
 in
 {
@@ -20,9 +25,19 @@ in
     #   ];
     #   globalRedirect = "hedgedoc.resdigita.com";
     # };
-    "hd.gdvoisins.com" = {
+    "mark.lesgrandsvoisins.com" = {
       extraConfig = "# proxy_protocol off;";
-      serverAliases = [ "hedgedoc.lesgrandsvoisins.com"  "hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo" "hedgedoc.gv.coop" "mark.lesgrandsvoisins.com" "mark.resdigita.com" "hd.l14s.com"];
+      serverAliases = [
+        "hedgedoc.lesgrandsvoisins.com"
+        "hedgedoc.lesgv.org"
+        "hedgedoc.resdigita.com"
+        # "hedgedoc.village.ngo"
+        # "hedgedoc.gv.coop"
+        "mark.lesgrandsvoisins.com"
+        "mark.resdigita.com"
+        # "hd.l14s.com"
+        # "hd.gdvoisins.com"
+      ];
       enableACME = true;
       forceSSL = true;
       locations."/".proxyPass = "http://localhost:3333/";
