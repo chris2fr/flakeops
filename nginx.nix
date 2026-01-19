@@ -1257,15 +1257,15 @@ in {
             };
           };
         };
-        "vk.gdvoisins.com" = {
+        "task.lesgrandsvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           serverAliases = [
-            "vk.l14s.com"
-            "vikunja.gv.coop"
-            "vikunja.lesgv.org"
-            "task.lesgrandsvoisins.com"
+            # "vk.l14s.com"
+            # "vikunja.gv.coop"
+            # "vikunja.lesgv.org"
+            # "task.lesgrandsvoisins.com"
             "vikunja.lesgrandsvoisins.com"
-            "task.resdigita.com"
+            # "task.resdigita.com"
             # "vikunja.village.ngo"
           ];
           enableACME = true;
