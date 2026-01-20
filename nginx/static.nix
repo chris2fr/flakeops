@@ -18,7 +18,7 @@ in
         "quartz.gv.coop"
         "quartz.lesgv.org"
         "quartz.gdvoisins.com"
-        "quartz.l14s.com"
+        # "quartz.l14s.com"
       ];
       enableACME = true;
       forceSSL = true;
