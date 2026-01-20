@@ -682,10 +682,19 @@ in {
       locations."/media" = {proxyPass = null;};
       locations."/.well-known" = {proxyPass = null;};
     };
-    "www.lesgv.com" = {
+    "www.lesgv.com" = { 
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/coopgv/";
+      locations."/".extraConfig = ''
+        return 302 https//www.grandsvoisins.com$request_uri;
+      '';
+
+    };
+    "admin.lesgv.com" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
-        "admin.lesgv.com"
+        # "admin.lesgv.com"
         "ai.lesgv.com"
         "annuaire.lesgv.com"
         "backup.lesgv.com"
