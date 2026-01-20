@@ -25,6 +25,9 @@
     "discourse.lgv.info"
     "mm.lgv.info"
     "gdvoisins.com"
+    "gv.style"
+    "gvstyle.org"
+    "gvplace.com"
   ];
 in {
   imports = [
