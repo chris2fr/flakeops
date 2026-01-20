@@ -28,6 +28,9 @@
     "gv.style"
     "gvstyle.org"
     "gvplace.com"
+    "hopgv.com"
+    "hopgv.org"
+    "gafam.us"
   ];
 in {
   imports = [
