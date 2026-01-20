@@ -541,16 +541,16 @@ in {
             '';
           };
         };
-        "www.villagegv.com" = {
-          forceSSL = true;
-          enableACME = true;
-          serverAliases = ["villagegv.com" "www.villagegv.org" "villagegv.org"];
-          root = "/var/www/village/";
-          extraConfig = ''
-            # proxy_protocol off;
-            return 302 $scheme://www.village.ngo$request_uri;
-          '';
-        };
+        # "www.villagegv.com" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   serverAliases = ["villagegv.com" "www.villagegv.org" "villagegv.org"];
+        #   root = "/var/www/village/";
+        #   extraConfig = ''
+        #     # proxy_protocol off;
+        #     return 302 $scheme://www.village.ngo$request_uri;
+        #   '';
+        # };
         "www.l14s.com" = {
           extraConfig = "# proxy_protocol off;";
           forceSSL = true;

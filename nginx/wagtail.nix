@@ -32,18 +32,18 @@ in {
     #     }
     #   '';
     # };
-    "www.interet-public.org" = {
-      extraConfig = "# proxy_protocol off;";
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/interetpublic";
-      serverAliases = ["www.interetpublic.org"];
-      locations."/".extraConfig = ''
-        if ($host != "www.interet-public.org") {
-          return 301 $scheme://www.interet-public.org$request_uri;
-        }
-      '';
-    };
+    # "www.interet-public.org" = {
+    #   extraConfig = "# proxy_protocol off;";
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/interetpublic";
+    #   serverAliases = ["www.interetpublic.org"];
+    #   locations."/".extraConfig = ''
+    #     if ($host != "www.interet-public.org") {
+    #       return 301 $scheme://www.interet-public.org$request_uri;
+    #     }
+    #   '';
+    # };
     "gv.village.ngo" = {
       enableACME = true;
       forceSSL = true;
