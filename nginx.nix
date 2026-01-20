@@ -955,11 +955,11 @@ in {
         "vw.gdvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           serverAliases = [
-            "vw.l14s.com"
+            # "vw.l14s.com"
             "vaultwarden.resdigita.com"
-            "vaultwarden.gv.coop"
-            "bitwarden.gv.coop"
-            "vaultwarden.lesgv.org"
+            # "vaultwarden.gv.coop"
+            # "bitwarden.gv.coop"
+            # "vaultwarden.lesgv.org"
             "bit.lesgrandsvoisins.com"
             "vault.lesgrandsvoisins.com"
             "vaultwarden.lesgrandsvoisins.com"
