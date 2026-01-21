@@ -31,6 +31,7 @@
     "hopgv.com"
     "hopgv.org"
     "gafam.us"
+    "gdvoisins.org"
   ];
 in {
   imports = [
