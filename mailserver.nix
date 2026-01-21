@@ -202,7 +202,7 @@ in {
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      startTls = false;
+      # startTls = false;
       # startTls = true;
       # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       postfix = {
