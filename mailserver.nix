@@ -206,14 +206,16 @@ in {
       # startTls = true;
       # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       postfix = {
-        # filter = "(|(mail=%s)(mail=%s@lesgrandsvoisins.com))";
-        mailAttribute = "mail";
+        filter = "(|(mail=%s)(uid=%s)(uid=%s@gdvoisins.org))";
+        # mailAttribute = "mail";
         uidAttribute = "mail";
       };
       dovecot = {
-        userFilter = "mail=%{user}";
+        userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
+        passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
+        # userFilter = "mail=%{user}";
         # userAttrs = "mail cn displayName givenName";
-        passFilter = "mail=%{user}";
+        # passFilter = "mail=%{user}";
         passAttrs = "userPassword=password";
       };
     };
