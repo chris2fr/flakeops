@@ -231,29 +231,29 @@ in {
     };
 
     # extraVirtualAliases = {
-    #   "pauline@gdvoisins.com" = "pauline@lesgrandsvoisins.com";
-    #   "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
-    #   "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
-    #   "sviatlana@gdvoisins.com" = "sviatlana@lesgrandsvoisins.com";
-    #   "mael@gdvoisins.com" = "mael@lesgrandsvoisins.com";
-    #   "arezki@gdvoisins.com" = "arezki@lesgrandsvoisins.com";
-    #   "clhomme@gdvoisins.com" = "clhomme@lesgrandsvoisins.com";
-    #   "ruben@gdvoisins.com" = "ruben@lesgrandsvoisins.com";
+    #   "pauline@gdvoisins.com" = ["pauline@lesgrandsvoisins.com" "pauline@gdvoisins.com"];
+    #   "chris@gdvoisins.com" = ["chris@lesgrandsvoisins.com" "chris@gdvoisins.com"];
+    #   "max@gdvoisins.com" = ["max@lesgrandsvoisins.com" "max@gdvoisins.com"];
+    #   "sviatlana@gdvoisins.com" = ["sviatlana@lesgrandsvoisins.com" "sviatlana@gdvoisins.com"];
+    #   "mael@gdvoisins.com" = ["mael@lesgrandsvoisins.com" "mael@gdvoisins.com"];
+    #   "arezki@gdvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezki@gdvoisins.com"];
+    #   "clhomme@gdvoisins.com" = ["clhomme@lesgrandsvoisins.com" "clhomme@gdvoisins.com"];
+    #   "ruben@gdvoisins.com" = ["ruben@lesgrandsvoisins.com" "ruben@gdvoisins.com"];
     # };
 
     forwards = {
-      "contact@gdvoisins.com" = "contact@lesgrandsvoisins.com";
-      "bienvenue@gdvoisins.com" = "bienvenue@lesgrandsvoisins.com";
+      "contact@gdvoisins.com" = ["contact@lesgrandsvoisins.com" "contact@gdvoisins.com"];
+      "bienvenue@gdvoisins.com" = ["bienvenue@lesgrandsvoisins.com" "bienvenue@gdvoisins.com"];
       "contact@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "contact@lesgrandsvoisins.com"];
       "admin@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "admin@lesgrandsvoisins.com"];
-      "pauline@gdvoisins.com" = "pauline@lesgrandsvoisins.com";
-      "chris@gdvoisins.com" = "chris@lesgrandsvoisins.com";
-      "max@gdvoisins.com" = "max@lesgrandsvoisins.com";
-      "sviatlana@gdvoisins.com" = "sviatlana@lesgrandsvoisins.com";
-      "mael@gdvoisins.com" = "mael@lesgrandsvoisins.com";
-      "arezki@gdvoisins.com" = "arezki@lesgrandsvoisins.com";
-      "clhomme@gdvoisins.com" = "clhomme@lesgrandsvoisins.com";
-      "ruben@gdvoisins.com" = "ruben@lesgrandsvoisins.com";
+      "pauline@gdvoisins.com" = ["pauline@lesgrandsvoisins.com" "pauline@gdvoisins.com"];
+      "chris@gdvoisins.com" = ["chris@lesgrandsvoisins.com" "chris@gdvoisins.com"];
+      "max@gdvoisins.com" = ["max@lesgrandsvoisins.com" "max@gdvoisins.com"];
+      "sviatlana@gdvoisins.com" = ["sviatlana@lesgrandsvoisins.com" "sviatlana@gdvoisins.com"];
+      "mael@gdvoisins.com" = ["mael@lesgrandsvoisins.com" "mael@gdvoisins.com"];
+      "arezki@gdvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezki@gdvoisins.com"];
+      "clhomme@gdvoisins.com" = ["clhomme@lesgrandsvoisins.com" "clhomme@gdvoisins.com"];
+      "ruben@gdvoisins.com" = ["ruben@lesgrandsvoisins.com" "ruben@gdvoisins.com"];
       "discourseadmin@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
       "sviatlana@lesgrandsvoisins.com" = ["sviatlana@lesgrandsvoisins.com" "sviatlana.viarbitskaya@gmail.com"];
       "arezki@lesgrandsvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezkisef@yahoo.fr"];
@@ -271,7 +271,7 @@ in {
       "mael@lesgrandsvoisins.com" = ["maelnemacherif@yahoo.fr" "mael@lesgrandsvoisins.com"];
       "chris@resdigita.com" = ["chris@resdigita.com" "chris@mann.fr"];
       "mannchri@lesgrandsvoisins.com" = "chris@lesgdvoisins.com";
-      "sviatlana@resdigita.com" = ["sviatlana@resdigita.com" "sviatlana.viarbitskaya@gmail.com "];
+      "sviatlana@resdigita.com" = ["sviatlana@resdigita.com" "sviatlana.viarbitskaya@gmail.com"];
       "axel.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
       "alex.leroux@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
       "alex.quatorzien@resdigita.com" = "axel.leroux@lesgrandsvoisins.com";
