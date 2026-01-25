@@ -151,6 +151,7 @@ in {
                   ''                    {2}to dn.subtree="ou=users,${lgvLdapBaseDN}"
                                           by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
                                           by dn.exact="cn=newuser,ou=users,${lgvLdapBaseDN}" write
+                                          by dn.exact="uid=reader,ou=users,${lgvLdapBaseDN}" read
                                           by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
                                           by self write
                                           by anonymous auth

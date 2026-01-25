@@ -33,6 +33,7 @@
     "gafam.us"
     "gdvoisins.org"
     "gv.je"
+    "libregood.com"
   ];
 in {
   imports = [
