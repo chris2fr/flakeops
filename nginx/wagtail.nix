@@ -682,6 +682,18 @@ in {
       locations."/media" = {proxyPass = null;};
       locations."/.well-known" = {proxyPass = null;};
     };
+
+    
+    
+    "www.lgv.info" = { 
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/coopgv/";
+      locations."/".extraConfig = ''
+        return 301 https//je.grandsvoisins.org$request_uri;
+      '';
+
+    };
     "www.lesgv.com" = { 
       enableACME = true;
       forceSSL = true;
@@ -822,9 +834,9 @@ in {
       locations."/medias" = {proxyPass = null;};
       locations."/.well-known" = {proxyPass = null;};
     };
-    "www.lgv.info" = {
+    "admin.lgv.info" = {
       serverAliases = [
-        "admin.lgv.info"
+        # "admin.lgv.info"
         "ai.lgv.info"
         "annuaire.lgv.info"
         "backup.lgv.info"
