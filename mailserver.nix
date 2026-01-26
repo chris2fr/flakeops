@@ -245,7 +245,8 @@ in {
 
     forwards = {
       "contact@gdvoisins.com" = ["contact@lesgrandsvoisins.com" "contact@gdvoisins.com"];
-      "robert@lgv.info" = ["baldridgeprogram@gmail.com" "robert@lgv.info"];
+      "robert@lgv.info" = ["baldridgeprogram@lgv.info"];
+      "baldridgeprogram@lgv.info" = ["baldridgeprogram@gmail.com" "baldridgeprogram@lgv.info"];
       "chris@lgv.info" = ["chris@lesgrandsvoisins.com" "chris@lgv.info"];
       "bienvenue@gdvoisins.com" = ["bienvenue@lesgrandsvoisins.com" "bienvenue@gdvoisins.com"];
       "contact@lesgrandsvoisins.com" = ["chris@lesgrandsvoisins.com" "contact@lesgrandsvoisins.com"];
