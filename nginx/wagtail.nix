@@ -690,7 +690,7 @@ in {
       forceSSL = true;
       root = "/var/www/coopgv/";
       locations."/".extraConfig = ''
-        return 301 https//je.grandsvoisins.org$request_uri;
+        return 301 https://je.grandsvoisins.org$request_uri;
       '';
 
     };
