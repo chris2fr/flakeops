@@ -102,7 +102,7 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-              "Dashy" https://max.gdvoisins.com:443/ icon "las la-star"
+              "Copyparty" https://cp.roses.gdvoisins.com icon "las floppy-disk"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
