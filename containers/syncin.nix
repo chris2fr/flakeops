@@ -24,7 +24,7 @@ in
         mariadb
         go
         gcc
-        alist
+        # alist
       ];
       users.users.syncin = {
         isNormalUser = true;
