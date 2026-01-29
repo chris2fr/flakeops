@@ -6,18 +6,21 @@
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    agenix,
-    caddy-ui-lesgv,
-    ...
-  } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      agenix,
+      caddy-ui-lesgv,
+      ...
+    }@inputs:
     flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-      in {
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
       }
     )
     // {
@@ -30,7 +33,7 @@
             ./configuration.nix
             agenix.nixosModules.default
           ];
-          specialArgs = {inherit caddy-ui-lesgv;};
+          specialArgs = { inherit caddy-ui-lesgv; };
         };
       };
     };

@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  vars,
   ...
 }: let
   # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
@@ -21,10 +22,11 @@ in {
     ./nginx.nix
     # ./seafile.nix
     ./oauth2-proxy.nix
-    # ./containers.nix
+    ./containers.nix
     # ./haproxy.nix
     # ./acme.nix
     ./caddy.nix
+
   ];
   environment.systemPackages = with pkgs; [
     # agenix-cli
