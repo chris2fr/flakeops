@@ -23,6 +23,8 @@ in
         nodejs
         mariadb
         go
+        gcc
+        alist
       ];
       users.users.syncin = {
         isNormalUser = true;
