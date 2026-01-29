@@ -1,7 +1,7 @@
 {
   uids = {
     syncin = 1505;
-
+    seafile = 1506;
   };
   gids = {
     users = 100;
