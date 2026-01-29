@@ -15,7 +15,7 @@ in
       system.stateVersion = "25.11";
       systemd.services.phylum = {
         wantedBy = [ "default.target" ];
-        description = "CopyParty";
+        description = "Casiers électornaiues Phylum";
         serviceConfig = {
           WorkingDirectory = "/var/lib/phylum";
           User = "syncin";
@@ -23,6 +23,12 @@ in
         };
         enable = true;
         script = "${pkgs.go}/bin/go run -C server cmd/phylum.go  -W /var/lib/phylum/data/ -c /var/lib/phylum/data/config.yml serve";
+        path = with pkgs; [
+          go
+          gcc
+          # postgresql
+          vips
+        ];
       };
       systemd.tmpfiles.rules = [
         "d /var/lib/syncin 775 syncin services"
