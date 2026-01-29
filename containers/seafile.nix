@@ -10,6 +10,8 @@ in
 {
   containers.seafile = {
     autoStart = true;
+    privateNetwork = true;
+
     config = {
       system.stateVersion = "25.11";
       systemd.tmpfiles.rules = [
@@ -20,7 +22,9 @@ in
         ../common.nix
       ];
       environment.systemPackages = with pkgs; [
-        # nodejs
+        mariadb
+        redis
+        caddy
       ];
       users.users.seafile = {
         isNormalUser = true;

@@ -22,6 +22,7 @@ in
       environment.systemPackages = with pkgs; [
         nodejs
         mariadb
+        go
       ];
       users.users.syncin = {
         isNormalUser = true;
@@ -33,19 +34,29 @@ in
       services.mysql = {
         enable = true;
         package = pkgs.mariadb;
-        ensureDatabases = [ "syncin" ];
+        ensureDatabases = [ "syncin" "phylum" ];
         ensureUsers = [
           {
             name = "syncin";
             ensurePermissions = {
               "syncin.*" = "ALL PRIVILEGES";
+              "phylum.*" = "ALL PRIVILEGES";
             };
-
+          }
+          {
+            name = "phylum";
+            ensurePermissions = {
+              "syncin.*" = "ALL PRIVILEGES";
+              "phylum.*" = "ALL PRIVILEGES";
+            };
           }
         ];
         initialDatabases = [
           {
             name = "syncin";
+          }
+          {
+            name = "pyhlum";
           }
         ];
       };
