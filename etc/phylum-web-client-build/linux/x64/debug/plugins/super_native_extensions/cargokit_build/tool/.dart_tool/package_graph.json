@@ -1,0 +1,204 @@
+{
+  "roots": [
+    "build_tool_runner"
+  ],
+  "packages": [
+    {
+      "name": "build_tool_runner",
+      "version": "1.0.0",
+      "dependencies": [
+        "build_tool"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "build_tool",
+      "version": "1.0.0",
+      "dependencies": [
+        "args",
+        "collection",
+        "convert",
+        "crypto",
+        "ed25519_edwards",
+        "github",
+        "hex",
+        "http",
+        "logging",
+        "path",
+        "source_span",
+        "toml",
+        "version",
+        "yaml"
+      ]
+    },
+    {
+      "name": "yaml",
+      "version": "3.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "version",
+      "version": "3.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "toml",
+      "version": "0.14.0",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.0",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "path",
+      "version": "1.8.0",
+      "dependencies": []
+    },
+    {
+      "name": "logging",
+      "version": "1.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "http",
+      "version": "1.1.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta"
+      ]
+    },
+    {
+      "name": "hex",
+      "version": "0.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "github",
+      "version": "9.17.0",
+      "dependencies": [
+        "http",
+        "http_parser",
+        "json_annotation",
+        "meta"
+      ]
+    },
+    {
+      "name": "ed25519_edwards",
+      "version": "0.3.1",
+      "dependencies": [
+        "adaptive_number",
+        "collection",
+        "convert",
+        "crypto"
+      ]
+    },
+    {
+      "name": "crypto",
+      "version": "3.0.3",
+      "dependencies": [
+        "typed_data"
+      ]
+    },
+    {
+      "name": "convert",
+      "version": "3.1.1",
+      "dependencies": [
+        "typed_data"
+      ]
+    },
+    {
+      "name": "collection",
+      "version": "1.18.0",
+      "dependencies": []
+    },
+    {
+      "name": "args",
+      "version": "2.4.2",
+      "dependencies": []
+    },
+    {
+      "name": "adaptive_number",
+      "version": "1.0.0",
+      "dependencies": [
+        "fixnum"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "petitparser",
+      "version": "5.4.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.10.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "meta",
+      "version": "1.18.1",
+      "dependencies": []
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "fixnum",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "http_parser",
+      "version": "4.0.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    }
+  ],
+  "configVersion": 1
+}

@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/_deps/sqlite3-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

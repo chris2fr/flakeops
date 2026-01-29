@@ -1,0 +1,110 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/run/current-system/sw/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/nix/store/f43k3lffqlz3n864inxz8zf28jvks1q6-bash-interactive-5.3p3/bin/"
+      - "/nix/store/axrdk0z4gwqv9kpql2lgqq42l37m3yd1-patchelf-0.15.2/bin/"
+      - "/nix/store/myvv172x2am72534zgn9wx0qp5amq6a8-gcc-wrapper-14.3.0/bin/"
+      - "/nix/store/m1k4nxs8r0fl0pjxqp5n37vxgms7gdlb-gcc-14.3.0/bin/"
+      - "/nix/store/ijmp8r14ivvzk5r95lwx49bbv089003g-glibc-2.40-66-bin/bin/"
+      - "/nix/store/iiishysy5bzkjrawxl4rld1s04qj0k0c-coreutils-9.8/bin/"
+      - "/nix/store/4dh4138m8gbp56kh63j2pwgsfhf5l8v7-binutils-wrapper-2.44/bin/"
+      - "/nix/store/v9zpzmigqkcjrw1jpf0zjc49y47cm55s-binutils-2.44/bin/"
+      - "/nix/store/6wspvphn7hqyc3s98g3pzrdb7rlzjf4b-flutter-wrapped-3.38.3-sdk-links/bin/"
+      - "/nix/store/6hcyzg88adcz37hn5pslwb06ck6pnq07-findutils-4.10.0/bin/"
+      - "/nix/store/7ylvy12ylwy8wxya9i2ly8qkhiz7173r-diffutils-3.12/bin/"
+      - "/nix/store/rm3yhwgahfrmshmcrv6cr28x4rz7881s-gnused-4.9/bin/"
+      - "/nix/store/737jwbhw8ji13x9s88z3wpp8pxaqla92-gnugrep-3.12/bin/"
+      - "/nix/store/gh0ijwnyv6csn59yars8z8kxbnd31y8f-gawk-5.3.2/bin/"
+      - "/nix/store/l5ibq1yp8m7jibzgqbmpc46hkcnvv8fq-gnutar-1.35/bin/"
+      - "/nix/store/0hq8fc3ihp7clficpl72lxybfb23qvfc-gzip-1.14/bin/"
+      - "/nix/store/2xq4b1wjl6yklsqs86mf95lg9j8mbxvl-bzip2-1.0.8-bin/bin/"
+      - "/nix/store/bw02qy5hlr6a12p5f2apkk79204n20yh-gnumake-4.4.1/bin/"
+      - "/nix/store/j8645yndikbrvn292zgvyv64xrrmwdcb-bash-5.3p3/bin/"
+      - "/nix/store/mv1hg02434l28cf4vwg4qbrz2h967ms8-patch-2.8/bin/"
+      - "/nix/store/gq3243j1d8y6qgpcrgbbb0vxkbxzs0ix-xz-5.8.1-bin/bin/"
+      - "/nix/store/30k6wlj854gb3rw7ny2rj3fixn8xrx6p-file-5.45/bin/"
+      - "/run/wrappers/bin/"
+      - "/home/mannchri/.nix-profile/bin/"
+      - "/nix/profile/bin/"
+      - "/home/mannchri/.local/state/nix/profile/bin/"
+      - "/etc/profiles/per-user/mannchri/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/run/current-system/sw/bin/"
+      - "/nix/store/2lalvc104lladjsl0iwbc8592w0p8c7j-git-minimal-2.51.2/bin/"
+      - "/nix/store/rp5cl5rvzbm02rq0wiyx0kwiha2w1gna-which-2.23/bin/"
+      - "/nix/store/ax8fg6rkz3aizf3lpqigqn55rc6bjkqs-pkg-config-wrapper-0.29.2/bin/"
+      - "/nix/store/g35r73rnpfxq5alf7jlyibl4j5lf222y-cmake-4.1.2/bin/"
+      - "/nix/store/j78x359byap9gmawgc0zwzfffm40qg9y-ninja-1.13.1/bin/"
+      - "/nix/store/yng1lcnccgq66i68g4xg8y5qrk30y9s0-clang-wrapper-21.1.7/bin/"
+    searched_directories:
+      - "/nix/store/f43k3lffqlz3n864inxz8zf28jvks1q6-bash-interactive-5.3p3/bin/uname"
+      - "/nix/store/axrdk0z4gwqv9kpql2lgqq42l37m3yd1-patchelf-0.15.2/bin/uname"
+      - "/nix/store/myvv172x2am72534zgn9wx0qp5amq6a8-gcc-wrapper-14.3.0/bin/uname"
+      - "/nix/store/m1k4nxs8r0fl0pjxqp5n37vxgms7gdlb-gcc-14.3.0/bin/uname"
+      - "/nix/store/ijmp8r14ivvzk5r95lwx49bbv089003g-glibc-2.40-66-bin/bin/uname"
+    found: "/nix/store/iiishysy5bzkjrawxl4rld1s04qj0k0c-coreutils-9.8/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/nix/store/f43k3lffqlz3n864inxz8zf28jvks1q6-bash-interactive-5.3p3/bin"
+        - "/nix/store/axrdk0z4gwqv9kpql2lgqq42l37m3yd1-patchelf-0.15.2/bin"
+        - "/nix/store/myvv172x2am72534zgn9wx0qp5amq6a8-gcc-wrapper-14.3.0/bin"
+        - "/nix/store/m1k4nxs8r0fl0pjxqp5n37vxgms7gdlb-gcc-14.3.0/bin"
+        - "/nix/store/ijmp8r14ivvzk5r95lwx49bbv089003g-glibc-2.40-66-bin/bin"
+        - "/nix/store/iiishysy5bzkjrawxl4rld1s04qj0k0c-coreutils-9.8/bin"
+        - "/nix/store/4dh4138m8gbp56kh63j2pwgsfhf5l8v7-binutils-wrapper-2.44/bin"
+        - "/nix/store/v9zpzmigqkcjrw1jpf0zjc49y47cm55s-binutils-2.44/bin"
+        - "/nix/store/6wspvphn7hqyc3s98g3pzrdb7rlzjf4b-flutter-wrapped-3.38.3-sdk-links/bin"
+        - "/nix/store/iiishysy5bzkjrawxl4rld1s04qj0k0c-coreutils-9.8/bin"
+        - "/nix/store/6hcyzg88adcz37hn5pslwb06ck6pnq07-findutils-4.10.0/bin"
+        - "/nix/store/7ylvy12ylwy8wxya9i2ly8qkhiz7173r-diffutils-3.12/bin"
+        - "/nix/store/rm3yhwgahfrmshmcrv6cr28x4rz7881s-gnused-4.9/bin"
+        - "/nix/store/737jwbhw8ji13x9s88z3wpp8pxaqla92-gnugrep-3.12/bin"
+        - "/nix/store/gh0ijwnyv6csn59yars8z8kxbnd31y8f-gawk-5.3.2/bin"
+        - "/nix/store/l5ibq1yp8m7jibzgqbmpc46hkcnvv8fq-gnutar-1.35/bin"
+        - "/nix/store/0hq8fc3ihp7clficpl72lxybfb23qvfc-gzip-1.14/bin"
+        - "/nix/store/2xq4b1wjl6yklsqs86mf95lg9j8mbxvl-bzip2-1.0.8-bin/bin"
+        - "/nix/store/bw02qy5hlr6a12p5f2apkk79204n20yh-gnumake-4.4.1/bin"
+        - "/nix/store/j8645yndikbrvn292zgvyv64xrrmwdcb-bash-5.3p3/bin"
+        - "/nix/store/mv1hg02434l28cf4vwg4qbrz2h967ms8-patch-2.8/bin"
+        - "/nix/store/gq3243j1d8y6qgpcrgbbb0vxkbxzs0ix-xz-5.8.1-bin/bin"
+        - "/nix/store/30k6wlj854gb3rw7ny2rj3fixn8xrx6p-file-5.45/bin"
+        - "/run/wrappers/bin"
+        - "/home/mannchri/.nix-profile/bin"
+        - "/nix/profile/bin"
+        - "/home/mannchri/.local/state/nix/profile/bin"
+        - "/etc/profiles/per-user/mannchri/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/run/current-system/sw/bin"
+        - "/nix/store/2lalvc104lladjsl0iwbc8592w0p8c7j-git-minimal-2.51.2/bin"
+        - "/nix/store/rp5cl5rvzbm02rq0wiyx0kwiha2w1gna-which-2.23/bin"
+        - "/nix/store/ax8fg6rkz3aizf3lpqigqn55rc6bjkqs-pkg-config-wrapper-0.29.2/bin"
+        - "/nix/store/g35r73rnpfxq5alf7jlyibl4j5lf222y-cmake-4.1.2/bin"
+        - "/nix/store/j78x359byap9gmawgc0zwzfffm40qg9y-ninja-1.13.1/bin"
+        - "/nix/store/yng1lcnccgq66i68g4xg8y5qrk30y9s0-clang-wrapper-21.1.7/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/run/current-system/sw/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The system is: Linux - 6.12.65 - x86_64
+...

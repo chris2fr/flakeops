@@ -1,0 +1,3 @@
+/home/mannchri/work/git/phylum/client/build/linux/x64/debug/pdfium-download/CMakeFiles/pdfium-download.dir
+/home/mannchri/work/git/phylum/client/build/linux/x64/debug/pdfium-download/CMakeFiles/edit_cache.dir
+/home/mannchri/work/git/phylum/client/build/linux/x64/debug/pdfium-download/CMakeFiles/rebuild_cache.dir

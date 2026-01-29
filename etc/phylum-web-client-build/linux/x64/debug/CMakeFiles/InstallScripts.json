@@ -1,0 +1,14 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/flutter/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/irondash_engine_context/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/open_file_linux/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/printing/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/sqlite3_flutter_libs/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/super_native_extensions/cmake_install.cmake",
+		"/home/mannchri/work/git/phylum/client/build/linux/x64/debug/plugins/url_launcher_linux/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
