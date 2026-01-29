@@ -22,7 +22,7 @@ in
         nodejs
         mariadb
       ];
-      users.user.syncin = {
+      users.users.syncin = {
         isNormalUser = true;
         home = "/var/lib/syncin";
         uid = vars.uids.syncin;

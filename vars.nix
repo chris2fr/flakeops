@@ -1,6 +1,6 @@
 {
   uids = {
-    syncin = 505;
+    syncin = 1505;
 
   };
   gids = {
