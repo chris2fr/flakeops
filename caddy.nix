@@ -217,6 +217,17 @@ in {
           reverse_proxy 0.0.0.0:1234
         '';
       };
+      "phylum.roses.gdvoisins.com" = {
+        extraConfig = ''
+          reverse_proxy 0.0.0.0:2448
+        '';
+      };
+      "phydrive.roses.gdvoisins.com" = {
+        extraConfig = ''
+          root * /var/lib/syncin/phylum/phylum/client/build/web
+          fileserver
+        '';
+      };
     };
   };
 }
