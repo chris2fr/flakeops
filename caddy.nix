@@ -222,12 +222,6 @@ in {
           reverse_proxy 0.0.0.0:2448
         '';
       };
-      "phydrive.roses.gdvoisins.com" = {
-        extraConfig = ''
-          root * /var/www/phylum-client-build/web
-          file_server
-        '';
-      };
     };
   };
 }

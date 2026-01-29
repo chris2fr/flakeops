@@ -8,10 +8,22 @@ let
   vars = import ../vars.nix;
 in
 {
+
   containers.syncin = {
     autoStart = true;
     config = {
       system.stateVersion = "25.11";
+      systemd.services.phylum = {
+        wantedBy = [ "default.target" ];
+        description = "CopyParty";
+        serviceConfig = {
+          WorkingDirectory = "/var/lib/phylum";
+          User = "syncin";
+          Group = "services";
+        };
+        enable = true;
+        script = "${pkgs.go}/bin/go run -C server cmd/phylum.go  -W /var/lib/phylum/data/ -c /var/lib/phylum/data/config.yml serve";
+      };
       systemd.tmpfiles.rules = [
         "d /var/lib/syncin 775 syncin services"
         "d /var/lib/syncin/data 775 syncin services"
@@ -26,7 +38,7 @@ in
         gcc
         postgresql
         vips
-        
+
       ];
       users.users.syncin = {
         isNormalUser = true;
