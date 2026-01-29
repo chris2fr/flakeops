@@ -224,7 +224,7 @@ in {
       };
       "phydrive.roses.gdvoisins.com" = {
         extraConfig = ''
-          root * /var/lib/syncin/phylum/phylum/client/build/web
+          root * /var/www/phylum-web-client-build
           file_server
         '';
       };
