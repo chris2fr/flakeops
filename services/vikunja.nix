@@ -44,13 +44,13 @@ in {
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
         openid.providers = [
-          {
-            name = "keycloakGDVoisins";
-            authurl = "https://keycloak.gdvoisins.com/realms/master";
-            lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
-            clientid = "vikunja";
-            clientsecret.file = "/etc/vikunja/oidc_client_secret";
-          }
+          # {
+          #   name = "keycloakGDVoisins";
+          #   authurl = "https://keycloak.gdvoisins.com/realms/master";
+          #   lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
+          #   clientid = "vikunja";
+          #   clientsecret.file = "/etc/vikunja/oidc_client_secret";
+          # }
           # {
           #   name = "keyLesGrandsVoisinsCom";
           #   authurl = "https://key.lesgrandsvoisins.com/realms/master";
