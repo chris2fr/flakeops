@@ -25,6 +25,8 @@ in
         go
         gcc
         postgresql
+        vips
+        
       ];
       users.users.syncin = {
         isNormalUser = true;
