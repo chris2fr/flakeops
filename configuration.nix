@@ -86,10 +86,10 @@ in {
       file = ./secrets/keylesgrandsvoisins.vikunja.age;
       owner = "vikunja";
     };
-    "keycloakgdvoisins.vikunja" = {
-      file = ./secrets/keycloakgdvoisins.vikunja.age;
-      owner = "vikunja";
-    };
+    # "keycloakgdvoisins.vikunja" = {
+    #   file = ./secrets/keycloakgdvoisins.vikunja.age;
+    #   owner = "vikunja";
+    # };
     "key.sftpgo" = {
       file = ./secrets/key.sftpgo.age;
       owner = "sftpgo";
