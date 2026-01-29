@@ -24,7 +24,7 @@ in
         mariadb
         go
         gcc
-        # alist
+        postgresql
       ];
       users.users.syncin = {
         isNormalUser = true;
@@ -33,32 +33,39 @@ in
         group = "services";
       };
       users.groups.services.gid = vars.gids.services;
+      services.postgresql = {
+        enable = true;
+        ensureUsers = [
+          {
+            name = "phylum";
+            ensureDBOwnership = true;
+          }
+        ];
+        ensureDatabases = [ "phylum" ];
+      };
       services.mysql = {
         enable = true;
         package = pkgs.mariadb;
-        ensureDatabases = [ "syncin" "phylum" ];
+        ensureDatabases = [
+          "syncin"
+        ];
         ensureUsers = [
           {
             name = "syncin";
             ensurePermissions = {
               "syncin.*" = "ALL PRIVILEGES";
-              "phylum.*" = "ALL PRIVILEGES";
             };
           }
           {
             name = "phylum";
             ensurePermissions = {
               "syncin.*" = "ALL PRIVILEGES";
-              "phylum.*" = "ALL PRIVILEGES";
             };
           }
         ];
         initialDatabases = [
           {
             name = "syncin";
-          }
-          {
-            name = "pyhlum";
           }
         ];
       };
