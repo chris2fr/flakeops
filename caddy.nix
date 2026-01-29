@@ -219,10 +219,7 @@ in {
       };
       "phylum.roses.gdvoisins.com" = {
         extraConfig = ''
-          root * /var/www/phylum-client-build/web
           reverse_proxy /api/* 0.0.0.0:2448
-          reverse_proxy /login/* 0.0.0.0:2448
-          file_server
         '';
       };
     };
