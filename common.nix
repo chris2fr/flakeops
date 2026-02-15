@@ -48,5 +48,6 @@ in {
     nftables
     firefox
     seafile-client
+    parted
   ];
 }
