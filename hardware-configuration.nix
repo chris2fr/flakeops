@@ -27,7 +27,16 @@
     { device = "/dev/disk/by-uuid/ef48508f-476c-4f9d-9841-ff9205e24e57";
       fsType = "ext4";
     };
+  fileSystems."/mnt/chrisdata" =
+    { device = "/dev/disk/by-uuid/1dcbc13d-0ae8-424c-aadf-9998729c7cab";
+      fsType = "ext4";
+    };
+  fileSystems."/mnt/chrisdata2" =
+    { device = "/dev/disk/by-uuid/b4658615-c672-46b8-bfef-124046f54e85";
+      fsType = "ext4";
+    };
 
+    
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/C805-573F";
