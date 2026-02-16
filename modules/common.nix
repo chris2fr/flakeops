@@ -49,5 +49,8 @@ in {
     firefox
     seafile-client
     parted
+    python313Packages.pillow
+    python313Packages.pypillowfight
+    ffmpeg-full
   ];
 }
