@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
-  oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
-  jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
+  # oidcSeafileSecret = import ../secrets/oidc-seafile-secret.nix;
+  oidcRosesSecret = import ../secrets/oidc-roses-secret.nix;
+  jwtVouchSecret = import ../secrets/jwt-vouch-secret.nix;
 in {
   users.users.oauth2-proxy.extraGroups = ["nginx" "acme" "wwwrun"];
 

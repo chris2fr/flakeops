@@ -13,20 +13,19 @@ in {
   system.stateVersion = "25.11";
   imports = [
     ./hardware-configuration.nix
-    ./common.nix # Des configurations communes pratiques
-    ./networking.nix
-    ./users.nix
-    # ./httpd.nix
-    ./nfs.nix
-    # ./vouch.nix
-    ./nginx.nix
-    # ./seafile.nix
-    ./oauth2-proxy.nix
-    ./containers.nix
-    # ./haproxy.nix
-    # ./acme.nix
-    ./caddy.nix
-
+    ./modules/common.nix # Des configurations communes pratiques
+    ./modules/networking.nix
+    ./modules/users.nix
+    # ./modules/httpd.nix
+    ./modules/nfs.nix
+    # ./modules/vouch.nix
+    ./modules/nginx.nix
+    # ./modules/seafile.nix
+    ./modules/oauth2-proxy.nix
+    ./modules/containers.nix
+    # ./modules/haproxy.nix
+    # ./modules/acme.nix
+    ./modules/caddy.nix
   ];
   environment.systemPackages = with pkgs; [
     # agenix-cli

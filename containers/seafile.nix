@@ -3,11 +3,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   vars = import ../vars.nix;
-in
-{
+in {
   containers.seafile = {
     autoStart = true;
     privateNetwork = true;
@@ -19,7 +17,7 @@ in
         "d /var/lib/seafile/data 775 syncin services"
       ];
       imports = [
-        ../common.nix
+        ../modules/common.nix
       ];
       environment.systemPackages = with pkgs; [
         mariadb

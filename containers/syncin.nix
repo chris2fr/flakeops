@@ -3,18 +3,15 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   vars = import ../vars.nix;
-in
-{
-
+in {
   containers.syncin = {
     autoStart = true;
     config = {
       system.stateVersion = "25.11";
       systemd.services.phylum = {
-        wantedBy = [ "default.target" ];
+        wantedBy = ["default.target"];
         description = "Casiers électornaiues Phylum";
         serviceConfig = {
           WorkingDirectory = "/var/lib/phylum";
@@ -35,7 +32,7 @@ in
         "d /var/lib/syncin/data 775 syncin services"
       ];
       imports = [
-        ../common.nix
+        ../modules/common.nix
       ];
       environment.systemPackages = with pkgs; [
         nodejs
@@ -44,7 +41,6 @@ in
         gcc
         postgresql
         vips
-
       ];
       users.users.syncin = {
         isNormalUser = true;
@@ -61,7 +57,7 @@ in
             ensureDBOwnership = true;
           }
         ];
-        ensureDatabases = [ "phylum" ];
+        ensureDatabases = ["phylum"];
       };
       services.mysql = {
         enable = true;

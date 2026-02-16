@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  # oidcSeafileSecret = import ./ecrets/oidc-seafile-secret.nix;
-  oidcRosesSecret = import ./secrets/oidc-roses-secret.nix;
-  jwtVouchSecret = import ./secrets/jwt-vouch-secret.nix;
+  # oidcSeafileSecret = import ../ecrets/oidc-seafile-secret.nix;
+  oidcRosesSecret = import ../secrets/oidc-roses-secret.nix;
+  jwtVouchSecret = import ../secrets/jwt-vouch-secret.nix;
 in {
   services.nginx = {
     enable = false;
