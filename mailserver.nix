@@ -208,7 +208,7 @@ in {
       # startTls = true;
       # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       postfix = {
-        # filter = "(|(mail=%s)(cn=%s)(cn=%s@gv.je))";
+        filter = "(|(mail=%s)(cn=%s)(cn=%s@gv.je))";
         mailAttribute = "mail";
         uidAttribute = "mail";
         # filter = "(|(mail=%s)(uid=%s))";
