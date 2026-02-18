@@ -244,9 +244,10 @@ in {
     # };
 
     forwards = {
+      "renel@gv.je" = ["culture.coordination@gmail.com" "renel@gv.je"];
       "m.andrei@lgv.info" = ["m.andrei@outlook.com" "m.andrei@lgv.info"];
       "m.andrei@gdvoisins.com" = ["m.andrei@lgv.info"];
-      "m.andrei@lesgrandsvoisins.com" = [ "m.andrei@lgv.info"];
+      "m.andrei@lesgrandsvoisins.com" = ["m.andrei@lgv.info"];
       "contact@gdvoisins.com" = ["contact@lesgrandsvoisins.com" "contact@gdvoisins.com"];
       "robert@lgv.info" = ["baldridgeprogram@lgv.info"];
       "baldridgeprogram@lgv.info" = ["baldridgeprogram@gmail.com" "baldridgeprogram@lgv.info"];
