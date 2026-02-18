@@ -217,11 +217,11 @@ in {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # userFilter = "mail=%{user}";
-        userFilter = "(|(cn=%{user})(mail=%{user})";
+        userFilter = "(|(cn=%{user})(mail=%{user}))";
         # userAttrs = "mail cn displayName givenName";
         # userAttrs = "=mail_location=/var/vmail/ldap/%{ldap:cn}/mail/";
         # passFilter = "mail=%{user}";
-        passFilter = "(|(cn=%{user})(mail=%{user})";
+        passFilter = "(|(cn=%{user})(mail=%{user}))";
         passAttrs = "userPassword=password";
       };
     };
