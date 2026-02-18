@@ -210,8 +210,8 @@ in {
       postfix = {
         # filter = "(|(mail=%s)(uid=%s)(uid=%s@gdvoisins.org))";
         mailAttribute = "mail";
-        uidAttribute = "uid";
-        filter = "(|(mail=%s)(uid=%s))";
+        uidAttribute = "mail";
+        # filter = "(|(mail=%s)(uid=%s))";
       };
       dovecot = {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
