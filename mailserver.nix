@@ -219,7 +219,7 @@ in {
         # userFilter = "mail=%{user}";
         userFilter = "(|(cn=%{user})(mail=%{user})";
         # userAttrs = "mail cn displayName givenName";
-        userAttrs = "=home=/var/vmail/ldap/%{ldap:cn}/";
+        userAttrs = "=home=/var/vmail/ldap/%{ldap:cn}/mail/";
         # passFilter = "mail=%{user}";
         passFilter = "(|(cn=%{user})(mail=%{user})";
         passAttrs = "userPassword=password";
