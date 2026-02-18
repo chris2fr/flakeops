@@ -217,7 +217,7 @@ in {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # userFilter = "uid=%{user}";
-        userFilter = "cn=%{user}";
+        userFilter = "(|(cn=%{user})(mail=%{user})";
         # userAttrs = "mail cn displayName givenName";
         # passFilter = "uid=%{user}";
         passFilter = "cn=%{user}";
