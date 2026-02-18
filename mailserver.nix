@@ -210,17 +210,17 @@ in {
       postfix = {
         # filter = "(|(mail=%s)(uid=%s)(uid=%s@gdvoisins.org))";
         mailAttribute = "mail";
-        uidAttribute = "mail";
+        uidAttribute = "cn";
         # filter = "(|(mail=%s)(uid=%s))";
       };
       dovecot = {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
-        userFilter = "uid=%{user}";
-        # userFilter = "cn=%{user}";
+        # userFilter = "uid=%{user}";
+        userFilter = "cn=%{user}";
         # userAttrs = "mail cn displayName givenName";
-        passFilter = "uid=%{user}";
-        # passFilter = "cn=%{user}";
+        # passFilter = "uid=%{user}";
+        passFilter = "cn=%{user}";
         passAttrs = "userPassword=password";
       };
     };
