@@ -216,11 +216,11 @@ in {
       dovecot = {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
-        # userFilter = "uid=%{user}";
-        userFilter = "(|(cn=%{user})(mail=%{user})";
+        userFilter = "mail=%{user}";
+        # userFilter = "(|(cn=%{user})(mail=%{user})";
         # userAttrs = "mail cn displayName givenName";
         # passFilter = "uid=%{user}";
-        passFilter = "cn=%{user}";
+        passFilter = "mail=%{user}";
         passAttrs = "userPassword=password";
       };
     };
