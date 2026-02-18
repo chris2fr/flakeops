@@ -1,0 +1,10 @@
+dn: uid=reader,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=admin@paris14.cc,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=byaxwel@proton.me,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=gorichalain@yahoo.fr,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=contact@gdvoisins.org,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=jorgeminano4@gmail.com,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=shugafashionme@gmail.com,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=admin@discourse.paris14.cc,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=baldridgeprogram@gmail.com,ou=users,dc=lesgrandsvoisins,dc=com
+dn: uid=atelierdecomediemusicaleparis@gmail.com,ou=users,dc=lesgrandsvoisins,dc=com
