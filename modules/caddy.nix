@@ -85,15 +85,15 @@ in {
          order authorize before basicauth
 
       security {
-      	oauth identity provider keycloak {
-      		driver generic
-           realm keycloak
-      		client_id {env.KEYCLOAK_CLIENT_ID}
-      		client_secret {env.KEYCLOAK_CLIENT_SECRET}
-      		scopes profile openid email
-           extract all from userinfo
-      		metadata_url https://keycloak.gdvoisins.com/realms/master/.well-known/openid-configuration
-      	}
+      	# oauth identity provider keycloak {
+      	# 	driver generic
+        #    realm keycloak
+      	# 	client_id {env.KEYCLOAK_CLIENT_ID}
+      	# 	client_secret {env.KEYCLOAK_CLIENT_SECRET}
+      	# 	scopes profile openid email
+        #    extract all from userinfo
+      	# 	metadata_url https://keycloak.gdvoisins.com/realms/master/.well-known/openid-configuration
+      	# }
 
       	oauth identity provider keygvje {
       		driver generic
@@ -135,43 +135,43 @@ in {
       	}
 
 
-      	authentication portal keygdvoisinscom {
-      		crypto default token lifetime 3600
-      		crypto key sign-verify {env.JWT_SHARED_KEY}
-      		enable identity provider keycloak
-      		cookie domain gdvoisins.com
-      		ui {
-      			links {
-              "Copyparty" https://cp.roses.gdvoisins.com icon "las floppy-disk"
-              "Moi" "/whoami" icon "las la-user"
-            }
-            # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
-            # template generic "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/generic.template"
-            template login "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/login.template"
-            logo url "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            logo description "Les Grands Voisins"
-            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/css/lesgrandsvoisins.css" "text/css" "assets/css/lesgrandsvoisins.css"
-            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.png" "image/png" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            static_asset "assets/images/favicon.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
-            static_asset "assets/images/favicon.ico" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
-      		}
+      	# authentication portal keygdvoisinscom {
+      	# 	crypto default token lifetime 3600
+      	# 	crypto key sign-verify {env.JWT_SHARED_KEY}
+      	# 	enable identity provider keycloak
+      	# 	cookie domain gdvoisins.com
+      	# 	ui {
+      	# 		links {
+        #       "Copyparty" https://cp.roses.gdvoisins.com icon "las floppy-disk"
+        #       "Moi" "/whoami" icon "las la-user"
+        #     }
+        #     # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
+        #     # template generic "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/generic.template"
+        #     template login "${caddy-ui-lesgrandsvoisins}/assets/portal/templates/lesgrandsvoisins/login.template"
+        #     logo url "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        #     logo description "Les Grands Voisins"
+        #     # static_asset "${caddy-ui-lesgrandsvoisins}/assets/css/lesgrandsvoisins.css" "text/css" "assets/css/lesgrandsvoisins.css"
+        #     # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png" "text/css" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        #     # static_asset "${caddy-ui-lesgrandsvoisins}/assets/images/favicon.png" "image/png" "assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        #     static_asset "assets/images/logo-lesgrandsvoisins-800-400-white.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        #     static_asset "assets/images/favicon.png" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+        #     static_asset "assets/images/favicon.ico" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
+      	# 	}
 
-           transform user {
-             match origin keycloak
-      			action add role authp/user
-      		}
-      	}
+        #    transform user {
+        #      match origin keycloak
+      	# 		action add role authp/user
+      	# 	}
+      	# }
 
-      	authorization policy identifiedpolicy {
-      		set auth url https://auth.roses.gdvoisins.com
-      		allow roles guest authp/admin authp/user
-      		crypto key verify {env.JWT_SHARED_KEY}
-           set user identity subject
-           inject headers with claims
-           inject header "X-Username" from "userinfo|preferred_username"
-      	}
+      	# authorization policy identifiedpolicy {
+      	# 	set auth url https://auth.roses.gdvoisins.com
+      	# 	allow roles guest authp/admin authp/user
+      	# 	crypto key verify {env.JWT_SHARED_KEY}
+        #    set user identity subject
+        #    inject headers with claims
+        #    inject header "X-Username" from "userinfo|preferred_username"
+      	# }
 
         authorization policy keygvjeidentifiedpolicy {
       		set auth url https://key.roses.gv.je
@@ -181,6 +181,13 @@ in {
            inject headers with claims
            inject header "X-Username" from "userinfo|preferred_username"
       	}
+
+      	# authorization policy userpolicy {
+      	# 	set auth url https://key.roses.gdvoisins.com
+      	# 	allow roles authp/admin authp/user
+      	# 	crypto key verify {env.JWT_SHARED_KEY}
+        #   inject headers with claims
+      	# }
 
       	authorization policy keygvjeuserpolicy {
       		set auth url https://key.roses.gv.je
@@ -203,12 +210,12 @@ in {
         '';
       };
 
-      "auth.roses.gdvoisins.com" = {
-        extraConfig = ''
-          authenticate with keygdvoisinscom
-          respond "auth.roses.gdvoisins.com is running"
-        '';
-      };
+      # "auth.roses.gdvoisins.com" = {
+      #   extraConfig = ''
+      #     authenticate with keygdvoisinscom
+      #     respond "auth.roses.gdvoisins.com is running"
+      #   '';
+      # };
 
       "fontenay.gdvoisins.com" = {
         # tls /var/lib/acme/fontenay.gdvoisins.com/fullchain.pem /var/lib/acme/fontenay.gdvoisins.com/key.pem
