@@ -55,7 +55,8 @@ in {
             authurl = "https://key.gv.je/realms/master";
             lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
+            # clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
+            clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
           }
           {
             name = "keycloakGDVoisins";
@@ -63,7 +64,8 @@ in {
             authurl = "https://keycloak.gdvoisins.com/realms/master";
             lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
+            # clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
+            clientsecret.file = "/etc/vikunja/oidc_client_secret";
           }
           # {
           #   name = "keyLesGrandsVoisinsCom";
