@@ -60,7 +60,7 @@ in {
           {
             name = "keycloakGDVoisins";
             key = "keycloakGDVoisins";
-            authurl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/auth";
+            authurl = "https://keycloak.gdvoisins.com/realms/master";
             lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
