@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
 in {
   systemd.tmpfiles.rules = [
     "d /etc/vikunja 0755 vikunja services"
@@ -44,6 +48,13 @@ in {
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
         openid.providers = [
+          {
+            name = "key@gv.je";
+            authurl = "https://key.gv.je/realms/master";
+            lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
+          }
           {
             name = "keycloakGDVoisins";
             authurl = "https://keycloak.gdvoisins.com/realms/master";
