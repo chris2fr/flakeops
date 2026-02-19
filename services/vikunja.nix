@@ -42,8 +42,8 @@ in {
         "/etc/vikunja/.env"
       ];
       auth = {
-        local.enabled = false;
-        openid.enabled = true;
+        local.enabled = true;
+        openid.enabled = false;
         # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
@@ -56,14 +56,14 @@ in {
           #   clientid = "vikunja";
           #   clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
           # }
-          {
-            name = "keycloakGDVoisins";
-            key = "keycloakGDVoisins";
-            authurl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/auth";
-            lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
-            clientid = "vikunja";
-            clientsecret.file = "/etc/vikunja/oidc_client_secret";
-          }
+          # {
+          #   name = "keycloakGDVoisins";
+          #   key = "keycloakGDVoisins";
+          #   authurl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/auth";
+          #   lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
+          #   clientid = "vikunja";
+          #   clientsecret.file = "/etc/vikunja/oidc_client_secret";
+          # }
           # {
           #   name = "keyLesGrandsVoisinsCom";
           #   authurl = "https://key.lesgrandsvoisins.com/realms/master";
