@@ -183,10 +183,10 @@ in {
       	}
 
       	authorization policy keygvjeuserpolicy {
-      		set auth url https://key.roses.gdvoisins.com
+      		set auth url https://key.roses.gv.je
       		allow roles authp/admin authp/user
       		crypto key verify {env.JWT_SHARED_KEY}
-           inject headers with claims
+          inject headers with claims
       	}
 
          # user registration lgvur {
