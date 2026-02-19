@@ -147,7 +147,7 @@ in {
             hostname = "keycloak.gdvoisins.com";
             # hostname = "keycloak.coolgv.com";
             # hostname-admin = "adminkeycloak.coolgv.com";
-            db-url-port = "5434";
+            # db-url-port = "5434";
           };
           sslCertificate = "/var/lib/acme/keycloak.gdvoisins.com/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/keycloak.gdvoisins.com/key.pem";
