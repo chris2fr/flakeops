@@ -196,10 +196,10 @@ in {
     '';
 
     virtualHosts = {
-      "key.roses.gdvoisins.com" = {
+      "key.roses.gv.je" = {
         extraConfig = ''
           authenticate with keygvjeportal
-          respond "key.roses.gdvoisins.com is running"
+          respond "key.roses.gv.je is running"
         '';
       };
 
