@@ -20,7 +20,7 @@ in {
     # frontendHostname = "vikunja.gv.coop";
     # frontendHostname = "vikunja.village.ngo";
     # database.type = "postgres";
-    environmentFiles = ["/etc/vikunja/.env"];
+    # environmentFiles = ["/etc/vikunja/.env"];
     settings = {
       mailer = {
         enabled = true;
@@ -51,20 +51,21 @@ in {
         openid.providers = [
           {
             name = "keygvnje";
-            key = "keygvnje";
+            # key = "keygvnje";
             authurl = "https://key.gv.je/realms/master";
             lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
+            # clientsecret = "KEYGVJE_VIKUNJA_CLIENT_SECRET";
             # clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
             clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
           }
           {
             name = "keycloakGDVoisins";
-            key = "keycloakGDVoisins";
+            # key = "keycloakGDVoisins";
             authurl = "https://keycloak.gdvoisins.com/realms/master";
             lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            # clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
+            # clientsecret =  "KEYCLOAK_VIKUNJA_CLIENT_SECRET";
             clientsecret.file = "/etc/vikunja/oidc_client_secret";
           }
           # {
