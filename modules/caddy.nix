@@ -227,7 +227,7 @@ in {
       # request_header  X-REMOTE-GROUPS {rp.header.X-User-Roles}
       "cp.roses.gdvoisins.com" = {
         extraConfig = ''
-          authorize with identifiedpolicy
+          authorize with keygvjeidentifiedpolicy
           reverse_proxy https://[::1]:3923 {
             transport http {
               tls_server_name cp.roses.gdvoisins.com
