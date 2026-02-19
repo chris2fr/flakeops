@@ -66,7 +66,7 @@ in {
     #     # return =  "302 https://blog.lesgrandsvoisins.com";
     #     proxyPass = "http://localhost:8894/";
     #     extraConfig = nginxLocationWagtailExtraConfig + ''
-    #       # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+    #       # rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
     #     '';
     #   };
     #   locations."/favicon.ico" = { proxyPass = null; };
@@ -158,7 +158,7 @@ in {
               if ($host = 'gv.coop') {
                 return 301 $scheme://www.gv.coop$request_uri;
               }
-              # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-lesgrandsvoisins-com/login/?process=admin/login/ redirect;
+              # rewrite ^/admin/login/?$ https://www.gv.coop/accounts/oidc/key-gv-je/login/?process=admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -187,7 +187,7 @@ in {
             # if ($host != 'www.grandsvoisins.com') {
             #   return 301 $scheme://www.grandsvoisins.com$request_uri;
             # }
-            # rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            # rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -326,7 +326,7 @@ in {
           # if ($host = 'parisle.org') {
           #   return 301 $scheme://www.parisle.org$request_uri;
           # }
-          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
         '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -419,7 +419,7 @@ in {
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.gvois.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -512,7 +512,7 @@ in {
             if ($host = 'www.gvois.org') {
               return 301 $scheme://www.lesgv.org$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -605,7 +605,7 @@ in {
             if ($host = 'www.parisgv.org') {
               return 301 $scheme://www.parisgv.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -683,25 +683,21 @@ in {
       locations."/.well-known" = {proxyPass = null;};
     };
 
-    
-    
-    "www.lgv.info" = { 
+    "www.lgv.info" = {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/coopgv/";
       locations."/".extraConfig = ''
         return 301 https://info.grandsvoisins.org$request_uri;
       '';
-
     };
-    "www.lesgv.com" = { 
+    "www.lesgv.com" = {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/coopgv/";
       locations."/".extraConfig = ''
         return 302 https//www.grandsvoisins.com$request_uri;
       '';
-
     };
     "admin.lesgv.com" = {
       extraConfig = "# proxy_protocol off;";
@@ -754,8 +750,8 @@ in {
             if ($host = 'app.lesgv.com') {
               return 302 $scheme://www.lesgv.com$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/admin$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -818,8 +814,8 @@ in {
             if ($host = 'app.lgv.info') {
               return 302 $scheme://www.lgv.info$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/admin$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -882,8 +878,8 @@ in {
             if ($host = 'app.lgv.info') {
               return 302 $scheme://www.lgv.info$request_uri;
             }
-            rewrite ^/admin$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/admin$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
@@ -976,7 +972,7 @@ in {
             if ($host = 'www.parisle.org') {
               return 301 $scheme://www.parisle.com$request_uri;
             }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;
+            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
           '';
       };
       locations."/fr/accounts/profile/".extraConfig = ''
