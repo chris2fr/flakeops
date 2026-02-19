@@ -20,6 +20,7 @@ in {
     # frontendHostname = "vikunja.gv.coop";
     # frontendHostname = "vikunja.village.ngo";
     # database.type = "postgres";
+    environmentFiles = ["/etc/vikunja/.env"];
     settings = {
       mailer = {
         enabled = true;
@@ -48,22 +49,22 @@ in {
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
         openid.providers = [
-          # {
-          #   name = "keygvnje";
-          #   key = "keygvnje";
-          #   authurl = "https://key.gv.je/realms/master/protocol/openid-connect/auth";
-          #   lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
-          #   clientid = "vikunja";
-          #   clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
-          # }
-          # {
-          #   name = "keycloakGDVoisins";
-          #   key = "keycloakGDVoisins";
-          #   authurl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/auth";
-          #   lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
-          #   clientid = "vikunja";
-          #   clientsecret.file = "/etc/vikunja/oidc_client_secret";
-          # }
+          {
+            name = "keygvnje";
+            key = "keygvnje";
+            authurl = "https://key.gv.je/realms/master";
+            lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
+          }
+          {
+            name = "keycloakGDVoisins";
+            key = "keycloakGDVoisins";
+            authurl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/auth";
+            lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
+          }
           # {
           #   name = "keyLesGrandsVoisinsCom";
           #   authurl = "https://key.lesgrandsvoisins.com/realms/master";
