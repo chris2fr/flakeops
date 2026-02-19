@@ -248,6 +248,7 @@ in {
     # };
 
     forwards = {
+      "ateliercomediemusicaleparis@gv.je" = ["ateliercomediemusicaleparis@gmail.com" "ateliercomediemusicaleparis@gv.je"];
       "renel@gv.je" = ["culture.coordination@gmail.com" "renel@gv.je"];
       "m.andrei@lgv.info" = ["m.andrei@outlook.com" "m.andrei@lgv.info"];
       "m.andrei@gdvoisins.com" = ["m.andrei@lgv.info"];
