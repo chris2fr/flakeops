@@ -2,11 +2,12 @@
   uids = {
     syncin = 1505;
     seafile = 1506;
+    named = 991;
   };
   gids = {
     users = 100;
     services = 500;
-
+    named = 989;
   };
   ports = {
     syncin-http = 5080;
@@ -18,5 +19,4 @@
   ip6s = {
     syncin = "::1";
   };
-
 }

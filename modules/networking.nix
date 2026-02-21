@@ -2,20 +2,21 @@
   config,
   pkgs,
   lib,
+  # vars,
   ...
 }: let
   allowedTCPPorts = [22 80 81 82 83 84 85 86 87 88 443 444 445 446 447 448 449 450 451 452 453 454 455 636 53 111 2049 8088 41443 8334 30746 41443];
   allowedUDPPorts = [53 67 68 123 111 2049 4000 4001 4002 20048];
 in {
-  services.bind = {
-    enable = false;
-    zones = {
-      "roses.gdvoisins.com" = {
-        master = true;
-        file = "/etc/haproxy_dns_gdvoisins";
-      };
-    };
-  };
+  # services.bind = {
+  #   enable = false;
+  #   zones = {
+  #     "roses.gdvoisins.com" = {
+  #       master = true;
+  #       file = "/etc/haproxy_dns_gdvoisins";
+  #     };
+  #   };
+  # };
   networking = {
     useNetworkd = true;
     domain = "roses.gdvoisins.com";

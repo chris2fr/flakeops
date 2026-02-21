@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  vars,
+  # vars,
   ...
 }: let
   # oidcSeafileSecret = import ./secrets/oidc-seafile-secret.nix;
@@ -13,19 +13,20 @@ in {
   system.stateVersion = "25.11";
   imports = [
     ./hardware-configuration.nix
-    ./modules/common.nix # Des configurations communes pratiques
-    ./modules/networking.nix
-    ./modules/users.nix
-    # ./modules/httpd.nix
-    ./modules/nfs.nix
-    # ./modules/vouch.nix
-    ./modules/nginx.nix
-    # ./modules/seafile.nix
-    ./modules/oauth2-proxy.nix
-    ./modules/containers.nix
-    # ./modules/haproxy.nix
-    # ./modules/acme.nix
+    ./modules/bind.nix
     ./modules/caddy.nix
+    ./modules/common.nix # Des configurations communes pratiques
+    ./modules/containers.nix
+    ./modules/networking.nix
+    ./modules/nfs.nix
+    ./modules/nginx.nix
+    ./modules/oauth2-proxy.nix
+    ./modules/users.nix
+    # ./modules/acme.nix
+    # ./modules/haproxy.nix
+    # ./modules/httpd.nix
+    # ./modules/seafile.nix
+    # ./modules/vouch.nix
   ];
   environment.systemPackages = with pkgs; [
     # agenix-cli
