@@ -7,7 +7,7 @@
 in {
   imports = [
     # Include the results of the hardware scan.
-    # services/bind.nix
+    services/bind.nix
     services/haproxy.nix
     services/radicale.nix
     services/sftpgo.nix
