@@ -1,9 +1,3 @@
-flake-check:
-	nix flake check
-
-flake-build:
-	nix build .
-
 switch-flake:
 	git fetch
 	git switch resdigidell
@@ -11,3 +5,9 @@ switch-flake:
 	# git commit -am "Building new system"
 	# git push
 	sudo nixos-rebuild switch --upgrade --flake ./#nixos
+
+flake-check:
+	nix flake check
+
+flake-build:
+	nix build .
