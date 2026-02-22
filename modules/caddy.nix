@@ -112,7 +112,7 @@ in {
       		cookie domain gv.je
       		ui {
       			links {
-              "Copyparty" https://cp.roses.gdvoisins.com icon "las floppy-disk"
+              "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
@@ -142,7 +142,7 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-              "Copyparty" https://cp.roses.gdvoisins.com icon "las floppy-disk"
+              "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
@@ -243,7 +243,7 @@ in {
           authorize with keygvjeidentifiedpolicy
           reverse_proxy https://[::1]:3923 {
             transport http {
-              tls_server_name cp.roses.gdvoisins.com
+              tls_server_name cp.roses.gv.je
               tls_insecure_skip_verify
             }
           }
