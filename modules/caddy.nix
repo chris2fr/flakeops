@@ -97,11 +97,11 @@ in {
 
       	oauth identity provider keygvje {
       		driver generic
-          realm keygvje
+          realm key@gv.je
       		client_id {env.KEYGVJE_CLIENT_ID}
       		client_secret {env.KEYGVJE_CLIENT_SECRET}
       		scopes profile openid email
-           extract all from userinfo
+          extract all from userinfo
       		metadata_url https://key.gv.je/realms/master/.well-known/openid-configuration
       	}
 
