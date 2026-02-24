@@ -129,7 +129,7 @@ in {
       		}
 
            transform user {
-            match origin keygvje
+            match origin key@gv.je
       			action add role authp/user
       		}
       	}
