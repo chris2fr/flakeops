@@ -248,6 +248,7 @@ in {
     # };
 
     forwards = {
+      "benaluca@gv.je" = ["kalos.design.jardinage@gmail.com" "benaluca@gv.je"];
       "ateliercomediemusicaleparis@gv.je" = ["ateliercomediemusicaleparis@gmail.com" "ateliercomediemusicaleparis@gv.je"];
       "renel@gv.je" = ["culture.coordination@gmail.com" "renel@gv.je"];
       "m.andrei@lgv.info" = ["m.andrei@outlook.com" "m.andrei@lgv.info"];
