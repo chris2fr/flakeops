@@ -128,7 +128,7 @@ in {
             static_asset "assets/images/favicon.ico" "image/png" "${caddy-ui-lesgrandsvoisins}/assets/images/logo-lesgrandsvoisins-800-400-white.png"
       		}
 
-           transform user {
+          transform user {
             match origin key@gv.je
       			action add role authp/user
       		}
