@@ -50,7 +50,7 @@ in {
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
         openid.providers = [
           {
-            name = "key@gv.je";
+            name = "key.gv.je";
             # key = "keygvje";
             authurl = "https://key.gv.je/realms/master";
             lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
