@@ -51,7 +51,7 @@ in {
         openid.providers = [
           {
             name = "key@gv.je";
-            key = "keygvje";
+            # key = "keygvje";
             authurl = "https://key.gv.je/realms/master";
             lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
