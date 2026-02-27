@@ -43,8 +43,8 @@ in {
         "/etc/vikunja/.env"
       ];
       auth = {
-        local.enabled = false;
-        openid.enabled = true;
+        local.enabled = true;
+        openid.enabled = false;
         # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
