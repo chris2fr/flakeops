@@ -2,9 +2,14 @@
   config,
   pkgs,
   lib,
+  vars,
   ...
 }: let
 in {
+  systemd.tmpfiles.rules = [
+    "d /etc/sftpgo 0775 sftpgo services"
+    "f /etc/sftpgo/sftpgo-plugin-auth.json 0660 sftpgo services"
+  ];
   services.sftpgo = {
     enable = false;
     user = "sftpgo";
@@ -151,7 +156,7 @@ in {
           args = [
             "serve"
             "--config-file"
-            "/var/run/sftpgo/sftpgo-plugin-auth.json"
+            "/etc/sftpgo/sftpgo-plugin-auth.json"
           ];
           auth_options.scope = 5;
           auto_mtls = true;
