@@ -252,6 +252,11 @@ in {
           respond "roses.gdvoisins.com fonctionne."
         '';
       };
+      "roses.gv.je" = {
+        extraConfig = ''
+          redir https://key.roses.gv.je
+        '';
+      };
       "cp.roses.gdvoisins.com" = {
         extraConfig = ''
           redir https://cp.roses.gv.je{uri}
