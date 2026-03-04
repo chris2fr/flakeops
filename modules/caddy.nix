@@ -113,8 +113,8 @@ in {
       		cookie domain gv.je
       		ui {
       			links {
-              "Gitea.gv.je" https://gitea.roses.gv.je
-              "Copyparty.gv.je" https://cp.roses.gv.je
+              "Gitea.roses.gv.je" https://gitea.roses.gv.je
+              "Copyparty.roses.gv.je" https://cp.roses.gv.je
               "Moi.gv.je" https://moi.gv.je
               # "Gitea" https://gitea.roses.gv.je icon "lab git"
               # "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
