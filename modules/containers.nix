@@ -7,7 +7,7 @@
   vars = import ../vars.nix;
 in {
   imports = [
-    ../containers/syncin.nix
+    # ../containers/syncin.nix
     ../containers/seafile.nix
   ];
 }

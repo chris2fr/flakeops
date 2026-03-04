@@ -7,7 +7,7 @@
   vars = import ../vars.nix;
 in {
   containers.syncin = {
-    autoStart = true;
+    autoStart = false;
     config = {
       system.stateVersion = "25.11";
       systemd.services.phylum = {
