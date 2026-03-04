@@ -43,15 +43,15 @@ in {
       #   ENABLED = true;
       #   JWT_SECRET_URI = "file:/etc/gitea/oauth2_jwt_secret";
       # };
-      openid = {
-        ENABLE_OPENID_SIGNIN = true;
-        ENABLE_OPENID_SIGNUP = true;
-      };
+      # openid = {
+      #   ENABLE_OPENID_SIGNIN = true;
+      #   ENABLE_OPENID_SIGNUP = true;
+      # };
       service = {
         # ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
         # REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
         # ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
-        # DISABLE_REGISTRATION = true;
+        DISABLE_REGISTRATION = true;
         REQUIRE_SIGNIN_VIEW = true;
         ENABLE_BASIC_AUTHENTICATION = false;
         ENABLE_PASSWORD_SIGNIN_FORM = false;
