@@ -10,7 +10,7 @@ in {
   users.users.gitea.uid = vars.uid.gitea;
   networking.hosts = {
     # "::1" = [ "radicale.local" ];
-    "0.0.0.0" = ["radicale.local"];
+    "[::1]" = ["gitea.local"];
   };
   services.postgresql = {
     ensureUsers = [
@@ -35,18 +35,18 @@ in {
       type = "postgres";
       # socket = "/var/run/postgresql";
       host = "/var/run/postgresql";
-      port = 5434;
+      # port = 5434;
     };
     settings = {
       # oauth2 = {
       #   ENABLED = true;
       #   JWT_SECRET_URI = "file:/etc/gitea/oauth2_jwt_secret";
       # };
-      service = {
-        ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
-        REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
-        ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
-      };
+      # service = {
+      #   # ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
+      #   # REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
+      #   # ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
+      # };
       server = {
         ROOT_URL = "https://gitea.roses.gv.je";
         DISABLE_REGISTRATION = true;

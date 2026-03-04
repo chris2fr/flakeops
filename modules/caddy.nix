@@ -213,7 +213,7 @@ in {
 
       "gitea.roses.gv.je" = {
         extraConfig = ''
-          authorize with keygvjeidentifiedpolicy
+          # authorize with keygvjeidentifiedpolicy
           reverse_proxy https://[::1]:${builtins.toString vars.ports.gitea-https} {
             transport http {
               tls
