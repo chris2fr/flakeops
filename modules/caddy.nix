@@ -113,8 +113,10 @@ in {
       		cookie domain gv.je
       		ui {
       			links {
-              "Gitea" https://gitea.roses.gv.je icon "lab git"
-              "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
+              "Gitea.gv.je" https://gitea.roses.gv.je
+              "Copyparty.gv.je" https://cp.roses.gv.je
+              # "Gitea" https://gitea.roses.gv.je icon "lab git"
+              # "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
@@ -144,8 +146,10 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-              "Gitea.gv.je" https://gitea.roses.gv.jegitea.roses.gv.je icon "lab git"
-              "Copyparty.gv.je" https://cp.roses.gv.je icon "la save"
+              "Gitea.gv.je" https://gitea.roses.gv.jegitea.roses.gv.je
+              "Copyparty.gv.je" https://cp.roses.gv.je
+              # "Gitea.gv.je" https://gitea.roses.gv.jegitea.roses.gv.je icon "lab git"
+              # "Copyparty.gv.je" https://cp.roses.gv.je icon "la save"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
