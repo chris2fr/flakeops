@@ -87,7 +87,7 @@ in {
       security {
       	oauth identity provider keycloak {
       		driver generic
-           realm keycloak
+          realm keycloak
       		client_id {env.KEYCLOAK_CLIENT_ID}
       		client_secret {env.KEYCLOAK_CLIENT_SECRET}
       		scopes profile openid email
@@ -212,7 +212,7 @@ in {
 
       "auth.roses.gdvoisins.com" = {
         extraConfig = ''
-          authenticate with keygdvoisinscom
+          authenticate with keygvjeportal
           respond "auth.roses.gdvoisins.com is running"
         '';
       };
