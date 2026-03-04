@@ -144,7 +144,8 @@ in {
       		cookie domain gdvoisins.com
       		ui {
       			links {
-              "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
+              "Gitea.gv.je" https://gitea.roses.gv.je icon "lab git"
+              "Copyparty.gv.je" https://cp.roses.gv.je icon "la save"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
