@@ -45,10 +45,10 @@ in {
       users.users.syncin = {
         isNormalUser = true;
         home = "/var/lib/syncin";
-        uid = vars.uids.syncin;
+        uid = vars.uid.syncin;
         group = "services";
       };
-      users.groups.services.gid = vars.gids.services;
+      users.groups.services.gid = vars.gid.services;
       services.postgresql = {
         enable = true;
         ensureUsers = [

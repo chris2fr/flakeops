@@ -27,10 +27,10 @@ in {
       users.users.seafile = {
         isNormalUser = true;
         home = "/var/lib/syncin";
-        uid = vars.uids.seafile;
+        uid = vars.uid.seafile;
         group = "services";
       };
-      users.groups.services.gid = vars.gids.services;
+      users.groups.services.gid = vars.gid.services;
     };
   };
 }

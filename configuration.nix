@@ -17,10 +17,12 @@ in {
     ./modules/caddy.nix
     ./modules/common.nix # Des configurations communes pratiques
     ./modules/containers.nix
+    ./modules/gitea.nix
     ./modules/networking.nix
     ./modules/nfs.nix
     ./modules/nginx.nix
     ./modules/oauth2-proxy.nix
+    ./modules/postgresql.nix
     ./modules/users.nix
     # ./modules/acme.nix
     # ./modules/haproxy.nix
