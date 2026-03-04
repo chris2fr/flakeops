@@ -31,6 +31,7 @@ in {
   services.gitea = {
     enable = true;
     group = "services";
+    mailerPasswordFile = "/etc/gitea/.listlesgrandsvoisinscom";
     database = {
       type = "postgres";
       # socket = "/var/run/postgresql";
@@ -42,13 +43,19 @@ in {
       #   ENABLED = true;
       #   JWT_SECRET_URI = "file:/etc/gitea/oauth2_jwt_secret";
       # };
-      # service = {
-      #   # ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
-      #   # REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
-      #   # ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
-      # };
+      openid = {
+        ENABLE_OPENID_SIGNIN = true;
+        ENABLE_OPENID_SIGNUP = true;
+      };
+      service = {
+        # ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
+        # REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
+        # ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
+        DISABLE_REGISTRATION = true;
+      };
       server = {
         ROOT_URL = "https://gitea.roses.gv.je";
+        # LOCAL_ROOT_URL
         DISABLE_REGISTRATION = true;
         PROTOCOL = "https";
         HTTP_PORT = vars.ports.gitea-https;
@@ -66,7 +73,7 @@ in {
       mailer = {
         ENABLED = true;
         PROTOCOL = "smtps";
-        SMTP_ADDR = "mail.ldesgrandsvoisins.com";
+        SMTP_ADDR = "mail.lesgrandsvoisins.com";
         SMTP_PORT = "465";
         FROM = "Gitea Service <list@lesgrandsvoisins.com>";
         USER = "list@lesgrandsvoisins.com";

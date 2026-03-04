@@ -114,6 +114,7 @@ in {
       		ui {
       			links {
               "Copyparty" https://cp.roses.gv.je icon "las floppy-disk"
+              "Gitea" https://gitea.roses.gv.je icon "lab git"
               "Moi" "/whoami" icon "las la-user"
             }
             # custom html header path "${caddy-ui-lesgrandsvoisins}/assets/html/header-lesgrandsvoisins.html"
