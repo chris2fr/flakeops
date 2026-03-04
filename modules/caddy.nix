@@ -9,6 +9,7 @@
   # nix-flake-caddy-lesgrandsvoisins.inputs.nixpkgs.follows = "nixpkgs";
   # caddy-ui-lesgv = callPackage ../flakes/caddy-ui {}
   # caddy-ui-pkg = caddy-ui-lesgv.outputs;
+  vars = import ../vars.nix;
   caddy-ui-lesgrandsvoisins = pkgs.callPackage ../derivations/caddy-ui-lesgrandsvoisins.nix {};
 in {
   services.caddy = {
@@ -207,6 +208,21 @@ in {
         extraConfig = ''
           authenticate with keygvjeportal
           respond "key.roses.gv.je is running"
+        '';
+      };
+
+      "gitea.roses.gv.je" = {
+        extraConfig = ''
+          authorize with keygvjeidentifiedpolicy
+          reverse_proxy https://[::1]:${builtins.toString vars.ports.gitea-https} {
+            transport http {
+              tls
+              tls_server_name gitea.local
+              tls_trust_pool file {
+                pem_file /etc/gitea/certs/gitea.local.pem
+              }
+            }
+          }
         '';
       };
 

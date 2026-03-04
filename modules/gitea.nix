@@ -25,8 +25,8 @@ in {
     "d /etc/gitea 0755 gitea services"
     "d /etc/gitea/certs 0755 gitea services"
     "f /etc/gitea/oauth2_jwt_secret 0640 gitea services"
-    "L /var/run/postgresql/.s.PGSQL.5434                  -    -    -     -           /var/run/postgresql/.s.PGSQL.5432"
-    "L+  ${pkgs.gitea}/bin/gitea - - - - /tmp/gitea"
+    # "L /var/run/postgresql/.s.PGSQL.5434                  -    -    -     -           /var/run/postgresql/.s.PGSQL.5432"
+    # "L+  ${pkgs.gitea}/bin/gitea - - - - /etc/gitea/gitea"
   ];
   services.gitea = {
     enable = true;
@@ -48,15 +48,15 @@ in {
         ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
       };
       server = {
-        ROOT_URL = "https://gitea.gv.je";
+        ROOT_URL = "https://gitea.roses.gv.je";
         DISABLE_REGISTRATION = true;
         PROTOCOL = "https";
         HTTP_PORT = vars.ports.gitea-https;
         SSH_PORT = vars.ports.gitea-ssh;
-        # CERT_FILE = "/etc/gitea/certs/gitea.local.pem";
-        # KEY_FILE = "/etc/gitea/certs/gitea.local-key.pem";
-        CERT_FILE = "/etc/gitea/certs/cert.pem";
-        KEY_FILE = "/etc/gitea/certs/key.pem";
+        CERT_FILE = "/etc/gitea/certs/gitea.local.pem";
+        KEY_FILE = "/etc/gitea/certs/gitea.local-key.pem";
+        # CERT_FILE = "/etc/gitea/certs/cert.pem";
+        # KEY_FILE = "/etc/gitea/certs/key.pem";
       };
       "cron.sync_external_users" = {
         RUN_AT_START = true;
