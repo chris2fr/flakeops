@@ -51,7 +51,10 @@ in {
         # ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
         # REVERSE_PROXY_AUTHENTICATION_USER = "X_REMOTE_USER"; # Otherwise X-WEBAUTH-USER
         # ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
-        DISABLE_REGISTRATION = true;
+        # DISABLE_REGISTRATION = true;
+        REQUIRE_SIGNIN_VIEW = true;
+        ENABLE_BASIC_AUTHENTICATION = false;
+        ENABLE_PASSWORD_SIGNIN_FORM = false;
       };
       server = {
         ROOT_URL = "https://gitea.roses.gv.je";
