@@ -38,7 +38,14 @@ in {
   ];
   services.caddy.virtualHosts."forgejo.roses.gv.je" = {
     extraConfig = ''
-      reverse_proxy https://${builtins.elemAt vars.ip6s.hosts 1}:${builtins.toString vars.ports.forgejo-https}
+      reverse_proxy https://forgejo.lan:${builtins.toString vars.ports.forgejo-https} {
+        transport http {
+          tls
+          tls_trust_pool file {
+            pem_file /etc/gitea/certs/cert.pem
+          }
+        }
+      }
     '';
   };
   services.postgresql = {
