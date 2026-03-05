@@ -17,6 +17,7 @@ in {
     ./modules/caddy.nix
     ./modules/common.nix # Des configurations communes pratiques
     ./modules/containers.nix
+    ./modules/forgejo.nix
     ./modules/gitea.nix
     ./modules/networking.nix
     ./modules/nfs.nix
