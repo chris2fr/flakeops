@@ -13,7 +13,7 @@ in {
   };
   networking.hosts = {
     # "::1" = [ "radicale.local" ];
-    "[${builtins.elemAt vars.ip6s.hosts 1}]" = ["forgejo.lan"];
+    "${builtins.elemAt vars.ip6s.hosts 1}" = ["forgejo.lan"];
   };
   systemd.services.forgeo-init = {
     serviceConfig = {

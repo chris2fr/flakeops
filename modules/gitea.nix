@@ -10,7 +10,7 @@ in {
   users.users.gitea.uid = vars.uid.gitea;
   networking.hosts = {
     # "::1" = [ "radicale.local" ];
-    "[::1]" = ["gitea.local"];
+    "::1" = ["gitea.local"];
   };
   services.postgresql = {
     ensureUsers = [
