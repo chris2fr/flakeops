@@ -41,7 +41,8 @@ in {
     settings = {
       cors = {
         ENABLED = true;
-        ALLOW_DOMAIN = "https://public.gv.je";
+        # ALLOW_DOMAIN = "https://public.gv.je";
+        ALLOW_CREDENTIALS = true;
       };
       oauth2 = {
         ENABLED = true;
