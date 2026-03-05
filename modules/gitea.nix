@@ -39,10 +39,14 @@ in {
       # port = 5434;
     };
     settings = {
-      # oauth2 = {
-      #   ENABLED = true;
-      #   JWT_SECRET_URI = "file:/etc/gitea/oauth2_jwt_secret";
-      # };
+      cors = {
+        ENABLED = true;
+        ALLOW_DOMAIN = "https://public.gv.je";
+      };
+      oauth2 = {
+        ENABLED = true;
+        # JWT_SECRET_URI = "file:/etc/gitea/oauth2_jwt_secret";
+      };
       # openid = {
       #   ENABLE_OPENID_SIGNIN = true;
       #   ENABLE_OPENID_SIGNUP = true;
