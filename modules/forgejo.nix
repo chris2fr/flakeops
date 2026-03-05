@@ -113,7 +113,7 @@ in {
         ROOT_URL = "https://forgejo.roses.gv.je";
         # LOCAL_ROOT_URL
         DISABLE_REGISTRATION = true;
-        HTTP_ADDR = "forgejo.lan";
+        HTTP_ADDR = "${builtins.elemAt vars.ip6s.hosts 1}";
         HTTP_PORT = vars.ports.forgejo-https;
         SSH_PORT = vars.ports.forgejo-ssh;
         CERT_FILE = "/etc/forgejo/certs/cert.pem";
