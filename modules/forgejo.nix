@@ -9,6 +9,7 @@
 in {
   users.users.forgejo = {
     uid = vars.uid.forgejo;
+    group = "services";
   };
   networking.hosts = {
     # "::1" = [ "radicale.local" ];
@@ -17,11 +18,14 @@ in {
   systemd.services.forgeo-init = {
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.forgejo}/bin/forgejo --cert forgejo.lan ";
+      ExecStart = ''
+        forgejo cert --host forgejo.lan;
+        chown forgejo:services *
+      '';
       RemainAfterExit = "yes";
       WorkingDirectory = "/etc/forgejo/certs";
-      User = "forgejo";
-      Group = "services";
+      # User = "forgejo";
+      # Group = "services";
     };
     path = [pkgs.forgejo];
     # enableDefaultPath = true;
@@ -32,7 +36,7 @@ in {
   environment.systemPackages = with pkgs; [
     forgejo
   ];
-  services.caddy.virtualHosts."forgejo.gv.je" = {
+  services.caddy.virtualHosts."forgejo.roses.gv.je" = {
     extraConfig = ''
       reverse_proxy https://${builtins.elemAt vars.ip6s.hosts 1}:${builtins.toString vars.ports.forgejo-https}
     '';
@@ -109,7 +113,7 @@ in {
         ROOT_URL = "https://forgejo.roses.gv.je";
         # LOCAL_ROOT_URL
         DISABLE_REGISTRATION = true;
-        HTTP_ADDR = "forgeojo.local";
+        HTTP_ADDR = "forgejo.lan";
         HTTP_PORT = vars.ports.forgejo-https;
         SSH_PORT = vars.ports.forgejo-ssh;
         CERT_FILE = "/etc/forgejo/certs/cert.pem";
