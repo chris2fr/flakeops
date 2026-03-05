@@ -41,8 +41,9 @@ in {
       reverse_proxy https://forgejo.lan:${builtins.toString vars.ports.forgejo-https} {
         transport http {
           tls
+          tls_server_name forgejo.lan
           tls_trust_pool file {
-            pem_file /etc/gitea/certs/cert.pem
+            pem_file /etc/forgejo/certs/cert.pem
           }
         }
       }
