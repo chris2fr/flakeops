@@ -45,6 +45,7 @@ in {
           tls_trust_pool file {
             pem_file /etc/forgejo/certs/cert.pem
           }
+          tls_insecure_skip_verify
         }
       }
     '';
