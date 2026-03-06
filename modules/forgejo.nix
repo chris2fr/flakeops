@@ -15,24 +15,24 @@ in {
     # "::1" = [ "radicale.local" ];
     "${builtins.elemAt vars.ip6s.hosts 1}" = ["forgejo.lan"];
   };
-  systemd.services.forgeo-init = {
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = ''
-        forgejo cert --host forgejo.lan;
-        chown forgejo:services *
-      '';
-      RemainAfterExit = "yes";
-      WorkingDirectory = "/etc/forgejo/certs";
-      # User = "forgejo";
-      # Group = "services";
-    };
-    path = [pkgs.forgejo];
-    # enableDefaultPath = true;
-    wantedBy = ["multi-user.target"];
-    description = "Initiate the Forgejo service mainly with statistics";
-    enable = true;
-  };
+  # systemd.services.forgeo-init = {
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = ''
+  #       forgejo cert --host forgejo.lan;
+  #       chown forgejo:services *
+  #     '';
+  #     RemainAfterExit = "yes";
+  #     WorkingDirectory = "/etc/forgejo/certs";
+  #     # User = "forgejo";
+  #     # Group = "services";
+  #   };
+  #   path = [pkgs.forgejo];
+  #   # enableDefaultPath = true;
+  #   wantedBy = ["multi-user.target"];
+  #   description = "Initiate the Forgejo service mainly with statistics";
+  #   enable = true;
+  # };
   environment.systemPackages = with pkgs; [
     forgejo
   ];
@@ -112,7 +112,7 @@ in {
         # REGISTER_EMAIL_CONFIRM = "disable";
         REGISTER_EMAIL_CONFIRM = false;
         ENABLE_AUTO_REGISTRATION = true;
-        USERNAME = "nickname";
+        USERNAME = "email";
         UPDATE_AVATAR = true;
         ACCOUNT_LINKING = "auto";
       };
