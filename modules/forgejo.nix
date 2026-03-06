@@ -129,6 +129,8 @@ in {
         KEY_FILE = "/etc/forgejo/certs/key.pem";
         # CERT_FILE = "/etc/forgejo/certs/cert.pem";
         # KEY_FILE = "/etc/forgejo/certs/key.pem";
+        START_SSH_SERVER = true;
+        LFS_START_SERVER = true;
       };
       "cron.sync_external_users" = {
         RUN_AT_START = true;
