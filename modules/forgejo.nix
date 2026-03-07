@@ -38,9 +38,7 @@ in {
   ];
   services.caddy.virtualHosts."forgejo.roses.gv.je" = {
     extraConfig = ''
-      handle /user/login {
-        redir /user/oauth2/key.gv.je
-      }
+      redir /user/login /user/oauth2/key.gv.je
       reverse_proxy https://forgejo.lan:${builtins.toString vars.ports.forgejo-https} {
 
         transport http {
