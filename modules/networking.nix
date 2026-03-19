@@ -81,6 +81,13 @@ in {
     };
     nftables = {
       enable = true;
+      # ruleset = ''
+      #   table ip forgejo {
+      #     chain forward {
+      #       tcp sport 3222 dnat to :::3222
+      #     }
+      #   }
+      # '';
     };
     # bridges = {
     #   br0 = {
