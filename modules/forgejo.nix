@@ -127,6 +127,7 @@ in {
         HTTP_ADDR = "${builtins.elemAt vars.ip6s.hosts 1}";
         HTTP_PORT = vars.ports.forgejo-https;
         SSH_PORT = vars.ports.forgejo-ssh;
+        SSH_LISTEN_HOST = "0.0.0.0";
         CERT_FILE = "/etc/forgejo/certs/cert.pem";
         KEY_FILE = "/etc/forgejo/certs/key.pem";
         # CERT_FILE = "/etc/forgejo/certs/cert.pem";

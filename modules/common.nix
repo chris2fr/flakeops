@@ -52,5 +52,6 @@ in {
     python313Packages.pillow
     python313Packages.pypillowfight
     ffmpeg-full
+    net-tools
   ];
 }
