@@ -204,7 +204,116 @@ in {
     "www.lesgrandsvoisins.com" = {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
-        "meet.resdigita.com"
+        "www.lesgrandsvoisins.fr"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      # root = "/var/www/lesgrandsvoisins/";
+      root = "/var/www/coopgv/";
+      locations."/index.php" = {
+        extraConfig = ''
+          return 404;
+        '';
+      };
+      extraConfig = ''
+        # proxy_protocol off;
+        if ($host = 'meet.resdigita.com') {
+          return 302 https://jitsi.grandzine.org/resdigita;
+        }
+        if ($host = 'www.gdvoisins.org') {
+          return 302 https://www.gdvoisins.com$request_uri;
+        }
+        if ($host = 'www.lesgrandsvoisins.fr') {
+          return 302 https://www.lesgrandsvoisins.com$request_uri;
+        }
+        # Static assets: cache for a year (with versioned filenames)
+        location ~* \.(?:css|js|woff2?|ttf|eot|ico|gif|jpg|jpeg|png|webp|svg)$ {
+            expires 1w;
+            add_header Cache-Control "public, max-age=31536000, immutable";
+        }
+
+        # HTML: cache very briefly (optional)
+        location ~* \.(?:html)$ {
+            expires 5m;
+            add_header Cache-Control "public, max-age=300, must-revalidate";
+        }
+
+        # # API responses: no caching
+        # location /api/ {
+        #     add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+        #     proxy_pass http://localhost:8080;
+        # }
+
+        # Optionally disable ETag if you rely on versioned files
+        etag off;
+      '';
+      locations."/" = {
+        # return =  "302 https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:8904/";
+        # proxyPass = "http://localhost:8894/";
+        # extraConfig = nginxLocationWagtailExtraConfig + ''
+        extraConfig = ''
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_redirect off;
+          proxy_http_version 1.1;
+          proxy_set_header X-Forwarded-Proto $scheme;
+
+          # add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+
+          expires 5m;
+          add_header Cache-Control "public, max-age=300, must-revalidate";
+
+          # proxy_set_header Host $host;
+          # proxy_set_header Upgrade $http_upgrade;
+          # proxy_set_header Connection $connection_upgrade_keepalive;
+          # return 302 $scheme://www.grandsvoisins.com$request_uri;
+          if ($host = 'www.gvois.org') {
+            return 301 $scheme://www.gvois.com$request_uri;
+          }
+          # if ($host = 'grandsvoisins.org') {
+          #   return 301 $scheme://www.grandsvoisins.org$request_uri;
+          # }
+          # if ($host = 'lgv.info') {
+          #   return 301 $scheme://www.lgv.info$request_uri;
+          # }
+          # if ($host = 'lesgrandsvoisins.fr') {
+          #   return 301 $scheme://www.lesgrandsvoisins.fr$request_uri;
+          # }
+          # if ($host = 'lesgv.com') {
+          #   return 301 $scheme://www.lesgv.com$request_uri;
+          # }
+          # if ($host = 'lesgv.org') {
+          #   return 301 $scheme://www.lesgv.org$request_uri;
+          # }
+          # if ($host = 'parisle.com') {
+          #   return 301 $scheme://www.parisle.com$request_uri;
+          # }
+          # if ($host = 'yanlomsprod.parisle.org') {
+          #   return 301 $scheme://yanlomsprod.parisle.com$request_uri;
+          # }
+          # if ($host = 'coopgv.com') {
+          #   return 301 $scheme://www.coopgv.com$request_uri;
+          # }
+          # if ($host = 'parisle.org') {
+          #   return 301 $scheme://www.parisle.org$request_uri;
+          # }
+          rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+        '';
+      };
+      locations."/fr/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/en/accounts/profile/".extraConfig = ''
+        return 302 /;
+      '';
+      locations."/favicon.ico" = {proxyPass = null;};
+      locations."/static" = {proxyPass = null;};
+      locations."/media" = {proxyPass = null;};
+      locations."/medias" = {proxyPass = null;};
+      locations."/.well-known" = {proxyPass = null;};
+    };
+    "meet.resdigita.com" = {
+      serverAliases = [
         "admin.parisle.com"
         "ai.parisle.com"
         "alt.lesgrandsvoisins.com"
@@ -213,7 +322,6 @@ in {
         "gvcoop.lesgrandsvoisins.com"
         "test.lesgrandsvoisins.com"
         "www.coopgv.com"
-        "www.lesgrandsvoisins.fr"
         "yanlomsprod.parisle.com"
         "yanlomsprod.parisle.org"
         # "excellenxport.hopgv.com"
