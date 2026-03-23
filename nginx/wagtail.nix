@@ -80,19 +80,19 @@ in {
       root = "/var/www/html/";
       serverAliases = [
         # "hopgv.org"
-        "lesgv.com"
+        # "lesgv.com"
         "coopgv.com"
         "coopgv.org"
         "grandsvoisins.com"
         "grandsvoisins.org"
         # "gv.coop"
         "libregood.com"
-        "gvcoop.com"
-        "gvcoop.org"
-        "interet-public.org"
-        "interetpublic.org"
-        "lesgrandsvoisins.com"
-        "lesgrandsvoisins.fr"
+        # "gvcoop.com"
+        # "gvcoop.org"
+        # "interet-public.org"
+        # "interetpublic.org"
+        # "lesgrandsvoisins.com"
+        # "lesgrandsvoisins.fr"
         "lesgv.org"
         # "ngovillage.org"
         # "ngvillage.org"
@@ -104,9 +104,9 @@ in {
         # "gdvox.com"
         # "parisle.org"
         # "parislenuage.com"
-        "resdigita.com"
+        # "resdigita.com"
         "resdigita.org"
-        "shitmuststop.com"
+        # "shitmuststop.com"
         # "village.ngo"
         # "village.ong"
         # "villagengo.com"
@@ -114,13 +114,13 @@ in {
         # "villageparis.org"
         # "syprete.com"
         # "cfran.org"
-        "l-g-v.org"
+        # "l-g-v.org"
         "l-g-v.com"
         "maelanc.com"
-        "gdvoisins.com"
-        "l14s.com"
-        "gdv1.com"
-        "gdv1.org"
+        # "gdvoisins.com"
+        # "l14s.com"
+        # "gdv1.com"
+        # "gdv1.org"
         "yanlomsprod.org"
         "gdvoisins.org"
         "gvois.org"
@@ -130,6 +130,22 @@ in {
         "configmagic.com"
         "grandv.org"
         "parisle.com"
+      ];
+      extraConfig = ''
+        return 301 $scheme://www.$host$request_uri;
+      '';
+    };
+    "lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/html/";
+      serverAliases = [
+        "lesgv.com"
+        "lesgrandsvoisins.fr"
+        "gdvoisins.com"
+        "resdigita.com"
+        # "resdigita.org"
+        "shitmuststop.com"
       ];
       extraConfig = ''
         return 301 $scheme://www.$host$request_uri;
@@ -205,6 +221,14 @@ in {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
         "www.lesgrandsvoisins.fr"
+        "www.gdvoisins.com"
+        "en.gdvoisins.com"
+        "fr.archive.gdvoisins.com"
+        "en.archive.gdvoisins.com"
+        "archive.gdvoisins.com"
+        "fr.gdvoisins.com"
+        "www.gdvoisins.org"
+        "old.gdvoisins.org"
       ];
       enableACME = true;
       forceSSL = true;
@@ -328,14 +352,6 @@ in {
         # "old.lesgrandsvoisins.com"
         "meet.mann.faith"
         "www.yanlomsprod.org"
-        "www.gdvoisins.com"
-        "en.gdvoisins.com"
-        "fr.archive.gdvoisins.com"
-        "en.archive.gdvoisins.com"
-        "archive.gdvoisins.com"
-        "fr.gdvoisins.com"
-        "www.gdvoisins.org"
-        "old.gdvoisins.org"
         # "www.lgv.info"
       ];
       enableACME = true;
