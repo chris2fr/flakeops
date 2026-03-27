@@ -35,6 +35,7 @@
     "gv.je"
     "libregood.com"
   ];
+  roundcube-ui-gv = pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix;
 in {
   imports = [
     ./mailserver/sogo.nix
@@ -375,6 +376,7 @@ in {
       $config['smtp_server'] = "ssl://mail.lesgrandsvoisins.com";
       $config['smtp_user'] = "%u";
       $config['smtp_pass'] = "%p";
+      $config['plugins'] = array('floating_button');
       # $config['oauth_provider'] = 'generic';
       # $config['oauth_provider_name'] = 'authentik';
       # $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
