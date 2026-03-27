@@ -948,7 +948,7 @@ in {
       forceSSL = true;
       root = "/var/www/coopgv/";
       locations."/".extraConfig = ''
-        return 302 https://www.grandsvoisins.com$request_uri;
+        return 302 https://www.lesgrandsvoisins.com$request_uri;
       '';
     };
     "admin.lesgv.com" = {
