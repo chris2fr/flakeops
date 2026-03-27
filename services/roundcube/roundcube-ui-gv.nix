@@ -8,8 +8,6 @@ pkgs.stdenv.mkDerivation {
     ''
       mkdir -p $out/plugins/roundcube-ui-gv
       cp -a $src/floating_button.php $out/plugins/roundcube-ui-gv/floating_button.php
-      mkdir -p /var/lib/roundcube/plugins
-      ln -s $out/plugins/roundcube-ui-gv /var/lib/roundcube/plugins/roundcube-ui-gv
     ''
   ];
 }

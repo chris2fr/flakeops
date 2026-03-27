@@ -6,6 +6,7 @@
 }: let
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
+  roundcube-ui-gv = pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix {};
   mailServerDomainAliases = [
     "maelanc.com"
     "gvcoop.org"
@@ -43,13 +44,17 @@ in {
     ./mailserver/httpd.nix
     ./mailserver/fail2ban.nix
   ];
+  systemd.tmpfiles.rules = [
+    "d /var/lib/roundcube/plugins 0755 roundcube roundcube"
+    "L+ ${roundcube-ui-gv}/roundcube-ui-gv -    -    -     - /var/lib/roundcube/roundcube-ui-gv"
+  ];
   environment.systemPackages = [
     pkgs.sogo
     # pkgs.postgresql_14
     pkgs.openldap
     pkgs.pwgen
     pkgs.roundcube
-    (pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix {})
+    roundcube-ui-gv
   ];
   age.secrets = {
     "oauthpassword" = {
