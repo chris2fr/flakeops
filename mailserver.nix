@@ -35,7 +35,7 @@
     "gv.je"
     "libregood.com"
   ];
-  roundcube-ui-gv = pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix;
+  # roundcube-ui-gv = pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix;
 in {
   imports = [
     ./mailserver/sogo.nix
@@ -43,11 +43,13 @@ in {
     ./mailserver/httpd.nix
     ./mailserver/fail2ban.nix
   ];
-  environment.systemPackages = with pkgs; [
-    sogo
-    # postgresql_14
-    openldap
-    pwgen
+  environment.systemPackages = [
+    pkgs.sogo
+    # pkgs.postgresql_14
+    pkgs.openldap
+    pkgs.pwgen
+    pkgs.roundcube
+    (pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix {})
   ];
   age.secrets = {
     "oauthpassword" = {

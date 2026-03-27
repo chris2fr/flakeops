@@ -6,10 +6,10 @@ pkgs.stdenv.mkDerivation {
   nativeBuildInputs = [];
   installPhase = pkgs.lib.strings.concatStrings [
     ''
-      mkdir -p $out/plugins/${name}
-      cp -a $src/floating_button.php $out/plugins/${name}/floating_button.php
+      mkdir -p $out/plugins/roundcube-ui-gv
+      cp -a $src/floating_button.php $out/plugins/roundcube-ui-gv/floating_button.php
       mkdir -p /var/lib/roundcube/plugins
-      ln -s $out/plugins/${name} /var/lib/roundcube/plugins/${name}
+      ln -s $out/plugins/roundcube-ui-gv /var/lib/roundcube/plugins/roundcube-ui-gv
     ''
   ];
 }
