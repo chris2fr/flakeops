@@ -140,8 +140,17 @@ in {
       forceSSL = true;
       root = "/var/www/html/";
       serverAliases = [
-        "lesgv.com"
         "lesgrandsvoisins.fr"
+      ];
+      extraConfig = ''
+        return 301 $scheme://www.$host$request_uri;
+      '';
+    };
+    "lesgv.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/html/";
+      serverAliases = [
         "gdvoisins.com"
         "resdigita.com"
         # "resdigita.org"
