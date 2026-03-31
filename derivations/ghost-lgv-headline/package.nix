@@ -12,7 +12,7 @@
   ...
 }:
 stdenv.mkDerivation rec {
-  pname = "memos";
+  pname = "ghost-lgv-headline";
   version = "gv0.26.1";
 
   # meta.mainProgram = "memos";
