@@ -46,7 +46,7 @@ in {
   ];
   systemd.tmpfiles.rules = [
     "d /var/lib/roundcube/plugins 0755 roundcube roundcube"
-    "L+ ${roundcube-ui-gv}/roundcube-ui-gv -    -    -     - /var/lib/roundcube/roundcube-ui-gv"
+    "L+ ${roundcube-ui-gv}/plugins/roundcube-ui-gv -    -    -     - /var/lib/roundcube/plugins/roundcube-ui-gv"
   ];
   environment.systemPackages = [
     pkgs.sogo

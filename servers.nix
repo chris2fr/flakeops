@@ -9,11 +9,15 @@
   #   url="https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
   #   sha256="sha256:1rj0cazl5kjcfn4433fj31293yx421wbawryp5q3bq3fsmhkkr9h";
   # };
+  ghostTemplate = lib.callPackage ./derivations/ghost-lgv-headline/package.nix {};
 in {
   # imports = [
   #   (import "${home-manager}/nixos")
   # ];
   ## Apostrophe CMS
+  systemd.tmpfiles.rules = [
+    "L+ /var/www/ghost/content/themes/current - - - - ${ghostTemplate}"
+  ];
   users.users.aaa = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [mannchriRsaPublic];
