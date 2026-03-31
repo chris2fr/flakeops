@@ -13,15 +13,15 @@
 }:
 stdenv.mkDerivation rec {
   pname = "ghost-lgv-headline";
-  version = "gv0.26.1";
+  version = "gv1.26.3";
 
   # meta.mainProgram = "memos";
 
   src = fetchFromGitHub {
     owner = "lesgrandsvoisins";
     repo = "ghost-lgv-headline";
-    rev = "gv0.26.2";
-    hash = "sha256-EmnRL4hwXzbht1U20bG+nfgPzLn3hwd2I2I8iYNaZOA=";
+    rev = "gv1.26.3";
+    hash = "sha256-nJwl85rfZX4ngVlboRIwF5P7y9PFqJTmKi0SIJHa2pM=";
   };
 
   buildPhase = ''
