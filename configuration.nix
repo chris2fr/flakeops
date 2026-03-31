@@ -27,8 +27,8 @@ in {
     ./systemd.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
-    ./servers.nix # I am migrating other services here
-    ./services.nix
+    ./servers.nix
+    ./services.nix # I am migrating other services here
     ./containers.nix
     ./nginx.nix
     ./security.nix
