@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
-    mkdir $out
+    mkdir -p $out
     cp -a . $out
   '';
 }
