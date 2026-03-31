@@ -24,11 +24,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-rLCj5PH4W1VIOC8fPihHJ1vQooesQVP6ijZvjsfL/AQ=";
   };
 
-  buildInputs = [
-    # go_1_26
-  ];
-
-  installPhase = ''
+  buildPhase = ''
     mkdir -p $out
     cp -a . $out
   '';
