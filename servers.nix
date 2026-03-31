@@ -16,8 +16,8 @@ in {
   # ];
   ## Apostrophe CMS
   systemd.tmpfiles.rules = [
-    "L /var/www/ghost/content/themes/current - - - - ${ghostTemplate}"
-    "L /var/www/ghost/content/themes/lgvblog - - - - ${ghostTemplate}"
+    "L /var/www/ghost/content/themes/current - - - - symlink/${ghostTemplate}"
+    "L /var/www/ghost/content/themes/lgvblog - - - - symlink/${ghostTemplate}"
   ];
   users.users.aaa = {
     isNormalUser = true;

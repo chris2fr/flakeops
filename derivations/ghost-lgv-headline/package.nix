@@ -20,8 +20,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "lesgrandsvoisins";
     repo = "ghost-lgv-headline";
-    rev = "gv0.26.1";
-    hash = "sha256-rLCj5PH4W1VIOC8fPihHJ1vQooesQVP6ijZvjsfL/AQ=";
+    rev = "gv0.26.2";
+    hash = "sha256-EmnRL4hwXzbht1U20bG+nfgPzLn3hwd2I2I8iYNaZOA=";
   };
 
   buildPhase = ''
