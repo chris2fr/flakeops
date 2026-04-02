@@ -217,7 +217,9 @@ in {
       # startTls = true;
       # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       postfix = {
-        filter = "(|(mail=%s)(cn=%s)(cn=%s@gv.je))";
+        filter = "(mail=%s)";
+        # filter = "(|(mail=%s)(cn=%s))";
+        # filter = "(|(mail=%s)(cn=%s)(cn=%s@gv.je))";
         mailAttribute = "mail";
         uidAttribute = "mail";
         # filter = "(|(mail=%s)(uid=%s))";
@@ -225,12 +227,12 @@ in {
       dovecot = {
         # userFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
         # passFilter = "(|(uid=%{user}@gdvoisins.org)(uid=%{user})(mail=%{user})(mail=%{user}@gdvoisins.org)))";
-        # userFilter = "mail=%{user}";
-        userFilter = "(|(cn=%{user})(mail=%{user}))";
+        userFilter = "mail=%{user}";
+        # userFilter = "(|(cn=%{user})(mail=%{user}))";
         # userAttrs = "mail cn displayName givenName";
         # userAttrs = "=mail_location=/var/vmail/ldap/%{ldap:cn}/mail/";
-        # passFilter = "mail=%{user}";
-        passFilter = "(|(cn=%{user})(mail=%{user}))";
+        passFilter = "mail=%{user}";
+        # passFilter = "(|(cn=%{user})(mail=%{user}))";
         passAttrs = "userPassword=password";
       };
     };
