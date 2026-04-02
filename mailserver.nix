@@ -34,6 +34,7 @@
     "gafam.us"
     "gdvoisins.org"
     "gv.je"
+    "mail.gv.je"
     "libregood.com"
   ];
   # roundcube-ui-gv = pkgs.callPackage ./services/roundcube/roundcube-ui-gv.nix;
