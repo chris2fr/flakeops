@@ -30,6 +30,9 @@ in {
       lib,
       ...
     }: {
+      imports = [
+        ../common.nix
+      ];
       # imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
         (

@@ -24,6 +24,9 @@ in {
       lib,
       ...
     }: {
+      imports = [
+        ../common.nix
+      ];
       environment.systemPackages = with pkgs; [
         (
           (vim-full.override {}).customize {

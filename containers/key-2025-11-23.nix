@@ -99,6 +99,9 @@ in {
   #   };
   # };
   containers.key = {
+    imports = [
+      ../common.nix
+    ];
     bindMounts = {
       "/var/lib/acme/key.lesgrandsvoisins.com/" = {
         hostPath = "/var/lib/acme/key.lesgrandsvoisins.com/";

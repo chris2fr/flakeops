@@ -31,6 +31,9 @@ in {
       lib,
       ...
     }: {
+      imports = [
+        ../common.nix
+      ];
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "25.11";
