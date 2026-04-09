@@ -14,8 +14,8 @@ BEGIN { RS=""; FS="\n" }
   dn=""; cn=""
   for(i=1;i<=NF;i++){
     split($i,a,": ")
-    if(a[0] ~ /^dn/) dn=a[1]
-    if(a[0] ~ /^cn/) cn=a[1]
+    if($i ~ /^dn:/) dn=substr($i,5)
+    if($i ~ /^cn:/) cn=substr($i,5)
   }
   if(dn && cn){
     split(cn,a,"@")
@@ -39,9 +39,8 @@ BEGIN { RS=""; FS="\n" }
 {
   dn=""; initials=""
   for(i=1;i<=NF;i++){
-    split($i,a,": ")
-    if(a[0] ~ /^dn/) dn=a[1]
-    if(a[0] ~ /^initials/) cn=a[1]
+    if($i ~ /^dn:/) dn=substr($i,5)
+    if($i ~ /^initials:/) initials=substr($i,11)
   }
   if(dn && initials){
     print "dn: " dn
