@@ -19,7 +19,7 @@ BEGIN { RS=""; FS="\n" }
   if(dn && cn){
     split(cn,a,"@")
     initials=a[1]
-    print "dn: " dn
+    print dn
     print "changetype: modify"
     print "add: initials"
     print "initials: " initials
@@ -42,7 +42,7 @@ BEGIN { RS=""; FS="\n" }
     if($i ~ /^initials:/) initials=$i
   }
   if(dn && initials){
-    print "dn: " dn
+    print dn
     print "changetype: modify"
     print "add: mail"
     print "mail: " initials "@gv.je"
