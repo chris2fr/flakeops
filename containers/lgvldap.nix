@@ -107,12 +107,38 @@ in {
             };
             # Flake this
             children = {
+              "cn=module{0}" = {
+                attrs = {
+                  objectClass = ["olcModuleList"];
+                  olcModuleLoad = ["rwm"];
+                };
+              };
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
               ];
+              "olcDatabase={1}mdb".children = {
+                "olcOverlay=rwm" = {
+                  attrs = {
+                    objectClass = ["olcOverlayConfig" "olcRwmConfig"];
+                    olcOverlay = "rwm";
+
+                    olcRwmRewriteEngine = "TRUE";
+
+                    olcRwmMap = [
+                      "attribute initials cn"
+                    ];
+
+                    olcRwmRewrite = [
+                      "rwm-rewriteEngine on"
+                      "rwm-rewriteContext searchEntryAttr"
+                      ''rwm-rewriteRule "^([^@]+)@.*$" "$1" ":"''
+                    ];
+                  };
+                };
+              };
               "olcDatabase={1}mdb".attrs = {
                 objectClass = ["olcDatabaseConfig" "olcMdbConfig"];
                 olcDbIndex = [

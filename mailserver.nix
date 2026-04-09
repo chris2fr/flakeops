@@ -277,7 +277,7 @@ in {
       "max@gdvoisins.com" = ["max@lesgrandsvoisins.com" "max@gdvoisins.com"];
       "sviatlana@gdvoisins.com" = ["sviatlana@lesgrandsvoisins.com" "sviatlana@gdvoisins.com"];
       "mael@gdvoisins.com" = ["mael@lesgrandsvoisins.com" "mael@gdvoisins.com"];
-      "arezki@gdvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezki@gdvoisins.com"];
+      # "arezki@gdvoisins.com" = ["arezki@lesgrandsvoisins.com" "arezki@gdvoisins.com"];
       "clhomme@gdvoisins.com" = ["clhomme@lesgrandsvoisins.com" "clhomme@gdvoisins.com"];
       "ruben@gdvoisins.com" = ["ruben@lesgrandsvoisins.com" "ruben@gdvoisins.com"];
       "discourseadmin@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
