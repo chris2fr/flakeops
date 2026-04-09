@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  updateInitials = import ./update-initials.nix {inherit pkgs;};
+  updateInitials = import ./update-initials/flake.nix {inherit pkgs;};
   vars = import ../../vars.nix;
 in {
   environment.systemPackages = [updateInitials];
