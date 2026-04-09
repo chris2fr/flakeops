@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  updateOpenldap = import ./openldap-initials/flake.nix {inherit pkgs;};
+  updateOpenldap = import ./openldap-initials/default.nix {inherit pkgs;};
   vars = import ../vars.nix;
 in {
   environment.systemPackages = [updateOpenldap];
