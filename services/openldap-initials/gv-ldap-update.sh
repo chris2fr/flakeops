@@ -48,4 +48,8 @@ BEGIN { RS=""; FS="\n" }
     print "mail: " initials "@gv.je"
     print ""
   }
-}' > /tmp/mail.ldif
+}' > /tmp/ldap-mail.ldif
+
+if [ -s /tmp/ldap-mail.ldif ]; then
+  ldapmodify -x -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" -f /tmp/ldap-mail.ldif
+fi

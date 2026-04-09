@@ -12,7 +12,7 @@ pkgs.stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp gv-ldap-update.sh $out/bin/gv-ldap-update.sh
+    cp ${src}/gv-ldap-update.sh $out/bin/gv-ldap-update.sh
     chmod +x $out/bin/gv-ldap-update.sh
   '';
 }
