@@ -17,6 +17,7 @@
     radicale = 504;
     syncin = 1505;
     named = 991;
+    services = 500;
   };
   ports = {
     postgresql = 5434;
@@ -31,6 +32,7 @@
     lldap-http = 17170;
     lldap-ldap = 3890;
     radicale = 5232;
+    services = 505;
     radicale-public = 5252;
     xandikos = 10888;
   };
