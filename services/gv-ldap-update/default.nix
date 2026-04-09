@@ -3,8 +3,8 @@
   lib ? pkgs.lib,
 }:
 pkgs.stdenv.mkDerivation rec {
-  pname = "update-initials";
-  version = "1.0";
+  pname = "gv-ldap-update";
+  version = "v0.0.1";
 
   src = ./.;
 

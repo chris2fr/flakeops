@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  updateOpenldap = import ./openldap-initials/default.nix {inherit pkgs;};
+  gv-ldap-update = import ./gv-ldap-update/default.nix {inherit pkgs;};
   vars = import ../vars.nix;
 in {
   environment.systemPackages = [updateOpenldap];
@@ -28,11 +28,11 @@ in {
   # '';
   # environment.etc."ldap-initials.env".mode = "0600"; # secure
 
-  systemd.services.update-initials = {
+  systemd.services.gv-ldap-update = {
     description = "Populate LDAP initials if missing";
     serviceConfig.Type = "oneshot";
     serviceConfig.EnvironmentFile = "/etc/gv.je/ldap.env";
-    serviceConfig.ExecStart = "${updateOpenldap}/bin/update-initials.sh";
+    serviceConfig.ExecStart = "${gv-ldap-update}/bin/gv-ldap-update.sh";
     serviceConfig = {
       # WorkingDirectory = "/home/guichet/guichet";
       User = "services";
@@ -40,7 +40,7 @@ in {
     };
   };
 
-  systemd.timers.update-initials = {
+  systemd.timers.gv-ldap-update = {
     description = "Run LDAP initials update hourly";
     timerConfig.OnCalendar = "hourly";
     timerConfig.Persistent = true;

@@ -8,11 +8,11 @@ in {
   imports = [
     # Include the results of the hardware scan.
     services/bind.nix
+    services/gv-ldap-update.nix
     services/haproxy.nix
     services/radicale.nix
     services/sftpgo.nix
     services/vikunja.nix
-    services/openldap-initials.nix
     # services/syncthing.nix
     services/homepage-dashboard.nix
   ];

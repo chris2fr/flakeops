@@ -24,7 +24,7 @@
           services.openldap.enable = true;
 
           # Add the LDAP initials update script
-          environment.etc."update-initials.sh".text = ''
+          environment.etc."gv-ldap-update.sh".text = ''
             #!/usr/bin/env bash
             set -euo pipefail
 
@@ -60,17 +60,17 @@
           '';
 
           # Make script executable
-          environment.etc."update-initials.sh".mode = "0755";
+          environment.etc."gv-ldap-update.sh".mode = "0755";
 
           # Define systemd service
-          systemd.services.update-initials = {
+          systemd.services.gv-ldap-update = {
             description = "Populate LDAP initials if missing";
             serviceConfig.Type = "oneshot";
-            serviceConfig.ExecStart = "/etc/update-initials.sh";
+            serviceConfig.ExecStart = "/etc/gv-ldap-update.sh";
           };
 
           # Define systemd timer
-          systemd.timers.update-initials = {
+          systemd.timers.gv-ldap-update = {
             description = "Run LDAP initials update hourly";
             timerConfig.OnCalendar = "hourly";
             timerConfig.Persistent = true;
