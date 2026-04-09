@@ -3,10 +3,10 @@
   pkgs,
   ...
 }: let
-  updateInitials = import ./update-initials/flake.nix {inherit pkgs;};
+  updateOpenldap = import ./openldap-initials/flake.nix {inherit pkgs;};
   vars = import ../vars.nix;
 in {
-  environment.systemPackages = [updateInitials];
+  environment.systemPackages = [updateOpenldap];
 
   systemd.tmpfiles.rules = [
     "d /etc/gv.je 0775 services services"
@@ -32,7 +32,7 @@ in {
     description = "Populate LDAP initials if missing";
     serviceConfig.Type = "oneshot";
     serviceConfig.EnvironmentFile = "/etc/ldap-initials.env";
-    serviceConfig.ExecStart = "${updateInitials}/bin/update-initials.sh";
+    serviceConfig.ExecStart = "${updateOpenldap}/bin/update-initials.sh";
     serviceConfig = {
       # WorkingDirectory = "/home/guichet/guichet";
       User = "services";
