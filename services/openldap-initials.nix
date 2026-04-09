@@ -17,6 +17,7 @@ in {
     group = "services";
     isSystemUser = true;
   };
+  users.groups.services.gid = vars.gid.services;
 
   # Ensure the environment file exists
   # environment.etc."ldap-initials.env".text = ''
