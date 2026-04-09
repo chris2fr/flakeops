@@ -10,6 +10,7 @@ in {
     gv-ldap-update
     pkgs.gawk
     pkgs.openldap
+    pkgs.bash
   ];
 
   systemd.tmpfiles.rules = [
@@ -42,6 +43,11 @@ in {
       User = "services";
       Group = "services";
     };
+    path = with pkgs; [
+      gawk
+      bash
+      openldap
+    ];
   };
 
   systemd.timers.gv-ldap-update = {
