@@ -6,7 +6,11 @@
   gv-ldap-update = import ./gv-ldap-update/default.nix {inherit pkgs;};
   vars = import ../vars.nix;
 in {
-  environment.systemPackages = [gv-ldap-update];
+  environment.systemPackages = [
+    gv-ldap-update
+    pkgs.gawk
+    pkgs.openldap
+  ];
 
   systemd.tmpfiles.rules = [
     "d /etc/gv.je 0775 services services"
@@ -42,7 +46,7 @@ in {
 
   systemd.timers.gv-ldap-update = {
     description = "Run LDAP initials update hourly";
-    timerConfig.OnCalendar = "hourly";
+    timerConfig.OnCalendar = "*:0/20"; # every 20 minutes
     timerConfig.Persistent = true;
     wantedBy = ["timers.target"];
   };
