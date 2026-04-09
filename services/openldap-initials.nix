@@ -14,7 +14,7 @@ in {
   ];
   users.users.services = {
     uid = vars.uid.services;
-    group = services;
+    group = "services";
     isSystemUser = true;
   };
 
