@@ -21,7 +21,7 @@ pkgs.stdenv.mkDerivation rec {
         # BIND_PW="secret"
         # BASE_DN="dc=example,dc=com"
 
-        ldapsearch -x -LLL -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
+        ldapsearch -Z -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
           -b "$BASE_DN" "(&(cn=*)(!(initials=*)))" dn cn |
         awk '
         BEGIN { RS=""; FS="\n" }
@@ -46,7 +46,7 @@ pkgs.stdenv.mkDerivation rec {
           ldapmodify -x -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" -f /tmp/ldap-initials.ldif
         fi
 
-        ldapsearch -x -LLL -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
+        ldapsearch -Z -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
           -b "$BASE_DN" "(&(cn=*)(!(mail=*@gv.je)((initials=*)))" dn initials |
         awk '
         BEGIN { RS=""; FS="\n" }

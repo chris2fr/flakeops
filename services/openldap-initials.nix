@@ -10,7 +10,7 @@ in {
 
   systemd.tmpfiles.rules = [
     "d /etc/gv.je 0775 services services"
-    "d /etc/gv.je/ldap 0600 services services"
+    "f /etc/gv.je/ldap.env 0600 services services"
   ];
   users.users.services = {
     uid = vars.uid.services;
@@ -31,7 +31,7 @@ in {
   systemd.services.update-initials = {
     description = "Populate LDAP initials if missing";
     serviceConfig.Type = "oneshot";
-    serviceConfig.EnvironmentFile = "/etc/ldap-initials.env";
+    serviceConfig.EnvironmentFile = "/etc/gv.je/ldap.env";
     serviceConfig.ExecStart = "${updateOpenldap}/bin/update-initials.sh";
     serviceConfig = {
       # WorkingDirectory = "/home/guichet/guichet";
