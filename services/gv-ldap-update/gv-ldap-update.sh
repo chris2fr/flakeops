@@ -33,7 +33,7 @@ if [ -s /tmp/ldap-initials.ldif ]; then
 fi
 
 ldapsearch -Z -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
-  -b "$BASE_DN" "(&(cn=*)(!(mail=*@gv.je)((initials=*)))" dn initials |
+  -b "$BASE_DN" "(&(cn=*)(!(mail=*@gv.je))(initials=*))" dn initials |
 awk '
 BEGIN { RS=""; FS="\n" }
 {
