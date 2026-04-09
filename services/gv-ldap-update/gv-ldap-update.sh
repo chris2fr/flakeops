@@ -15,7 +15,7 @@ BEGIN { RS=""; FS="\n" }
   for(i=1;i<=NF;i++){
     split($i,a,": ")
     if(a[0] ~ /^dn/) dn=a[1]
-    if(a[0] ~ /^cn:/) cn=a[1]
+    if(a[0] ~ /^cn/) cn=a[1]
   }
   if(dn && cn){
     split(cn,a,"@")
