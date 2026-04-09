@@ -45,6 +45,25 @@ pkgs.stdenv.mkDerivation rec {
         if [ -s /tmp/ldap-initials.ldif ]; then
           ldapmodify -x -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" -f /tmp/ldap-initials.ldif
         fi
+
+        ldapsearch -x -LLL -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
+          -b "$BASE_DN" "(&(cn=*)(!(mail=*@gv.je)((initials=*)))" dn initials |
+        awk '
+        BEGIN { RS=""; FS="\n" }
+        {
+          dn=""; initials=""
+          for(i=1;i<=NF;i++){
+            if($i ~ /^dn:/) dn=$i
+            if($i ~ /^initials:/) initials=$i
+          }
+          if(dn && initials){
+            print "dn: " dn
+            print "changetype: modify"
+            print "add: mail"
+            print "mail: " initials "@gv.je"
+            print ""
+          }
+        }' > /tmp/mail.ldif
     EOF
 
         chmod +x $out/bin/update-initials.sh
