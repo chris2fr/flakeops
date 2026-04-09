@@ -13,8 +13,9 @@ BEGIN { RS=""; FS="\n" }
 {
   dn=""; cn=""
   for(i=1;i<=NF;i++){
-    if($i ~ /^dn:/) dn=$i
-    if($i ~ /^cn:/) cn=$i
+    split($i,a,": ")
+    if(a[0] ~ /^dn/) dn=a[1]
+    if(a[0] ~ /^cn:/) cn=a[1]
   }
   if(dn && cn){
     split(cn,a,"@")
@@ -38,11 +39,12 @@ BEGIN { RS=""; FS="\n" }
 {
   dn=""; initials=""
   for(i=1;i<=NF;i++){
-    if($i ~ /^dn:/) dn=$i
-    if($i ~ /^initials:/) initials=$i
+    split($i,a,": ")
+    if(a[0] ~ /^dn/) dn=a[1]
+    if(a[0] ~ /^initials/) cn=a[1]
   }
   if(dn && initials){
-    print dn
+    print "dn: " dn
     print "changetype: modify"
     print "add: mail"
     print "mail: " initials "@gv.je"
