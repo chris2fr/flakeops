@@ -4,7 +4,7 @@
   ...
 }: let
   updateInitials = import ./update-initials/flake.nix {inherit pkgs;};
-  vars = import ../../vars.nix;
+  vars = import ../vars.nix;
 in {
   environment.systemPackages = [updateInitials];
 
@@ -19,12 +19,12 @@ in {
   };
 
   # Ensure the environment file exists
-  environment.etc."ldap-initials.env".text = ''
-    LDAP_URI="ldapi:///"
-    BIND_DN="cn=admin,dc=example,dc=com"
-    BIND_PW="secret"
-    BASE_DN="dc=example,dc=com"
-  '';
+  # environment.etc."ldap-initials.env".text = ''
+  #   LDAP_URI="ldapi:///"
+  #   BIND_DN="cn=admin,dc=example,dc=com"
+  #   BIND_PW="secret"
+  #   BASE_DN="dc=example,dc=com"
+  # '';
   environment.etc."ldap-initials.env".mode = "0600"; # secure
 
   systemd.services.update-initials = {
