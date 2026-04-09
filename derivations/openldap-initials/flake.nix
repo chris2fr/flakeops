@@ -28,10 +28,10 @@
             #!/usr/bin/env bash
             set -euo pipefail
 
-            LDAP_URI="ldapi:///"
-            BIND_DN="cn=admin,dc=example,dc=com"
-            BIND_PW="secret"
-            BASE_DN="dc=example,dc=com"
+            # LDAP_URI="ldapi:///"
+            # BIND_DN="cn=admin,dc=example,dc=com"
+            # BIND_PW="secret"
+            # BASE_DN="dc=example,dc=com"
 
             ldapsearch -x -LLL -H "$LDAP_URI" -D "$BIND_DN" -w "$BIND_PW" \
               -b "$BASE_DN" "(&(cn=*)(!(initials=*)))" dn cn |
