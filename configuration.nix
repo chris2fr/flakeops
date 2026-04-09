@@ -9,10 +9,6 @@
 }: let
   # home-manager = import vars/home-manager.nix;
 in {
-  nixpkgs.config.permittedInsecurePackages = [
-    "python3.13-pypdf2-3.0.1"
-  ];
-
   nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.config.allowUnfree = true;
   boot.kernel.sysctl = {
@@ -135,6 +131,7 @@ in {
   # virtualisation.libvirtd.enable = false;
   nixpkgs.config.permittedInsecurePackages = [
     "sope-5.11.2"
+    "python3.13-pypdf2-3.0.1"
   ];
   # services.certwarden = {
   #   enable = true;
