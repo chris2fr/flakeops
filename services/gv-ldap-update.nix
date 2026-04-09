@@ -6,7 +6,7 @@
   gv-ldap-update = import ./gv-ldap-update/default.nix {inherit pkgs;};
   vars = import ../vars.nix;
 in {
-  environment.systemPackages = [updateOpenldap];
+  environment.systemPackages = [gv-ldap-update];
 
   systemd.tmpfiles.rules = [
     "d /etc/gv.je 0775 services services"
