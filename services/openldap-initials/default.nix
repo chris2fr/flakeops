@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation rec {
   pname = "update-initials";
   version = "1.0";
 
-  src = ./.;
+  src = null;
 
   phases = ["installPhase"];
 

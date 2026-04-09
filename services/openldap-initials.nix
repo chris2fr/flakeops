@@ -26,7 +26,7 @@ in {
   #   BIND_PW="secret"
   #   BASE_DN="dc=example,dc=com"
   # '';
-  environment.etc."ldap-initials.env".mode = "0600"; # secure
+  # environment.etc."ldap-initials.env".mode = "0600"; # secure
 
   systemd.services.update-initials = {
     description = "Populate LDAP initials if missing";
