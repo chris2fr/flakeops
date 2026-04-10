@@ -58,7 +58,7 @@ in {
             clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
             # clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
           };
-          "keycloakGDVoisins";= {
+          "keycloakGDVoisins" = {
             # key = "keycloakGDVoisins";
             authurl = "https://keycloak.gdvoisins.com/realms/master";
             lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
