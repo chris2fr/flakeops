@@ -33,7 +33,8 @@ in {
         host = "mail.lesgrandsvoisins.com";
         authtype = "login";
         username = "list@lesgrandsvoisins.com";
-        password.file = config.age.secrets."email.list".path;
+        # password.file = config.age.secrets."email.list".path;
+        password.file = "/etc/vikunja/.secret.email.list";
       };
       defaultsettings = {
         week_start = 1;
