@@ -48,9 +48,8 @@ in {
         # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
         # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
         openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
-        openid.providers = [
-          {
-            name = "key@gv.je";
+        openid.providers = {
+          "key@gv.je" = {
             # key = "keygvnje";
             authurl = "https://key.gv.je/realms/master";
             lougouturl = "https://key.gv.je/realms/master/protocol/openid-connect/logout";
@@ -58,16 +57,15 @@ in {
             # clientsecret = "KEYGVJE_VIKUNJA_CLIENT_SECRET";
             clientsecret = "$KEYGVJE_VIKUNJA_CLIENT_SECRET";
             # clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
-          }
-          {
-            name = "keycloakGDVoisins";
+          };
+          "keycloakGDVoisins";= {
             # key = "keycloakGDVoisins";
             authurl = "https://keycloak.gdvoisins.com/realms/master";
             lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
             # clientsecret.file = "/etc/vikunja/oidc_client_secret";
-          }
+          };
           # {
           #   name = "keyLesGrandsVoisinsCom";
           #   authurl = "https://key.lesgrandsvoisins.com/realms/master";
@@ -93,7 +91,7 @@ in {
           #   # clientsecret.file = config.age.secrets."keycloak.vikunja".path;
           #   # clientsecret = keycloakVikunja;
           # }
-        ];
+        };
       };
     };
   };

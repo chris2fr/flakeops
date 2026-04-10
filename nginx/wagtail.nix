@@ -593,99 +593,99 @@ in {
       locations."/medias" = {proxyPass = null;};
       locations."/.well-known" = {proxyPass = null;};
     };
-    "www.gvois.com" = {
-      extraConfig = "# proxy_protocol off;";
-      serverAliases = [
-        "www.gvois.org"
-        "bigbluebutton.gvois.com"
-        "bind.gvois.com"
-        "cherryldap.gvois.com"
-        "crabfit.gvois.com"
-        "discourse.gvois.com"
-        "fossil.gvois.com"
-        "ghost.gvois.com"
-        "gitea.gvois.com"
-        "hedgedoc.gvois.com"
-        "homepagedashboard.gvois.com"
-        "keycloak.gvois.com"
-        "linkding.gvois.com"
-        "listmonk.gvois.com"
-        "nixos.gvois.com"
-        "odoo.gvois.com"
-        "openldap.gvois.com"
-        "photoprism.gvois.com"
-        "quartz.gvois.com"
-        "radicale.gvois.com"
-        "roundcube.gvois.com"
-        "seafile.gvois.com"
-        "sftpgo.gvois.com"
-        "silverbullet.gvois.com"
-        "syncthing.gvois.com"
-        "vaultwarden.gvois.com"
-        "vikunja.gvois.com"
-        "wagtail.gvois.com"
-        "webdav.gvois.com"
-        "wordpress.gvois.com"
-        "admin.gvois.com"
-        "ai.gvois.com"
-        "annuaire.gvois.com"
-        "backup.gvois.com"
-        "blog.gvois.com"
-        "cal.gvois.com"
-        "cloud.gvois.com"
-        "code.gvois.com"
-        "config.gvois.com"
-        "contacts.gvois.com"
-        "discussion.gvois.com"
-        "docs.gvois.com"
-        "drive.gvois.com"
-        "finance.gvois.com"
-        "forms.gvois.com"
-        "forum.gvois.com"
-        "id.gvois.com"
-        "list.gvois.com"
-        "mail.gvois.com"
-        "meet.gvois.com"
-        "net.gvois.com"
-        "pay.gvois.com"
-        "photos.gvois.com"
-        "secret.gvois.com"
-        "sites.gvois.com"
-        "sync.gvois.com"
-        "task.gvois.com"
-        "url.gvois.com"
-        "videos.gvois.com"
-        "wiki.gvois.com"
-      ];
-      enableACME = true;
-      forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";
-      root = "/var/www/coopgv/";
-      locations."/" = {
-        # return =  "302 https://blog.lesgrandsvoisins.com";
-        proxyPass = "http://localhost:8904/";
-        extraConfig =
-          nginxLocationWagtailExtraConfig
-          + ''
-            # return 302 $scheme://www.grandsvoisins.com$request_uri;
-            if ($host = 'www.gvois.org') {
-              return 301 $scheme://www.gvois.com$request_uri;
-            }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
-          '';
-      };
-      locations."/fr/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/en/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/favicon.ico" = {proxyPass = null;};
-      locations."/static" = {proxyPass = null;};
-      locations."/media" = {proxyPass = null;};
-      locations."/medias" = {proxyPass = null;};
-      locations."/.well-known" = {proxyPass = null;};
-    };
+    # "www.gvois.com" = {
+    #   extraConfig = "# proxy_protocol off;";
+    #   serverAliases = [
+    #     "www.gvois.org"
+    #     "bigbluebutton.gvois.com"
+    #     "bind.gvois.com"
+    #     "cherryldap.gvois.com"
+    #     "crabfit.gvois.com"
+    #     "discourse.gvois.com"
+    #     "fossil.gvois.com"
+    #     "ghost.gvois.com"
+    #     "gitea.gvois.com"
+    #     "hedgedoc.gvois.com"
+    #     "homepagedashboard.gvois.com"
+    #     "keycloak.gvois.com"
+    #     "linkding.gvois.com"
+    #     "listmonk.gvois.com"
+    #     "nixos.gvois.com"
+    #     "odoo.gvois.com"
+    #     "openldap.gvois.com"
+    #     "photoprism.gvois.com"
+    #     "quartz.gvois.com"
+    #     "radicale.gvois.com"
+    #     "roundcube.gvois.com"
+    #     "seafile.gvois.com"
+    #     "sftpgo.gvois.com"
+    #     "silverbullet.gvois.com"
+    #     "syncthing.gvois.com"
+    #     "vaultwarden.gvois.com"
+    #     "vikunja.gvois.com"
+    #     "wagtail.gvois.com"
+    #     "webdav.gvois.com"
+    #     "wordpress.gvois.com"
+    #     "admin.gvois.com"
+    #     "ai.gvois.com"
+    #     "annuaire.gvois.com"
+    #     "backup.gvois.com"
+    #     "blog.gvois.com"
+    #     "cal.gvois.com"
+    #     "cloud.gvois.com"
+    #     "code.gvois.com"
+    #     "config.gvois.com"
+    #     "contacts.gvois.com"
+    #     "discussion.gvois.com"
+    #     "docs.gvois.com"
+    #     "drive.gvois.com"
+    #     "finance.gvois.com"
+    #     "forms.gvois.com"
+    #     "forum.gvois.com"
+    #     "id.gvois.com"
+    #     "list.gvois.com"
+    #     "mail.gvois.com"
+    #     "meet.gvois.com"
+    #     "net.gvois.com"
+    #     "pay.gvois.com"
+    #     "photos.gvois.com"
+    #     "secret.gvois.com"
+    #     "sites.gvois.com"
+    #     "sync.gvois.com"
+    #     "task.gvois.com"
+    #     "url.gvois.com"
+    #     "videos.gvois.com"
+    #     "wiki.gvois.com"
+    #   ];
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   # root = "/var/www/lesgrandsvoisins/";
+    #   root = "/var/www/coopgv/";
+    #   locations."/" = {
+    #     # return =  "302 https://blog.lesgrandsvoisins.com";
+    #     proxyPass = "http://localhost:8904/";
+    #     extraConfig =
+    #       nginxLocationWagtailExtraConfig
+    #       + ''
+    #         # return 302 $scheme://www.grandsvoisins.com$request_uri;
+    #         if ($host = 'www.gvois.org') {
+    #           return 301 $scheme://www.gvois.com$request_uri;
+    #         }
+    #         rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+    #       '';
+    #   };
+    #   locations."/fr/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/en/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/favicon.ico" = {proxyPass = null;};
+    #   locations."/static" = {proxyPass = null;};
+    #   locations."/media" = {proxyPass = null;};
+    #   locations."/medias" = {proxyPass = null;};
+    #   locations."/.well-known" = {proxyPass = null;};
+    # };
     "www.lesgv.org" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
