@@ -779,161 +779,161 @@ in {
       locations."/medias" = {proxyPass = null;};
       locations."/.well-known" = {proxyPass = null;};
     };
-    "www.parisgv.com" = {
-      extraConfig = "# proxy_protocol off;";
-      serverAliases = [
-        "www.parisgv.org"
-        "bigbluebutton.parisgv.com"
-        "bind.parisgv.com"
-        "cherryldap.parisgv.com"
-        "crabfit.parisgv.com"
-        "discourse.parisgv.com"
-        "fossil.parisgv.com"
-        "ghost.parisgv.com"
-        "gitea.parisgv.com"
-        "hedgedoc.parisgv.com"
-        "homepagedashboard.parisgv.com"
-        "keycloak.parisgv.com"
-        "linkding.parisgv.com"
-        "listmonk.parisgv.com"
-        "nixos.parisgv.com"
-        "odoo.parisgv.com"
-        "openldap.parisgv.com"
-        "photoprism.parisgv.com"
-        "quartz.parisgv.com"
-        "radicale.parisgv.com"
-        "roundcube.parisgv.com"
-        "seafile.parisgv.com"
-        "sftpgo.parisgv.com"
-        "silverbullet.parisgv.com"
-        "syncthing.parisgv.com"
-        "vaultwarden.parisgv.com"
-        "vikunja.parisgv.com"
-        "wagtail.parisgv.com"
-        "webdav.parisgv.com"
-        "wordpress.parisgv.com"
-        "admin.parisgv.com"
-        "ai.parisgv.com"
-        "annuaire.parisgv.com"
-        "backup.parisgv.com"
-        "blog.parisgv.com"
-        "cal.parisgv.com"
-        "cloud.parisgv.com"
-        "code.parisgv.com"
-        "config.parisgv.com"
-        "contacts.parisgv.com"
-        "discussion.parisgv.com"
-        "docs.parisgv.com"
-        "drive.parisgv.com"
-        "finance.parisgv.com"
-        "forms.parisgv.com"
-        "forum.parisgv.com"
-        "id.parisgv.com"
-        "list.parisgv.com"
-        "mail.parisgv.com"
-        "meet.parisgv.com"
-        "net.parisgv.com"
-        "pay.parisgv.com"
-        "photos.parisgv.com"
-        "secret.parisgv.com"
-        "sites.parisgv.com"
-        "sync.parisgv.com"
-        "task.parisgv.com"
-        "url.parisgv.com"
-        "videos.parisgv.com"
-        "wiki.parisgv.com"
-      ];
-      enableACME = true;
-      forceSSL = true;
-      # root = "/var/www/lesgrandsvoisins/";
-      root = "/var/www/coopgv/";
-      locations."/" = {
-        # return =  "302 https://blog.lesgrandsvoisins.com";
-        proxyPass = "http://localhost:8904/";
-        extraConfig =
-          nginxLocationWagtailExtraConfig
-          + ''
-            # return 302 $scheme://www.grandsvoisins.com$request_uri;
-            if ($host = 'www.parisgv.org') {
-              return 301 $scheme://www.parisgv.com$request_uri;
-            }
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
-          '';
-      };
-      locations."/fr/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/en/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/favicon.ico" = {proxyPass = null;};
-      locations."/static" = {proxyPass = null;};
-      locations."/media" = {proxyPass = null;};
-      locations."/medias" = {proxyPass = null;};
-      locations."/.well-known" = {proxyPass = null;};
-    };
-    "www.gdvox.com" = {
-      extraConfig = "# proxy_protocol off;";
-      serverAliases = [
-        "admin.gdvox.com"
-        "ai.gdvox.com"
-        "annuaire.gdvox.com"
-        "backup.gdvox.com"
-        "blog.gdvox.com"
-        "cal.gdvox.com"
-        "cloud.gdvox.com"
-        "code.gdvox.com"
-        "config.gdvox.com"
-        "contacts.gdvox.com"
-        "discussion.gdvox.com"
-        "docs.gdvox.com"
-        "drive.gdvox.com"
-        "finance.gdvox.com"
-        "forms.gdvox.com"
-        "forum.gdvox.com"
-        "id.gdvox.com"
-        "list.gdvox.com"
-        "mail.gdvox.com"
-        "meet.gdvox.com"
-        "net.gdvox.com"
-        "pay.gdvox.com"
-        "photos.gdvox.com"
-        "secret.gdvox.com"
-        "sites.gdvox.com"
-        "sync.gdvox.com"
-        "task.gdvox.com"
-        "url.gdvox.com"
-        "videos.gdvox.com"
-        "webdav.gdvox.com"
-        "wiki.gdvox.com"
-      ];
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/gdvox/";
-      locations."/" = {
-        proxyPass = "http://localhost:8907/";
-        extraConfig =
-          nginxLocationWagtailExtraConfig
-          + ''
-            # return 302 $scheme://www.grandsvoisins.com$request_uri;
-            # if ($host = 'www.parisgv.org') {
-            #   return 301 $scheme://www.parisgv.com$request_uri;
-            # }
-            rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
-            rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
-          '';
-      };
-      locations."/fr/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/en/accounts/profile/".extraConfig = ''
-        return 302 /;
-      '';
-      locations."/favicon.ico" = {proxyPass = null;};
-      locations."/static" = {proxyPass = null;};
-      locations."/media" = {proxyPass = null;};
-      locations."/.well-known" = {proxyPass = null;};
-    };
+    # "www.parisgv.com" = {
+    #   extraConfig = "# proxy_protocol off;";
+    #   serverAliases = [
+    #     "www.parisgv.org"
+    #     "bigbluebutton.parisgv.com"
+    #     "bind.parisgv.com"
+    #     "cherryldap.parisgv.com"
+    #     "crabfit.parisgv.com"
+    #     "discourse.parisgv.com"
+    #     "fossil.parisgv.com"
+    #     "ghost.parisgv.com"
+    #     "gitea.parisgv.com"
+    #     "hedgedoc.parisgv.com"
+    #     "homepagedashboard.parisgv.com"
+    #     "keycloak.parisgv.com"
+    #     "linkding.parisgv.com"
+    #     "listmonk.parisgv.com"
+    #     "nixos.parisgv.com"
+    #     "odoo.parisgv.com"
+    #     "openldap.parisgv.com"
+    #     "photoprism.parisgv.com"
+    #     "quartz.parisgv.com"
+    #     "radicale.parisgv.com"
+    #     "roundcube.parisgv.com"
+    #     "seafile.parisgv.com"
+    #     "sftpgo.parisgv.com"
+    #     "silverbullet.parisgv.com"
+    #     "syncthing.parisgv.com"
+    #     "vaultwarden.parisgv.com"
+    #     "vikunja.parisgv.com"
+    #     "wagtail.parisgv.com"
+    #     "webdav.parisgv.com"
+    #     "wordpress.parisgv.com"
+    #     "admin.parisgv.com"
+    #     "ai.parisgv.com"
+    #     "annuaire.parisgv.com"
+    #     "backup.parisgv.com"
+    #     "blog.parisgv.com"
+    #     "cal.parisgv.com"
+    #     "cloud.parisgv.com"
+    #     "code.parisgv.com"
+    #     "config.parisgv.com"
+    #     "contacts.parisgv.com"
+    #     "discussion.parisgv.com"
+    #     "docs.parisgv.com"
+    #     "drive.parisgv.com"
+    #     "finance.parisgv.com"
+    #     "forms.parisgv.com"
+    #     "forum.parisgv.com"
+    #     "id.parisgv.com"
+    #     "list.parisgv.com"
+    #     "mail.parisgv.com"
+    #     "meet.parisgv.com"
+    #     "net.parisgv.com"
+    #     "pay.parisgv.com"
+    #     "photos.parisgv.com"
+    #     "secret.parisgv.com"
+    #     "sites.parisgv.com"
+    #     "sync.parisgv.com"
+    #     "task.parisgv.com"
+    #     "url.parisgv.com"
+    #     "videos.parisgv.com"
+    #     "wiki.parisgv.com"
+    #   ];
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   # root = "/var/www/lesgrandsvoisins/";
+    #   root = "/var/www/coopgv/";
+    #   locations."/" = {
+    #     # return =  "302 https://blog.lesgrandsvoisins.com";
+    #     proxyPass = "http://localhost:8904/";
+    #     extraConfig =
+    #       nginxLocationWagtailExtraConfig
+    #       + ''
+    #         # return 302 $scheme://www.grandsvoisins.com$request_uri;
+    #         if ($host = 'www.parisgv.org') {
+    #           return 301 $scheme://www.parisgv.com$request_uri;
+    #         }
+    #         rewrite ^/cms-admin/login/?$ /accounts/oidc/key-gv-je/login/?process=cms-admin/login/ redirect;
+    #       '';
+    #   };
+    #   locations."/fr/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/en/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/favicon.ico" = {proxyPass = null;};
+    #   locations."/static" = {proxyPass = null;};
+    #   locations."/media" = {proxyPass = null;};
+    #   locations."/medias" = {proxyPass = null;};
+    #   locations."/.well-known" = {proxyPass = null;};
+    # };
+    # "www.gdvox.com" = {
+    #   extraConfig = "# proxy_protocol off;";
+    #   serverAliases = [
+    #     "admin.gdvox.com"
+    #     "ai.gdvox.com"
+    #     "annuaire.gdvox.com"
+    #     "backup.gdvox.com"
+    #     "blog.gdvox.com"
+    #     "cal.gdvox.com"
+    #     "cloud.gdvox.com"
+    #     "code.gdvox.com"
+    #     "config.gdvox.com"
+    #     "contacts.gdvox.com"
+    #     "discussion.gdvox.com"
+    #     "docs.gdvox.com"
+    #     "drive.gdvox.com"
+    #     "finance.gdvox.com"
+    #     "forms.gdvox.com"
+    #     "forum.gdvox.com"
+    #     "id.gdvox.com"
+    #     "list.gdvox.com"
+    #     "mail.gdvox.com"
+    #     "meet.gdvox.com"
+    #     "net.gdvox.com"
+    #     "pay.gdvox.com"
+    #     "photos.gdvox.com"
+    #     "secret.gdvox.com"
+    #     "sites.gdvox.com"
+    #     "sync.gdvox.com"
+    #     "task.gdvox.com"
+    #     "url.gdvox.com"
+    #     "videos.gdvox.com"
+    #     "webdav.gdvox.com"
+    #     "wiki.gdvox.com"
+    #   ];
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/gdvox/";
+    #   locations."/" = {
+    #     proxyPass = "http://localhost:8907/";
+    #     extraConfig =
+    #       nginxLocationWagtailExtraConfig
+    #       + ''
+    #         # return 302 $scheme://www.grandsvoisins.com$request_uri;
+    #         # if ($host = 'www.parisgv.org') {
+    #         #   return 301 $scheme://www.parisgv.com$request_uri;
+    #         # }
+    #         rewrite ^/admin$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
+    #         rewrite ^/cms-admin/login/?$ /accounts/oidc/keycloak-gdvox-com/login/?process=cms-admin/login/ redirect;
+    #       '';
+    #   };
+    #   locations."/fr/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/en/accounts/profile/".extraConfig = ''
+    #     return 302 /;
+    #   '';
+    #   locations."/favicon.ico" = {proxyPass = null;};
+    #   locations."/static" = {proxyPass = null;};
+    #   locations."/media" = {proxyPass = null;};
+    #   locations."/.well-known" = {proxyPass = null;};
+    # };
 
     "www.lgv.info" = {
       enableACME = true;

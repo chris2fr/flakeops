@@ -681,28 +681,28 @@ in {
             '';
           };
         };
-        "keycloak.gdvox.com" = {
-          extraConfig = "# proxy_protocol off;";
-          enableACME = true;
-          forceSSL = true;
-          root = "/var/www/keycloak.gvois.com";
-          serverAliases = ["adminkeycloak.gdvox.com"];
-          locations."/" = {
-            proxyPass = "https://192.168.115.11:14446";
-            extraConfig = ''
-              rewrite ^/$ https://keycloak.gdvox.com/realms/master/account/applications redirect;
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Host $host;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-              add_header Access-Control-Allow-Credentials true;
-              proxy_ssl_certificate     /var/lib/acme/keycloak.gdvox.com/fullchain.pem;
-              proxy_ssl_certificate_key /var/lib/acme/keycloak.gdvox.com/key.pem;
-            '';
-          };
-        };
+        # "keycloak.gdvox.com" = {
+        #   extraConfig = "# proxy_protocol off;";
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   root = "/var/www/keycloak.gvois.com";
+        #   serverAliases = ["adminkeycloak.gdvox.com"];
+        #   locations."/" = {
+        #     proxyPass = "https://192.168.115.11:14446";
+        #     extraConfig = ''
+        #       rewrite ^/$ https://keycloak.gdvox.com/realms/master/account/applications redirect;
+        #       proxy_set_header Host $host;
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Host $host;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+        #       add_header Access-Control-Allow-Credentials true;
+        #       proxy_ssl_certificate     /var/lib/acme/keycloak.gdvox.com/fullchain.pem;
+        #       proxy_ssl_certificate_key /var/lib/acme/keycloak.gdvox.com/key.pem;
+        #     '';
+        #   };
+        # };
         "keycloak.lesgv.org" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
@@ -747,35 +747,35 @@ in {
             '';
           };
         };
-        "keycloak.parisgv.com" = {
-          extraConfig = "# proxy_protocol off;";
-          enableACME = true;
-          forceSSL = true;
-          root = "/var/www/keycloak.parisgv.com";
-          serverAliases = ["adminkeycloak.parisgv.com" "keycloak.parisgv.org" "adminkeycloak.parisgv.org"];
-          locations."/" = {
-            proxyPass = "https://192.168.116.11:14446";
-            extraConfig = ''
-              rewrite ^/$ https://keycloak.parisgv.com/realms/master/account/applications redirect;
-              proxy_set_header Host $host;
+        # "keycloak.parisgv.com" = {
+        #   extraConfig = "# proxy_protocol off;";
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   root = "/var/www/keycloak.parisgv.com";
+        #   serverAliases = ["adminkeycloak.parisgv.com" "keycloak.parisgv.org" "adminkeycloak.parisgv.org"];
+        #   locations."/" = {
+        #     proxyPass = "https://192.168.116.11:14446";
+        #     extraConfig = ''
+        #       rewrite ^/$ https://keycloak.parisgv.com/realms/master/account/applications redirect;
+        #       proxy_set_header Host $host;
 
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Host $host;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-              add_header Access-Control-Allow-Credentials true;
-              proxy_ssl_certificate     /var/lib/acme/keycloak.parisgv.com/fullchain.pem;
-              proxy_ssl_certificate_key /var/lib/acme/keycloak.parisgv.com/key.pem;
-              if ($host = "keycloak.parisgv.org") {
-                return 302 $scheme://keycloak.parisgv.com$request_uri;
-              }
-              if ($host = "adminkeycloak.parisgv.org") {
-                return 302 $scheme://adminkeycloak.parisgv.com$request_uri;
-              }
-            '';
-          };
-        };
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Host $host;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+        #       add_header Access-Control-Allow-Credentials true;
+        #       proxy_ssl_certificate     /var/lib/acme/keycloak.parisgv.com/fullchain.pem;
+        #       proxy_ssl_certificate_key /var/lib/acme/keycloak.parisgv.com/key.pem;
+        #       if ($host = "keycloak.parisgv.org") {
+        #         return 302 $scheme://keycloak.parisgv.com$request_uri;
+        #       }
+        #       if ($host = "adminkeycloak.parisgv.org") {
+        #         return 302 $scheme://adminkeycloak.parisgv.com$request_uri;
+        #       }
+        #     '';
+        #   };
+        # };
         "keycloak.gvois.com" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
