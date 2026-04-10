@@ -45,7 +45,7 @@ in {
     mysql80
     sqlite-interactive
     #    wkhtmltopdf
-    (pkgs.python315.withPackages (python-pkgs:
+    (pkgs.python313.withPackages (python-pkgs:
       with python-pkgs; [
         pillow
         gunicorn
@@ -55,7 +55,7 @@ in {
         pyscss
         django-libsass
         pylibjpeg-libjpeg
-        # pypdf2
+        pypdf2
         # venvShellHook
         pq
         aiosasl
