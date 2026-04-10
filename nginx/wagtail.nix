@@ -125,7 +125,7 @@ in {
         "gdvoisins.org"
         "gvois.org"
         "parisgv.org"
-        "gvois.com"
+        # "gvois.com"
         "parisgv.com"
         "configmagic.com"
         "grandv.org"
