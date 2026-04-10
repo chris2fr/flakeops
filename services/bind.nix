@@ -56,16 +56,11 @@ in {
         file = "/var/lib/bind/zones/gdv1.org.txt";
         masters = ["213.239.216.138"];
       };
-      "gdvoisins.com" = {
-        master = false;
-        file = "/var/lib/bind/zones/gdvoisins.com.txt";
-        masters = ["213.239.216.138"];
-      };
-      "gdvoisins.org" = {
-        master = false;
-        file = "/var/lib/bind/zones/gdvoisins.org.txt";
-        masters = ["213.239.216.138"];
-      };
+      # "gdvoisins.org" = {
+      #   master = false;
+      #   file = "/var/lib/bind/zones/gdvoisins.org.txt";
+      #   masters = ["213.239.216.138"];
+      # };
       "gdvox.com" = {
         master = false;
         file = "/var/lib/bind/zones/gdvox.com.txt";

@@ -20,7 +20,7 @@ BEGIN { RS=""; FS="\n" }
   if(dn && cn){
     split(cn,a,"@")
     initials=a[1]
-    print dn
+    print "dn: " dn
     print "changetype: modify"
     print "add: initials"
     print "initials: " initials
