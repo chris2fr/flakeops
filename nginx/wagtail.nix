@@ -689,7 +689,7 @@ in {
     "www.lesgv.org" = {
       extraConfig = "# proxy_protocol off;";
       serverAliases = [
-        "www.gvois.org"
+        # "www.gvois.org"
         "bigbluebutton.lesgv.org"
         "bind.lesgv.org"
         "cherryldap.lesgv.org"
