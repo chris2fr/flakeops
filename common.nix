@@ -45,7 +45,7 @@ in {
     mysql80
     sqlite-interactive
     #    wkhtmltopdf
-    (pkgs.python3.withPackages (python-pkgs:
+    (pkgs.python315.withPackages (python-pkgs:
       with python-pkgs; [
         pillow
         gunicorn
@@ -74,15 +74,15 @@ in {
         ## djlint
         django-debug-toolbar
       ]))
-    python311
-    python311Packages.pip
-    python311Packages.pypdf2
-    python311Packages.python-ldap
-    python311Packages.pq
-    python311Packages.aiosasl
-    python311Packages.psycopg2
-    python311Packages.pillow
-    python311Packages.pylibjpeg-libjpeg
+    # python311
+    # python311Packages.pip
+    # python311Packages.pypdf2
+    # python311Packages.python-ldap
+    # python311Packages.pq
+    # python311Packages.aiosasl
+    # python311Packages.psycopg2
+    # python311Packages.pillow
+    # python311Packages.pylibjpeg-libjpeg
     #    gccgo
     #    gnumake
     #    python311Packages.ldappool
