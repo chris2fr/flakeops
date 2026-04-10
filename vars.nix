@@ -18,6 +18,7 @@
     syncin = 1505;
     named = 991;
     services = 500;
+    vikunja = 1508;
   };
   ports = {
     postgresql = 5434;

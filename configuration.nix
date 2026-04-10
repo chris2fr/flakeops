@@ -98,7 +98,8 @@ in {
     # "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age; };
     "email.list" = {
       file = ./secrets/email.list.age;
-      group = "wwwrun";
+      user = "wwwrun";
+      group = "services";
       mode = "664";
     };
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};

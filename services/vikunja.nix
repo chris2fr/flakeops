@@ -4,11 +4,17 @@
   lib,
   ...
 }: let
+  vars = import ../vars.nix;
 in {
   systemd.tmpfiles.rules = [
     "d /etc/vikunja 0755 vikunja services"
     "f /etc/vikunja/.env 0600 vikunja services"
   ];
+  users.users.vikunja = {
+    isSystemUser = true;
+    group = "services";
+    uid = vars.uid.vikunja;
+  };
   systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
   systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
   services.vikunja = {
