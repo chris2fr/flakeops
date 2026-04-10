@@ -43,28 +43,28 @@ in {
   # };
   imports = [
     ./containers/cherryldap.nix
-    ./containers/wikijs.nix
     ./containers/discourse.nix
-    ./containers/mattermost.nix
     ./containers/discourseparis14cc.nix
+    ./containers/haproxy.nix
     ./containers/key.nix
-    # ./containers/keycloak.nix
-    ./containers/keyresdigita.nix
-    ./containers/keycloakparis14cc.nix
-    ./containers/keycloakgvoiscom.nix
     ./containers/keycloakgdvox.nix
-    ./containers/keycloakparisgv.nix
+    ./containers/keycloakgvoiscom.nix
     ./containers/keycloaklesgv.nix
-    # ./containers/keycloakparisle.nix
-    # ./containers/roundcuberesdigita.nix
-    ./containers/vikunjaresdigita.nix
+    ./containers/keycloakparis14cc.nix
+    ./containers/keycloakparisgv.nix
+    ./containers/keyresdigita.nix
     ./containers/lgvldap.nix
+    ./containers/mattermost.nix
     ./containers/openldap.nix
     ./containers/silverbullet.nix
     ./containers/triliumnext.nix
+    ./containers/vikunjaresdigita.nix
     ./containers/wagtail.nix
+    ./containers/wikijs.nix
     ./containers/wordpress.nix
-    ./containers/haproxy.nix
+    # ./containers/keycloak.nix
+    # ./containers/keycloakparisle.nix
+    # ./containers/roundcuberesdigita.nix
   ];
   # age.secrets = {
   #   "kopia.silverbullet" = {
