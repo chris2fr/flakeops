@@ -987,7 +987,7 @@ in {
         "wiki.lesgv.com"
         "app.lesgv.com"
         # "www.gv.coop"
-        "www.gvcoop.org"
+        # "www.gvcoop.org"
         # "www.lgv.info"
       ];
       enableACME = true;
