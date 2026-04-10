@@ -71,7 +71,7 @@ in {
         pwgen
         openldap
         mysql80
-        python311Packages.pypdf2
+        python311Packages.pypdf
         python311Packages.python-ldap
         python311Packages.pq
         python311Packages.aiosasl

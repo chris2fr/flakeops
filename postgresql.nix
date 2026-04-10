@@ -5,6 +5,10 @@
   ...
 }: let
 in {
+  services.postgresqlBackup = {
+    enable = true;
+    backupAll = true;
+  };
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
