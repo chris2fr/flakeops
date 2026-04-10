@@ -19,7 +19,8 @@ in {
     localAddress6 = "fc00::9:2";
     bindMounts = {
       "/var/run/listatlesgrandsvoisinscom" = {
-        hostPath = config.age.secrets."email.list".path;
+        # hostPath = config.age.secrets."email.list".path;
+        hostPath = "/etc/vikunja/.secret.email.list";
         isReadOnly = true;
       };
       # "/run/discourse/sockets/unicorn.sock"
@@ -96,7 +97,7 @@ in {
             authtype = "plain";
             # authtype = "login";
             username = "list@lesgrandsvoisins.com";
-            password.file = "/var/run/listatlesgrandsvoisinscom";
+            password.file = "/etc/vikunja/.secret.email.list";
             # username = "list@resdigita.com";
             # password.file = config.age.secrets."email.list".path;
           };

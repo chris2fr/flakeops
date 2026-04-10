@@ -96,12 +96,12 @@ in {
     };
     "keycloak.vikunja" = {file = ./secrets/keycloak.vikunja.age;};
     # "writefreely.mysql" = { file = ./secrets/writefreely.mysql.age; };
-    "email.list" = {
-      file = ./secrets/email.list.age;
-      user = "wwwrun";
-      group = "services";
-      mode = "664";
-    };
+    # "email.list" = {
+    #   file = ./secrets/email.list.age;
+    #   user = "wwwrun";
+    #   group = "services";
+    #   mode = "640";
+    # };
     # "bind.slappasswd" = { file = ./secrets/bind.slappasswd.age;};
     "vikunja.env" = {
       file = ./secrets/vikunja.env.age;
