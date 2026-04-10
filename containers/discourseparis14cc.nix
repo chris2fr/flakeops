@@ -54,6 +54,7 @@ in {
       ];
       nixpkgs.config.permittedInsecurePackages = [
         "discourse-3.2.5"
+        "python3.15-pypdf2-3.0.1"
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "25.11";
