@@ -117,6 +117,7 @@ in {
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4"
     "sope-5.11.2"
+    "python3.15-pypdf2-3.0.1"
     "python3.13-pypdf2-3.0.1"
     "python3.11-pypdf2-3.0.1"
   ];
