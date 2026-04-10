@@ -267,7 +267,7 @@ in {
             pyscss
             django-libsass
             pylibjpeg-libjpeg
-            pypdf2
+            # pypdf2
             #venvShellHook
             pq
             aiosasl
