@@ -13,7 +13,7 @@ in {
   users.users.vikunja = {
     isSystemUser = true;
     group = "services";
-    uid = lib.mkForce vars.uid.vikunja;
+    uid = vars.uid.vikunja;
   };
   systemd.services.vikunja.serviceConfig.User = lib.mkForce "vikunja";
   systemd.services.vikunja.serviceConfig.DynamicUser = lib.mkForce false;
