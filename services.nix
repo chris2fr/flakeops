@@ -10,11 +10,11 @@ in {
     services/bind.nix
     services/gv-ldap-update.nix
     services/haproxy.nix
+    services/homepage-dashboard.nix
     services/radicale.nix
     services/sftpgo.nix
     services/vikunja.nix
     # services/syncthing.nix
-    services/homepage-dashboard.nix
   ];
   # List services that you want to enable:
   services = {

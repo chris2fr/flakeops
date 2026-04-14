@@ -29,6 +29,11 @@
     options = ["fmask=0022" "dmask=0022"];
   };
 
+  fileSystems."/mnt/btrfs" = {
+    device = "/dev/disk/by-uuid/ca11e85f-2ecf-44a8-82c5-a6fced464aa5";
+    fsType = "btrfs";
+  };
+
   # fileSystems."/var/lib/lxcfs" =
   #   { device = "lxcfs";
   #     fsType = "fuse.lxcfs";

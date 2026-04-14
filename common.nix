@@ -44,6 +44,7 @@ in {
     openldap
     mysql80
     sqlite-interactive
+    btrfs-progs
     #    wkhtmltopdf
     (pkgs.python313.withPackages (python-pkgs:
       with python-pkgs; [
