@@ -13,7 +13,7 @@ in {
     uid = 11111;
   };
   containers.cherryldap = {
-    autoStart = true;
+    autoStart = false;
     privateNetwork = true;
     hostAddress = "192.168.106.1";
     localAddress = "192.168.106.2";
@@ -152,7 +152,7 @@ in {
       };
       systemd.tmpfiles.rules = [
         "d /var/local/cherryldap 0755 cherryldap users"
-        "d /var/local/cherryldap/settings_local.py 0644 cherryldap users"
+        "f /var/local/cherryldap/settings_local.py 0644 cherryldap users"
       ];
 
       # systemd.services.cherryldap = {
