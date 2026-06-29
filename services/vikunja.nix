@@ -67,16 +67,16 @@ in {
             clientsecret.file = "/etc/vikunja/oidc_client_secret_keygvje";
             scope = "openid profile email";
           };
-          "keycloakGDVoisins" = {
-            # key = "keycloakGDVoisins";
-            name = "keycloakGDVoisins";
-            authurl = "https://keycloak.gdvoisins.com/realms/master";
-            lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
-            clientid = "vikunja";
-            # clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
-            scope = "openid profile email";
-            clientsecret.file = "/etc/vikunja/oidc_client_secret";
-          };
+          # "keycloakGDVoisins" = {
+          #   # key = "keycloakGDVoisins";
+          #   name = "keycloakGDVoisins";
+          #   authurl = "https://keycloak.gdvoisins.com/realms/master";
+          #   lougouturl = "https://keycloak.gdvoisins.com/realms/master/protocol/openid-connect/logout";
+          #   clientid = "vikunja";
+          #   # clientsecret = "$KEYCLOAK_VIKUNJA_CLIENT_SECRET";
+          #   scope = "openid profile email";
+          #   clientsecret.file = "/etc/vikunja/oidc_client_secret";
+          # };
           # {
           #   name = "keyLesGrandsVoisinsCom";
           #   authurl = "https://key.lesgrandsvoisins.com/realms/master";
