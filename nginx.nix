@@ -580,25 +580,25 @@ in {
             etag off;
           '';
         };
-        "keycloak.village.ngo" = {
-          extraConfig = "# proxy_protocol off;";
-          enableACME = true;
-          forceSSL = true;
-          root = "/var/www/keycloakvillagengo";
-          # globalRedirect = "keycloak.village.ngo:12443";
-          locations."/" = {
-            proxyPass = "https://keycloak.village.ngo:12443";
-            extraConfig = ''
-              proxy_set_header   X-Real-IP $remote_addr;
-              proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header   Host $host;
-              # proxy_set_header X-Forwarded-Host $host;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-              add_header Access-Control-Allow-Credentials true;
-            '';
-          };
-        };
+        # "keycloak.village.ngo" = {
+        #   extraConfig = "# proxy_protocol off;";
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   root = "/var/www/keycloakvillagengo";
+        #   # globalRedirect = "keycloak.village.ngo:12443";
+        #   locations."/" = {
+        #     proxyPass = "https://keycloak.village.ngo:12443";
+        #     extraConfig = ''
+        #       proxy_set_header   X-Real-IP $remote_addr;
+        #       proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header   Host $host;
+        #       # proxy_set_header X-Forwarded-Host $host;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+        #       add_header Access-Control-Allow-Credentials true;
+        #     '';
+        #   };
+        # };
         "key.lesgrandsvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
@@ -1135,27 +1135,27 @@ in {
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
         };
-        "silverbullet.village.ngo" = {
-          serverAliases = ["silverbullet.resdigita.com"];
-          enableACME = true;
-          forceSSL = true;
-          #locations."/".proxyPass = "http://10.245.101.35:3000/";
-          locations."/".proxyPass = "http://192.168.102.2:3000/";
-          # locations."/".proxyPass = "https://192.168.102.2:3443/";
-          extraConfig = ''
-            # proxy_protocol off;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_redirect off;
-          '';
-        };
-        "ete.village.ngo" = {
-          extraConfig = "# proxy_protocol off;";
-          enableACME = true;
-          forceSSL = true;
-          serverAliases = ["ete.lesgrandsvoisins.com"];
-          locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
-        };
+        # "silverbullet.village.ngo" = {
+        #   serverAliases = ["silverbullet.resdigita.com"];
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   #locations."/".proxyPass = "http://10.245.101.35:3000/";
+        #   locations."/".proxyPass = "http://192.168.102.2:3000/";
+        #   # locations."/".proxyPass = "https://192.168.102.2:3443/";
+        #   extraConfig = ''
+        #     # proxy_protocol off;
+        #     proxy_set_header X-Forwarded-Proto $scheme;
+        #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #     proxy_redirect off;
+        #   '';
+        # };
+        # "ete.village.ngo" = {
+        #   extraConfig = "# proxy_protocol off;";
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   serverAliases = ["ete.lesgrandsvoisins.com"];
+        #   locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
+        # };
         "drive.lesgrandsvoisins.com" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;
@@ -1307,31 +1307,31 @@ in {
             '';
           };
         };
-        "discourse.village.ngo" = {
-          extraConfig = "# proxy_protocol off;";
-          serverAliases = [
-            "disc.lesgrandsvoisins.com"
-            "discourse.lesgrandsvoisins.com"
-            "forum.lesgrandsvoisins.com"
-          ];
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = {
-            extraConfig = ''
-              proxy_http_version 1.1;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_redirect off;
-              proxy_set_header   Host $host;
-              proxy_pass         https://192.168.104.11;
-              proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
-              proxy_ssl_verify     off;
-              proxy_set_header   Upgrade $http_upgrade;
-              proxy_set_header   Connection "upgrade";
-            '';
-          };
-        };
+        # "discourse.village.ngo" = {
+        #   extraConfig = "# proxy_protocol off;";
+        #   serverAliases = [
+        #     "disc.lesgrandsvoisins.com"
+        #     "discourse.lesgrandsvoisins.com"
+        #     "forum.lesgrandsvoisins.com"
+        #   ];
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   locations."/" = {
+        #     extraConfig = ''
+        #       proxy_http_version 1.1;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_redirect off;
+        #       proxy_set_header   Host $host;
+        #       proxy_pass         https://192.168.104.11;
+        #       proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
+        #       proxy_ssl_verify     off;
+        #       proxy_set_header   Upgrade $http_upgrade;
+        #       proxy_set_header   Connection "upgrade";
+        #     '';
+        #   };
+        # };
         "discourse.paris14.cc" = {
           extraConfig = "# proxy_protocol off;";
           enableACME = true;

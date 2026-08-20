@@ -478,23 +478,23 @@ in {
           StartLimitInterval = "1min";
         };
       };
-      systemd.services.wagtail-village = {
-        description = "wagtail.village.ngo Website based on Wagtail-village";
-        after = ["network.target"];
-        wantedBy = ["multi-user.target"];
-        serviceConfig = {
-          WorkingDirectory = "/home/wagtail/wagtail-village/";
-          # ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-village --workers 3 --bind unix:/var/lib/wagtail/wagtail-village.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-village-access.log --error-logfile /var/log/wagtail/wagtail-village-error.log --chdir /home/wagtail/wagtail-village --workers 12 --bind 0.0.0.0:8897 wagtail_village.config.wsgi:application'';
-          Restart = "always";
-          RestartSec = "10s";
-          User = "wagtail";
-          Group = "users";
-        };
-        unitConfig = {
-          StartLimitInterval = "1min";
-        };
-      };
+      # systemd.services.wagtail-village = {
+      #   description = "wagtail.village.ngo Website based on Wagtail-village";
+      #   after = ["network.target"];
+      #   wantedBy = ["multi-user.target"];
+      #   serviceConfig = {
+      #     WorkingDirectory = "/home/wagtail/wagtail-village/";
+      #     # ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-village --workers 3 --bind unix:/var/lib/wagtail/wagtail-village.sock facile.wsgi:application'';
+      #     ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-village-access.log --error-logfile /var/log/wagtail/wagtail-village-error.log --chdir /home/wagtail/wagtail-village --workers 12 --bind 0.0.0.0:8897 wagtail_village.config.wsgi:application'';
+      #     Restart = "always";
+      #     RestartSec = "10s";
+      #     User = "wagtail";
+      #     Group = "users";
+      #   };
+      #   unitConfig = {
+      #     StartLimitInterval = "1min";
+      #   };
+      # };
       systemd.services.cantine = {
         description = "cantine.resdigita.com Website based on wagtail-village";
         after = ["network.target"];
