@@ -370,6 +370,7 @@ in {
     "old.lesgrandsvoisins.com" = {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
+        "old2.lesgrandsvoisins.com"
         # "www.lesgrandsvoisins.fr"
         "www.gdvoisins.com"
         # "en.gdvoisins.com"
