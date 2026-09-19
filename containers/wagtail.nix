@@ -676,7 +676,8 @@ in {
         };
       };
       systemd.services.wagtail-lesgrandsvoisinscom = {
-        description = "www.lesgrandsvoisins.com on 8906";
+        # description = "www.lesgrandsvoisins.com on 8906";
+        description = "old.lesgrandsvoisins.com on 8906";
         after = ["network.target"];
         wantedBy = ["multi-user.target"];
         serviceConfig = {

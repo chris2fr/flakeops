@@ -23,7 +23,8 @@
       return 302 https://www.gdvoisins.com$request_uri;
     }
     if ($host = 'www.lesgrandsvoisins.fr') {
-      return 302 https://www.lesgrandsvoisins.com$request_uri;
+      return 302 https://old.lesgrandsvoisins.com$request_uri;
+      # return 302 https://www.lesgrandsvoisins.com$request_uri;
     }
     # Static assets: cache for a year (with versioned filenames)
     location ~* \.(?:css|js|woff2?|ttf|eot|ico|gif|jpg|jpeg|png|webp|svg)$ {
@@ -365,7 +366,8 @@ in {
       extraConfig = nginxLesGrandsVoisinsExtraConfig;
       locations = nginxLesGrandsVoisinsLocations;
     };
-    "www.lesgrandsvoisins.com" = {
+    # "www.lesgrandsvoisins.com" = {
+    "old.lesgrandsvoisins.com" = {
       serverAliases = [
         "meet.lesgrandsvoisins.com"
         # "www.lesgrandsvoisins.fr"
@@ -973,6 +975,7 @@ in {
       root = "/var/www/coopgv/";
       locations."/".extraConfig = ''
         return 302 https://www.lesgrandsvoisins.com$request_uri;
+        # return 302 https://www.lesgrandsvoisins.com$request_uri;
       '';
     };
     "admin.lesgv.com" = {
